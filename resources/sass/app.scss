@@ -1,0 +1,17 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+
+.bg-orange-custom{
+    background-color: #FFB101;
+}
+
+.mt-custom {
+    margin-top: -10.5rem;
+}
