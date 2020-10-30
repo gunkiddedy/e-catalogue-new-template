@@ -35,8 +35,10 @@
     
                 {{-- BUTTON LOGIN REGISTER --}}
                 <div class="">
-                    <a type="button" href="/login" class="block bg-orange-custom px-4 py-2 rounded-lg w-48">
-                        <span class="leading-tight text-white font-semibold">Login / Register</span>
+                    <a href="/login">
+                        <button class="bg-orange-custom px-4 py-2 rounded-lg w-48" type="button">
+                            <span class="leading-tight text-white font-semibold">Login / Register</span>
+                        </button>
                     </a>
                 </div>
             </div>
@@ -140,9 +142,11 @@
                                 <p class="text-xs mb-4 text-gray-500">
                                     Visit in order to contact the seller
                                 </p>
-                                <button class="bg-blue-600 text-white px-4 py-2 w-full rounded-lg  font-bold leading-tight font-sm">
-                                    <p>See Product</p>
-                                </button>
+                                <a href="/product-detail">
+                                    <button class="bg-blue-600 text-white px-4 py-2 w-full rounded-lg  font-bold leading-tight font-sm">
+                                        <p>See Product</p>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                         {{-- end product description --}}

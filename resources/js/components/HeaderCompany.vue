@@ -32,7 +32,7 @@
                 <div class="leading-tight text-sm font-semibold text-gray-600">PT.MAJU JAYA PRIMA...</div>
             </div>
             <div v-if="!isauth" class="w-64 flex justify-between items-center">
-                <a type="button" href="/login">
+                <a href="/login">
                     <button class="bg-orange-custom px-4 py-2 rounded-lg w-48" type="button">
                         <span class="leading-tight text-white font-semibold">Login / Register</span>
                     </button>

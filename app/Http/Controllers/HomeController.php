@@ -31,6 +31,11 @@ class HomeController extends Controller
         return view('login');
     }
 
+    public function signup()
+    {
+        return view('signup');
+    }
+
     public function companyPage()
     {
         return view('company');
