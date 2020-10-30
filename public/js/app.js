@@ -2341,7 +2341,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      isauth: true
+      isauth: false
     };
   }
 });
@@ -2775,6 +2775,154 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Welcome.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Welcome.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -23288,6 +23436,479 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Welcome.vue?vue&type=template&id=51777872&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Welcome.vue?vue&type=template&id=51777872& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "flex px-4 py-4 mt-4" }, [
+      _c(
+        "div",
+        { staticClass: "bg-white h-full w-64 rounded-lg mr-6 shadow" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "px-6 mb-3 mt-3" }, [
+            _c(
+              "p",
+              { staticClass: "py-2 text-gray-800 font-semibold leading-tight" },
+              [_vm._v("Provinsi")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left",
+                attrs: { type: "button", id: "btn-prop" }
+              },
+              [
+                _c("P", { staticClass: "text-sm text-gray-700" }, [
+                  _vm._v("Show All")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4",
+                    attrs: {
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      xmlns: "http://www.w3.org/2000/svg"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "px-6 mb-3 mt-3" }, [
+            _c(
+              "p",
+              { staticClass: "py-2 text-gray-800 font-semibold leading-tight" },
+              [_vm._v("Kabupaten")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left",
+                attrs: { type: "button" }
+              },
+              [
+                _c("P", { staticClass: "text-sm text-gray-700" }, [
+                  _vm._v("Show All")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4",
+                    attrs: {
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      xmlns: "http://www.w3.org/2000/svg"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "px-6 mb-3 mt-3" }, [
+            _c(
+              "p",
+              { staticClass: "py-2 text-gray-800 font-semibold leading-tight" },
+              [_vm._v("Category")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left",
+                attrs: { type: "button" }
+              },
+              [
+                _c("P", { staticClass: "text-sm text-gray-700" }, [
+                  _vm._v("Show All")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4",
+                    attrs: {
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      xmlns: "http://www.w3.org/2000/svg"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ],
+              1
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "px-6 mb-8 mt-3" }, [
+            _c(
+              "p",
+              { staticClass: "py-2 text-gray-800 font-semibold leading-tight" },
+              [_vm._v("Sub Category")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left",
+                attrs: { type: "button" }
+              },
+              [
+                _c("P", { staticClass: "text-sm text-gray-700" }, [
+                  _vm._v("Show All")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4",
+                    attrs: {
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      xmlns: "http://www.w3.org/2000/svg"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ],
+              1
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full" }, [
+        _c("div", { staticClass: "flex justify-between items-center" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex justify-between items-center" }, [
+            _c("p", { staticClass: "mr-2 text-sm" }, [_vm._v("Urutkan :")]),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-white w-48 flex justify-between leading-tight text-sm py-2 px-4 border rounded border-gray-400 text-left",
+                attrs: { type: "button" }
+              },
+              [
+                _c("p", [_vm._v("Paling sesuai")]),
+                _vm._v(" "),
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4",
+                    attrs: {
+                      viewBox: "0 0 20 20",
+                      xmlns: "http://www.w3.org/2000/svg"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "flex justify-around items-center mt-16" }, [
+          _c(
+            "ul",
+            {
+              staticClass:
+                "flex justify-between items-center leading-tight font-bold text-gray-700"
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "rounded-full bg-gray-500 text-orange-100" },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "w-6 h-6",
+                      attrs: {
+                        fill: "currentColor",
+                        viewBox: "0 0 20 20",
+                        xmlns: "http://www.w3.org/2000/svg"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          "fill-rule": "evenodd",
+                          d:
+                            "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
+                          "clip-rule": "evenodd"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("li", { staticClass: "px-4 underline text-orange-400" }, [
+                _vm._v("1")
+              ]),
+              _vm._v(" "),
+              _c("li", { staticClass: "px-4" }, [_vm._v("2")]),
+              _vm._v(" "),
+              _c("li", { staticClass: "px-4" }, [_vm._v("3")]),
+              _vm._v(" "),
+              _c("li", { staticClass: "px-4" }, [_vm._v("4")]),
+              _vm._v(" "),
+              _c("li", { staticClass: "px-4" }, [_vm._v("5")]),
+              _vm._v(" "),
+              _c("li", { staticClass: "px-4" }, [_vm._v("6")]),
+              _vm._v(" "),
+              _c("li", { staticClass: "px-4" }, [_vm._v("7")]),
+              _vm._v(" "),
+              _c("li", { staticClass: "px-4" }, [_vm._v("8")]),
+              _vm._v(" "),
+              _c("li", { staticClass: "px-4" }, [_vm._v("9")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "rounded-full bg-orange-500 text-orange-100" },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "w-6 h-6",
+                      attrs: {
+                        fill: "currentColor",
+                        viewBox: "0 0 20 20",
+                        xmlns: "http://www.w3.org/2000/svg"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          "fill-rule": "evenodd",
+                          d:
+                            "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                          "clip-rule": "evenodd"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-blue-500 rounded-t-lg h-12" }, [
+      _c("p", { staticClass: "px-8 py-3 text-gray-100 font-semibold" }, [
+        _vm._v("\r\n                    Filter\r\n                ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "leading-tight text-sm" }, [
+      _vm._v("Menampilkan 12 produk dari +100 ribu produk yang ada di "),
+      _c("span", { staticClass: "font-bold" }, [_vm._v("Katalogi")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-8 grid grid-cols-5 gap-2" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "text-gray-700 rounded-lg bg-white shadow-md h-72 relative"
+        },
+        [
+          _c("img", {
+            staticClass: "rounded-t-lg",
+            attrs: { src: "/img/login-img.png", alt: "" }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "absolute px-4 py-4 bg-white rounded-lg leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41"
+            },
+            [
+              _c(
+                "p",
+                {
+                  staticClass:
+                    "normal-case mb-6 font-bold text-sm leading-tight"
+                },
+                [
+                  _vm._v(
+                    "\r\n                            Customized Pre-filter untuk Blower dan FFU\r\n                        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "p",
+                {
+                  staticClass: "uppercase text-gray-600 leading-tight text-xs"
+                },
+                [
+                  _vm._v(
+                    "\r\n                            pt. maju jaya prima perkasa abadi\r\n                        "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", [
+                _c("p", { staticClass: "mt-2 mb-2 text-xs text-gray-500" }, [
+                  _vm._v(
+                    "\r\n                                Jakarta Barat\r\n                            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "mb-2 rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2"
+                  },
+                  [
+                    _c("p", { staticClass: "text-gray-300 text-xs" }, [
+                      _vm._v("SNI")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "font-bold mb-2" }, [
+                  _c("span", { staticClass: "text-red-500 font-bold" }, [
+                    _vm._v("Rp250.000")
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "text-sm" }, [_vm._v("/ pc")])
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-xs mb-4 text-gray-500" }, [
+                  _vm._v(
+                    "\r\n                                Visit in order to contact the seller\r\n                            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("a", { attrs: { href: "/product-detail" } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass:
+                        "hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ",
+                      attrs: { type: "button" }
+                    },
+                    [
+                      _c(
+                        "p",
+                        { staticClass: "text-white leading-none font-bold" },
+                        [_vm._v("See Product")]
+                      )
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
 /*!********************************************************************!*\
   !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -35466,7 +36087,8 @@ Vue.component('footer-page', __webpack_require__(/*! ./components/Footer.vue */ 
 Vue.component('company-page', __webpack_require__(/*! ./components/CompanyPage.vue */ "./resources/js/components/CompanyPage.vue")["default"]);
 Vue.component('product-detail', __webpack_require__(/*! ./components/ProductDetail.vue */ "./resources/js/components/ProductDetail.vue")["default"]);
 Vue.component('login-page', __webpack_require__(/*! ./components/LoginPage.vue */ "./resources/js/components/LoginPage.vue")["default"]);
-Vue.component('signup-page', __webpack_require__(/*! ./components/SignupPage.vue */ "./resources/js/components/SignupPage.vue")["default"]); // Vue.component('card-modal', require('./components/CardModal.vue').default);
+Vue.component('signup-page', __webpack_require__(/*! ./components/SignupPage.vue */ "./resources/js/components/SignupPage.vue")["default"]);
+Vue.component('welcome-page', __webpack_require__(/*! ./components/Welcome.vue */ "./resources/js/components/Welcome.vue")["default"]); // Vue.component('card-modal', require('./components/CardModal.vue').default);
 // Vue.component('navtab-company', require('./components/NavtabCompany.vue').default);
 
 var app = new Vue({
@@ -35865,6 +36487,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SignupPage_vue_vue_type_template_id_b955261c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SignupPage_vue_vue_type_template_id_b955261c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Welcome.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Welcome.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Welcome_vue_vue_type_template_id_51777872___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Welcome.vue?vue&type=template&id=51777872& */ "./resources/js/components/Welcome.vue?vue&type=template&id=51777872&");
+/* harmony import */ var _Welcome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Welcome.vue?vue&type=script&lang=js& */ "./resources/js/components/Welcome.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Welcome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Welcome_vue_vue_type_template_id_51777872___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Welcome_vue_vue_type_template_id_51777872___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Welcome.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Welcome.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Welcome.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Welcome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Welcome.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Welcome.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Welcome_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Welcome.vue?vue&type=template&id=51777872&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/Welcome.vue?vue&type=template&id=51777872& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Welcome_vue_vue_type_template_id_51777872___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Welcome.vue?vue&type=template&id=51777872& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Welcome.vue?vue&type=template&id=51777872&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Welcome_vue_vue_type_template_id_51777872___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Welcome_vue_vue_type_template_id_51777872___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
