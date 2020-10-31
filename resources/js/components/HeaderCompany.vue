@@ -3,8 +3,10 @@
     <header>
         <div class="px-4 py-4 flex justify-between items-center">
 
-            <a class="font-bold text-gray-600 text-2xl lg:text-2xl font-omnia tracking-wide" href="">
-                Katalogi
+            <a href="">
+                <span class="font-omnia text-gray-600 text-2xl lg:text-2xl tracking-wide font-semibold">
+                    Katalogi
+                </span>
             </a>
 
             <div class="w-full mx-16 relative">

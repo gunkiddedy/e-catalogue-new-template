@@ -1899,6 +1899,376 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CompanyList.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CompanyList.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      show_more_text: 'Show More',
+      showProductCompany: false
+    };
+  },
+  methods: {
+    onClickShowMore: function onClickShowMore() {
+      this.showProductCompany = !this.showProductCompany;
+
+      if (this.showProductCompany === true) {
+        this.show_more_text = 'Show Less';
+      } else {
+        this.show_more_text = 'Show More';
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CompanyPage.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CompanyPage.vue?vue&type=script&lang=js& ***!
@@ -2292,6 +2662,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -20821,6 +21193,1184 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CompanyList.vue?vue&type=template&id=4fc00020&":
+/*!**************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CompanyList.vue?vue&type=template&id=4fc00020& ***!
+  \**************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "flex px-4 py-4 mt-4" }, [
+      _c(
+        "div",
+        {
+          staticClass: "bg-white h-full w-64 rounded-lg mr-6 shadow px-1 py-1"
+        },
+        [
+          _c("div", { staticClass: "grid grid-cols-1 my-2 px-1" }, [
+            _c(
+              "div",
+              {
+                staticClass: "text-gray-500 flex items-center justify-between"
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg",
+                    attrs: { type: "button" }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-4 mr-2",
+                        attrs: {
+                          fill: "currentColor",
+                          viewBox: "0 0 20 20",
+                          xmlns: "http://www.w3.org/2000/svg"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M10.496 2.132a1 1 0 00-.992 0l-7 4A1 1 0 003 8v7a1 1 0 100 2h14a1 1 0 100-2V8a1 1 0 00.496-1.868l-7-4zM6 9a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1zm3 1a1 1 0 012 0v3a1 1 0 11-2 0v-3zm5-1a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "font-semibold" }, [
+                      _vm._v("Company List")
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "text-gray-500 flex items-center justify-between"
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg",
+                    attrs: { type: "button" }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-4 mr-2",
+                        attrs: {
+                          fill: "currentColor",
+                          viewBox: "0 0 20 20",
+                          xmlns: "http://www.w3.org/2000/svg"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z",
+                            "clip-rule": "evenodd"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("path", {
+                          attrs: {
+                            d:
+                              "M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "font-semibold" }, [
+                      _vm._v("Product List")
+                    ])
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "text-gray-500 flex items-center justify-between"
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg",
+                    attrs: { type: "button" }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-4 mr-2",
+                        attrs: {
+                          fill: "currentColor",
+                          viewBox: "0 0 20 20",
+                          xmlns: "http://www.w3.org/2000/svg"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "font-semibold" }, [
+                      _vm._v("Blacklisted User")
+                    ])
+                  ]
+                )
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "w-full" }, [
+        _c("div", { staticClass: "relative" }, [
+          _c("form", { attrs: { action: "", method: "GET" } }, [
+            _c(
+              "button",
+              {
+                staticClass: "absolute right-0 mt-2 mr-2 text-gray-500",
+                attrs: { type: "submit" }
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4",
+                    attrs: {
+                      fill: "none",
+                      stroke: "currentColor",
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "stroke-width": "2",
+                      viewBox: "0 0 24 24"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      }
+                    })
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              staticClass:
+                "shadow appearance-none rounded-full w-full py-1 px-3 text-gray-700 leading-tight  focus:outline-none focus:shadow-inner",
+              attrs: {
+                id: "search",
+                type: "search",
+                placeholder: "Search company"
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "mt-10 mb-12 w-full h-full" }, [
+          _c(
+            "div",
+            { staticClass: "bg-white rounded-lg px-8 py-4 shadow-sm my-4" },
+            [
+              _c("div", { staticClass: "flex items-center justify-between" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex items-center justify-between" },
+                  [
+                    _c("div", { staticClass: "mr-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "focus:outline-none flex items-center justify-between rounded-lg border border-gray-500 px-4 py-1",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.onClickShowMore()
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-gray-500 text-sm font-semibold"
+                            },
+                            [
+                              _vm._v(
+                                "\r\n                                        " +
+                                  _vm._s(_vm.show_more_text) +
+                                  "\r\n                                    "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "mr-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "focus:outline-none flex items-center justify-between rounded-lg border border-red-500 px-4 py-1 text-red-500",
+                          attrs: { type: "button" }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "w-4 mr-2",
+                              attrs: {
+                                fill: "currentColor",
+                                viewBox: "0 0 20 20",
+                                xmlns: "http://www.w3.org/2000/svg"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "fill-rule": "evenodd",
+                                  d:
+                                    "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+                                  "clip-rule": "evenodd"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-red-500 text-sm font-semibold"
+                            },
+                            [_vm._v("Remove")]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "focus:outline-none flex items-center justify-between bg-blue-600 rounded-lg border border-blue-600 px-4 py-1 text-gray-100",
+                          attrs: { type: "button" }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "w-4 mr-2",
+                              attrs: {
+                                fill: "currentColor",
+                                viewBox: "0 0 20 20",
+                                xmlns: "http://www.w3.org/2000/svg"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "fill-rule": "evenodd",
+                                  d:
+                                    "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                                  "clip-rule": "evenodd"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-gray-100 text-sm font-semibold"
+                            },
+                            [_vm._v("Approve")]
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm.showProductCompany
+                ? _c("div", { staticClass: "grid grid-cols-6 gap-4 mt-6" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _vm._m(3),
+                    _vm._v(" "),
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _vm._m(6)
+                  ])
+                : _vm._e()
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "bg-white rounded-lg px-8 py-4 shadow-sm my-4" },
+            [
+              _c("div", { staticClass: "flex items-center justify-between" }, [
+                _vm._m(7),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex items-center justify-between" },
+                  [
+                    _c("div", { staticClass: "mr-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "focus:outline-none flex items-center justify-between rounded-lg border border-gray-500 px-4 py-1",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.onClickShowMore2()
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-gray-500 text-sm font-semibold"
+                            },
+                            [
+                              _vm._v(
+                                "\r\n                                        Show More\r\n                                    "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "mr-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "focus:outline-none flex items-center justify-between rounded-lg border border-red-500 px-4 py-1 text-red-500",
+                          attrs: { type: "button" }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "w-4 mr-2",
+                              attrs: {
+                                fill: "currentColor",
+                                viewBox: "0 0 20 20",
+                                xmlns: "http://www.w3.org/2000/svg"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "fill-rule": "evenodd",
+                                  d:
+                                    "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+                                  "clip-rule": "evenodd"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-red-500 text-sm font-semibold"
+                            },
+                            [_vm._v("Remove")]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "focus:outline-none flex items-center justify-between bg-blue-600 rounded-lg border border-blue-600 px-4 py-1 text-gray-100",
+                          attrs: { type: "button" }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "w-4 mr-2",
+                              attrs: {
+                                fill: "currentColor",
+                                viewBox: "0 0 20 20",
+                                xmlns: "http://www.w3.org/2000/svg"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "fill-rule": "evenodd",
+                                  d:
+                                    "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                                  "clip-rule": "evenodd"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-gray-100 text-sm font-semibold"
+                            },
+                            [_vm._v("Approve")]
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm.showProductCompany2
+                ? _c("div", { staticClass: "grid grid-cols-6 gap-4 mt-6" }, [
+                    _vm._m(8),
+                    _vm._v(" "),
+                    _vm._m(9),
+                    _vm._v(" "),
+                    _vm._m(10),
+                    _vm._v(" "),
+                    _vm._m(11),
+                    _vm._v(" "),
+                    _vm._m(12),
+                    _vm._v(" "),
+                    _vm._m(13)
+                  ])
+                : _vm._e()
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "bg-white rounded-lg px-8 py-4 shadow-sm my-4" },
+            [
+              _c("div", { staticClass: "flex items-center justify-between" }, [
+                _vm._m(14),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "flex items-center justify-between" },
+                  [
+                    _c("div", { staticClass: "mr-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "focus:outline-none flex items-center justify-between rounded-lg border border-gray-500 px-4 py-1",
+                          attrs: { type: "button" },
+                          on: {
+                            click: function($event) {
+                              return _vm.onClickShowMore3()
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-gray-500 text-sm font-semibold"
+                            },
+                            [
+                              _vm._v(
+                                "\r\n                                        Show More\r\n                                    "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "mr-4" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "focus:outline-none flex items-center justify-between rounded-lg border border-red-500 px-4 py-1 text-red-500",
+                          attrs: { type: "button" }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "w-4 mr-2",
+                              attrs: {
+                                fill: "currentColor",
+                                viewBox: "0 0 20 20",
+                                xmlns: "http://www.w3.org/2000/svg"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "fill-rule": "evenodd",
+                                  d:
+                                    "M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z",
+                                  "clip-rule": "evenodd"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-red-500 text-sm font-semibold"
+                            },
+                            [_vm._v("Remove")]
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "focus:outline-none flex items-center justify-between bg-blue-600 rounded-lg border border-blue-600 px-4 py-1 text-gray-100",
+                          attrs: { type: "button" }
+                        },
+                        [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "w-4 mr-2",
+                              attrs: {
+                                fill: "currentColor",
+                                viewBox: "0 0 20 20",
+                                xmlns: "http://www.w3.org/2000/svg"
+                              }
+                            },
+                            [
+                              _c("path", {
+                                attrs: {
+                                  "fill-rule": "evenodd",
+                                  d:
+                                    "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                                  "clip-rule": "evenodd"
+                                }
+                              })
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-gray-100 text-sm font-semibold"
+                            },
+                            [_vm._v("Approve")]
+                          )
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _vm.showProductCompany3
+                ? _c("div", { staticClass: "grid grid-cols-6 gap-4 mt-6" }, [
+                    _vm._m(15),
+                    _vm._v(" "),
+                    _vm._m(16),
+                    _vm._v(" "),
+                    _vm._m(17),
+                    _vm._v(" "),
+                    _vm._m(18),
+                    _vm._v(" "),
+                    _vm._m(19),
+                    _vm._v(" "),
+                    _vm._m(20)
+                  ])
+                : _vm._e()
+            ]
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex items-center justify-between" }, [
+      _c("div", { staticClass: "bg-blue-500 rounded-full w-16 h-16 mr-6" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "grid grid-rows-3" }, [
+        _c("div", [
+          _c(
+            "p",
+            { staticClass: "uppercase font-semibold text-sm text-gray-500" },
+            [
+              _vm._v(
+                "\r\n                                        PT.MAJU JAYA PRIMA PERKASA ABADI\r\n                                    "
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", { staticClass: "text-sm text-blue-500 font-semibold" }, [
+            _vm._v("majujaya@prima.com")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", { staticClass: "text-sm text-gray-500" }, [
+            _vm._v("Bekasi, Jawa Barat, Indonesia")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex items-center justify-between" }, [
+      _c("div", { staticClass: "bg-blue-500 rounded-full w-16 h-16 mr-6" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "grid grid-rows-3" }, [
+        _c("div", [
+          _c(
+            "p",
+            { staticClass: "uppercase font-semibold text-sm text-gray-500" },
+            [
+              _vm._v(
+                "\r\n                                        PT.MAJU JAYA PRIMA PERKASA ABADI\r\n                                    "
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", { staticClass: "text-sm text-blue-500 font-semibold" }, [
+            _vm._v("majujaya@prima.com")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", { staticClass: "text-sm text-gray-500" }, [
+            _vm._v("Bekasi, Jawa Barat, Indonesia")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex items-center justify-between" }, [
+      _c("div", { staticClass: "bg-blue-500 rounded-full w-16 h-16 mr-6" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "grid grid-rows-3" }, [
+        _c("div", [
+          _c(
+            "p",
+            { staticClass: "uppercase font-semibold text-sm text-gray-500" },
+            [
+              _vm._v(
+                "\r\n                                        PT.MAJU JAYA PRIMA PERKASA ABADI\r\n                                    "
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", { staticClass: "text-sm text-blue-500 font-semibold" }, [
+            _vm._v("majujaya@prima.com")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("span", { staticClass: "text-sm text-gray-500" }, [
+            _vm._v("Bekasi, Jawa Barat, Indonesia")
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "flex flex-col" }, [
+      _c("div", {
+        staticClass: "bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"
+      }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass:
+            "text-gray-500 leading-tight font-semibold text-xs tracking-normal"
+        },
+        [
+          _vm._v(
+            "\r\n                                CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER\r\n                            "
+          )
+        ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CompanyPage.vue?vue&type=template&id=32c55191&":
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CompanyPage.vue?vue&type=template&id=32c55191& ***!
@@ -22231,15 +23781,7 @@ var render = function() {
         "div",
         { staticClass: "px-4 py-4 flex justify-between items-center" },
         [
-          _c(
-            "a",
-            {
-              staticClass:
-                "font-bold text-gray-600 text-2xl lg:text-2xl font-omnia tracking-wide",
-              attrs: { href: "" }
-            },
-            [_vm._v("\r\n                Katalogi\r\n            ")]
-          ),
+          _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "w-full mx-16 relative" }, [
             _c("form", { attrs: { action: "", method: "GET" } }, [
@@ -22342,7 +23884,7 @@ var render = function() {
             ? _c(
                 "div",
                 { staticClass: "w-64 flex justify-between items-center" },
-                [_vm._m(0)]
+                [_vm._m(1)]
               )
             : _vm._e()
         ]
@@ -22353,6 +23895,21 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "" } }, [
+      _c(
+        "span",
+        {
+          staticClass:
+            "font-omnia text-gray-600 text-2xl lg:text-2xl tracking-wide font-semibold"
+        },
+        [_vm._v("\r\n                    Katalogi\r\n                ")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -36841,6 +38398,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('header-company', __webpack_require__(/*! ./components/HeaderCompany.vue */ "./resources/js/components/HeaderCompany.vue")["default"]);
 Vue.component('footer-page', __webpack_require__(/*! ./components/Footer.vue */ "./resources/js/components/Footer.vue")["default"]);
 Vue.component('company-page', __webpack_require__(/*! ./components/CompanyPage.vue */ "./resources/js/components/CompanyPage.vue")["default"]);
+Vue.component('company-list', __webpack_require__(/*! ./components/CompanyList.vue */ "./resources/js/components/CompanyList.vue")["default"]);
 Vue.component('product-detail', __webpack_require__(/*! ./components/ProductDetail.vue */ "./resources/js/components/ProductDetail.vue")["default"]);
 Vue.component('login-page', __webpack_require__(/*! ./components/LoginPage.vue */ "./resources/js/components/LoginPage.vue")["default"]);
 Vue.component('signup-page', __webpack_require__(/*! ./components/SignupPage.vue */ "./resources/js/components/SignupPage.vue")["default"]);
@@ -36863,6 +38421,75 @@ var app = new Vue({
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/***/ }),
+
+/***/ "./resources/js/components/CompanyList.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/components/CompanyList.vue ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CompanyList_vue_vue_type_template_id_4fc00020___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CompanyList.vue?vue&type=template&id=4fc00020& */ "./resources/js/components/CompanyList.vue?vue&type=template&id=4fc00020&");
+/* harmony import */ var _CompanyList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CompanyList.vue?vue&type=script&lang=js& */ "./resources/js/components/CompanyList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CompanyList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CompanyList_vue_vue_type_template_id_4fc00020___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CompanyList_vue_vue_type_template_id_4fc00020___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CompanyList.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CompanyList.vue?vue&type=script&lang=js&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/CompanyList.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CompanyList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CompanyList.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CompanyList.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CompanyList_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CompanyList.vue?vue&type=template&id=4fc00020&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/CompanyList.vue?vue&type=template&id=4fc00020& ***!
+  \********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompanyList_vue_vue_type_template_id_4fc00020___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CompanyList.vue?vue&type=template&id=4fc00020& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CompanyList.vue?vue&type=template&id=4fc00020&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompanyList_vue_vue_type_template_id_4fc00020___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CompanyList_vue_vue_type_template_id_4fc00020___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

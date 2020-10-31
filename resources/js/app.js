@@ -8,6 +8,7 @@ window.Vue = require('vue');
 Vue.component('header-company', require('./components/HeaderCompany.vue').default);
 Vue.component('footer-page', require('./components/Footer.vue').default);
 Vue.component('company-page', require('./components/CompanyPage.vue').default);
+Vue.component('company-list', require('./components/CompanyList.vue').default);
 Vue.component('product-detail', require('./components/ProductDetail.vue').default);
 Vue.component('login-page', require('./components/LoginPage.vue').default);
 Vue.component('signup-page', require('./components/SignupPage.vue').default);
