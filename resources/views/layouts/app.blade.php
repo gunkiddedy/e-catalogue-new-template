@@ -16,12 +16,15 @@
 
     <!-- Fonts -->
     {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> --}}
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> --}}
+
+    <link href="//db.onlinewebfonts.com/c/0b51833ff62e4af8acb5fd3e2bf59e97?family=SF+Pro+Display" rel="stylesheet" type="text/css"/>
+
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="font-sf-pro">
     <div id="app" class="bg-gray-100">
         @yield('content')
     </div>

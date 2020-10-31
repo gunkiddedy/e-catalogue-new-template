@@ -2,8 +2,8 @@
 <div>
     <div class="flex px-4 py-4 mt-4">
 
-        <!-- SIDEBAR -->
-        <div class="bg-white h-full w-64 rounded-lg mr-6 shadow">
+        <!-- SIDEBAR (be a modal when clicked on one of the button) -->
+        <div class="bg-white h-full w-64 rounded-lg mr-6 shadow" :class="{'relative': showModal, 'inset-0':showModal, 'z-50': showModal}">
 
             <div class="bg-blue-500 rounded-t-lg h-12">
                 <p class="px-8 py-3 text-gray-100 font-semibold">
@@ -13,13 +13,14 @@
 
             <div class="px-6 mb-3 mt-3">
                 <p class="py-2 text-gray-800 font-semibold leading-tight">Provinsi</p>
-                <button type="button" id="btn-prop" class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left">
+                <button @click="provinsiModal()" type="button" id="btn-prop" class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left">
                     <P class="text-sm text-gray-700">Show All</P>
                     <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                     </svg>
                 </button>
             </div>
+
             <div class="px-6 mb-3 mt-3">
                 <p class="py-2 text-gray-800 font-semibold leading-tight">Kabupaten</p>
                 <button type="button" class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left">
@@ -29,6 +30,7 @@
                     </svg>
                 </button>
             </div>
+
             <div class="px-6 mb-3 mt-3">
                 <p class="py-2 text-gray-800 font-semibold leading-tight">Category</p>
                 <button type="button" class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left">
@@ -38,6 +40,7 @@
                     </svg>
                 </button>
             </div>
+
             <div class="px-6 mb-8 mt-3">
                 <p class="py-2 text-gray-800 font-semibold leading-tight">Sub Category</p>
                 <button type="button" class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left">
@@ -47,10 +50,109 @@
                     </svg>
                 </button>
             </div>
+
         </div>
 
-        <!-- MAIN CONTENT -->
-        <div class="w-full">
+        <div v-if="showModal" class="h-full w-full" :class="{'relative': showModal, 'inset-0':showModal, 'z-50': showModal}">
+            <div class="bg-white border-0 rounded-lg shadow-lg px-6 py-4">
+                <div class="grid grid-cols-5 gap-2">
+                    <div>
+                        <p class="font-semibold text-lg">Sumatera</p>
+                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-lg">Jawa</p>
+                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-lg">Kalimantan</p>
+                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-lg">Sulawesi</p>
+                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-lg">Papua</p>
+                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-full border-t border-gray-400 my-6"></div>
+                <div class="grid grid-cols-5 gap-2">
+                    <div>
+                        <p class="font-semibold text-lg">Nusa Tenggara</p>
+                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-lg">Maluku</p>
+                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-lg">Bali</p>
+                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                            <span>Aceh</span>
+                            <span>Sumatera Utara</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full" v-if="!showModal">
 
             <!-- PRODUCT PAGE DESCRIPTIONS -->
             <div class="flex justify-between items-center">
@@ -130,11 +232,24 @@
         </div>
 
     </div>
+
+    <!-- DIV AFTER MODAL SHOW UP -->
+    <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+
 </div>
 </template>
 
 <script>
 export default {
-
+    data() {
+        return {
+            showModal: false
+        }
+    },
+    methods: {
+        provinsiModal: function () {
+            this.showModal = !this.showModal;
+        }
+    },
 }
 </script>

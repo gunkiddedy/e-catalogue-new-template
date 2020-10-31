@@ -18,6 +18,10 @@ module.exports = {
         '88': '22rem'
       }
     },
+    fontFamily: {
+      'sf-pro': ['SF Pro Display'],
+      'omnia': ['Omnia']
+    }
   },
   variants: {
     margin: ['responsive', 'hover', 'focus'],

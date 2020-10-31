@@ -2922,7 +2922,124 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      showModal: false
+    };
+  },
+  methods: {
+    provinsiModal: function provinsiModal() {
+      this.showModal = !this.showModal;
+    }
+  }
+});
 
 /***/ }),
 
@@ -21972,7 +22089,8 @@ var render = function() {
           _c(
             "a",
             {
-              staticClass: "font-bold text-gray-600 text-2xl lg:text-2xl",
+              staticClass:
+                "font-bold text-gray-600 text-2xl lg:text-2xl font-omnia tracking-wide",
               attrs: { href: "" }
             },
             [_vm._v("\r\n                Katalogi\r\n            ")]
@@ -23455,7 +23573,14 @@ var render = function() {
     _c("div", { staticClass: "flex px-4 py-4 mt-4" }, [
       _c(
         "div",
-        { staticClass: "bg-white h-full w-64 rounded-lg mr-6 shadow" },
+        {
+          staticClass: "bg-white h-full w-64 rounded-lg mr-6 shadow",
+          class: {
+            relative: _vm.showModal,
+            "inset-0": _vm.showModal,
+            "z-50": _vm.showModal
+          }
+        },
         [
           _vm._m(0),
           _vm._v(" "),
@@ -23471,7 +23596,12 @@ var render = function() {
               {
                 staticClass:
                   "w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left",
-                attrs: { type: "button", id: "btn-prop" }
+                attrs: { type: "button", id: "btn-prop" },
+                on: {
+                  click: function($event) {
+                    return _vm.provinsiModal()
+                  }
+                }
               },
               [
                 _c("P", { staticClass: "text-sm text-gray-700" }, [
@@ -23641,138 +23771,170 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "w-full" }, [
-        _c("div", { staticClass: "flex justify-between items-center" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex justify-between items-center" }, [
-            _c("p", { staticClass: "mr-2 text-sm" }, [_vm._v("Urutkan :")]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "bg-white w-48 flex justify-between leading-tight text-sm py-2 px-4 border rounded border-gray-400 text-left",
-                attrs: { type: "button" }
-              },
-              [
-                _c("p", [_vm._v("Paling sesuai")]),
+      _vm.showModal
+        ? _c(
+            "div",
+            {
+              staticClass: "h-full w-full",
+              class: {
+                relative: _vm.showModal,
+                "inset-0": _vm.showModal,
+                "z-50": _vm.showModal
+              }
+            },
+            [_vm._m(1)]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.showModal
+        ? _c("div", { staticClass: "w-full" }, [
+            _c("div", { staticClass: "flex justify-between items-center" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex justify-between items-center" }, [
+                _c("p", { staticClass: "mr-2 text-sm" }, [_vm._v("Urutkan :")]),
                 _vm._v(" "),
                 _c(
-                  "svg",
+                  "button",
                   {
-                    staticClass: "w-4",
-                    attrs: {
-                      viewBox: "0 0 20 20",
-                      xmlns: "http://www.w3.org/2000/svg"
-                    }
+                    staticClass:
+                      "bg-white w-48 flex justify-between leading-tight text-sm py-2 px-4 border rounded border-gray-400 text-left",
+                    attrs: { type: "button" }
                   },
                   [
-                    _c("path", {
-                      attrs: {
-                        "fill-rule": "evenodd",
-                        d:
-                          "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
-                        "clip-rule": "evenodd"
-                      }
-                    })
+                    _c("p", [_vm._v("Paling sesuai")]),
+                    _vm._v(" "),
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "w-4",
+                        attrs: {
+                          viewBox: "0 0 20 20",
+                          xmlns: "http://www.w3.org/2000/svg"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "flex justify-around items-center mt-16" },
+              [
+                _c(
+                  "ul",
+                  {
+                    staticClass:
+                      "flex justify-between items-center leading-tight font-bold text-gray-700"
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "rounded-full bg-gray-500 text-orange-100"
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "w-6 h-6",
+                            attrs: {
+                              fill: "currentColor",
+                              viewBox: "0 0 20 20",
+                              xmlns: "http://www.w3.org/2000/svg"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                d:
+                                  "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
+                                "clip-rule": "evenodd"
+                              }
+                            })
+                          ]
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      { staticClass: "px-4 underline text-orange-400" },
+                      [_vm._v("1")]
+                    ),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "px-4" }, [_vm._v("2")]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "px-4" }, [_vm._v("3")]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "px-4" }, [_vm._v("4")]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "px-4" }, [_vm._v("5")]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "px-4" }, [_vm._v("6")]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "px-4" }, [_vm._v("7")]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "px-4" }, [_vm._v("8")]),
+                    _vm._v(" "),
+                    _c("li", { staticClass: "px-4" }, [_vm._v("9")]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "rounded-full bg-orange-500 text-orange-100"
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "w-6 h-6",
+                            attrs: {
+                              fill: "currentColor",
+                              viewBox: "0 0 20 20",
+                              xmlns: "http://www.w3.org/2000/svg"
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                "fill-rule": "evenodd",
+                                d:
+                                  "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                                "clip-rule": "evenodd"
+                              }
+                            })
+                          ]
+                        )
+                      ]
+                    )
                   ]
                 )
               ]
             )
           ])
-        ]),
-        _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex justify-around items-center mt-16" }, [
-          _c(
-            "ul",
-            {
-              staticClass:
-                "flex justify-between items-center leading-tight font-bold text-gray-700"
-            },
-            [
-              _c(
-                "div",
-                { staticClass: "rounded-full bg-gray-500 text-orange-100" },
-                [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "w-6 h-6",
-                      attrs: {
-                        fill: "currentColor",
-                        viewBox: "0 0 20 20",
-                        xmlns: "http://www.w3.org/2000/svg"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: {
-                          "fill-rule": "evenodd",
-                          d:
-                            "M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z",
-                          "clip-rule": "evenodd"
-                        }
-                      })
-                    ]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("li", { staticClass: "px-4 underline text-orange-400" }, [
-                _vm._v("1")
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "px-4" }, [_vm._v("2")]),
-              _vm._v(" "),
-              _c("li", { staticClass: "px-4" }, [_vm._v("3")]),
-              _vm._v(" "),
-              _c("li", { staticClass: "px-4" }, [_vm._v("4")]),
-              _vm._v(" "),
-              _c("li", { staticClass: "px-4" }, [_vm._v("5")]),
-              _vm._v(" "),
-              _c("li", { staticClass: "px-4" }, [_vm._v("6")]),
-              _vm._v(" "),
-              _c("li", { staticClass: "px-4" }, [_vm._v("7")]),
-              _vm._v(" "),
-              _c("li", { staticClass: "px-4" }, [_vm._v("8")]),
-              _vm._v(" "),
-              _c("li", { staticClass: "px-4" }, [_vm._v("9")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "rounded-full bg-orange-500 text-orange-100" },
-                [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "w-6 h-6",
-                      attrs: {
-                        fill: "currentColor",
-                        viewBox: "0 0 20 20",
-                        xmlns: "http://www.w3.org/2000/svg"
-                      }
-                    },
-                    [
-                      _c("path", {
-                        attrs: {
-                          "fill-rule": "evenodd",
-                          d:
-                            "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
-                          "clip-rule": "evenodd"
-                        }
-                      })
-                    ]
-                  )
-                ]
-              )
-            ]
-          )
-        ])
-      ])
-    ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _vm.showModal
+      ? _c("div", { staticClass: "opacity-25 fixed inset-0 z-40 bg-black" })
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -23785,6 +23947,234 @@ var staticRenderFns = [
         _vm._v("\r\n                    Filter\r\n                ")
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "bg-white border-0 rounded-lg shadow-lg px-6 py-4" },
+      [
+        _c("div", { staticClass: "grid grid-cols-5 gap-2" }, [
+          _c("div", [
+            _c("p", { staticClass: "font-semibold text-lg" }, [
+              _vm._v("Sumatera")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", { staticClass: "font-semibold text-lg" }, [_vm._v("Jawa")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", { staticClass: "font-semibold text-lg" }, [
+              _vm._v("Kalimantan")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", { staticClass: "font-semibold text-lg" }, [
+              _vm._v("Sulawesi")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", { staticClass: "font-semibold text-lg" }, [
+              _vm._v("Papua")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-full border-t border-gray-400 my-6" }),
+        _vm._v(" "),
+        _c("div", { staticClass: "grid grid-cols-5 gap-2" }, [
+          _c("div", [
+            _c("p", { staticClass: "font-semibold text-lg" }, [
+              _vm._v("Nusa Tenggara")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", { staticClass: "font-semibold text-lg" }, [
+              _vm._v("Maluku")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("p", { staticClass: "font-semibold text-lg" }, [_vm._v("Bali")]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Aceh")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Sumatera Utara")])
+              ]
+            )
+          ])
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
