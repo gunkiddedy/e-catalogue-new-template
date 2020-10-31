@@ -3028,15 +3028,160 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      showModal: false
+      showModalProduct: true,
+      showModalBackground: false,
+      showModalSidebar: false,
+      showModalProv: false,
+      showModalKab: false,
+      showModalCat: false,
+      showModalSubCat: false
     };
   },
   methods: {
     provinsiModal: function provinsiModal() {
-      this.showModal = !this.showModal;
+      this.showModalProv = !this.showModalProv;
+
+      if (this.showModalProv === true) {
+        this.showModalBackground = true;
+        this.showModalSidebar = true;
+        this.showModalProduct = false;
+        this.showModalKab = false;
+        this.showModalCat = false;
+        this.showModalSubCat = false;
+      } else {
+        this.showModalProduct = true;
+        this.showModalSidebar = false;
+        this.showModalBackground = false;
+      }
+    },
+    kabupatenModal: function kabupatenModal() {
+      this.showModalKab = !this.showModalKab;
+
+      if (this.showModalKab === true) {
+        this.showModalBackground = true;
+        this.showModalSidebar = true;
+        this.showModalProduct = false;
+        this.showModalProv = false;
+        this.showModalCat = false;
+        this.showModalSubCat = false;
+      } else {
+        this.showModalProduct = true;
+        this.showModalSidebar = false;
+        this.showModalBackground = false;
+      }
+    },
+    categoryModal: function categoryModal() {
+      this.showModalCat = !this.showModalCat;
+
+      if (this.showModalCat === true) {
+        this.showModalBackground = true;
+        this.showModalSidebar = true;
+        this.showModalProduct = false;
+        this.showModalProv = false;
+        this.showModalKab = false;
+        this.showModalSubCat = false;
+      } else {
+        this.showModalProduct = true;
+        this.showModalSidebar = false;
+        this.showModalBackground = false;
+      }
+    },
+    subcategoryModal: function subcategoryModal() {
+      this.showModalSubCat = !this.showModalSubCat;
+
+      if (this.showModalSubCat === true) {
+        this.showModalBackground = true;
+        this.showModalSidebar = true;
+        this.showModalProduct = false;
+        this.showModalProv = false;
+        this.showModalKab = false;
+        this.showModalCat = false;
+      } else {
+        this.showModalProduct = true;
+        this.showModalSidebar = false;
+        this.showModalBackground = false;
+      }
     }
   }
 });
@@ -23576,9 +23721,9 @@ var render = function() {
         {
           staticClass: "bg-white h-full w-64 rounded-lg mr-6 shadow",
           class: {
-            relative: _vm.showModal,
-            "inset-0": _vm.showModal,
-            "z-50": _vm.showModal
+            relative: _vm.showModalSidebar,
+            "inset-0": _vm.showModalSidebar,
+            "z-50": _vm.showModalSidebar
           }
         },
         [
@@ -23646,7 +23791,12 @@ var render = function() {
               {
                 staticClass:
                   "w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left",
-                attrs: { type: "button" }
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.kabupatenModal()
+                  }
+                }
               },
               [
                 _c("P", { staticClass: "text-sm text-gray-700" }, [
@@ -23691,7 +23841,12 @@ var render = function() {
               {
                 staticClass:
                   "w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left",
-                attrs: { type: "button" }
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.categoryModal()
+                  }
+                }
               },
               [
                 _c("P", { staticClass: "text-sm text-gray-700" }, [
@@ -23736,7 +23891,12 @@ var render = function() {
               {
                 staticClass:
                   "w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left",
-                attrs: { type: "button" }
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.subcategoryModal()
+                  }
+                }
               },
               [
                 _c("P", { staticClass: "text-sm text-gray-700" }, [
@@ -23771,25 +23931,70 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm.showModal
+      _vm.showModalProv
         ? _c(
             "div",
             {
               staticClass: "h-full w-full",
               class: {
-                relative: _vm.showModal,
-                "inset-0": _vm.showModal,
-                "z-50": _vm.showModal
+                relative: _vm.showModalProv,
+                "inset-0": _vm.showModalProv,
+                "z-50": _vm.showModalProv
               }
             },
             [_vm._m(1)]
           )
         : _vm._e(),
       _vm._v(" "),
-      !_vm.showModal
+      _vm.showModalKab
+        ? _c(
+            "div",
+            {
+              staticClass: "h-full w-1/5",
+              class: {
+                relative: _vm.showModalKab,
+                "inset-0": _vm.showModalKab,
+                "z-50": _vm.showModalKab
+              }
+            },
+            [_vm._m(2)]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showModalCat
+        ? _c(
+            "div",
+            {
+              staticClass: "h-full w-auto",
+              class: {
+                relative: _vm.showModalCat,
+                "inset-0": _vm.showModalCat,
+                "z-50": _vm.showModalCat
+              }
+            },
+            [_vm._m(3)]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showModalSubCat
+        ? _c(
+            "div",
+            {
+              staticClass: "h-full w-auto",
+              class: {
+                relative: _vm.showModalSubCat,
+                "inset-0": _vm.showModalSubCat,
+                "z-50": _vm.showModalSubCat
+              }
+            },
+            [_vm._m(4)]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showModalProduct
         ? _c("div", { staticClass: "w-full" }, [
             _c("div", { staticClass: "flex justify-between items-center" }, [
-              _vm._m(2),
+              _vm._m(5),
               _vm._v(" "),
               _c("div", { staticClass: "flex justify-between items-center" }, [
                 _c("p", { staticClass: "mr-2 text-sm" }, [_vm._v("Urutkan :")]),
@@ -23829,7 +24034,7 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(3),
+            _vm._m(6),
             _vm._v(" "),
             _c(
               "div",
@@ -23932,7 +24137,7 @@ var render = function() {
         : _vm._e()
     ]),
     _vm._v(" "),
-    _vm.showModal
+    _vm.showModalBackground
       ? _c("div", { staticClass: "opacity-25 fixed inset-0 z-40 bg-black" })
       : _vm._e()
   ])
@@ -24169,6 +24374,167 @@ var staticRenderFns = [
                 _c("span", [_vm._v("Aceh")]),
                 _vm._v(" "),
                 _c("span", [_vm._v("Sumatera Utara")])
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "bg-white border-0 rounded-lg shadow-lg px-6 py-4" },
+      [
+        _c("div", { staticClass: "grid grid-cols-1" }, [
+          _c("div", { staticClass: "text-left" }, [
+            _c("p", { staticClass: "font-semibold text-lg" }, [
+              _vm._v("DKI Jakarta")
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("Jakarta Utara")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Jakarta Selatan")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Jakarta Barat")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Jakarta Timur")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Jakarta Pusat")])
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "bg-white border-0 rounded-lg shadow-lg px-6 py-4" },
+      [
+        _c("div", { staticClass: "grid grid-cols-1" }, [
+          _c("div", { staticClass: "text-left" }, [
+            _c(
+              "div",
+              {
+                staticClass: "flex flex-col text-sm text-gray-600 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("ALat Elektronik")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Alat Uji dan Ukur")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Konstruksi dan Properti")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Mesin")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Alat Pelindung Diri")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Alat Industri")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Alat Mekanik dan Suku Cadang")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Lampu dan Aksesoris")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Karet dan Plastik")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Bahan Kimia")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Alat Berat")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Kerajinan dan Kesenian")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "my-4" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-blue-600 text-white px-6 py-2 w-full rounded-lg",
+                attrs: { type: "button" }
+              },
+              [
+                _vm._v(
+                  "\r\n                            See All Categories\r\n                        "
+                )
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "bg-white border-0 rounded-lg shadow-lg px-6 py-4" },
+      [
+        _c("div", { staticClass: "grid grid-cols-1" }, [
+          _c("div", { staticClass: "text-left" }, [
+            _c(
+              "div",
+              {
+                staticClass: "flex flex-col text-sm text-gray-600 font-semibold"
+              },
+              [
+                _c("span", [_vm._v("ALat Elektronik")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Alat Uji dan Ukur")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Konstruksi dan Properti")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Mesin")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Alat Pelindung Diri")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Alat Industri")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Alat Mekanik dan Suku Cadang")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Lampu dan Aksesoris")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Karet dan Plastik")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Bahan Kimia")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Alat Berat")]),
+                _vm._v(" "),
+                _c("span", [_vm._v("Kerajinan dan Kesenian")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "my-4" }, [
+            _c(
+              "button",
+              {
+                staticClass:
+                  "bg-blue-600 text-white px-6 py-2 w-full rounded-lg",
+                attrs: { type: "button" }
+              },
+              [
+                _vm._v(
+                  "\r\n                            See All Sub Categories\r\n                        "
+                )
               ]
             )
           ])
