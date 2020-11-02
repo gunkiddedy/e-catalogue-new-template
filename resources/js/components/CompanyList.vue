@@ -52,7 +52,7 @@
 
             <div class="mt-10 mb-12 w-full h-full">
 
-                <div class="bg-white rounded-lg px-8 py-4 shadow-sm my-4">
+                <div class="bg-white rounded-lg px-8 py-4 shadow my-4">
 
                     <div class="flex items-center justify-between">
                         <!-- BLUE CIRCLE-->
@@ -105,7 +105,8 @@
                     </div>
 
                     <!-- IMAGE PRODUCT-->
-                    <div class="grid grid-cols-6 gap-4 mt-6" v-if="showProductCompany">
+                    <div class="border-t border-gray-300 w-full mt-6" v-if="showProductCompany"></div>
+                    <div class="grid grid-cols-6 gap-4 mt-6 px-1" v-if="showProductCompany">
                         <div class="flex flex-col">
                             <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
                             <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
@@ -145,7 +146,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-lg px-8 py-4 shadow-sm my-4">
+                <div class="bg-white rounded-lg px-8 py-4 shadow my-4">
 
                     <div class="flex items-center justify-between">
                         <!-- BLUE CIRCLE-->
@@ -238,7 +239,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white rounded-lg px-8 py-4 shadow-sm my-4">
+                <div class="bg-white rounded-lg px-8 py-4 shadow my-4">
 
                     <div class="flex items-center justify-between">
                         <!-- BLUE CIRCLE-->

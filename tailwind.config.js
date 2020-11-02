@@ -8,14 +8,18 @@ module.exports = {
     extend: {
       margin: {
         '-41': '-10.6rem',
-        '-42': '-10.7rem',
+        '-42': '-10.7rem'
       },
       height: {
         '30': '7rem',
+        '41': '10.6rem',
         '72': '18rem',
         '74': '18.5rem',
         '80': '20rem',
         '88': '22rem'
+      },
+      width: {
+        '26-persen': '26%'
       }
     },
     fontFamily: {
@@ -28,7 +32,8 @@ module.exports = {
     negativeMargin: ['responsive', 'hover'],
     overflow: ['responsive', 'hover', 'focus'],
     height: ['responsive', 'hover'],
-    transitionDuration: ['responsive', 'hover', 'focus']
+    transitionDuration: ['responsive', 'hover', 'focus'],
+    fontFamily: ['responsive', 'hover', 'focus']
   },
   plugins: [],
 }

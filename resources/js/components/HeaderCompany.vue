@@ -4,7 +4,7 @@
         <div class="px-4 py-4 flex justify-between items-center">
 
             <a href="">
-                <span class="font-omnia text-gray-600 text-2xl lg:text-2xl tracking-wide font-semibold">
+                <span class="normal-case font-omnia text-gray-600 text-2xl lg:text-2xl tracking-wide font-semibold">
                     Katalogi
                 </span>
             </a>

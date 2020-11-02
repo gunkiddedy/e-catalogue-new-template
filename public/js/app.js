@@ -2247,6 +2247,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2278,6 +2279,41 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3478,6 +3514,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3487,10 +3535,29 @@ __webpack_require__.r(__webpack_exports__);
       showModalProv: false,
       showModalKab: false,
       showModalCat: false,
-      showModalSubCat: false
+      showModalSubCat: false,
+      products: {}
     };
   },
+  mounted: function mounted() {
+    this.loadProducts(); // this.getResults();
+    // this.getWindowWidth();
+    // this.apiCategories();
+  },
   methods: {
+    loadProducts: function loadProducts() {
+      var _this = this;
+
+      axios.get('/api/products', {
+        params: this.selected
+      }).then(function (response) {
+        _this.products = response.data;
+        _this.loading = false;
+      })["catch"](function (error) {
+        console.log(error);
+        console.log(response);
+      });
+    },
     provinsiModal: function provinsiModal() {
       this.showModalProv = !this.showModalProv;
 
@@ -21408,7 +21475,7 @@ var render = function() {
         _c("div", { staticClass: "mt-10 mb-12 w-full h-full" }, [
           _c(
             "div",
-            { staticClass: "bg-white rounded-lg px-8 py-4 shadow-sm my-4" },
+            { staticClass: "bg-white rounded-lg px-8 py-4 shadow my-4" },
             [
               _c("div", { staticClass: "flex items-center justify-between" }, [
                 _vm._m(0),
@@ -21536,26 +21603,36 @@ var render = function() {
               ]),
               _vm._v(" "),
               _vm.showProductCompany
-                ? _c("div", { staticClass: "grid grid-cols-6 gap-4 mt-6" }, [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _vm._m(5),
-                    _vm._v(" "),
-                    _vm._m(6)
-                  ])
+                ? _c("div", {
+                    staticClass: "border-t border-gray-300 w-full mt-6"
+                  })
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.showProductCompany
+                ? _c(
+                    "div",
+                    { staticClass: "grid grid-cols-6 gap-4 mt-6 px-1" },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _vm._m(5),
+                      _vm._v(" "),
+                      _vm._m(6)
+                    ]
+                  )
                 : _vm._e()
             ]
           ),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "bg-white rounded-lg px-8 py-4 shadow-sm my-4" },
+            { staticClass: "bg-white rounded-lg px-8 py-4 shadow my-4" },
             [
               _c("div", { staticClass: "flex items-center justify-between" }, [
                 _vm._m(7),
@@ -21700,7 +21777,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "bg-white rounded-lg px-8 py-4 shadow-sm my-4" },
+            { staticClass: "bg-white rounded-lg px-8 py-4 shadow my-4" },
             [
               _c("div", { staticClass: "flex items-center justify-between" }, [
                 _vm._m(14),
@@ -22690,21 +22767,127 @@ var render = function() {
                             _vm._v(" "),
                             _c(
                               "div",
-                              {
-                                staticClass:
-                                  "flex justify-between items-center h-full"
-                              },
+                              { staticClass: "grid grid-cols-2 gap-4 h-full" },
                               [
-                                _vm._m(5),
+                                _c(
+                                  "div",
+                                  { staticClass: "left w-full h-full py-2" },
+                                  [
+                                    _vm._m(5),
+                                    _vm._v(" "),
+                                    _vm._m(6),
+                                    _vm._v(" "),
+                                    _vm._m(7),
+                                    _vm._v(" "),
+                                    _vm._m(8),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      { staticClass: "grid grid-rows-2" },
+                                      [
+                                        _c(
+                                          "div",
+                                          { staticClass: "product-name mb-3" },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "inline-block relative w-full"
+                                              },
+                                              [
+                                                _vm._m(9),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "svg",
+                                                      {
+                                                        staticClass:
+                                                          "fill-current h-4 w-4",
+                                                        attrs: {
+                                                          xmlns:
+                                                            "http://www.w3.org/2000/svg",
+                                                          viewBox: "0 0 20 20"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "div",
+                                          { staticClass: "product-name mb-3" },
+                                          [
+                                            _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "inline-block relative w-full"
+                                              },
+                                              [
+                                                _vm._m(10),
+                                                _vm._v(" "),
+                                                _c(
+                                                  "div",
+                                                  {
+                                                    staticClass:
+                                                      "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                                                  },
+                                                  [
+                                                    _c(
+                                                      "svg",
+                                                      {
+                                                        staticClass:
+                                                          "fill-current h-4 w-4",
+                                                        attrs: {
+                                                          xmlns:
+                                                            "http://www.w3.org/2000/svg",
+                                                          viewBox: "0 0 20 20"
+                                                        }
+                                                      },
+                                                      [
+                                                        _c("path", {
+                                                          attrs: {
+                                                            d:
+                                                              "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                                          }
+                                                        })
+                                                      ]
+                                                    )
+                                                  ]
+                                                )
+                                              ]
+                                            )
+                                          ]
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                ),
                                 _vm._v(" "),
                                 _c(
                                   "div",
-                                  {
-                                    staticClass:
-                                      "right w-2/4 h-full py-2 flex flex-col"
-                                  },
+                                  { staticClass: "right w-full h-full py-2" },
                                   [
-                                    _vm._m(6),
+                                    _vm._m(11),
                                     _vm._v(" "),
                                     _c(
                                       "div",
@@ -22925,46 +23108,49 @@ var render = function() {
                                       ]
                                     ),
                                     _vm._v(" "),
-                                    _vm._m(7),
+                                    _vm._m(12),
                                     _vm._v(" "),
-                                    _vm._m(8)
+                                    _vm._m(13),
+                                    _vm._v(" "),
+                                    _c(
+                                      "div",
+                                      {
+                                        staticClass:
+                                          "flex items-center justify-end"
+                                      },
+                                      [
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none",
+                                            attrs: { type: "button" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.toggleModal()
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("Save Product")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none",
+                                            attrs: { type: "button" },
+                                            on: {
+                                              click: function($event) {
+                                                return _vm.toggleModal()
+                                              }
+                                            }
+                                          },
+                                          [_vm._v("Add Product")]
+                                        )
+                                      ]
+                                    )
                                   ]
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "flex items-center justify-end" },
-                              [
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.toggleModal()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Save Product")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass:
-                                      "text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.toggleModal()
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Add Product")]
                                 )
                               ]
                             )
@@ -22990,7 +23176,7 @@ var render = function() {
             staticClass: "mt-8 grid grid-cols-5 gap-2",
             class: { hidden: _vm.openTab !== 2, block: _vm.openTab === 2 }
           },
-          [_vm._m(9)]
+          [_vm._m(14)]
         ),
         _vm._v(" "),
         _c(
@@ -22999,7 +23185,7 @@ var render = function() {
             staticClass: "mt-8",
             class: { hidden: _vm.openTab !== 1, block: _vm.openTab === 1 }
           },
-          [_vm._m(10)]
+          [_vm._m(15)]
         ),
         _vm._v(" "),
         _c("div", { staticClass: "flex justify-around items-center mt-16" }, [
@@ -23227,131 +23413,179 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "left w-2/5 h-full py-2 flex flex-col" }, [
-      _c("div", { staticClass: "product-name mb-6" }, [
-        _c("input", {
-          staticClass:
-            "appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-          attrs: {
-            id: "grid-last-name",
-            type: "text",
-            placeholder: "Product Name"
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid grid-rows-2" }, [
-        _c("div", { staticClass: "flex mb-6 items-center justify-between" }, [
-          _c("div", { staticClass: "w-1/12" }, [
-            _c("input", {
-              staticClass: "rounded-lg",
-              attrs: { type: "checkbox", name: "", id: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "font-semibold w-1/6 mr-4" }, [
-            _vm._v(
-              "\r\n                                                    SNI\r\n                                                "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-full" }, [
-            _c("input", {
-              staticClass:
-                "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
-              attrs: { type: "text", placeholder: "SNI Number" }
-            })
-          ])
+    return _c("div", { staticClass: "product-name mb-4" }, [
+      _c("input", {
+        staticClass:
+          "appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+        attrs: {
+          id: "grid-last-name",
+          type: "text",
+          placeholder: "Product Name"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "grid grid-rows-2" }, [
+      _c("div", { staticClass: "flex mb-4 items-center justify-between" }, [
+        _c("div", { staticClass: "w-1/12" }, [
+          _c("input", {
+            staticClass: "rounded-lg",
+            attrs: { type: "checkbox", name: "", id: "" }
+          })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "flex mb-6 items-center justify-between" }, [
-          _c("div", { staticClass: "w-1/12" }, [
-            _c("input", {
-              staticClass: "rounded-lg",
-              attrs: { type: "checkbox", name: "", id: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "font-semibold w-1/6 mr-4" }, [
-            _vm._v(
-              "\r\n                                                    TKDN\r\n                                                "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-full" }, [
-            _c("input", {
-              staticClass:
-                "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4",
-              attrs: { type: "text", placeholder: "Nilai TKDN" }
-            })
-          ])
+        _c("div", { staticClass: "font-semibold w-1/6 mr-4" }, [
+          _vm._v(
+            "\r\n                                                    SNI\r\n                                                "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-full" }, [
+          _c("input", {
+            staticClass:
+              "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
+            attrs: { type: "text", placeholder: "SNI Number" }
+          })
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "grid grid-rows-2" }, [
-        _c("div", { staticClass: "flex mb-6 items-center justify-between" }, [
-          _c("div", { staticClass: "w-1/12" }, [
-            _vm._v(
-              "\r\n                                                     \r\n                                                "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "font-semibold text-lg w-1/6 mr-4" }, [
-            _vm._v(
-              "\r\n                                                     \r\n                                                "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-full" }, [
-            _c("input", {
-              staticClass:
-                "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
-              attrs: { type: "text", placeholder: "Nomor Sertifikat TKDN" }
-            })
-          ])
+      _c("div", { staticClass: "flex mb-3 items-center justify-between" }, [
+        _c("div", { staticClass: "w-1/12" }, [
+          _c("input", {
+            staticClass: "rounded-lg",
+            attrs: { type: "checkbox", name: "", id: "" }
+          })
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "flex mb-6 items-center justify-between" }, [
-          _c("div", { staticClass: "w-1/12" }, [
-            _vm._v(
-              "\r\n                                                     \r\n                                                "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "font-semibold text-lg w-1/6 mr-4" }, [
-            _vm._v(
-              "\r\n                                                     \r\n                                                "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-full" }, [
-            _c("input", {
-              staticClass:
-                "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
-              attrs: { type: "text", placeholder: "Nomor Laporan" }
-            })
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "grid grid-rows-1" }, [
-        _c("div", { staticClass: "flex mb-6 items-center justify-between" }, [
-          _c("div", { staticClass: "w-1/4 font-semibold mr-4" }, [
-            _vm._v(
-              "\r\n                                                    HS Code\r\n                                                "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "w-full" }, [
-            _c("input", {
-              staticClass:
-                "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
-              attrs: { type: "text", placeholder: "ex. 0987789009876" }
-            })
-          ])
+        _c("div", { staticClass: "font-semibold w-1/6 mr-4" }, [
+          _vm._v(
+            "\r\n                                                    TKDN\r\n                                                "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-full" }, [
+          _c("input", {
+            staticClass:
+              "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4",
+            attrs: { type: "text", placeholder: "Nilai TKDN" }
+          })
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "grid grid-rows-2" }, [
+      _c("div", { staticClass: "flex mb-3 items-center justify-between" }, [
+        _c("div", { staticClass: "w-1/12" }, [
+          _vm._v(
+            "\r\n                                                     \r\n                                                "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "font-semibold text-lg w-1/6 mr-4" }, [
+          _vm._v(
+            "\r\n                                                     \r\n                                                "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-full" }, [
+          _c("input", {
+            staticClass:
+              "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
+            attrs: { type: "text", placeholder: "Nomor Sertifikat TKDN" }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "flex mb-3 items-center justify-between" }, [
+        _c("div", { staticClass: "w-1/12" }, [
+          _vm._v(
+            "\r\n                                                     \r\n                                                "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "font-semibold text-lg w-1/6 mr-4" }, [
+          _vm._v(
+            "\r\n                                                     \r\n                                                "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-full" }, [
+          _c("input", {
+            staticClass:
+              "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
+            attrs: { type: "text", placeholder: "Nomor Laporan" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "grid grid-rows-1" }, [
+      _c("div", { staticClass: "flex mb-3 items-center justify-between" }, [
+        _c("div", { staticClass: "w-26-persen font-semibold mr-4" }, [
+          _vm._v(
+            "\r\n                                                    HS Code\r\n                                                "
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "w-full" }, [
+          _c("input", {
+            staticClass:
+              "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
+            attrs: { type: "text", placeholder: "ex. 0987789009876" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      {
+        staticClass:
+          "block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none"
+      },
+      [
+        _c("option", [_vm._v("Categories")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Option 2")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Option 3")])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "select",
+      {
+        staticClass:
+          "block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none"
+      },
+      [
+        _c("option", [_vm._v("Sub Categories")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Option 2")]),
+        _vm._v(" "),
+        _c("option", [_vm._v("Option 3")])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -23904,7 +24138,7 @@ var staticRenderFns = [
         "span",
         {
           staticClass:
-            "font-omnia text-gray-600 text-2xl lg:text-2xl tracking-wide font-semibold"
+            "normal-case font-omnia text-gray-600 text-2xl lg:text-2xl tracking-wide font-semibold"
         },
         [_vm._v("\r\n                    Katalogi\r\n                ")]
       )
@@ -24091,16 +24325,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "image-login bg-green-500 w-3/5 h-screen" },
-      [
-        _c("img", {
-          staticClass: "w-full h-full",
-          attrs: { src: "/img/login-img.png", alt: "" }
-        })
-      ]
-    )
+    return _c("div", { staticClass: "image-login w-3/5 h-screen" }, [
+      _c("img", {
+        staticClass: "w-full h-full",
+        attrs: { src: "/img/login-img.png", alt: "" }
+      })
+    ])
   },
   function() {
     var _vm = this
@@ -25060,16 +25290,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "image-login bg-green-500 w-3/5 h-screen" },
-      [
-        _c("img", {
-          staticClass: "w-full h-full",
-          attrs: { src: "/img/sign-up-img.png", alt: "" }
-        })
-      ]
-    )
+    return _c("div", { staticClass: "image-login w-3/5 h-screen" }, [
+      _c("img", {
+        staticClass: "w-full h-full",
+        attrs: { src: "/img/sign-up-img.png", alt: "" }
+      })
+    ])
   },
   function() {
     var _vm = this
@@ -25591,7 +25817,144 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(6),
+            _c(
+              "div",
+              { staticClass: "mt-8 grid grid-cols-5 gap-2" },
+              _vm._l(_vm.products.data, function(product) {
+                return _c(
+                  "div",
+                  {
+                    key: product.id,
+                    staticClass:
+                      "text-gray-700 rounded-lg bg-white shadow-md h-72 relative"
+                  },
+                  [
+                    _c("div", [
+                      _c("img", {
+                        staticClass: "rounded-t-lg object-cover w-full h-41",
+                        attrs: {
+                          src: "/storage/" + product.image_path,
+                          alt: ""
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "absolute px-4 py-4 bg-white rounded-lg leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41"
+                      },
+                      [
+                        _c(
+                          "p",
+                          {
+                            staticClass:
+                              "normal-case mb-6 font-bold text-sm leading-tight"
+                          },
+                          [
+                            _vm._v(
+                              "\r\n                            " +
+                                _vm._s(product.name) +
+                                "\r\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          {
+                            staticClass:
+                              "uppercase text-gray-600 leading-tight text-xs"
+                          },
+                          [
+                            _vm._v(
+                              "\r\n                            " +
+                                _vm._s(product.company_name) +
+                                "\r\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", [
+                          _c(
+                            "p",
+                            { staticClass: "mt-2 mb-2 text-xs text-gray-500" },
+                            [
+                              _vm._v(
+                                "\r\n                                Jakarta Barat\r\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "flex items-center justify-start mb-2"
+                            },
+                            [
+                              _vm._m(6, true),
+                              _vm._v(" "),
+                              product.sni
+                                ? _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-white bg-blue-500 px-2 py-1 rounded text-sm leading-none tracking-normal"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\r\n                                    trusted suplier"
+                                      )
+                                    ]
+                                  )
+                                : _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "text-gray-200 bg-gray-500 px-2 py-1 rounded text-sm leading-none tracking-normal"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\r\n                                    not trusted suplier\r\n                                "
+                                      )
+                                    ]
+                                  )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "font-bold mb-2" }, [
+                            _c(
+                              "span",
+                              { staticClass: "text-red-500 font-bold" },
+                              [_vm._v("Rp" + _vm._s(product.price))]
+                            ),
+                            _vm._v(" "),
+                            _c("span", { staticClass: "text-sm" }, [
+                              _vm._v("/pc")
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            { staticClass: "text-xs mb-4 text-gray-500" },
+                            [
+                              _vm._v(
+                                "\r\n                                Visit in order to contact the seller\r\n                            "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(7, true)
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              }),
+              0
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -25728,7 +26091,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold"
               },
               [
                 _c("span", [_vm._v("Aceh")]),
@@ -25753,7 +26116,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold"
               },
               [
                 _c("span", [_vm._v("Aceh")]),
@@ -25780,7 +26143,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold"
               },
               [
                 _c("span", [_vm._v("Aceh")]),
@@ -25807,7 +26170,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold"
               },
               [
                 _c("span", [_vm._v("Aceh")]),
@@ -25834,7 +26197,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold"
               },
               [
                 _c("span", [_vm._v("Aceh")]),
@@ -25865,7 +26228,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold"
               },
               [
                 _c("span", [_vm._v("Aceh")]),
@@ -25892,7 +26255,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold"
               },
               [
                 _c("span", [_vm._v("Aceh")]),
@@ -25917,7 +26280,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold"
               },
               [
                 _c("span", [_vm._v("Aceh")]),
@@ -25956,7 +26319,7 @@ var staticRenderFns = [
               "div",
               {
                 staticClass:
-                  "flex flex-col text-sm text-gray-600 mt-2 font-semibold"
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold"
               },
               [
                 _c("span", [_vm._v("Jakarta Utara")]),
@@ -25988,7 +26351,8 @@ var staticRenderFns = [
             _c(
               "div",
               {
-                staticClass: "flex flex-col text-sm text-gray-600 font-semibold"
+                staticClass:
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 font-semibold"
               },
               [
                 _c("span", [_vm._v("ALat Elektronik")]),
@@ -26050,7 +26414,8 @@ var staticRenderFns = [
             _c(
               "div",
               {
-                staticClass: "flex flex-col text-sm text-gray-600 font-semibold"
+                staticClass:
+                  "flex flex-col text-sm text-gray-500 hover:text-gray-600 font-semibold"
               },
               [
                 _c("span", [_vm._v("ALat Elektronik")]),
@@ -26112,105 +26477,31 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-8 grid grid-cols-5 gap-2" }, [
+    return _c(
+      "div",
+      {
+        staticClass:
+          "rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2"
+      },
+      [_c("p", { staticClass: "text-gray-200 text-xs" }, [_vm._v("SNI")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "/product-detail" } }, [
       _c(
-        "div",
+        "button",
         {
           staticClass:
-            "text-gray-700 rounded-lg bg-white shadow-md h-72 relative"
+            "hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ",
+          attrs: { type: "button" }
         },
         [
-          _c("img", {
-            staticClass: "rounded-t-lg",
-            attrs: { src: "/img/login-img.png", alt: "" }
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "absolute px-4 py-4 bg-white rounded-lg leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41"
-            },
-            [
-              _c(
-                "p",
-                {
-                  staticClass:
-                    "normal-case mb-6 font-bold text-sm leading-tight"
-                },
-                [
-                  _vm._v(
-                    "\r\n                            Customized Pre-filter untuk Blower dan FFU\r\n                        "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "p",
-                {
-                  staticClass: "uppercase text-gray-600 leading-tight text-xs"
-                },
-                [
-                  _vm._v(
-                    "\r\n                            pt. maju jaya prima perkasa abadi\r\n                        "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("div", [
-                _c("p", { staticClass: "mt-2 mb-2 text-xs text-gray-500" }, [
-                  _vm._v(
-                    "\r\n                                Jakarta Barat\r\n                            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "mb-2 rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2"
-                  },
-                  [
-                    _c("p", { staticClass: "text-gray-300 text-xs" }, [
-                      _vm._v("SNI")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c("p", { staticClass: "font-bold mb-2" }, [
-                  _c("span", { staticClass: "text-red-500 font-bold" }, [
-                    _vm._v("Rp250.000")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-sm" }, [_vm._v("/ pc")])
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "text-xs mb-4 text-gray-500" }, [
-                  _vm._v(
-                    "\r\n                                Visit in order to contact the seller\r\n                            "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("a", { attrs: { href: "/product-detail" } }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ",
-                      attrs: { type: "button" }
-                    },
-                    [
-                      _c(
-                        "p",
-                        { staticClass: "text-white leading-none font-bold" },
-                        [_vm._v("See Product")]
-                      )
-                    ]
-                  )
-                ])
-              ])
-            ]
-          )
+          _c("p", { staticClass: "text-white leading-none font-bold" }, [
+            _vm._v("See Product")
+          ])
         ]
       )
     ])

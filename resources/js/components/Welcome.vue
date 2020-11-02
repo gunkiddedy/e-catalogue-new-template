@@ -59,7 +59,7 @@
                 <div class="grid grid-cols-5 gap-2">
                     <div>
                         <p class="font-semibold text-lg">Sumatera</p>
-                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
                             <span>Aceh</span>
                             <span>Sumatera Utara</span>
                             <span>Aceh</span>
@@ -70,7 +70,7 @@
                     </div>
                     <div>
                         <p class="font-semibold text-lg">Jawa</p>
-                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
                             <span>Aceh</span>
                             <span>Sumatera Utara</span>
                             <span>Aceh</span>
@@ -81,7 +81,7 @@
                     </div>
                     <div>
                         <p class="font-semibold text-lg">Kalimantan</p>
-                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
                             <span>Aceh</span>
                             <span>Sumatera Utara</span>
                             <span>Aceh</span>
@@ -92,7 +92,7 @@
                     </div>
                     <div>
                         <p class="font-semibold text-lg">Sulawesi</p>
-                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
                             <span>Aceh</span>
                             <span>Sumatera Utara</span>
                             <span>Aceh</span>
@@ -103,7 +103,7 @@
                     </div>
                     <div>
                         <p class="font-semibold text-lg">Papua</p>
-                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
                             <span>Aceh</span>
                             <span>Sumatera Utara</span>
                             <span>Aceh</span>
@@ -118,7 +118,7 @@
                 <div class="grid grid-cols-5 gap-2">
                     <div>
                         <p class="font-semibold text-lg">Nusa Tenggara</p>
-                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
                             <span>Aceh</span>
                             <span>Sumatera Utara</span>
                             <span>Aceh</span>
@@ -129,7 +129,7 @@
                     </div>
                     <div>
                         <p class="font-semibold text-lg">Maluku</p>
-                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
                             <span>Aceh</span>
                             <span>Sumatera Utara</span>
                             <span>Aceh</span>
@@ -140,7 +140,7 @@
                     </div>
                     <div>
                         <p class="font-semibold text-lg">Bali</p>
-                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
                             <span>Aceh</span>
                             <span>Sumatera Utara</span>
                             <span>Aceh</span>
@@ -159,7 +159,7 @@
                 <div class="grid grid-cols-1">
                     <div class="text-left">
                         <p class="font-semibold text-lg">DKI Jakarta</p>
-                        <div class="flex flex-col text-sm text-gray-600 mt-2 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
                             <span>Jakarta Utara</span>
                             <span>Jakarta Selatan</span>
                             <span>Jakarta Barat</span>
@@ -176,7 +176,7 @@
             <div class="bg-white border-0 rounded-lg shadow-lg px-6 py-4">
                 <div class="grid grid-cols-1">
                     <div class="text-left">
-                        <div class="flex flex-col text-sm text-gray-600 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 font-semibold">
                             <span>ALat Elektronik</span>
                             <span>Alat Uji dan Ukur</span>
                             <span>Konstruksi dan Properti</span>
@@ -205,7 +205,7 @@
             <div class="bg-white border-0 rounded-lg shadow-lg px-6 py-4">
                 <div class="grid grid-cols-1">
                     <div class="text-left">
-                        <div class="flex flex-col text-sm text-gray-600 font-semibold">
+                        <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 font-semibold">
                             <span>ALat Elektronik</span>
                             <span>Alat Uji dan Ukur</span>
                             <span>Konstruksi dan Properti</span>
@@ -249,25 +249,37 @@
 
             <!-- PRODUCTS  -->
             <div class="mt-8 grid grid-cols-5 gap-2">
-                <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative">
-                    <img src="/img/login-img.png" alt="" class="rounded-t-lg">
+
+                <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products.data" :key="product.id">
+                    <div>
+                        <img :src="'/storage/'+product.image_path" alt="" class="rounded-t-lg object-cover w-full h-41">
+                    </div>
                     <div class="absolute px-4 py-4 bg-white rounded-lg leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41">
                         <p class="normal-case mb-6 font-bold text-sm leading-tight">
-                            Customized Pre-filter untuk Blower dan FFU
+                            {{ product.name }}
                         </p>
                         <p class="uppercase text-gray-600 leading-tight text-xs">
-                            pt. maju jaya prima perkasa abadi
+                            {{ product.company_name }}
                         </p>
                         <div>
                             <p class="mt-2 mb-2 text-xs text-gray-500">
                                 Jakarta Barat
                             </p>
-                            <div class="mb-2 rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2">
-                                <p class="text-gray-300 text-xs">SNI</p>
+
+                            <div class="flex items-center justify-start mb-2">
+                                <div class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2">
+                                    <p class="text-gray-200 text-xs">SNI</p>
+                                </div>
+                                <span v-if="product.sni" class="text-white bg-blue-500 px-2 py-1 rounded text-sm leading-none tracking-normal">
+                                    trusted suplier</span>
+                                <span v-else class="text-gray-200 bg-gray-500 px-2 py-1 rounded text-sm leading-none tracking-normal">
+                                    not trusted suplier
+                                </span>
                             </div>
+
                             <p class="font-bold mb-2">
-                                <span class="text-red-500 font-bold">Rp250.000</span>
-                                <span class="text-sm">/ pc</span>
+                                <span class="text-red-500 font-bold">Rp{{ product.price }}</span>
+                                <span class="text-sm">/pc</span>
                             </p>
                             <p class="text-xs mb-4 text-gray-500">
                                 Visit in order to contact the seller
@@ -327,10 +339,33 @@ export default {
             showModalProv: false,
             showModalKab: false,
             showModalCat: false,
-            showModalSubCat: false
+            showModalSubCat: false,
+
+            products: {}
         }
     },
+
+    mounted() {
+        this.loadProducts();
+        // this.getResults();
+        // this.getWindowWidth();
+        // this.apiCategories();
+    },
+
     methods: {
+        loadProducts: function () {
+            axios.get('/api/products', {
+                    params: this.selected
+                })
+                .then((response) => {
+                    this.products = response.data;
+                    this.loading = false
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    console.log(response);
+                });
+        },
         provinsiModal: function () {
             this.showModalProv = !this.showModalProv;
             if (this.showModalProv === true) {
@@ -391,6 +426,6 @@ export default {
                 this.showModalBackground = false;
             }
         }
-    },
+    }
 }
 </script>

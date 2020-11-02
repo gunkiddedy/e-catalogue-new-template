@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="flex">
-        <div class="image-login bg-green-500 w-3/5 h-screen">
+        <div class="image-login w-3/5 h-screen">
             <img src="/img/sign-up-img.png" alt="" class="w-full h-full">
         </div>
 

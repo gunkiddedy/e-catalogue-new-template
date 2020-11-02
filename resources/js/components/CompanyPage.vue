@@ -128,14 +128,14 @@
                                 </div>
 
                                 <!--body-->
-                                <div class="flex justify-between items-center h-full">
+                                <div class="grid grid-cols-2 gap-4 h-full">
                                     <!-- LEFT SIDE-->
-                                    <div class="left w-2/5 h-full py-2 flex flex-col">
-                                        <div class="product-name mb-6">
+                                    <div class="left w-full h-full py-2">
+                                        <div class="product-name mb-4">
                                             <input class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Product Name">
                                         </div>
                                         <div class="grid grid-rows-2">
-                                            <div class="flex mb-6 items-center justify-between">
+                                            <div class="flex mb-4 items-center justify-between">
                                                 <div class="w-1/12">
                                                     <input type="checkbox" name="" id="" class="rounded-lg">
                                                 </div>
@@ -146,7 +146,7 @@
                                                     <input type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                                 </div>
                                             </div>
-                                            <div class="flex mb-6 items-center justify-between">
+                                            <div class="flex mb-3 items-center justify-between">
                                                 <div class="w-1/12">
                                                     <input type="checkbox" name="" id="" class="rounded-lg">
                                                 </div>
@@ -160,7 +160,7 @@
                                         </div>
 
                                         <div class="grid grid-rows-2">
-                                            <div class="flex mb-6 items-center justify-between">
+                                            <div class="flex mb-3 items-center justify-between">
                                                 <div class="w-1/12">
                                                     &nbsp;
                                                 </div>
@@ -171,7 +171,7 @@
                                                     <input type="text" placeholder="Nomor Sertifikat TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                                 </div>
                                             </div>
-                                            <div class="flex mb-6 items-center justify-between">
+                                            <div class="flex mb-3 items-center justify-between">
                                                 <div class="w-1/12">
                                                     &nbsp;
                                                 </div>
@@ -185,8 +185,8 @@
                                         </div>
 
                                         <div class="grid grid-rows-1">
-                                            <div class="flex mb-6 items-center justify-between">
-                                                <div class="w-1/4 font-semibold mr-4">
+                                            <div class="flex mb-3 items-center justify-between">
+                                                <div class="w-26-persen font-semibold mr-4">
                                                     HS Code
                                                 </div>
                                                 <div class="w-full">
@@ -194,9 +194,40 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="grid grid-rows-2">
+                                            <div class="product-name mb-3">
+                                                <div class="inline-block relative w-full">
+                                                    <select class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
+                                                        <option>Categories</option>
+                                                        <option>Option 2</option>
+                                                        <option>Option 3</option>
+                                                    </select>
+                                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="product-name mb-3">
+                                                <div class="inline-block relative w-full">
+                                                    <select class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
+                                                        <option>Sub Categories</option>
+                                                        <option>Option 2</option>
+                                                        <option>Option 3</option>
+                                                    </select>
+                                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <!-- RIGHT SIDE-->
-                                    <div class="right w-2/4 h-full py-2 flex flex-col">
+                                    <div class="right w-full h-full py-2">
                                         <div class="description mb-3">
                                             <textarea name="" id="" placeholder="Tulis deskripsi produk" class="h-56 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"></textarea>
                                         </div>
@@ -236,14 +267,18 @@
                                                 <input type="text" placeholder="Masukkan harga" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                             </div>
                                         </div>
+                                        <div class="flex items-center justify-end">
+                                            <button class="text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Save Product</button>
+                                            <button class="text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Add Product</button>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!--footer MODAL-->
-                                <div class="flex items-center justify-end">
+                                <!--<div class="flex items-center justify-end">
                                     <button class="text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Save Product</button>
                                     <button class="text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Add Product</button>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
                     </div>

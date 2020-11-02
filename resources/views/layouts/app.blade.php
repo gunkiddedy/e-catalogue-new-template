@@ -9,23 +9,16 @@
 
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
 
-    <title>Katalogi</title>
+    <title>Katalogi New Template</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <!-- Fonts -->
-    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> --}}
-    {{-- <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> --}}
-
-    <link href="//db.onlinewebfonts.com/c/0b51833ff62e4af8acb5fd3e2bf59e97?family=SF+Pro+Display" rel="stylesheet" type="text/css"/>
-
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="font-sf-pro">
-    <div id="app" class="bg-gray-100">
+<body>
+    <div id="app" class="bg-gray-100 font-sf-pro">
         @yield('content')
     </div>
 </body>
