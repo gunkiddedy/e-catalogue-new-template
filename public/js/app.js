@@ -25913,7 +25913,7 @@ var render = function() {
                                     "span",
                                     {
                                       staticClass:
-                                        "text-gray-200 bg-gray-500 px-2 py-1 rounded text-sm leading-none tracking-normal"
+                                        "text-gray-200 bg-blue-700 hover:text-gray-800 px-2 py-1 rounded text-sm leading-none tracking-normal"
                                     },
                                     [
                                       _vm._v(

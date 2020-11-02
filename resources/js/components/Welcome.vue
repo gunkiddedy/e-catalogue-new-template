@@ -272,7 +272,7 @@
                                 </div>
                                 <span v-if="product.sni" class="text-white bg-blue-500 px-2 py-1 rounded text-sm leading-none tracking-normal">
                                     trusted suplier</span>
-                                <span v-else class="text-gray-200 bg-gray-500 px-2 py-1 rounded text-sm leading-none tracking-normal">
+                                <span v-else class="text-gray-200 bg-blue-700 hover:text-gray-800 px-2 py-1 rounded text-sm leading-none tracking-normal">
                                     not trusted suplier
                                 </span>
                             </div>
