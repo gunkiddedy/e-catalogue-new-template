@@ -289,7 +289,7 @@
             <div class="mt-8 grid grid-cols-5 gap-2" :class="{'hidden': openTab !== 2, 'block': openTab === 2}">
                 <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative">
                     <img src="/img/login-img.png" alt="" class="rounded-t-lg">
-                    <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41">
+                    <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41">
                         <p class="normal-case mb-6 font-bold text-sm leading-tight">
                             Customized Pre-filter untuk Blower dan FFU
                         </p>

@@ -23747,7 +23747,7 @@ var staticRenderFns = [
           "div",
           {
             staticClass:
-              "absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41"
+              "absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41"
           },
           [
             _c(
@@ -25961,7 +25961,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41"
+                          "absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41"
                       },
                       [
                         _c(

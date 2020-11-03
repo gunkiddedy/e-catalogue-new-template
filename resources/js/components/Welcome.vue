@@ -254,7 +254,7 @@
                     <div>
                         <img :src="'/storage/'+product.image_path" alt="" class="rounded-t-lg object-cover w-full h-41">
                     </div>
-                    <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41">
+                    <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41">
                         <p class="normal-case mb-6 font-bold text-sm leading-tight">
                             {{ product.name }}
                         </p>
