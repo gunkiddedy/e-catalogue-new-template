@@ -10545,6 +10545,10 @@ video {
   height: 100vh;
 }
 
+.h-2\.25rem{
+  height: 2.25rem;
+}
+
 .hover\:h-0:hover{
   height: 0;
 }
@@ -10655,6 +10659,10 @@ video {
 
 .hover\:h-screen:hover{
   height: 100vh;
+}
+
+.hover\:h-2\.25rem:hover{
+  height: 2.25rem;
 }
 
 .text-xs{
@@ -34394,6 +34402,10 @@ video {
     height: 100vh;
   }
 
+  .sm\:h-2\.25rem{
+    height: 2.25rem;
+  }
+
   .sm\:hover\:h-0:hover{
     height: 0;
   }
@@ -34504,6 +34516,10 @@ video {
 
   .sm\:hover\:h-screen:hover{
     height: 100vh;
+  }
+
+  .sm\:hover\:h-2\.25rem:hover{
+    height: 2.25rem;
   }
 
   .sm\:text-xs{
@@ -58170,6 +58186,10 @@ video {
     height: 100vh;
   }
 
+  .md\:h-2\.25rem{
+    height: 2.25rem;
+  }
+
   .md\:hover\:h-0:hover{
     height: 0;
   }
@@ -58280,6 +58300,10 @@ video {
 
   .md\:hover\:h-screen:hover{
     height: 100vh;
+  }
+
+  .md\:hover\:h-2\.25rem:hover{
+    height: 2.25rem;
   }
 
   .md\:text-xs{
@@ -81946,6 +81970,10 @@ video {
     height: 100vh;
   }
 
+  .lg\:h-2\.25rem{
+    height: 2.25rem;
+  }
+
   .lg\:hover\:h-0:hover{
     height: 0;
   }
@@ -82056,6 +82084,10 @@ video {
 
   .lg\:hover\:h-screen:hover{
     height: 100vh;
+  }
+
+  .lg\:hover\:h-2\.25rem:hover{
+    height: 2.25rem;
   }
 
   .lg\:text-xs{
@@ -105722,6 +105754,10 @@ video {
     height: 100vh;
   }
 
+  .xl\:h-2\.25rem{
+    height: 2.25rem;
+  }
+
   .xl\:hover\:h-0:hover{
     height: 0;
   }
@@ -105832,6 +105868,10 @@ video {
 
   .xl\:hover\:h-screen:hover{
     height: 100vh;
+  }
+
+  .xl\:hover\:h-2\.25rem:hover{
+    height: 2.25rem;
   }
 
   .xl\:text-xs{

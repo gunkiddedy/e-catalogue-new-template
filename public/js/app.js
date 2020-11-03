@@ -2660,9 +2660,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "pink-tabs",
   data: function data() {
@@ -22864,395 +22861,413 @@ var render = function() {
                             _vm._v(" "),
                             _vm._m(4),
                             _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "grid grid-cols-2 gap-4 h-full" },
-                              [
-                                _c(
-                                  "div",
-                                  { staticClass: "left w-full h-full py-2" },
-                                  [
-                                    _vm._m(5),
-                                    _vm._v(" "),
-                                    _vm._m(6),
-                                    _vm._v(" "),
-                                    _vm._m(7),
-                                    _vm._v(" "),
-                                    _vm._m(8),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      { staticClass: "grid grid-rows-2" },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "product-name mb-3" },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "inline-block relative w-full"
-                                              },
-                                              [
-                                                _vm._m(9),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "svg",
-                                                      {
-                                                        staticClass:
-                                                          "fill-current h-4 w-4",
-                                                        attrs: {
-                                                          xmlns:
-                                                            "http://www.w3.org/2000/svg",
-                                                          viewBox: "0 0 20 20"
-                                                        }
-                                                      },
-                                                      [
-                                                        _c("path", {
+                            _c("form", { attrs: { action: "" } }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "grid grid-cols-2 gap-4 h-full"
+                                },
+                                [
+                                  _c(
+                                    "div",
+                                    { staticClass: "left w-full h-full py-2" },
+                                    [
+                                      _vm._m(5),
+                                      _vm._v(" "),
+                                      _vm._m(6),
+                                      _vm._v(" "),
+                                      _vm._m(7),
+                                      _vm._v(" "),
+                                      _vm._m(8),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "grid grid-rows-2" },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "product-name mb-3"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "inline-block relative w-full"
+                                                },
+                                                [
+                                                  _vm._m(9),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "svg",
+                                                        {
+                                                          staticClass:
+                                                            "fill-current h-4 w-4",
                                                           attrs: {
-                                                            d:
-                                                              "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                                            xmlns:
+                                                              "http://www.w3.org/2000/svg",
+                                                            viewBox: "0 0 20 20"
                                                           }
-                                                        })
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          { staticClass: "product-name mb-3" },
-                                          [
-                                            _c(
-                                              "div",
-                                              {
-                                                staticClass:
-                                                  "inline-block relative w-full"
-                                              },
-                                              [
-                                                _vm._m(10),
-                                                _vm._v(" "),
-                                                _c(
-                                                  "div",
-                                                  {
-                                                    staticClass:
-                                                      "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-                                                  },
-                                                  [
-                                                    _c(
-                                                      "svg",
-                                                      {
-                                                        staticClass:
-                                                          "fill-current h-4 w-4",
-                                                        attrs: {
-                                                          xmlns:
-                                                            "http://www.w3.org/2000/svg",
-                                                          viewBox: "0 0 20 20"
-                                                        }
-                                                      },
-                                                      [
-                                                        _c("path", {
+                                                        },
+                                                        [
+                                                          _c("path", {
+                                                            attrs: {
+                                                              d:
+                                                                "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                                            }
+                                                          })
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "product-name mb-3"
+                                            },
+                                            [
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass:
+                                                    "inline-block relative w-full"
+                                                },
+                                                [
+                                                  _vm._m(10),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "svg",
+                                                        {
+                                                          staticClass:
+                                                            "fill-current h-4 w-4",
                                                           attrs: {
-                                                            d:
-                                                              "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                                            xmlns:
+                                                              "http://www.w3.org/2000/svg",
+                                                            viewBox: "0 0 20 20"
                                                           }
-                                                        })
-                                                      ]
-                                                    )
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "div",
-                                  { staticClass: "right w-full h-full py-2" },
-                                  [
-                                    _vm._m(11),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "button-plus-upload flex px-4 justify-between items-center mb-3"
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "flex items-center justify-center"
-                                          },
-                                          [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300",
-                                                attrs: { type: "button" }
-                                              },
-                                              [
-                                                _c(
-                                                  "svg",
-                                                  {
-                                                    staticClass: "w-10 mx-auto",
-                                                    attrs: {
-                                                      fill: "currentColor",
-                                                      viewBox: "0 0 20 20",
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("path", {
+                                                        },
+                                                        [
+                                                          _c("path", {
+                                                            attrs: {
+                                                              d:
+                                                                "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                                            }
+                                                          })
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    { staticClass: "right w-full h-full py-2" },
+                                    [
+                                      _vm._m(11),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "button-plus-upload flex px-4 justify-between items-center mb-3"
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "flex items-center justify-center"
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300",
+                                                  attrs: { type: "button" }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      staticClass:
+                                                        "w-10 mx-auto",
                                                       attrs: {
-                                                        "fill-rule": "evenodd",
-                                                        d:
-                                                          "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
-                                                        "clip-rule": "evenodd"
+                                                        fill: "currentColor",
+                                                        viewBox: "0 0 20 20",
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg"
                                                       }
-                                                    })
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "flex items-center justify-center"
-                                          },
-                                          [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300",
-                                                attrs: { type: "button" }
-                                              },
-                                              [
-                                                _c(
-                                                  "svg",
-                                                  {
-                                                    staticClass: "w-10 mx-auto",
-                                                    attrs: {
-                                                      fill: "currentColor",
-                                                      viewBox: "0 0 20 20",
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("path", {
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "fill-rule":
+                                                            "evenodd",
+                                                          d:
+                                                            "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
+                                                          "clip-rule": "evenodd"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "flex items-center justify-center"
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300",
+                                                  attrs: { type: "button" }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      staticClass:
+                                                        "w-10 mx-auto",
                                                       attrs: {
-                                                        "fill-rule": "evenodd",
-                                                        d:
-                                                          "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
-                                                        "clip-rule": "evenodd"
+                                                        fill: "currentColor",
+                                                        viewBox: "0 0 20 20",
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg"
                                                       }
-                                                    })
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "flex items-center justify-center"
-                                          },
-                                          [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300",
-                                                attrs: { type: "button" }
-                                              },
-                                              [
-                                                _c(
-                                                  "svg",
-                                                  {
-                                                    staticClass: "w-10 mx-auto",
-                                                    attrs: {
-                                                      fill: "currentColor",
-                                                      viewBox: "0 0 20 20",
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("path", {
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "fill-rule":
+                                                            "evenodd",
+                                                          d:
+                                                            "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
+                                                          "clip-rule": "evenodd"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "flex items-center justify-center"
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300",
+                                                  attrs: { type: "button" }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      staticClass:
+                                                        "w-10 mx-auto",
                                                       attrs: {
-                                                        "fill-rule": "evenodd",
-                                                        d:
-                                                          "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
-                                                        "clip-rule": "evenodd"
+                                                        fill: "currentColor",
+                                                        viewBox: "0 0 20 20",
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg"
                                                       }
-                                                    })
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "flex items-center justify-center"
-                                          },
-                                          [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300",
-                                                attrs: { type: "button" }
-                                              },
-                                              [
-                                                _c(
-                                                  "svg",
-                                                  {
-                                                    staticClass: "w-10 mx-auto",
-                                                    attrs: {
-                                                      fill: "currentColor",
-                                                      viewBox: "0 0 20 20",
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("path", {
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "fill-rule":
+                                                            "evenodd",
+                                                          d:
+                                                            "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
+                                                          "clip-rule": "evenodd"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "flex items-center justify-center"
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300",
+                                                  attrs: { type: "button" }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      staticClass:
+                                                        "w-10 mx-auto",
                                                       attrs: {
-                                                        "fill-rule": "evenodd",
-                                                        d:
-                                                          "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
-                                                        "clip-rule": "evenodd"
+                                                        fill: "currentColor",
+                                                        viewBox: "0 0 20 20",
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg"
                                                       }
-                                                    })
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "div",
-                                          {
-                                            staticClass:
-                                              "flex items-center justify-center"
-                                          },
-                                          [
-                                            _c(
-                                              "button",
-                                              {
-                                                staticClass:
-                                                  "relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300",
-                                                attrs: { type: "button" }
-                                              },
-                                              [
-                                                _c(
-                                                  "svg",
-                                                  {
-                                                    staticClass: "w-10 mx-auto",
-                                                    attrs: {
-                                                      fill: "currentColor",
-                                                      viewBox: "0 0 20 20",
-                                                      xmlns:
-                                                        "http://www.w3.org/2000/svg"
-                                                    }
-                                                  },
-                                                  [
-                                                    _c("path", {
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "fill-rule":
+                                                            "evenodd",
+                                                          d:
+                                                            "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
+                                                          "clip-rule": "evenodd"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass:
+                                                "flex items-center justify-center"
+                                            },
+                                            [
+                                              _c(
+                                                "button",
+                                                {
+                                                  staticClass:
+                                                    "relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300",
+                                                  attrs: { type: "button" }
+                                                },
+                                                [
+                                                  _c(
+                                                    "svg",
+                                                    {
+                                                      staticClass:
+                                                        "w-10 mx-auto",
                                                       attrs: {
-                                                        "fill-rule": "evenodd",
-                                                        d:
-                                                          "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
-                                                        "clip-rule": "evenodd"
+                                                        fill: "currentColor",
+                                                        viewBox: "0 0 20 20",
+                                                        xmlns:
+                                                          "http://www.w3.org/2000/svg"
                                                       }
-                                                    })
-                                                  ]
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    ),
-                                    _vm._v(" "),
-                                    _vm._m(12),
-                                    _vm._v(" "),
-                                    _vm._m(13),
-                                    _vm._v(" "),
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass:
-                                          "flex items-center justify-end"
-                                      },
-                                      [
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none",
-                                            attrs: { type: "button" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.toggleModal()
+                                                    },
+                                                    [
+                                                      _c("path", {
+                                                        attrs: {
+                                                          "fill-rule":
+                                                            "evenodd",
+                                                          d:
+                                                            "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
+                                                          "clip-rule": "evenodd"
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _vm._m(12),
+                                      _vm._v(" "),
+                                      _vm._m(13),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass:
+                                            "flex items-center justify-end"
+                                        },
+                                        [
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none",
+                                              attrs: { type: "button" },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.toggleModal()
+                                                }
                                               }
-                                            }
-                                          },
-                                          [_vm._v("Save Product")]
-                                        ),
-                                        _vm._v(" "),
-                                        _c(
-                                          "button",
-                                          {
-                                            staticClass:
-                                              "text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none",
-                                            attrs: { type: "button" },
-                                            on: {
-                                              click: function($event) {
-                                                return _vm.toggleModal()
+                                            },
+                                            [_vm._v("Save Product")]
+                                          ),
+                                          _vm._v(" "),
+                                          _c(
+                                            "button",
+                                            {
+                                              staticClass:
+                                                "text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none",
+                                              attrs: { type: "button" },
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.toggleModal()
+                                                }
                                               }
-                                            }
-                                          },
-                                          [_vm._v("Add Product")]
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                )
-                              ]
-                            )
+                                            },
+                                            [_vm._v("Add Product")]
+                                          )
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ])
                           ]
                         )
                       ])
@@ -23539,7 +23554,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "font-semibold w-1/6 mr-4" }, [
           _vm._v(
-            "\r\n                                                    SNI\r\n                                                "
+            "\r\n                                                        SNI\r\n                                                    "
           )
         ]),
         _vm._v(" "),
@@ -23562,7 +23577,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("div", { staticClass: "font-semibold w-1/6 mr-4" }, [
           _vm._v(
-            "\r\n                                                    TKDN\r\n                                                "
+            "\r\n                                                        TKDN\r\n                                                    "
           )
         ]),
         _vm._v(" "),
@@ -23584,13 +23599,13 @@ var staticRenderFns = [
       _c("div", { staticClass: "flex mb-3 items-center justify-between" }, [
         _c("div", { staticClass: "w-1/12" }, [
           _vm._v(
-            "\r\n                                                     \r\n                                                "
+            "\r\n                                                         \r\n                                                    "
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "font-semibold text-lg w-1/6 mr-4" }, [
           _vm._v(
-            "\r\n                                                     \r\n                                                "
+            "\r\n                                                         \r\n                                                    "
           )
         ]),
         _vm._v(" "),
@@ -23606,13 +23621,13 @@ var staticRenderFns = [
       _c("div", { staticClass: "flex mb-3 items-center justify-between" }, [
         _c("div", { staticClass: "w-1/12" }, [
           _vm._v(
-            "\r\n                                                     \r\n                                                "
+            "\r\n                                                         \r\n                                                    "
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "font-semibold text-lg w-1/6 mr-4" }, [
           _vm._v(
-            "\r\n                                                     \r\n                                                "
+            "\r\n                                                         \r\n                                                    "
           )
         ]),
         _vm._v(" "),
@@ -23634,7 +23649,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "flex mb-3 items-center justify-between" }, [
         _c("div", { staticClass: "w-26-persen font-semibold mr-4" }, [
           _vm._v(
-            "\r\n                                                    HS Code\r\n                                                "
+            "\r\n                                                        HS Code\r\n                                                    "
           )
         ]),
         _vm._v(" "),
@@ -23753,7 +23768,8 @@ var staticRenderFns = [
             _c(
               "p",
               {
-                staticClass: "normal-case mb-6 font-bold text-sm leading-tight"
+                staticClass:
+                  "normal-case mb-6 font-bold text-sm leading-tight h-2.25rem"
               },
               [
                 _vm._v(
@@ -23764,7 +23780,10 @@ var staticRenderFns = [
             _vm._v(" "),
             _c(
               "p",
-              { staticClass: "uppercase text-gray-600 leading-tight text-xs" },
+              {
+                staticClass:
+                  "uppercase text-gray-600 leading-tight text-xs h-2.25rem"
+              },
               [
                 _vm._v(
                   "\r\n                            pt. maju jaya prima perkasa abadi\r\n                        "
@@ -23800,7 +23819,7 @@ var staticRenderFns = [
                     "span",
                     {
                       staticClass:
-                        "text-white bg-orange-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
+                        "text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
                     },
                     [
                       _vm._v(
@@ -25968,7 +25987,7 @@ var render = function() {
                           "p",
                           {
                             staticClass:
-                              "normal-case mb-6 font-bold text-sm leading-tight"
+                              "normal-case mb-6 font-bold text-sm leading-tight h-2.25rem"
                           },
                           [
                             _vm._v(
@@ -25983,7 +26002,7 @@ var render = function() {
                           "p",
                           {
                             staticClass:
-                              "uppercase text-gray-600 leading-tight text-xs"
+                              "uppercase text-gray-600 leading-tight text-xs h-2.25rem"
                           },
                           [
                             _vm._v(
@@ -26019,7 +26038,7 @@ var render = function() {
                                     "span",
                                     {
                                       staticClass:
-                                        "text-white bg-orange-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
+                                        "text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
                                     },
                                     [
                                       _vm._v(

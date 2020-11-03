@@ -121,6 +121,7 @@
                                         </button>
                                     </div>
                                 </div>
+
                                 <div class="flex items-center justify-between mb-4">
                                     <h3 class="text-lg leading-tight font-semibold">
                                         Add New Product
@@ -128,161 +129,159 @@
                                 </div>
 
                                 <!--body-->
-                                <div class="grid grid-cols-2 gap-4 h-full">
-                                    <!-- LEFT SIDE-->
-                                    <div class="left w-full h-full py-2">
-                                        <div class="product-name mb-4">
-                                            <input class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Product Name">
-                                        </div>
-                                        <div class="grid grid-rows-2">
-                                            <div class="flex mb-4 items-center justify-between">
-                                                <div class="w-1/12">
-                                                    <input type="checkbox" name="" id="" class="rounded-lg">
-                                                </div>
-                                                <div class="font-semibold w-1/6 mr-4">
-                                                    SNI
-                                                </div>
-                                                <div class="w-full">
-                                                    <input type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
-                                                </div>
+                                <form action="">
+                                    <div class="grid grid-cols-2 gap-4 h-full">
+                                        <!-- LEFT SIDE-->
+                                        <div class="left w-full h-full py-2">
+                                            <div class="product-name mb-4">
+                                                <input class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Product Name">
                                             </div>
-                                            <div class="flex mb-3 items-center justify-between">
-                                                <div class="w-1/12">
-                                                    <input type="checkbox" name="" id="" class="rounded-lg">
+                                            <div class="grid grid-rows-2">
+                                                <div class="flex mb-4 items-center justify-between">
+                                                    <div class="w-1/12">
+                                                        <input type="checkbox" name="" id="" class="rounded-lg">
+                                                    </div>
+                                                    <div class="font-semibold w-1/6 mr-4">
+                                                        SNI
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <input type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                    </div>
                                                 </div>
-                                                <div class="font-semibold w-1/6 mr-4">
-                                                    TKDN
-                                                </div>
-                                                <div class="w-full">
-                                                    <input type="text" placeholder="Nilai TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="grid grid-rows-2">
-                                            <div class="flex mb-3 items-center justify-between">
-                                                <div class="w-1/12">
-                                                    &nbsp;
-                                                </div>
-                                                <div class="font-semibold text-lg w-1/6 mr-4">
-                                                    &nbsp;
-                                                </div>
-                                                <div class="w-full">
-                                                    <input type="text" placeholder="Nomor Sertifikat TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
-                                                </div>
-                                            </div>
-                                            <div class="flex mb-3 items-center justify-between">
-                                                <div class="w-1/12">
-                                                    &nbsp;
-                                                </div>
-                                                <div class="font-semibold text-lg w-1/6 mr-4">
-                                                    &nbsp;
-                                                </div>
-                                                <div class="w-full">
-                                                    <input type="text" placeholder="Nomor Laporan" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="grid grid-rows-1">
-                                            <div class="flex mb-3 items-center justify-between">
-                                                <div class="w-26-persen font-semibold mr-4">
-                                                    HS Code
-                                                </div>
-                                                <div class="w-full">
-                                                    <input type="text" placeholder="ex. 0987789009876" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="grid grid-rows-2">
-                                            <div class="product-name mb-3">
-                                                <div class="inline-block relative w-full">
-                                                    <select class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
-                                                        <option>Categories</option>
-                                                        <option>Option 2</option>
-                                                        <option>Option 3</option>
-                                                    </select>
-                                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                        </svg>
+                                                <div class="flex mb-3 items-center justify-between">
+                                                    <div class="w-1/12">
+                                                        <input type="checkbox" name="" id="" class="rounded-lg">
+                                                    </div>
+                                                    <div class="font-semibold w-1/6 mr-4">
+                                                        TKDN
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <input type="text" placeholder="Nilai TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="product-name mb-3">
-                                                <div class="inline-block relative w-full">
-                                                    <select class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
-                                                        <option>Sub Categories</option>
-                                                        <option>Option 2</option>
-                                                        <option>Option 3</option>
-                                                    </select>
-                                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                                                        </svg>
+
+                                            <div class="grid grid-rows-2">
+                                                <div class="flex mb-3 items-center justify-between">
+                                                    <div class="w-1/12">
+                                                        &nbsp;
+                                                    </div>
+                                                    <div class="font-semibold text-lg w-1/6 mr-4">
+                                                        &nbsp;
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <input type="text" placeholder="Nomor Sertifikat TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                    </div>
+                                                </div>
+                                                <div class="flex mb-3 items-center justify-between">
+                                                    <div class="w-1/12">
+                                                        &nbsp;
+                                                    </div>
+                                                    <div class="font-semibold text-lg w-1/6 mr-4">
+                                                        &nbsp;
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <input type="text" placeholder="Nomor Laporan" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grid grid-rows-1">
+                                                <div class="flex mb-3 items-center justify-between">
+                                                    <div class="w-26-persen font-semibold mr-4">
+                                                        HS Code
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <input type="text" placeholder="ex. 0987789009876" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="grid grid-rows-2">
+                                                <div class="product-name mb-3">
+                                                    <div class="inline-block relative w-full">
+                                                        <select class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
+                                                            <option>Categories</option>
+                                                            <option>Option 2</option>
+                                                            <option>Option 3</option>
+                                                        </select>
+                                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="product-name mb-3">
+                                                    <div class="inline-block relative w-full">
+                                                        <select class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
+                                                            <option>Sub Categories</option>
+                                                            <option>Option 2</option>
+                                                            <option>Option 3</option>
+                                                        </select>
+                                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                                            </svg>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- RIGHT SIDE-->
+                                        <div class="right w-full h-full py-2">
+                                            <div class="description mb-3">
+                                                <textarea name="" id="" placeholder="Tulis deskripsi produk" class="h-56 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"></textarea>
+                                            </div>
+                                            <div class="button-plus-upload flex px-4 justify-between items-center mb-3">
+                                                <div class="flex items-center justify-center">
+                                                    <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                                        </svg></button>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                                        </svg></button>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                                        </svg></button>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                                        </svg></button>
+                                                </div>
+                                                <div class="flex items-center justify-center">
+                                                    <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                                        </svg></button>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="text-gray-500 font-semibold">*Upload max 5 photos</span>
+                                            </div>
+                                            <div class="flex mb-6 items-center justify-between">
+                                                <span class="font-semibold mr-4">Rp</span>
+                                                <div class="w-full">
+                                                    <input type="text" placeholder="Masukkan harga" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center justify-end">
+                                                <button class="text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Save Product</button>
+                                                <button class="text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Add Product</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- RIGHT SIDE-->
-                                    <div class="right w-full h-full py-2">
-                                        <div class="description mb-3">
-                                            <textarea name="" id="" placeholder="Tulis deskripsi produk" class="h-56 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"></textarea>
-                                        </div>
-                                        <div class="button-plus-upload flex px-4 justify-between items-center mb-3">
-                                            <div class="flex items-center justify-center">
-                                                <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                    </svg></button>
-                                            </div>
-                                            <div class="flex items-center justify-center">
-                                                <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                    </svg></button>
-                                            </div>
-                                            <div class="flex items-center justify-center">
-                                                <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                    </svg></button>
-                                            </div>
-                                            <div class="flex items-center justify-center">
-                                                <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                    </svg></button>
-                                            </div>
-                                            <div class="flex items-center justify-center">
-                                                <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                    </svg></button>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <span class="text-gray-500 font-semibold">*Upload max 5 photos</span>
-                                        </div>
-                                        <div class="flex mb-6 items-center justify-between">
-                                            <span class="font-semibold mr-4">Rp</span>
-                                            <div class="w-full">
-                                                <input type="text" placeholder="Masukkan harga" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center justify-end">
-                                            <button class="text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Save Product</button>
-                                            <button class="text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Add Product</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <!-- END MODAL FORM-->
-
                     <!-- DIV AFTER MODAL SHOW UP -->
                     <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
-
                 </div>
-
             </div>
 
             <!-- PRODUCT CARD -->
@@ -290,10 +289,10 @@
                 <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative">
                     <img src="/img/login-img.png" alt="" class="rounded-t-lg">
                     <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41">
-                        <p class="normal-case mb-6 font-bold text-sm leading-tight">
+                        <p class="normal-case mb-6 font-bold text-sm leading-tight h-2.25rem">
                             Customized Pre-filter untuk Blower dan FFU
                         </p>
-                        <p class="uppercase text-gray-600 leading-tight text-xs">
+                        <p class="uppercase text-gray-600 leading-tight text-xs h-2.25rem">
                             pt. maju jaya prima perkasa abadi
                         </p>
                         <div>
@@ -305,7 +304,7 @@
                                 <div class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2">
                                     <p class="text-gray-200 text-xs">SNI</p>
                                 </div>
-                                <span class="text-white bg-orange-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
+                                <span class="text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
                                     trusted suplier
                                 </span>
                                 <!--<span class="text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
@@ -329,8 +328,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- END PRODUCT CARD -->
 
             <!-- ABOUT CARD -->
             <div class="mt-8" v-bind:class="{'hidden': openTab !== 1, 'block': openTab === 1}">
