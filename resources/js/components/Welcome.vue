@@ -254,7 +254,7 @@
                     <div>
                         <img :src="'/storage/'+product.image_path" alt="" class="rounded-t-lg object-cover w-full h-41">
                     </div>
-                    <div class="absolute px-4 py-4 bg-white rounded-lg leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41">
+                    <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41">
                         <p class="normal-case mb-6 font-bold text-sm leading-tight">
                             {{ product.name }}
                         </p>
@@ -270,9 +270,9 @@
                                 <div class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2">
                                     <p class="text-gray-200 text-xs">SNI</p>
                                 </div>
-                                <span v-if="product.sni" class="text-white bg-blue-500 px-2 py-1 rounded text-sm leading-none tracking-normal">
+                                <span v-if="product.sni" class="text-white bg-orange-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
                                     trusted suplier</span>
-                                <span v-else class="text-gray-200 bg-blue-700 hover:text-gray-800 px-2 py-1 rounded text-sm leading-none tracking-normal">
+                                <span v-else class="text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
                                     not trusted suplier
                                 </span>
                             </div>

@@ -273,12 +273,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!--footer MODAL-->
-                                <!--<div class="flex items-center justify-end">
-                                    <button class="text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Save Product</button>
-                                    <button class="text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Add Product</button>
-                                </div>-->
                             </div>
                         </div>
                     </div>
@@ -295,7 +289,7 @@
             <div class="mt-8 grid grid-cols-5 gap-2" :class="{'hidden': openTab !== 2, 'block': openTab === 2}">
                 <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative">
                     <img src="/img/login-img.png" alt="" class="rounded-t-lg">
-                    <div class="absolute px-4 py-4 bg-white rounded-lg leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41">
+                    <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41">
                         <p class="normal-case mb-6 font-bold text-sm leading-tight">
                             Customized Pre-filter untuk Blower dan FFU
                         </p>
@@ -306,12 +300,22 @@
                             <p class="mt-2 mb-2 text-xs text-gray-500">
                                 Jakarta Barat
                             </p>
-                            <div class="mb-2 rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2">
-                                <p class="text-gray-300 text-xs">SNI</p>
+
+                            <div class="flex items-center justify-start mb-2">
+                                <div class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2">
+                                    <p class="text-gray-200 text-xs">SNI</p>
+                                </div>
+                                <span class="text-white bg-orange-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
+                                    trusted suplier
+                                </span>
+                                <!--<span class="text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
+                                    not trusted suplier
+                                </span>-->
                             </div>
+
                             <p class="font-bold mb-2">
                                 <span class="text-red-500 font-bold">Rp250.000</span>
-                                <span class="text-sm">/ pc</span>
+                                <span class="text-sm">/pc</span>
                             </p>
                             <p class="text-xs mb-4 text-gray-500">
                                 Visit in order to contact the seller
@@ -325,6 +329,7 @@
                     </div>
                 </div>
             </div>
+
             <!-- END PRODUCT CARD -->
 
             <!-- ABOUT CARD -->
@@ -346,7 +351,6 @@
                     </div>
                 </div>
             </div>
-            <!-- END ABOUT CARD -->
 
             <div class="flex justify-around items-center mt-16">
                 <ul class="flex justify-between items-center leading-tight font-bold text-gray-700">
@@ -387,11 +391,114 @@ export default {
             openTab: 2,
             showModal: false,
             buttonAddProduct: true,
-            buttonEditCompany: false
+            buttonEditCompany: false,
+
+            show_sni: false,
+            show_tkdn: false,
+            isRequiredSNI: false,
+            isRequiredTKDN: false,
+            nomor_sni: '',
+            nilai_tkdn: '',
+            nomor_sertifikat_tkdn: '',
+            nomor_laporan_tkdn: '',
+            required: '',
+            sni: '',
+            errors: '',
+            errors_nilai_tkdn: '',
+            errors_nomor_sertifikat_tkdn: '',
+            errors_nomor_laporan_tkdn: '',
+            isSuccess: false,
+            isError: true,
+            isSuccess_nil: false,
+            isError_nil: true,
+            isSuccess_ser: false,
+            isError_ser: true,
+            isSuccess_lap: false,
+            isError_lap: true,
+            categories: [],
+            subcategories: [],
+            select_category: '',
+            select_subcategory: ''
         }
     },
 
+    created() {
+        this.loadCategory();
+    },
+
     methods: {
+        loadCategory: function () {
+            axios.get('/api/getcategories')
+                .then((response) => {
+                    this.categories = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        loadSubCategory: function () {
+            axios.get('/api/getsubcategories', {
+                    params: {
+                        category_id: this.select_category
+                    }
+                })
+                .then((response) => {
+                    this.subcategories = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        checkNilaiTKDN: _.debounce(function () {
+            let regex = /\d{2}(\.\d{2})?$/;
+
+            let value = regex.test(this.nilai_tkdn);
+            if (value == false) {
+                this.nilai_tkdn = null;
+                this.isError_nil = true;
+                this.isSuccess_nil = false;
+                this.errors_nilai_tkdn = 'format tidak valid! example(0.00 atau 100.00)';
+            } else {
+                this.isSuccess_nil = true;
+                this.isError_nil = false;
+                this.errors_nilai_tkdn = 'format valid';
+            }
+            return
+        }, 2000),
+
+        checkSertiTKDN: _.debounce(function (check_value) {
+            let searchRegExp = /[^\w\.\/\:\,\-]+/;
+            let valid = check_value.replace(searchRegExp, '');
+            this.nomor_sertifikat_tkdn = valid;
+            console.log(valid);
+            return
+        }, 2000),
+
+        checkLapTKDN: _.debounce(function (check_value) {
+            let searchRegExp = /[^\w\.\/\:\,\-]+/;
+            let valid = check_value.replace(searchRegExp, '');
+            this.nomor_laporan_tkdn = valid;
+            return
+        }, 2000),
+
+        checkSNI: _.debounce(function (check_value) {
+            let searchRegExp = /[^\w\.\/\:\,\-]+/;
+            let valid = check_value.replace(searchRegExp, '');
+            this.nomor_sni = valid;
+            return
+        }, 2000),
+
+        showSNI: function () {
+            this.show_sni = !this.show_sni;
+            this.required = 'required';
+        },
+        showTKDN: function () {
+            this.show_tkdn = !this.show_tkdn;
+            this.required = 'required';
+        },
+
         toggleTabs: function (tabNumber) {
             this.openTab = tabNumber;
             if (this.openTab == 2) {

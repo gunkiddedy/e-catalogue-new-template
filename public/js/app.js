@@ -2659,6 +2659,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "pink-tabs",
   data: function data() {
@@ -2666,10 +2670,105 @@ __webpack_require__.r(__webpack_exports__);
       openTab: 2,
       showModal: false,
       buttonAddProduct: true,
-      buttonEditCompany: false
+      buttonEditCompany: false,
+      show_sni: false,
+      show_tkdn: false,
+      isRequiredSNI: false,
+      isRequiredTKDN: false,
+      nomor_sni: '',
+      nilai_tkdn: '',
+      nomor_sertifikat_tkdn: '',
+      nomor_laporan_tkdn: '',
+      required: '',
+      sni: '',
+      errors: '',
+      errors_nilai_tkdn: '',
+      errors_nomor_sertifikat_tkdn: '',
+      errors_nomor_laporan_tkdn: '',
+      isSuccess: false,
+      isError: true,
+      isSuccess_nil: false,
+      isError_nil: true,
+      isSuccess_ser: false,
+      isError_ser: true,
+      isSuccess_lap: false,
+      isError_lap: true,
+      categories: [],
+      subcategories: [],
+      select_category: '',
+      select_subcategory: ''
     };
   },
+  created: function created() {
+    this.loadCategory();
+  },
   methods: {
+    loadCategory: function loadCategory() {
+      var _this = this;
+
+      axios.get('/api/getcategories').then(function (response) {
+        _this.categories = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadSubCategory: function loadSubCategory() {
+      var _this2 = this;
+
+      axios.get('/api/getsubcategories', {
+        params: {
+          category_id: this.select_category
+        }
+      }).then(function (response) {
+        _this2.subcategories = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    checkNilaiTKDN: _.debounce(function () {
+      var regex = /\d{2}(\.\d{2})?$/;
+      var value = regex.test(this.nilai_tkdn);
+
+      if (value == false) {
+        this.nilai_tkdn = null;
+        this.isError_nil = true;
+        this.isSuccess_nil = false;
+        this.errors_nilai_tkdn = 'format tidak valid! example(0.00 atau 100.00)';
+      } else {
+        this.isSuccess_nil = true;
+        this.isError_nil = false;
+        this.errors_nilai_tkdn = 'format valid';
+      }
+
+      return;
+    }, 2000),
+    checkSertiTKDN: _.debounce(function (check_value) {
+      var searchRegExp = /[^\w\.\/\:\,\-]+/;
+      var valid = check_value.replace(searchRegExp, '');
+      this.nomor_sertifikat_tkdn = valid;
+      console.log(valid);
+      return;
+    }, 2000),
+    checkLapTKDN: _.debounce(function (check_value) {
+      var searchRegExp = /[^\w\.\/\:\,\-]+/;
+      var valid = check_value.replace(searchRegExp, '');
+      this.nomor_laporan_tkdn = valid;
+      return;
+    }, 2000),
+    checkSNI: _.debounce(function (check_value) {
+      var searchRegExp = /[^\w\.\/\:\,\-]+/;
+      var valid = check_value.replace(searchRegExp, '');
+      this.nomor_sni = valid;
+      return;
+    }, 2000),
+    showSNI: function showSNI() {
+      this.show_sni = !this.show_sni;
+      this.required = 'required';
+    },
+    showTKDN: function showTKDN() {
+      this.show_tkdn = !this.show_tkdn;
+      this.required = 'required';
+    },
     toggleTabs: function toggleTabs(tabNumber) {
       this.openTab = tabNumber;
 
@@ -23648,7 +23747,7 @@ var staticRenderFns = [
           "div",
           {
             staticClass:
-              "absolute px-4 py-4 bg-white rounded-lg leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41"
+              "absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41"
           },
           [
             _c(
@@ -23682,14 +23781,33 @@ var staticRenderFns = [
               _vm._v(" "),
               _c(
                 "div",
-                {
-                  staticClass:
-                    "mb-2 rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2"
-                },
+                { staticClass: "flex items-center justify-start mb-2" },
                 [
-                  _c("p", { staticClass: "text-gray-300 text-xs" }, [
-                    _vm._v("SNI")
-                  ])
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2"
+                    },
+                    [
+                      _c("p", { staticClass: "text-gray-200 text-xs" }, [
+                        _vm._v("SNI")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "text-white bg-orange-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
+                    },
+                    [
+                      _vm._v(
+                        "\r\n                                    trusted suplier\r\n                                "
+                      )
+                    ]
+                  )
                 ]
               ),
               _vm._v(" "),
@@ -23698,7 +23816,7 @@ var staticRenderFns = [
                   _vm._v("Rp250.000")
                 ]),
                 _vm._v(" "),
-                _c("span", { staticClass: "text-sm" }, [_vm._v("/ pc")])
+                _c("span", { staticClass: "text-sm" }, [_vm._v("/pc")])
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "text-xs mb-4 text-gray-500" }, [
@@ -25843,7 +25961,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "absolute px-4 py-4 bg-white rounded-lg leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41"
+                          "absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-74 hover:-mt-41"
                       },
                       [
                         _c(
@@ -25901,7 +26019,7 @@ var render = function() {
                                     "span",
                                     {
                                       staticClass:
-                                        "text-white bg-blue-500 px-2 py-1 rounded text-sm leading-none tracking-normal"
+                                        "text-white bg-orange-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
                                     },
                                     [
                                       _vm._v(
@@ -25913,7 +26031,7 @@ var render = function() {
                                     "span",
                                     {
                                       staticClass:
-                                        "text-gray-200 bg-blue-700 hover:text-gray-800 px-2 py-1 rounded text-sm leading-none tracking-normal"
+                                        "text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
                                     },
                                     [
                                       _vm._v(
