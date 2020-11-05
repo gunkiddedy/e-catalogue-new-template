@@ -106,7 +106,7 @@
                     <!-- BUTTON ADD PRODUCT & EDIT COMPANY PROFILE-->
 
                     <!-- MODAL FORM-->
-                    <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
+                    <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center items-center flex">
                         <div class="relative max-w-4xl w-9/12">
                             <!--content-->
                             <div class="bg-white border-0 rounded-lg shadow-lg relative px-6 py-4">
@@ -122,41 +122,44 @@
                                     </div>
                                 </div>
 
-                                <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center justify-between mb-2">
                                     <h3 class="text-lg leading-tight font-semibold">
                                         Add New Product
                                     </h3>
                                 </div>
 
                                 <!--body-->
-                                <form action="">
+                                <div v-if="status_msg" :class="{ 'text-green-400': status, 'text-red-400': !status }">
+                                    <span>{{ status_msg }}</span>
+                                </div>
+                                <form>
                                     <div class="grid grid-cols-2 gap-4 h-full">
                                         <!-- LEFT SIDE-->
                                         <div class="left w-full h-full py-2">
-                                            <div class="product-name mb-4">
-                                                <input class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Product Name">
+                                            <div class="product-name mb-3">
+                                                <input id="name" v-model="name" class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Product Name">
                                             </div>
                                             <div class="grid grid-rows-2">
-                                                <div class="flex mb-4 items-center justify-between">
+                                                <div class="flex mb-3 items-center justify-between">
                                                     <div class="w-1/12">
-                                                        <input type="checkbox" name="" id="" class="rounded-lg">
+                                                        <input type="checkbox" name="sni" id="sni" v-model="sni" class="rounded-lg">
                                                     </div>
-                                                    <div class="font-semibold w-1/6 mr-4">
+                                                    <label for="sni" class="font-semibold w-1/6 mr-4">
                                                         SNI
-                                                    </div>
+                                                    </label>
                                                     <div class="w-full">
-                                                        <input type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                        <input name="nomor_sni" id="nomor_sni" v-model="nomor_sni" type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                                     </div>
                                                 </div>
                                                 <div class="flex mb-3 items-center justify-between">
                                                     <div class="w-1/12">
-                                                        <input type="checkbox" name="" id="" class="rounded-lg">
+                                                        <input type="checkbox" name="tkdn" id="tkdn" v-model="tkdn" class="rounded-lg">
                                                     </div>
-                                                    <div class="font-semibold w-1/6 mr-4">
+                                                    <label for="tkdn" class="font-semibold w-1/6 mr-4">
                                                         TKDN
-                                                    </div>
+                                                    </label>
                                                     <div class="w-full">
-                                                        <input type="text" placeholder="Nilai TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4">
+                                                        <input name="nilai_tkdn" id="nilai_tkdn" v-model="nilai_tkdn" type="text" placeholder="Nilai TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4">
                                                     </div>
                                                 </div>
                                             </div>
@@ -170,7 +173,7 @@
                                                         &nbsp;
                                                     </div>
                                                     <div class="w-full">
-                                                        <input type="text" placeholder="Nomor Sertifikat TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                        <input v-model="nomor_sertifikat_tkdn" name="nomor_sertifikat_tkdn" id="nomor_sertifikat_tkdn" type="text" placeholder="Nomor Sertifikat TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                                     </div>
                                                 </div>
                                                 <div class="flex mb-3 items-center justify-between">
@@ -181,7 +184,7 @@
                                                         &nbsp;
                                                     </div>
                                                     <div class="w-full">
-                                                        <input type="text" placeholder="Nomor Laporan" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                        <input name="nomor_laporan_tkdn" v-model="nomor_laporan_tkdn" id="nomor_laporan_tkdn" type="text" placeholder="Nomor Laporan" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                                     </div>
                                                 </div>
                                             </div>
@@ -192,7 +195,7 @@
                                                         HS Code
                                                     </div>
                                                     <div class="w-full">
-                                                        <input type="text" placeholder="ex. 0987789009876" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                        <input name="hs_code" id="hs_code" v-model="hs_code" type="text" placeholder="ex. 0987789009876" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                                     </div>
                                                 </div>
                                             </div>
@@ -231,47 +234,49 @@
                                         <!-- RIGHT SIDE-->
                                         <div class="right w-full h-full py-2">
                                             <div class="description mb-3">
-                                                <textarea name="" id="" placeholder="Tulis deskripsi produk" class="h-56 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"></textarea>
+                                                <textarea name="description" id="description" v-model="description" placeholder="Tulis deskripsi produk" class="h-40 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"></textarea>
                                             </div>
+
                                             <div class="button-plus-upload flex px-4 justify-between items-center mb-3">
-                                                <div class="flex items-center justify-center">
-                                                    <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                        </svg></button>
+
+                                                <!--<div class="flex items-center justify-center">
+                                                    <label for="upload1" class="cursor-pointer focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300">
+                                                        <svg class="w-10 mx-auto mt-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd">
+                                                            </path>
+                                                        </svg>
+                                                    </label>
+                                                    <input style="display:none" ref="file_Input" type="file" name="upload1" id="upload1">
+                                                </div>-->
+
+                                                <div class>
+                                                    <el-upload action="#" list-type="picture-card" :on-preview="handleImagePreview" :on-change="updateImageList" :limit="5" :on-exceed="handleExceed" :auto-upload="false">
+                                                        <i class="el-icon-plus" />
+                                                    </el-upload>
+                                                    <el-dialog :visible.sync="dialogVisible">
+                                                        <img width="100%" :src="dialogImageUrl" alt>
+                                                    </el-dialog>
                                                 </div>
-                                                <div class="flex items-center justify-center">
-                                                    <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                        </svg></button>
-                                                </div>
-                                                <div class="flex items-center justify-center">
-                                                    <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                        </svg></button>
-                                                </div>
-                                                <div class="flex items-center justify-center">
-                                                    <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                        </svg></button>
-                                                </div>
-                                                <div class="flex items-center justify-center">
-                                                    <button class="relative focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300" type="button"><svg class="w-10 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                                        </svg></button>
-                                                </div>
+
                                             </div>
+
                                             <div class="mb-3">
                                                 <span class="text-gray-500 font-semibold">*Upload max 5 photos</span>
                                             </div>
-                                            <div class="flex mb-6 items-center justify-between">
+
+                                            <div class="flex mb-3 items-center justify-between">
                                                 <span class="font-semibold mr-4">Rp</span>
                                                 <div class="w-full">
-                                                    <input type="text" placeholder="Masukkan harga" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                    <input type="text" name="price" id="price" v-model="price" placeholder="Masukkan harga" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                                 </div>
                                             </div>
                                             <div class="flex items-center justify-end">
-                                                <button class="text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Save Product</button>
-                                                <button class="text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">Add Product</button>
+                                                <!--<button class="text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">
+                                                    Save Product
+                                                </button>-->
+                                                <button class="text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="createPost">
+                                                    {{ isCreatingPost ? "Adding product..." : "Add Product" }}
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -280,7 +285,7 @@
                         </div>
                     </div>
                     <!-- DIV AFTER MODAL SHOW UP -->
-                    <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    <div v-if="showModal" class="opacity-25 fixed inset-0 z-30 bg-black"></div>
                 </div>
             </div>
 
@@ -379,10 +384,34 @@
 </div>
 </template>
 
+<style>
+.el-upload--picture-card {
+    background-color: #fbfdff;
+    border: 1px dashed #c0ccda;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 4rem;
+    height: 4rem;
+    line-height: 74px;
+    vertical-align: top;
+}
+
+.el-upload-list--picture-card .el-upload-list__item {
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #c0ccda;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 4rem;
+    height: 4rem;
+    margin: 0 8px 8px 0;
+    display: inline-block;
+}
+</style>
+
 <script>
 export default {
-    name: "pink-tabs",
-
+    name: 'company-page',
     data() {
         return {
             openTab: 2,
@@ -390,40 +419,149 @@ export default {
             buttonAddProduct: true,
             buttonEditCompany: false,
 
-            show_sni: false,
-            show_tkdn: false,
-            isRequiredSNI: false,
-            isRequiredTKDN: false,
+            // show_sni: false,
+            // show_tkdn: false,
+            // isRequiredSNI: false,
+            // isRequiredTKDN: false,
+            // nomor_sni: '',
+            // nilai_tkdn: '',
+            // nomor_sertifikat_tkdn: '',
+            // nomor_laporan_tkdn: '',
+            // required: '',
+            // sni: '',
+            // errors: '',
+            // errors_nilai_tkdn: '',
+            // errors_nomor_sertifikat_tkdn: '',
+            // errors_nomor_laporan_tkdn: '',
+            // isSuccess: false,
+            // isError: true,
+            // isSuccess_nil: false,
+            // isError_nil: true,
+            // isSuccess_ser: false,
+            // isError_ser: true,
+            // isSuccess_lap: false,
+            // isError_lap: true,
+            // categories: [],
+            // subcategories: [],
+            // select_category: '',
+            // select_subcategory: '',
+
+            dialogImageUrl: '',
+            dialogVisible: false,
+            imageList: [],
+            isCreatingPost: false,
+            status_msg: '',
+            status: '',
+            name: '',
+            description: '',
+            sni: '',
             nomor_sni: '',
+            tkdn: '',
             nilai_tkdn: '',
             nomor_sertifikat_tkdn: '',
             nomor_laporan_tkdn: '',
-            required: '',
-            sni: '',
-            errors: '',
-            errors_nilai_tkdn: '',
-            errors_nomor_sertifikat_tkdn: '',
-            errors_nomor_laporan_tkdn: '',
-            isSuccess: false,
-            isError: true,
-            isSuccess_nil: false,
-            isError_nil: true,
-            isSuccess_ser: false,
-            isError_ser: true,
-            isSuccess_lap: false,
-            isError_lap: true,
-            categories: [],
-            subcategories: [],
-            select_category: '',
-            select_subcategory: ''
+            hs_code: '',
+            price: '',
         }
     },
 
-    created() {
-        this.loadCategory();
-    },
-
     methods: {
+
+        updateImageList(file) {
+            this.imageList.push(file.raw)
+        },
+        handleImagePreview(file) {
+            this.dialogImageUrl = file.url
+            this.imageList.push(file)
+            this.dialogVisible = true
+        },
+        handleExceed(files, imageList) {
+            this.$message.warning(`The limit is 5, you selected ${files.length} files this time, add up to ${files.length + imageList.length} totally`);
+        },
+        createPost(e) {
+            e.preventDefault()
+            if (!this.validateForm()) {
+                return false
+            }
+            // const that = this
+            this.isCreatingPost = true;
+            const formData = new FormData();
+            formData.append('name', this.name);
+            formData.append('description', this.description);
+            formData.append('sni', this.sni);
+            formData.append('nomor_sni', this.nomor_sni);
+            formData.append('tkdn', this.tkdn);
+            formData.append('nilai_tkdn', this.nilai_tkdn);
+            formData.append('nomor_sertifikat_tkdn', this.nomor_sertifikat_tkdn);
+            formData.append('nomor_laporan_tkdn', this.nomor_laporan_tkdn);
+            formData.append('hs_code', this.hs_code);
+            formData.append('price', this.price);
+
+            $.each(this.imageList, function (key, image) {
+                formData.append(`images[${key}]`, image);
+            });
+
+            axios.post('/api/add-product', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                .then((res) => {
+                    this.name = this.name = '';
+                    this.description = this.description = '';
+                    this.sni = this.sni = '';
+                    this.nomor_sni = this.nomor_sni = '';
+                    this.tkdn = this.tkdn = '';
+                    this.nilai_tkdn = this.nilai_tkdn = '';
+                    this.nomor_sertifikat_tkdn = this.nomor_sertifikat_tkdn = '';
+                    this.nomor_laporan_tkdn = this.nomor_laporan_tkdn = '';
+                    this.hs_code = this.hs_code = '';
+                    this.price = this.price = '';
+                    this.status = true;
+                    this.showNotification('Product Successfully Added');
+                    this.isCreatingPost = false;
+                    this.imageList = [];
+                })
+        },
+        validateForm() {
+            if (this.imageList.length < 0) {
+                this.status = false
+                this.showNotification('Image Product cannot be empty')
+                return false
+            }
+            if (!this.name) {
+                this.status = false
+                this.showNotification('name cannot be empty')
+                return false
+            }
+            if (!this.description) {
+                this.status = false
+                this.showNotification('description cannot be empty')
+                return false
+            }
+            return true
+        },
+        showNotification(message) {
+            this.status_msg = message
+            setTimeout(() => {
+                this.status_msg = ''
+            }, 5000)
+        },
+
+        toggleTabs: function (tabNumber) {
+            this.openTab = tabNumber;
+            if (this.openTab == 2) {
+                this.buttonAddProduct = true;
+                this.buttonEditCompany = false;
+            } else {
+                this.buttonEditCompany = true;
+                this.buttonAddProduct = false;
+            }
+        },
+        toggleModal: function () {
+            this.showModal = !this.showModal;
+        },
+
         loadCategory: function () {
             axios.get('/api/getcategories')
                 .then((response) => {
@@ -494,21 +632,8 @@ export default {
         showTKDN: function () {
             this.show_tkdn = !this.show_tkdn;
             this.required = 'required';
-        },
-
-        toggleTabs: function (tabNumber) {
-            this.openTab = tabNumber;
-            if (this.openTab == 2) {
-                this.buttonAddProduct = true;
-                this.buttonEditCompany = false;
-            } else {
-                this.buttonEditCompany = true;
-                this.buttonAddProduct = false;
-            }
-        },
-        toggleModal: function () {
-            this.showModal = !this.showModal;
         }
+
     }
 }
 </script>
