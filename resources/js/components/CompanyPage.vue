@@ -468,7 +468,8 @@ export default {
             hs_code: '',
             select_category: '',
             select_subcategory: '',
-            price: ''
+            price: '',
+            dataImages: [],
         }
     },
 
@@ -479,11 +480,10 @@ export default {
     methods: {
 
         updateImageList(file) {
-            this.imageList.push(file.raw)
-            console.log(this.imageList);
+            this.imageList.push(file.raw);
         },
         handleRemove(file, imageList) {
-            console.log(file);
+            console.log(file, imageList);
         },
         handleImagePreview(file) {
             this.dialogImageUrl = file.url
@@ -502,6 +502,7 @@ export default {
             // const that = this
             this.isCreatingPost = true;
             const formData = new FormData();
+            // let imagesArray = 
 
             formData.append('name', this.name);
             formData.append('description', this.description);
@@ -515,11 +516,11 @@ export default {
             formData.append('price', this.price);
             formData.append('category_id', this.select_category);
             formData.append('subcategory_id', this.select_subcategory);
-            // formData.append('images', this.imageList);
+            formData.append('images', this.imageList[0].name);
 
-            $.each(this.imageList, function (key, image) {
-                formData.append(`images[${key}]`, image);
-            });
+            // $.each(this.imageList, function (key, image) {
+            //     formData.append(`images[${key}]`, image);
+            // });
 
             // Array.keys(this.imageList).forEach((key, image) => {
             //     formData.append(`images[${key}]`, image);
@@ -529,9 +530,13 @@ export default {
             //     formData.append(`images[${key}]`, image);
             // });
             // this.imageList.forEach(function (key, image) {
-            //     formData.append(`images[${key}]`, image);
-            //     console.log(image);
+            //     formData.append(`images[${key.name}]`, image);
+            //     // console.log(image);
+            //     // let val = this.dataImages[`${key.name}`];
             // });
+            // formData.append('images', val);
+
+            // this.imageList.forEach((key, value) => formData.append(`images`, key.name));
 
             axios.post('/api/add-product', formData, {
                 headers: {
