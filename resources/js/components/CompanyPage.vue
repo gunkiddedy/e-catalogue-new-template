@@ -142,7 +142,7 @@
                                             <div class="grid grid-rows-2">
                                                 <div class="flex mb-3 items-center justify-between">
                                                     <div class="w-1/12">
-                                                        <input type="checkbox" name="sni" id="sni" v-model="sni" class="rounded-lg">
+                                                        <input true-value="1" false-value="0" type="checkbox" name="sni" id="sni" v-model="sni" class="rounded-lg">
                                                     </div>
                                                     <label for="sni" class="font-semibold w-1/6 mr-4">
                                                         SNI
@@ -153,7 +153,7 @@
                                                 </div>
                                                 <div class="flex mb-3 items-center justify-between">
                                                     <div class="w-1/12">
-                                                        <input type="checkbox" name="tkdn" id="tkdn" v-model="tkdn" class="rounded-lg">
+                                                        <input type="checkbox" true-value="1" false-value="0" name="tkdn" id="tkdn" v-model="tkdn" class="rounded-lg">
                                                     </div>
                                                     <label for="tkdn" class="font-semibold w-1/6 mr-4">
                                                         TKDN
@@ -203,10 +203,13 @@
                                             <div class="grid grid-rows-2">
                                                 <div class="product-name mb-3">
                                                     <div class="inline-block relative w-full">
-                                                        <select class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
-                                                            <option>Categories</option>
-                                                            <option>Option 2</option>
-                                                            <option>Option 3</option>
+                                                        <select name="category_id" id="category_id" v-model="select_category" @change="loadSubCategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
+                                                            <option value="" selected="selected">
+                                                                Choose...
+                                                            </option>
+                                                            <option v-for="(cat, i) in categories" :value="cat.id" :key="i">
+                                                                {{cat.name}}
+                                                            </option>
                                                         </select>
                                                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -217,10 +220,13 @@
                                                 </div>
                                                 <div class="product-name mb-3">
                                                     <div class="inline-block relative w-full">
-                                                        <select class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
-                                                            <option>Sub Categories</option>
-                                                            <option>Option 2</option>
-                                                            <option>Option 3</option>
+                                                        <select name="subcategory_id" id="subcategory_id" v-model="select_subcategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
+                                                            <option value="" selected="selected">
+                                                                Choose...
+                                                            </option>
+                                                            <option v-for="(subc, i) in subcategories" :key="i" :value="subc.id">
+                                                                {{subc.name}}
+                                                            </option>
                                                         </select>
                                                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                                                             <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -250,7 +256,7 @@
                                                 </div>-->
 
                                                 <div class>
-                                                    <el-upload action="#" list-type="picture-card" :on-preview="handleImagePreview" :on-change="updateImageList" :limit="5" :on-exceed="handleExceed" :auto-upload="false">
+                                                    <el-upload action="#" list-type="picture-card" :on-preview="handleImagePreview" :on-change="updateImageList" :limit="5" :on-exceed="handleExceed" :on-remove="handleRemove" :auto-upload="false" v-model="imageList">
                                                         <i class="el-icon-plus" />
                                                     </el-upload>
                                                     <el-dialog :visible.sync="dialogVisible">
@@ -261,7 +267,8 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <span class="text-gray-500 font-semibold">*Upload max 5 photos</span>
+                                                <span class="text-gray-500 font-semibold">
+                                                    *Upload max 5 photos {{imageList}}</span>
                                             </div>
 
                                             <div class="flex mb-3 items-center justify-between">
@@ -441,10 +448,8 @@ export default {
             // isError_ser: true,
             // isSuccess_lap: false,
             // isError_lap: true,
-            // categories: [],
-            // subcategories: [],
-            // select_category: '',
-            // select_subcategory: '',
+            categories: [],
+            subcategories: [],
 
             dialogImageUrl: '',
             dialogVisible: false,
@@ -454,21 +459,31 @@ export default {
             status: '',
             name: '',
             description: '',
-            sni: '',
+            sni: 0,
             nomor_sni: '',
-            tkdn: '',
+            tkdn: 0,
             nilai_tkdn: '',
             nomor_sertifikat_tkdn: '',
             nomor_laporan_tkdn: '',
             hs_code: '',
-            price: '',
+            select_category: '',
+            select_subcategory: '',
+            price: ''
         }
+    },
+
+    created() {
+        this.loadCategory();
     },
 
     methods: {
 
         updateImageList(file) {
             this.imageList.push(file.raw)
+            console.log(this.imageList);
+        },
+        handleRemove(file, imageList) {
+            console.log(file);
         },
         handleImagePreview(file) {
             this.dialogImageUrl = file.url
@@ -478,6 +493,7 @@ export default {
         handleExceed(files, imageList) {
             this.$message.warning(`The limit is 5, you selected ${files.length} files this time, add up to ${files.length + imageList.length} totally`);
         },
+
         createPost(e) {
             e.preventDefault()
             if (!this.validateForm()) {
@@ -486,6 +502,7 @@ export default {
             // const that = this
             this.isCreatingPost = true;
             const formData = new FormData();
+
             formData.append('name', this.name);
             formData.append('description', this.description);
             formData.append('sni', this.sni);
@@ -496,33 +513,53 @@ export default {
             formData.append('nomor_laporan_tkdn', this.nomor_laporan_tkdn);
             formData.append('hs_code', this.hs_code);
             formData.append('price', this.price);
+            formData.append('category_id', this.select_category);
+            formData.append('subcategory_id', this.select_subcategory);
+            // formData.append('images', this.imageList);
 
             $.each(this.imageList, function (key, image) {
                 formData.append(`images[${key}]`, image);
             });
 
+            // Array.keys(this.imageList).forEach((key, image) => {
+            //     formData.append(`images[${key}]`, image);
+            // });
+
+            // forEach(this.imageList, function (key, image) {
+            //     formData.append(`images[${key}]`, image);
+            // });
+            // this.imageList.forEach(function (key, image) {
+            //     formData.append(`images[${key}]`, image);
+            //     console.log(image);
+            // });
+
             axios.post('/api/add-product', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                })
-                .then((res) => {
-                    this.name = this.name = '';
-                    this.description = this.description = '';
-                    this.sni = this.sni = '';
-                    this.nomor_sni = this.nomor_sni = '';
-                    this.tkdn = this.tkdn = '';
-                    this.nilai_tkdn = this.nilai_tkdn = '';
-                    this.nomor_sertifikat_tkdn = this.nomor_sertifikat_tkdn = '';
-                    this.nomor_laporan_tkdn = this.nomor_laporan_tkdn = '';
-                    this.hs_code = this.hs_code = '';
-                    this.price = this.price = '';
-                    this.status = true;
-                    this.showNotification('Product Successfully Added');
-                    this.isCreatingPost = false;
-                    this.imageList = [];
-                })
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then((res) => {
+                console.log(this.imageList);
+                this.name = this.name = '';
+                this.description = this.description = '';
+                this.sni = this.sni = '';
+                this.nomor_sni = this.nomor_sni = '';
+                this.tkdn = this.tkdn = '';
+                this.nilai_tkdn = this.nilai_tkdn = '';
+                this.nomor_sertifikat_tkdn = this.nomor_sertifikat_tkdn = '';
+                this.nomor_laporan_tkdn = this.nomor_laporan_tkdn = '';
+                this.hs_code = this.hs_code = '';
+                this.price = this.price = '';
+                this.select_category = this.select_category = '';
+                this.select_subcategory = this.select_subcategory = '';
+                this.status = true;
+                this.showNotification('Product Successfully Added');
+                this.isCreatingPost = false;
+                this.imageList = [];
+            }).catch((error) => {
+                console.log(error);
+            });
         },
+
         validateForm() {
             if (this.imageList.length < 0) {
                 this.status = false

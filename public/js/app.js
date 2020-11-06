@@ -4318,6 +4318,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'company-page',
   data: function data() {
@@ -4348,10 +4355,8 @@ __webpack_require__.r(__webpack_exports__);
       // isError_ser: true,
       // isSuccess_lap: false,
       // isError_lap: true,
-      // categories: [],
-      // subcategories: [],
-      // select_category: '',
-      // select_subcategory: '',
+      categories: [],
+      subcategories: [],
       dialogImageUrl: '',
       dialogVisible: false,
       imageList: [],
@@ -4360,19 +4365,28 @@ __webpack_require__.r(__webpack_exports__);
       status: '',
       name: '',
       description: '',
-      sni: '',
+      sni: 0,
       nomor_sni: '',
-      tkdn: '',
+      tkdn: 0,
       nilai_tkdn: '',
       nomor_sertifikat_tkdn: '',
       nomor_laporan_tkdn: '',
       hs_code: '',
+      select_category: '',
+      select_subcategory: '',
       price: ''
     };
+  },
+  created: function created() {
+    this.loadCategory();
   },
   methods: {
     updateImageList: function updateImageList(file) {
       this.imageList.push(file.raw);
+      console.log(this.imageList);
+    },
+    handleRemove: function handleRemove(file, imageList) {
+      console.log(file);
     },
     handleImagePreview: function handleImagePreview(file) {
       this.dialogImageUrl = file.url;
@@ -4404,14 +4418,28 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('nomor_laporan_tkdn', this.nomor_laporan_tkdn);
       formData.append('hs_code', this.hs_code);
       formData.append('price', this.price);
+      formData.append('category_id', this.select_category);
+      formData.append('subcategory_id', this.select_subcategory); // formData.append('images', this.imageList);
+
       $.each(this.imageList, function (key, image) {
         formData.append("images[".concat(key, "]"), image);
-      });
+      }); // Array.keys(this.imageList).forEach((key, image) => {
+      //     formData.append(`images[${key}]`, image);
+      // });
+      // forEach(this.imageList, function (key, image) {
+      //     formData.append(`images[${key}]`, image);
+      // });
+      // this.imageList.forEach(function (key, image) {
+      //     formData.append(`images[${key}]`, image);
+      //     console.log(image);
+      // });
+
       axios.post('/api/add-product', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (res) {
+        console.log(_this.imageList);
         _this.name = _this.name = '';
         _this.description = _this.description = '';
         _this.sni = _this.sni = '';
@@ -4422,12 +4450,16 @@ __webpack_require__.r(__webpack_exports__);
         _this.nomor_laporan_tkdn = _this.nomor_laporan_tkdn = '';
         _this.hs_code = _this.hs_code = '';
         _this.price = _this.price = '';
+        _this.select_category = _this.select_category = '';
+        _this.select_subcategory = _this.select_subcategory = '';
         _this.status = true;
 
         _this.showNotification('Product Successfully Added');
 
         _this.isCreatingPost = false;
         _this.imageList = [];
+      })["catch"](function (error) {
+        console.log(error);
       });
     },
     validateForm: function validateForm() {
@@ -85616,6 +85648,8 @@ var render = function() {
                                                     ],
                                                     staticClass: "rounded-lg",
                                                     attrs: {
+                                                      "true-value": "1",
+                                                      "false-value": "0",
                                                       type: "checkbox",
                                                       name: "sni",
                                                       id: "sni"
@@ -85628,15 +85662,15 @@ var render = function() {
                                                             _vm.sni,
                                                             null
                                                           ) > -1
-                                                        : _vm.sni
+                                                        : _vm._q(_vm.sni, "1")
                                                     },
                                                     on: {
                                                       change: function($event) {
                                                         var $$a = _vm.sni,
                                                           $$el = $event.target,
                                                           $$c = $$el.checked
-                                                            ? true
-                                                            : false
+                                                            ? "1"
+                                                            : "0"
                                                         if (
                                                           Array.isArray($$a)
                                                         ) {
@@ -85748,6 +85782,8 @@ var render = function() {
                                                     staticClass: "rounded-lg",
                                                     attrs: {
                                                       type: "checkbox",
+                                                      "true-value": "1",
+                                                      "false-value": "0",
                                                       name: "tkdn",
                                                       id: "tkdn"
                                                     },
@@ -85759,15 +85795,15 @@ var render = function() {
                                                             _vm.tkdn,
                                                             null
                                                           ) > -1
-                                                        : _vm.tkdn
+                                                        : _vm._q(_vm.tkdn, "1")
                                                     },
                                                     on: {
                                                       change: function($event) {
                                                         var $$a = _vm.tkdn,
                                                           $$el = $event.target,
                                                           $$c = $$el.checked
-                                                            ? true
-                                                            : false
+                                                            ? "1"
+                                                            : "0"
                                                         if (
                                                           Array.isArray($$a)
                                                         ) {
@@ -86105,7 +86141,94 @@ var render = function() {
                                                     "inline-block relative w-full"
                                                 },
                                                 [
-                                                  _vm._m(5),
+                                                  _c(
+                                                    "select",
+                                                    {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.select_category,
+                                                          expression:
+                                                            "select_category"
+                                                        }
+                                                      ],
+                                                      staticClass:
+                                                        "block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none",
+                                                      attrs: {
+                                                        name: "category_id",
+                                                        id: "category_id"
+                                                      },
+                                                      on: {
+                                                        change: [
+                                                          function($event) {
+                                                            var $$selectedVal = Array.prototype.filter
+                                                              .call(
+                                                                $event.target
+                                                                  .options,
+                                                                function(o) {
+                                                                  return o.selected
+                                                                }
+                                                              )
+                                                              .map(function(o) {
+                                                                var val =
+                                                                  "_value" in o
+                                                                    ? o._value
+                                                                    : o.value
+                                                                return val
+                                                              })
+                                                            _vm.select_category = $event
+                                                              .target.multiple
+                                                              ? $$selectedVal
+                                                              : $$selectedVal[0]
+                                                          },
+                                                          _vm.loadSubCategory
+                                                        ]
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "option",
+                                                        {
+                                                          attrs: {
+                                                            value: "",
+                                                            selected: "selected"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                                                                Choose...\r\n                                                            "
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _vm._l(
+                                                        _vm.categories,
+                                                        function(cat, i) {
+                                                          return _c(
+                                                            "option",
+                                                            {
+                                                              key: i,
+                                                              domProps: {
+                                                                value: cat.id
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\r\n                                                                " +
+                                                                  _vm._s(
+                                                                    cat.name
+                                                                  ) +
+                                                                  "\r\n                                                            "
+                                                              )
+                                                            ]
+                                                          )
+                                                        }
+                                                      )
+                                                    ],
+                                                    2
+                                                  ),
                                                   _vm._v(" "),
                                                   _c(
                                                     "div",
@@ -86154,7 +86277,93 @@ var render = function() {
                                                     "inline-block relative w-full"
                                                 },
                                                 [
-                                                  _vm._m(6),
+                                                  _c(
+                                                    "select",
+                                                    {
+                                                      directives: [
+                                                        {
+                                                          name: "model",
+                                                          rawName: "v-model",
+                                                          value:
+                                                            _vm.select_subcategory,
+                                                          expression:
+                                                            "select_subcategory"
+                                                        }
+                                                      ],
+                                                      staticClass:
+                                                        "block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none",
+                                                      attrs: {
+                                                        name: "subcategory_id",
+                                                        id: "subcategory_id"
+                                                      },
+                                                      on: {
+                                                        change: function(
+                                                          $event
+                                                        ) {
+                                                          var $$selectedVal = Array.prototype.filter
+                                                            .call(
+                                                              $event.target
+                                                                .options,
+                                                              function(o) {
+                                                                return o.selected
+                                                              }
+                                                            )
+                                                            .map(function(o) {
+                                                              var val =
+                                                                "_value" in o
+                                                                  ? o._value
+                                                                  : o.value
+                                                              return val
+                                                            })
+                                                          _vm.select_subcategory = $event
+                                                            .target.multiple
+                                                            ? $$selectedVal
+                                                            : $$selectedVal[0]
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c(
+                                                        "option",
+                                                        {
+                                                          attrs: {
+                                                            value: "",
+                                                            selected: "selected"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v(
+                                                            "\r\n                                                                Choose...\r\n                                                            "
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _vm._l(
+                                                        _vm.subcategories,
+                                                        function(subc, i) {
+                                                          return _c(
+                                                            "option",
+                                                            {
+                                                              key: i,
+                                                              domProps: {
+                                                                value: subc.id
+                                                              }
+                                                            },
+                                                            [
+                                                              _vm._v(
+                                                                "\r\n                                                                " +
+                                                                  _vm._s(
+                                                                    subc.name
+                                                                  ) +
+                                                                  "\r\n                                                            "
+                                                              )
+                                                            ]
+                                                          )
+                                                        }
+                                                      )
+                                                    ],
+                                                    2
+                                                  ),
                                                   _vm._v(" "),
                                                   _c(
                                                     "div",
@@ -86259,7 +86468,16 @@ var render = function() {
                                                     limit: 5,
                                                     "on-exceed":
                                                       _vm.handleExceed,
+                                                    "on-remove":
+                                                      _vm.handleRemove,
                                                     "auto-upload": false
+                                                  },
+                                                  model: {
+                                                    value: _vm.imageList,
+                                                    callback: function($$v) {
+                                                      _vm.imageList = $$v
+                                                    },
+                                                    expression: "imageList"
                                                   }
                                                 },
                                                 [
@@ -86299,7 +86517,21 @@ var render = function() {
                                         ]
                                       ),
                                       _vm._v(" "),
-                                      _vm._m(7),
+                                      _c("div", { staticClass: "mb-3" }, [
+                                        _c(
+                                          "span",
+                                          {
+                                            staticClass:
+                                              "text-gray-500 font-semibold"
+                                          },
+                                          [
+                                            _vm._v(
+                                              "\r\n                                                    *Upload max 5 photos " +
+                                                _vm._s(_vm.imageList)
+                                            )
+                                          ]
+                                        )
+                                      ]),
                                       _vm._v(" "),
                                       _c(
                                         "div",
@@ -86369,8 +86601,8 @@ var render = function() {
                                                 "\r\n                                                    " +
                                                   _vm._s(
                                                     _vm.isCreatingPost
-                                                      ? "Posting..."
-                                                      : "Create Post"
+                                                      ? "Adding product..."
+                                                      : "Add Product"
                                                   ) +
                                                   "\r\n                                                "
                                               )
@@ -86405,7 +86637,7 @@ var render = function() {
             staticClass: "mt-8 grid grid-cols-5 gap-2",
             class: { hidden: _vm.openTab !== 2, block: _vm.openTab === 2 }
           },
-          [_vm._m(8)]
+          [_vm._m(5)]
         ),
         _vm._v(" "),
         _c(
@@ -86414,7 +86646,7 @@ var render = function() {
             staticClass: "mt-8",
             class: { hidden: _vm.openTab !== 1, block: _vm.openTab === 1 }
           },
-          [_vm._m(9)]
+          [_vm._m(6)]
         ),
         _vm._v(" "),
         _c("div", { staticClass: "flex justify-around items-center mt-16" }, [
@@ -86637,54 +86869,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass:
-          "block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none"
-      },
-      [
-        _c("option", [_vm._v("Categories")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Option 2")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Option 3")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "select",
-      {
-        staticClass:
-          "block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none"
-      },
-      [
-        _c("option", [_vm._v("Sub Categories")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Option 2")]),
-        _vm._v(" "),
-        _c("option", [_vm._v("Option 3")])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-3" }, [
-      _c("span", { staticClass: "text-gray-500 font-semibold" }, [
-        _vm._v("*Upload max 5 photos")
-      ])
-    ])
   },
   function() {
     var _vm = this
