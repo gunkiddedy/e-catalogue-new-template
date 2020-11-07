@@ -122,29 +122,36 @@
                                     </div>
                                 </div>
 
-                                <div class="flex items-center justify-between mb-2">
-                                    <h3 class="text-lg leading-tight font-semibold">
+                                <div class="flex items-center justify-start mb-2">
+                                    <h3 class="text-lg leading-tight font-semibold text-gray-400">
                                         Add New Product
                                     </h3>
+                                    <div v-if="status_msg" :class="{'bg-green-400': status, 'bg-red-400': !status }" class="text-white shadow-sm flex items-center ml-4 text-sm font-bold px-3 py-1 rounded w-1/2" role="alert">
+                                        <svg class="fill-current w-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                            <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                                        </svg>
+                                        <p>{{ status_msg }}</p>
+                                    </div>
                                 </div>
 
                                 <!--body-->
-                                <div v-if="status_msg" :class="{ 'text-green-400': status, 'text-red-400': !status }">
+                                <!--<div v-if="status_msg" :class="{ 'text-green-400': status, 'text-red-400': !status }">
                                     <span>{{ status_msg }}</span>
-                                </div>
+                                </div>-->
+
                                 <form>
                                     <div class="grid grid-cols-2 gap-4 h-full">
                                         <!-- LEFT SIDE-->
                                         <div class="left w-full h-full py-2">
                                             <div class="product-name mb-3">
-                                                <input id="name" v-model="name" class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-4 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Product Name">
+                                                <input id="name" v-model="name" class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Product Name">
                                             </div>
                                             <div class="grid grid-rows-2">
                                                 <div class="flex mb-3 items-center justify-between">
                                                     <div class="w-1/12">
                                                         <input true-value="1" false-value="0" type="checkbox" name="sni" id="sni" v-model="sni" class="rounded-lg">
                                                     </div>
-                                                    <label for="sni" class="font-semibold w-1/6 mr-4">
+                                                    <label for="sni" class="text-gray-500 font-semibold w-1/6 mr-4">
                                                         SNI
                                                     </label>
                                                     <div class="w-full">
@@ -155,7 +162,7 @@
                                                     <div class="w-1/12">
                                                         <input type="checkbox" true-value="1" false-value="0" name="tkdn" id="tkdn" v-model="tkdn" class="rounded-lg">
                                                     </div>
-                                                    <label for="tkdn" class="font-semibold w-1/6 mr-4">
+                                                    <label for="tkdn" class="text-gray-500 font-semibold w-1/6 mr-4">
                                                         TKDN
                                                     </label>
                                                     <div class="w-full">
@@ -191,7 +198,7 @@
 
                                             <div class="grid grid-rows-1">
                                                 <div class="flex mb-3 items-center justify-between">
-                                                    <div class="w-26-persen font-semibold mr-4">
+                                                    <div class="text-gray-500 w-26-persen font-semibold mr-4">
                                                         HS Code
                                                     </div>
                                                     <div class="w-full">
@@ -200,12 +207,16 @@
                                                 </div>
                                             </div>
 
+                                        </div>
+                                        <!-- RIGHT SIDE-->
+                                        <div class="right w-full h-full py-2">
+
                                             <div class="grid grid-rows-2">
                                                 <div class="product-name mb-3">
                                                     <div class="inline-block relative w-full">
-                                                        <select name="category_id" id="category_id" v-model="select_category" @change="loadSubCategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
+                                                        <select name="category_id" id="category_id" v-model="select_category" @change="loadSubCategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
                                                             <option value="" selected="selected">
-                                                                Choose...
+                                                                -Select Category-
                                                             </option>
                                                             <option v-for="(cat, i) in categories" :value="cat.id" :key="i">
                                                                 {{cat.name}}
@@ -220,9 +231,9 @@
                                                 </div>
                                                 <div class="product-name mb-3">
                                                     <div class="inline-block relative w-full">
-                                                        <select name="subcategory_id" id="subcategory_id" v-model="select_subcategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg leading-tight focus:outline-none">
+                                                        <select name="subcategory_id" id="subcategory_id" v-model="select_subcategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
                                                             <option value="" selected="selected">
-                                                                Choose...
+                                                                -Select Sub Category-
                                                             </option>
                                                             <option v-for="(subc, i) in subcategories" :key="i" :value="subc.id">
                                                                 {{subc.name}}
@@ -236,53 +247,40 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- RIGHT SIDE-->
-                                        <div class="right w-full h-full py-2">
                                             <div class="description mb-3">
-                                                <textarea name="description" id="description" v-model="description" placeholder="Tulis deskripsi produk" class="h-40 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"></textarea>
+                                                <textarea name="description" id="description" v-model="description" placeholder="Tulis deskripsi produk" class="h-30 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"></textarea>
+                                            </div>
+
+                                            <div class="flex mb-3 items-center justify-between">
+                                                <!--<span class="font-semibold mr-4">Rp</span>-->
+                                                <div class="w-full">
+                                                    <input type="text" name="price" id="price" v-model="price" placeholder="Masukkan harga" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-1">
+                                                <span class="text-gray-500 text-sm font-semibold">
+                                                    *Upload max 5 photos</span>
                                             </div>
 
                                             <div class="button-plus-upload flex px-4 justify-between items-center mb-3">
-
-                                                <!--<div class="flex items-center justify-center">
-                                                    <label for="upload1" class="cursor-pointer focus:outline-none bg-white text-gray-300 rounded-lg shadow-sm w-16 h-16 border-2 border-dashed border-gray-300">
-                                                        <svg class="w-10 mx-auto mt-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd">
-                                                            </path>
-                                                        </svg>
-                                                    </label>
-                                                    <input style="display:none" ref="file_Input" type="file" name="upload1" id="upload1">
-                                                </div>-->
-
                                                 <div class>
-                                                    <el-upload action="#" list-type="picture-card" :on-preview="handleImagePreview" :on-change="updateImageList" :limit="5" :on-exceed="handleExceed" :on-remove="handleRemove" :auto-upload="false" v-model="imageList">
+                                                    <el-upload action="#" list-type="picture-card" :on-preview="handlePreview" :on-change="updateImageList" :limit="5" :on-exceed="handleExceed" :on-remove="handleRemove" :auto-upload="false">
                                                         <i class="el-icon-plus" />
                                                     </el-upload>
                                                     <el-dialog :visible.sync="dialogVisible">
                                                         <img width="100%" :src="dialogImageUrl" alt>
                                                     </el-dialog>
                                                 </div>
-
                                             </div>
 
-                                            <div class="mb-3">
-                                                <span class="text-gray-500 font-semibold">
-                                                    *Upload max 5 photos {{imageList}}</span>
-                                            </div>
-
-                                            <div class="flex mb-3 items-center justify-between">
-                                                <span class="font-semibold mr-4">Rp</span>
-                                                <div class="w-full">
-                                                    <input type="text" name="price" id="price" v-model="price" placeholder="Masukkan harga" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
-                                                </div>
-                                            </div>
                                             <div class="flex items-center justify-end">
-                                                <!--<button class="text-blue-500 mr-3 bg-transparent border border-blue-500 hover:text-blue-600 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" v-on:click="toggleModal()">
-                                                    Save Product
-                                                </button>-->
-                                                <button class="text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="createPost">
-                                                    {{ isCreatingPost ? "Adding product..." : "Add Product" }}
+                                                <button :class="{'disabled': isCreatingPost}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="createPost">
+                                                    <svg v-if="isCreatingPost" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                    </svg>
+                                                    {{ isCreatingPost ? "Submitting..." : "Submit Product" }}
                                                 </button>
                                             </div>
                                         </div>
@@ -391,31 +389,6 @@
 </div>
 </template>
 
-<style>
-.el-upload--picture-card {
-    background-color: #fbfdff;
-    border: 1px dashed #c0ccda;
-    border-radius: 6px;
-    box-sizing: border-box;
-    width: 4rem;
-    height: 4rem;
-    line-height: 74px;
-    vertical-align: top;
-}
-
-.el-upload-list--picture-card .el-upload-list__item {
-    overflow: hidden;
-    background-color: #fff;
-    border: 1px solid #c0ccda;
-    border-radius: 6px;
-    box-sizing: border-box;
-    width: 4rem;
-    height: 4rem;
-    margin: 0 8px 8px 0;
-    display: inline-block;
-}
-</style>
-
 <script>
 export default {
     name: 'company-page',
@@ -453,7 +426,6 @@ export default {
 
             dialogImageUrl: '',
             dialogVisible: false,
-            imageList: [],
             isCreatingPost: false,
             status_msg: '',
             status: '',
@@ -469,7 +441,8 @@ export default {
             select_category: '',
             select_subcategory: '',
             price: '',
-            dataImages: [],
+            imageList: [],
+            images: []
         }
     },
 
@@ -481,13 +454,13 @@ export default {
 
         updateImageList(file) {
             this.imageList.push(file.raw);
+            console.log(this.imageList);
         },
         handleRemove(file, imageList) {
-            console.log(file, imageList);
+            console.log(imageList);
         },
-        handleImagePreview(file) {
+        handlePreview(file) {
             this.dialogImageUrl = file.url
-            this.imageList.push(file)
             this.dialogVisible = true
         },
         handleExceed(files, imageList) {
@@ -502,7 +475,6 @@ export default {
             // const that = this
             this.isCreatingPost = true;
             const formData = new FormData();
-            // let imagesArray = 
 
             formData.append('name', this.name);
             formData.append('description', this.description);
@@ -516,34 +488,21 @@ export default {
             formData.append('price', this.price);
             formData.append('category_id', this.select_category);
             formData.append('subcategory_id', this.select_subcategory);
-            formData.append('images', this.imageList[0].name);
+
+            this.imageList.forEach(file => {
+                formData.append('images[]', file, file.name);
+            });
 
             // $.each(this.imageList, function (key, image) {
             //     formData.append(`images[${key}]`, image);
             // });
-
-            // Array.keys(this.imageList).forEach((key, image) => {
-            //     formData.append(`images[${key}]`, image);
-            // });
-
-            // forEach(this.imageList, function (key, image) {
-            //     formData.append(`images[${key}]`, image);
-            // });
-            // this.imageList.forEach(function (key, image) {
-            //     formData.append(`images[${key.name}]`, image);
-            //     // console.log(image);
-            //     // let val = this.dataImages[`${key.name}`];
-            // });
-            // formData.append('images', val);
-
-            // this.imageList.forEach((key, value) => formData.append(`images`, key.name));
 
             axios.post('/api/add-product', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then((res) => {
-                console.log(this.imageList);
+                console.log(res);
                 this.name = this.name = '';
                 this.description = this.description = '';
                 this.sni = this.sni = '';
@@ -679,3 +638,28 @@ export default {
     }
 }
 </script>
+
+<style>
+.el-upload--picture-card {
+    background-color: #fbfdff;
+    border: 1px dashed #c0ccda;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 4rem;
+    height: 4rem;
+    line-height: 74px;
+    vertical-align: top;
+}
+
+.el-upload-list--picture-card .el-upload-list__item {
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #c0ccda;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 4rem;
+    height: 4rem;
+    margin: 0 8px 8px 0;
+    display: inline-block;
+}
+</style>

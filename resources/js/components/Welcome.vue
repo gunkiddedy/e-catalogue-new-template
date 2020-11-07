@@ -248,7 +248,7 @@
             </div>
 
             <!-- PRODUCTS  -->
-            <div class="mt-8 grid grid-cols-5 gap-2">
+            <div class="mt-8 grid grid-cols-5 gap-4">
 
                 <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products.data" :key="product.id">
                     <div>

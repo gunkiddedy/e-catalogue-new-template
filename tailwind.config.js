@@ -34,7 +34,8 @@ module.exports = {
     overflow: ['responsive', 'hover', 'focus'],
     height: ['responsive', 'hover'],
     transitionDuration: ['responsive', 'hover', 'focus'],
-    fontFamily: ['responsive', 'hover', 'focus']
+    fontFamily: ['responsive', 'hover', 'focus'],
+    animation: ['responsive', 'hover', 'focus']
   },
   plugins: [],
 }
