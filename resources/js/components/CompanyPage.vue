@@ -331,7 +331,7 @@
                             </p>
                             <a href="/product-detail">
                                 <button type="button" class="hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ">
-                                    <p class="text-white leading-none font-bold">See Product</p>
+                                    <p class="text-white leading-none font-bold text-sm">See Product</p>
                                 </button>
                             </a>
                         </div>

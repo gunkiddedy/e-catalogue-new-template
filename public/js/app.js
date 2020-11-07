@@ -87004,7 +87004,9 @@ var staticRenderFns = [
                   [
                     _c(
                       "p",
-                      { staticClass: "text-white leading-none font-bold" },
+                      {
+                        staticClass: "text-white leading-none font-bold text-sm"
+                      },
                       [_vm._v("See Product")]
                     )
                   ]
@@ -89785,9 +89787,11 @@ var staticRenderFns = [
           attrs: { type: "button" }
         },
         [
-          _c("p", { staticClass: "text-white leading-none font-bold" }, [
-            _vm._v("See Product")
-          ])
+          _c(
+            "p",
+            { staticClass: "text-white leading-none font-bold text-sm" },
+            [_vm._v("See Product")]
+          )
         ]
       )
     ])
