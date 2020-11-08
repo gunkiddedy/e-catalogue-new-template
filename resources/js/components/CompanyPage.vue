@@ -124,18 +124,12 @@
 
                                 <div class="flex items-center justify-start mb-2">
                                     <h3 class="text-lg leading-tight font-semibold text-gray-400">
-                                        Add New Product
+                                        Add New Product <span class="ml-4 font-semibold font-sf-pro" :class="{'text-green-400': status, 'text-red-400': !status }">{{ status_msg }}</span>
                                     </h3>
-                                    <div v-if="status_msg" :class="{'bg-green-400': status, 'bg-red-400': !status }" class="text-white shadow-sm flex items-center ml-4 text-sm font-bold px-3 py-1 rounded w-1/2" role="alert">
-                                        <svg class="fill-current w-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                            <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
-                                        </svg>
-                                        <p>{{ status_msg }}</p>
-                                    </div>
                                 </div>
 
                                 <!--body-->
-                                <!--<div v-if="status_msg" :class="{ 'text-green-400': status, 'text-red-400': !status }">
+                                <!--<div v-if="status_msg" :class="{'text-green-400': status, 'text-red-400': !status }">
                                     <span>{{ status_msg }}</span>
                                 </div>-->
 
@@ -268,7 +262,7 @@
                                                     <el-upload action="#" list-type="picture-card" :on-preview="handlePreview" :on-change="updateImageList" :limit="5" :on-exceed="handleExceed" :on-remove="handleRemove" :auto-upload="false">
                                                         <i class="el-icon-plus" />
                                                     </el-upload>
-                                                    <el-dialog :visible.sync="dialogVisible">
+                                                    <el-dialog :visible.sync="dialogVisible" v-if="!status">
                                                         <img width="100%" :src="dialogImageUrl" alt>
                                                     </el-dialog>
                                                 </div>
@@ -442,7 +436,6 @@ export default {
             select_subcategory: '',
             price: '',
             imageList: [],
-            images: []
         }
     },
 
@@ -456,15 +449,16 @@ export default {
             this.imageList.push(file.raw);
             console.log(this.imageList);
         },
-        handleRemove(file, imageList) {
-            console.log(imageList);
+        handleRemove(file) {
+            this.imageList.splice(file, 1);
+            console.log(this.imageList);
         },
         handlePreview(file) {
             this.dialogImageUrl = file.url
             this.dialogVisible = true
         },
         handleExceed(files, imageList) {
-            this.$message.warning(`The limit is 5, you selected ${files.length} files this time, add up to ${files.length + imageList.length} totally`);
+            this.$message.warning(`The limit is 5, you have selected ${files.length} files`);
         },
 
         createPost(e) {
@@ -502,19 +496,18 @@ export default {
                     'Content-Type': 'multipart/form-data'
                 }
             }).then((res) => {
-                console.log(res);
-                this.name = this.name = '';
-                this.description = this.description = '';
-                this.sni = this.sni = '';
-                this.nomor_sni = this.nomor_sni = '';
-                this.tkdn = this.tkdn = '';
-                this.nilai_tkdn = this.nilai_tkdn = '';
-                this.nomor_sertifikat_tkdn = this.nomor_sertifikat_tkdn = '';
-                this.nomor_laporan_tkdn = this.nomor_laporan_tkdn = '';
-                this.hs_code = this.hs_code = '';
-                this.price = this.price = '';
-                this.select_category = this.select_category = '';
-                this.select_subcategory = this.select_subcategory = '';
+                this.name = '';
+                this.description = '';
+                this.sni = '';
+                this.nomor_sni = '';
+                this.tkdn = '';
+                this.nilai_tkdn = '';
+                this.nomor_sertifikat_tkdn = '';
+                this.nomor_laporan_tkdn = '';
+                this.hs_code = '';
+                this.price = '';
+                this.select_category = '';
+                this.select_subcategory = '';
                 this.status = true;
                 this.showNotification('Product Successfully Added');
                 this.isCreatingPost = false;
@@ -540,13 +533,28 @@ export default {
                 this.showNotification('description cannot be empty')
                 return false
             }
+            if (!this.nomor_sertifikat_tkdn) {
+                this.status = false
+                this.showNotification('nomor sertifikat tkdn cannot be empty')
+                return false
+            }
+            if (!this.nomor_laporan_tkdn) {
+                this.status = false
+                this.showNotification('nomor laporan tkdn cannot be empty')
+                return false
+            }
+            if (!this.hs_code) {
+                this.status = false
+                this.showNotification('hs code cannot be empty')
+                return false
+            }
             return true
         },
         showNotification(message) {
             this.status_msg = message
             setTimeout(() => {
                 this.status_msg = ''
-            }, 5000)
+            }, 2000)
         },
 
         toggleTabs: function (tabNumber) {

@@ -4292,12 +4292,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'company-page',
   data: function data() {
@@ -4347,8 +4341,7 @@ __webpack_require__.r(__webpack_exports__);
       select_category: '',
       select_subcategory: '',
       price: '',
-      imageList: [],
-      images: []
+      imageList: []
     };
   },
   created: function created() {
@@ -4359,15 +4352,16 @@ __webpack_require__.r(__webpack_exports__);
       this.imageList.push(file.raw);
       console.log(this.imageList);
     },
-    handleRemove: function handleRemove(file, imageList) {
-      console.log(imageList);
+    handleRemove: function handleRemove(file) {
+      this.imageList.splice(file, 1);
+      console.log(this.imageList);
     },
     handlePreview: function handlePreview(file) {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     },
     handleExceed: function handleExceed(files, imageList) {
-      this.$message.warning("The limit is 5, you selected ".concat(files.length, " files this time, add up to ").concat(files.length + imageList.length, " totally"));
+      this.$message.warning("The limit is 5, you have selected ".concat(files.length, " files"));
     },
     createPost: function createPost(e) {
       var _this = this;
@@ -4404,19 +4398,18 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (res) {
-        console.log(res);
-        _this.name = _this.name = '';
-        _this.description = _this.description = '';
-        _this.sni = _this.sni = '';
-        _this.nomor_sni = _this.nomor_sni = '';
-        _this.tkdn = _this.tkdn = '';
-        _this.nilai_tkdn = _this.nilai_tkdn = '';
-        _this.nomor_sertifikat_tkdn = _this.nomor_sertifikat_tkdn = '';
-        _this.nomor_laporan_tkdn = _this.nomor_laporan_tkdn = '';
-        _this.hs_code = _this.hs_code = '';
-        _this.price = _this.price = '';
-        _this.select_category = _this.select_category = '';
-        _this.select_subcategory = _this.select_subcategory = '';
+        _this.name = '';
+        _this.description = '';
+        _this.sni = '';
+        _this.nomor_sni = '';
+        _this.tkdn = '';
+        _this.nilai_tkdn = '';
+        _this.nomor_sertifikat_tkdn = '';
+        _this.nomor_laporan_tkdn = '';
+        _this.hs_code = '';
+        _this.price = '';
+        _this.select_category = '';
+        _this.select_subcategory = '';
         _this.status = true;
 
         _this.showNotification('Product Successfully Added');
@@ -4454,7 +4447,7 @@ __webpack_require__.r(__webpack_exports__);
       this.status_msg = message;
       setTimeout(function () {
         _this2.status_msg = '';
-      }, 5000);
+      }, 2000);
     },
     toggleTabs: function toggleTabs(tabNumber) {
       this.openTab = tabNumber;
@@ -85543,51 +85536,22 @@ var render = function() {
                                   },
                                   [
                                     _vm._v(
-                                      "\r\n                                        Add New Product\r\n                                    "
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _vm.status_msg
-                                  ? _c(
-                                      "div",
+                                      "\r\n                                        Add New Product "
+                                    ),
+                                    _c(
+                                      "span",
                                       {
                                         staticClass:
-                                          "text-white shadow-sm flex items-center ml-4 text-sm font-bold px-3 py-1 rounded w-1/2",
+                                          "ml-4 font-semibold font-sf-pro",
                                         class: {
-                                          "bg-green-400": _vm.status,
-                                          "bg-red-400": !_vm.status
-                                        },
-                                        attrs: { role: "alert" }
+                                          "text-green-400": _vm.status,
+                                          "text-red-400": !_vm.status
+                                        }
                                       },
-                                      [
-                                        _c(
-                                          "svg",
-                                          {
-                                            staticClass:
-                                              "fill-current w-3 mr-2",
-                                            attrs: {
-                                              xmlns:
-                                                "http://www.w3.org/2000/svg",
-                                              viewBox: "0 0 20 20"
-                                            }
-                                          },
-                                          [
-                                            _c("path", {
-                                              attrs: {
-                                                d:
-                                                  "M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z"
-                                              }
-                                            })
-                                          ]
-                                        ),
-                                        _vm._v(" "),
-                                        _c("p", [
-                                          _vm._v(_vm._s(_vm.status_msg))
-                                        ])
-                                      ]
+                                      [_vm._v(_vm._s(_vm.status_msg))]
                                     )
-                                  : _vm._e()
+                                  ]
+                                )
                               ]
                             ),
                             _vm._v(" "),
@@ -86535,30 +86499,34 @@ var render = function() {
                                                 ]
                                               ),
                                               _vm._v(" "),
-                                              _c(
-                                                "el-dialog",
-                                                {
-                                                  attrs: {
-                                                    visible: _vm.dialogVisible
-                                                  },
-                                                  on: {
-                                                    "update:visible": function(
-                                                      $event
-                                                    ) {
-                                                      _vm.dialogVisible = $event
-                                                    }
-                                                  }
-                                                },
-                                                [
-                                                  _c("img", {
-                                                    attrs: {
-                                                      width: "100%",
-                                                      src: _vm.dialogImageUrl,
-                                                      alt: ""
-                                                    }
-                                                  })
-                                                ]
-                                              )
+                                              !_vm.status
+                                                ? _c(
+                                                    "el-dialog",
+                                                    {
+                                                      attrs: {
+                                                        visible:
+                                                          _vm.dialogVisible
+                                                      },
+                                                      on: {
+                                                        "update:visible": function(
+                                                          $event
+                                                        ) {
+                                                          _vm.dialogVisible = $event
+                                                        }
+                                                      }
+                                                    },
+                                                    [
+                                                      _c("img", {
+                                                        attrs: {
+                                                          width: "100%",
+                                                          src:
+                                                            _vm.dialogImageUrl,
+                                                          alt: ""
+                                                        }
+                                                      })
+                                                    ]
+                                                  )
+                                                : _vm._e()
                                             ],
                                             1
                                           )
