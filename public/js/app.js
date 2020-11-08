@@ -4292,6 +4292,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'company-page',
   data: function data() {
@@ -4300,28 +4316,22 @@ __webpack_require__.r(__webpack_exports__);
       showModal: false,
       buttonAddProduct: true,
       buttonEditCompany: false,
-      // show_sni: false,
-      // show_tkdn: false,
-      // isRequiredSNI: false,
-      // isRequiredTKDN: false,
-      // nomor_sni: '',
-      // nilai_tkdn: '',
-      // nomor_sertifikat_tkdn: '',
-      // nomor_laporan_tkdn: '',
-      // required: '',
-      // sni: '',
-      // errors: '',
-      // errors_nilai_tkdn: '',
-      // errors_nomor_sertifikat_tkdn: '',
-      // errors_nomor_laporan_tkdn: '',
-      // isSuccess: false,
-      // isError: true,
-      // isSuccess_nil: false,
-      // isError_nil: true,
-      // isSuccess_ser: false,
-      // isError_ser: true,
-      // isSuccess_lap: false,
-      // isError_lap: true,
+      disabled_input_SNI: true,
+      disabled_input_TKDN: true,
+      // message_sni: '',
+      // message_nilai_tkdn: '',
+      // message_nomor_sertifikat_tkdn: '',
+      // message_nomor_laporan_tkdn: '',
+      isSuccess_nomor_sni: false,
+      isError_nomor_sni: true,
+      isSuccess_nilai_tkdn: false,
+      isError_nilai_tkdn: true,
+      isSuccess_sertifikat_tkdn: false,
+      isError_sertifikat_tkdn: true,
+      isSuccess_laporan_tkdn: false,
+      isError_laporan_tkdn: true,
+      isSuccess_hscode: false,
+      isError_hscode: true,
       categories: [],
       subcategories: [],
       dialogImageUrl: '',
@@ -4439,6 +4449,24 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
+      if (!this.nomor_sertifikat_tkdn) {
+        this.status = false;
+        this.showNotification('nomor sertifikat tkdn cannot be empty');
+        return false;
+      }
+
+      if (!this.nomor_laporan_tkdn) {
+        this.status = false;
+        this.showNotification('nomor laporan tkdn cannot be empty');
+        return false;
+      }
+
+      if (!this.hs_code) {
+        this.status = false;
+        this.showNotification('hs code cannot be empty');
+        return false;
+      }
+
       return true;
     },
     showNotification: function showNotification(message) {
@@ -4485,19 +4513,44 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
+    checkHsCode: _.debounce(function () {
+      var regex = /^\d+$/;
+      var value = regex.test(this.hs_code);
+
+      if (value == false) {
+        this.hs_code = null;
+        this.isError_hscode = true;
+        this.isSuccess_hscode = false; // this.message_nilai_tkdn = 'format tidak valid!';
+        // setTimeout(() => {
+        //     this.message_nilai_tkdn = ''
+        // }, 2000)
+      } else {
+        this.isSuccess_hscode = true;
+        this.isError_hscode = false; // this.message_nilai_tkdn = 'format valid';
+        // setTimeout(() => {
+        //     this.message_nilai_tkdn = ''
+        // }, 2000)
+      }
+
+      return;
+    }, 1000),
     checkNilaiTKDN: _.debounce(function () {
       var regex = /\d{2}(\.\d{2})?$/;
       var value = regex.test(this.nilai_tkdn);
 
       if (value == false) {
         this.nilai_tkdn = null;
-        this.isError_nil = true;
-        this.isSuccess_nil = false;
-        this.errors_nilai_tkdn = 'format tidak valid! example(0.00 atau 100.00)';
+        this.isError_nilai_tkdn = true;
+        this.isSuccess_nilai_tkdn = false; // this.message_nilai_tkdn = 'format tidak valid!';
+        // setTimeout(() => {
+        //     this.message_nilai_tkdn = ''
+        // }, 2000)
       } else {
-        this.isSuccess_nil = true;
-        this.isError_nil = false;
-        this.errors_nilai_tkdn = 'format valid';
+        this.isSuccess_nilai_tkdn = true;
+        this.isError_nilai_tkdn = false; // this.message_nilai_tkdn = 'format valid';
+        // setTimeout(() => {
+        //     this.message_nilai_tkdn = ''
+        // }, 2000)
       }
 
       return;
@@ -4506,29 +4559,92 @@ __webpack_require__.r(__webpack_exports__);
       var searchRegExp = /[^\w\.\/\:\,\-]+/;
       var valid = check_value.replace(searchRegExp, '');
       this.nomor_sertifikat_tkdn = valid;
-      console.log(valid);
+
+      if (!valid) {
+        this.nomor_sertifikat_tkdn = null;
+        this.isError_sertifikat_tkdn = true;
+        this.isSuccess_sertifikat_tkdn = false; // this.message_nomor_sertifikat_tkdn = 'format tidak valid!';
+        // setTimeout(() => {
+        //     this.message_nomor_sertifikat_tkdn = ''
+        // }, 2000)
+      } else {
+        this.isSuccess_sertifikat_tkdn = true;
+        this.isError_sertifikat_tkdn = false; // this.message_nomor_sertifikat_tkdn = 'format valid';
+        // setTimeout(() => {
+        //     this.message_nomor_sertifikat_tkdn = ''
+        // }, 2000)
+      } // console.log(valid);
+
+
       return;
     }, 2000),
     checkLapTKDN: _.debounce(function (check_value) {
       var searchRegExp = /[^\w\.\/\:\,\-]+/;
       var valid = check_value.replace(searchRegExp, '');
       this.nomor_laporan_tkdn = valid;
+
+      if (!valid) {
+        this.nomor_laporan_tkdn = null;
+        this.isError_laporan_tkdn = true;
+        this.isSuccess_laporan_tkdn = false; // this.message_nomor_laporan_tkdn = 'format tidak valid!';
+        // setTimeout(() => {
+        //     this.message_nomor_laporan_tkdn = ''
+        // }, 2000)
+      } else {
+        this.isSuccess_laporan_tkdn = true;
+        this.isError_laporan_tkdn = false; // this.message_nomor_laporan_tkdn = 'format valid';
+        // setTimeout(() => {
+        //     this.message_nomor_laporan_tkdn = ''
+        // }, 2000)
+      }
+
       return;
     }, 2000),
     checkSNI: _.debounce(function (check_value) {
       var searchRegExp = /[^\w\.\/\:\,\-]+/;
       var valid = check_value.replace(searchRegExp, '');
-      this.nomor_sni = valid;
+      this.nomor_sni = valid; // let value = regex.test(this.nomor_sni);
+
+      if (!valid) {
+        this.nomor_sni = null;
+        this.isError_nomor_sni = true;
+        this.isSuccess_nomor_sni = false; // this.message_sni = 'format tidak valid!';
+        // setTimeout(() => {
+        //     this.message_sni = ''
+        // }, 2000)
+      } else {
+        this.isSuccess_nomor_sni = true;
+        this.isError_nomor_sni = false; // this.message_sni = 'format valid';
+        // setTimeout(() => {
+        //     this.message_sni = ''
+        // }, 2000)
+      }
+
       return;
     }, 2000),
-    showSNI: function showSNI() {
-      this.show_sni = !this.show_sni;
-      this.required = 'required';
+    toggleInputSNI: function toggleInputSNI() {
+      this.disabled_input_SNI = !this.disabled_input_SNI;
+
+      if (this.disabled_input_SNI === true) {
+        this.nomor_sni = '';
+      } // return
+
     },
-    showTKDN: function showTKDN() {
-      this.show_tkdn = !this.show_tkdn;
-      this.required = 'required';
-    }
+    toggleInputTKDN: function toggleInputTKDN() {
+      this.disabled_input_TKDN = !this.disabled_input_TKDN;
+
+      if (this.disabled_input_TKDN === true) {
+        this.nilai_tkdn = '';
+      }
+    } // showSNI: function () {
+    //     this.show_sni = !this.show_sni;
+    //     this.required = 'required';
+    // },
+    // showTKDN: function () {
+    //     this.show_tkdn = !this.show_tkdn;
+    //     this.required = 'required';
+    // }
+
   }
 });
 
@@ -7326,7 +7442,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".el-upload--picture-card {\n  background-color: #fbfdff;\n  border: 1px dashed #c0ccda;\n  border-radius: 6px;\n  box-sizing: border-box;\n  width: 4rem;\n  height: 4rem;\n  line-height: 74px;\n  vertical-align: top;\n}\n.el-upload-list--picture-card .el-upload-list__item {\n  overflow: hidden;\n  background-color: #fff;\n  border: 1px solid #c0ccda;\n  border-radius: 6px;\n  box-sizing: border-box;\n  width: 4rem;\n  height: 4rem;\n  margin: 0 8px 8px 0;\n  display: inline-block;\n}\r\n", ""]);
+exports.push([module.i, "input:checked+svg {\n  display: block;\n}\n.el-upload--picture-card {\n  background-color: #fbfdff;\n  border: 1px dashed #c0ccda;\n  border-radius: 6px;\n  box-sizing: border-box;\n  width: 4rem;\n  height: 4rem;\n  line-height: 74px;\n  vertical-align: top;\n}\n.el-upload-list--picture-card .el-upload-list__item {\n  overflow: hidden;\n  background-color: #fff;\n  border: 1px solid #c0ccda;\n  border-radius: 6px;\n  box-sizing: border-box;\n  width: 4rem;\n  height: 4rem;\n  margin: 0 8px 8px 0;\n  display: inline-block;\n}\r\n", ""]);
 
 // exports
 
@@ -85614,69 +85730,109 @@ var render = function() {
                                                 "div",
                                                 { staticClass: "w-1/12" },
                                                 [
-                                                  _c("input", {
-                                                    directives: [
-                                                      {
-                                                        name: "model",
-                                                        rawName: "v-model",
-                                                        value: _vm.sni,
-                                                        expression: "sni"
-                                                      }
-                                                    ],
-                                                    staticClass: "rounded-lg",
-                                                    attrs: {
-                                                      "true-value": "1",
-                                                      "false-value": "0",
-                                                      type: "checkbox",
-                                                      name: "sni",
-                                                      id: "sni"
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500"
                                                     },
-                                                    domProps: {
-                                                      checked: Array.isArray(
-                                                        _vm.sni
-                                                      )
-                                                        ? _vm._i(
-                                                            _vm.sni,
-                                                            null
-                                                          ) > -1
-                                                        : _vm._q(_vm.sni, "1")
-                                                    },
-                                                    on: {
-                                                      change: function($event) {
-                                                        var $$a = _vm.sni,
-                                                          $$el = $event.target,
-                                                          $$c = $$el.checked
-                                                            ? "1"
-                                                            : "0"
-                                                        if (
-                                                          Array.isArray($$a)
-                                                        ) {
-                                                          var $$v = null,
-                                                            $$i = _vm._i(
-                                                              $$a,
-                                                              $$v
-                                                            )
-                                                          if ($$el.checked) {
-                                                            $$i < 0 &&
-                                                              (_vm.sni = $$a.concat(
-                                                                [$$v]
-                                                              ))
-                                                          } else {
-                                                            $$i > -1 &&
-                                                              (_vm.sni = $$a
-                                                                .slice(0, $$i)
-                                                                .concat(
-                                                                  $$a.slice(
-                                                                    $$i + 1
-                                                                  )
-                                                                ))
+                                                    [
+                                                      _c("input", {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value: _vm.sni,
+                                                            expression: "sni"
                                                           }
-                                                        } else {
-                                                          _vm.sni = $$c
+                                                        ],
+                                                        staticClass:
+                                                          "opacity-0 absolute",
+                                                        attrs: {
+                                                          name: "sni",
+                                                          id: "sni",
+                                                          type: "checkbox",
+                                                          "true-value": "1",
+                                                          "false-value": "0"
+                                                        },
+                                                        domProps: {
+                                                          checked: Array.isArray(
+                                                            _vm.sni
+                                                          )
+                                                            ? _vm._i(
+                                                                _vm.sni,
+                                                                null
+                                                              ) > -1
+                                                            : _vm._q(
+                                                                _vm.sni,
+                                                                "1"
+                                                              )
+                                                        },
+                                                        on: {
+                                                          change: function(
+                                                            $event
+                                                          ) {
+                                                            var $$a = _vm.sni,
+                                                              $$el =
+                                                                $event.target,
+                                                              $$c = $$el.checked
+                                                                ? "1"
+                                                                : "0"
+                                                            if (
+                                                              Array.isArray($$a)
+                                                            ) {
+                                                              var $$v = null,
+                                                                $$i = _vm._i(
+                                                                  $$a,
+                                                                  $$v
+                                                                )
+                                                              if (
+                                                                $$el.checked
+                                                              ) {
+                                                                $$i < 0 &&
+                                                                  (_vm.sni = $$a.concat(
+                                                                    [$$v]
+                                                                  ))
+                                                              } else {
+                                                                $$i > -1 &&
+                                                                  (_vm.sni = $$a
+                                                                    .slice(
+                                                                      0,
+                                                                      $$i
+                                                                    )
+                                                                    .concat(
+                                                                      $$a.slice(
+                                                                        $$i + 1
+                                                                      )
+                                                                    ))
+                                                              }
+                                                            } else {
+                                                              _vm.sni = $$c
+                                                            }
+                                                          }
                                                         }
-                                                      }
-                                                    }
-                                                  })
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "svg",
+                                                        {
+                                                          staticClass:
+                                                            "fill-current hidden w-4 h-4 text-green-500 pointer-events-none",
+                                                          attrs: {
+                                                            viewBox: "0 0 20 20"
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("path", {
+                                                            attrs: {
+                                                              d:
+                                                                "M0 11l2-2 5 5L18 3l2 2L7 18z"
+                                                            }
+                                                          })
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
                                                 ]
                                               ),
                                               _vm._v(" "),
@@ -85685,7 +85841,10 @@ var render = function() {
                                                 {
                                                   staticClass:
                                                     "text-gray-500 font-semibold w-1/6 mr-4",
-                                                  attrs: { for: "sni" }
+                                                  attrs: { for: "sni" },
+                                                  on: {
+                                                    click: _vm.toggleInputSNI
+                                                  }
                                                 },
                                                 [
                                                   _vm._v(
@@ -85709,7 +85868,15 @@ var render = function() {
                                                     ],
                                                     staticClass:
                                                       "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
+                                                    class: {
+                                                      "text-green-400":
+                                                        _vm.isSuccess_nomor_sni,
+                                                      "text-red-400":
+                                                        _vm.isError_nomor_sni
+                                                    },
                                                     attrs: {
+                                                      disabled:
+                                                        _vm.disabled_input_SNI,
                                                       name: "nomor_sni",
                                                       id: "nomor_sni",
                                                       type: "text",
@@ -85719,6 +85886,11 @@ var render = function() {
                                                       value: _vm.nomor_sni
                                                     },
                                                     on: {
+                                                      keyup: function($event) {
+                                                        return _vm.checkSNI(
+                                                          _vm.nomor_sni
+                                                        )
+                                                      },
                                                       input: function($event) {
                                                         if (
                                                           $event.target
@@ -85747,69 +85919,109 @@ var render = function() {
                                                 "div",
                                                 { staticClass: "w-1/12" },
                                                 [
-                                                  _c("input", {
-                                                    directives: [
-                                                      {
-                                                        name: "model",
-                                                        rawName: "v-model",
-                                                        value: _vm.tkdn,
-                                                        expression: "tkdn"
-                                                      }
-                                                    ],
-                                                    staticClass: "rounded-lg",
-                                                    attrs: {
-                                                      type: "checkbox",
-                                                      "true-value": "1",
-                                                      "false-value": "0",
-                                                      name: "tkdn",
-                                                      id: "tkdn"
+                                                  _c(
+                                                    "div",
+                                                    {
+                                                      staticClass:
+                                                        "bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500"
                                                     },
-                                                    domProps: {
-                                                      checked: Array.isArray(
-                                                        _vm.tkdn
-                                                      )
-                                                        ? _vm._i(
-                                                            _vm.tkdn,
-                                                            null
-                                                          ) > -1
-                                                        : _vm._q(_vm.tkdn, "1")
-                                                    },
-                                                    on: {
-                                                      change: function($event) {
-                                                        var $$a = _vm.tkdn,
-                                                          $$el = $event.target,
-                                                          $$c = $$el.checked
-                                                            ? "1"
-                                                            : "0"
-                                                        if (
-                                                          Array.isArray($$a)
-                                                        ) {
-                                                          var $$v = null,
-                                                            $$i = _vm._i(
-                                                              $$a,
-                                                              $$v
-                                                            )
-                                                          if ($$el.checked) {
-                                                            $$i < 0 &&
-                                                              (_vm.tkdn = $$a.concat(
-                                                                [$$v]
-                                                              ))
-                                                          } else {
-                                                            $$i > -1 &&
-                                                              (_vm.tkdn = $$a
-                                                                .slice(0, $$i)
-                                                                .concat(
-                                                                  $$a.slice(
-                                                                    $$i + 1
-                                                                  )
-                                                                ))
+                                                    [
+                                                      _c("input", {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value: _vm.tkdn,
+                                                            expression: "tkdn"
                                                           }
-                                                        } else {
-                                                          _vm.tkdn = $$c
+                                                        ],
+                                                        staticClass:
+                                                          "opacity-0 absolute",
+                                                        attrs: {
+                                                          name: "tkdn",
+                                                          id: "tkdn",
+                                                          type: "checkbox",
+                                                          "true-value": "1",
+                                                          "false-value": "0"
+                                                        },
+                                                        domProps: {
+                                                          checked: Array.isArray(
+                                                            _vm.tkdn
+                                                          )
+                                                            ? _vm._i(
+                                                                _vm.tkdn,
+                                                                null
+                                                              ) > -1
+                                                            : _vm._q(
+                                                                _vm.tkdn,
+                                                                "1"
+                                                              )
+                                                        },
+                                                        on: {
+                                                          change: function(
+                                                            $event
+                                                          ) {
+                                                            var $$a = _vm.tkdn,
+                                                              $$el =
+                                                                $event.target,
+                                                              $$c = $$el.checked
+                                                                ? "1"
+                                                                : "0"
+                                                            if (
+                                                              Array.isArray($$a)
+                                                            ) {
+                                                              var $$v = null,
+                                                                $$i = _vm._i(
+                                                                  $$a,
+                                                                  $$v
+                                                                )
+                                                              if (
+                                                                $$el.checked
+                                                              ) {
+                                                                $$i < 0 &&
+                                                                  (_vm.tkdn = $$a.concat(
+                                                                    [$$v]
+                                                                  ))
+                                                              } else {
+                                                                $$i > -1 &&
+                                                                  (_vm.tkdn = $$a
+                                                                    .slice(
+                                                                      0,
+                                                                      $$i
+                                                                    )
+                                                                    .concat(
+                                                                      $$a.slice(
+                                                                        $$i + 1
+                                                                      )
+                                                                    ))
+                                                              }
+                                                            } else {
+                                                              _vm.tkdn = $$c
+                                                            }
+                                                          }
                                                         }
-                                                      }
-                                                    }
-                                                  })
+                                                      }),
+                                                      _vm._v(" "),
+                                                      _c(
+                                                        "svg",
+                                                        {
+                                                          staticClass:
+                                                            "fill-current hidden w-4 h-4 text-green-500 pointer-events-none",
+                                                          attrs: {
+                                                            viewBox: "0 0 20 20"
+                                                          }
+                                                        },
+                                                        [
+                                                          _c("path", {
+                                                            attrs: {
+                                                              d:
+                                                                "M0 11l2-2 5 5L18 3l2 2L7 18z"
+                                                            }
+                                                          })
+                                                        ]
+                                                      )
+                                                    ]
+                                                  )
                                                 ]
                                               ),
                                               _vm._v(" "),
@@ -85818,7 +86030,10 @@ var render = function() {
                                                 {
                                                   staticClass:
                                                     "text-gray-500 font-semibold w-1/6 mr-4",
-                                                  attrs: { for: "tkdn" }
+                                                  attrs: { for: "tkdn" },
+                                                  on: {
+                                                    click: _vm.toggleInputTKDN
+                                                  }
                                                 },
                                                 [
                                                   _vm._v(
@@ -85842,7 +86057,15 @@ var render = function() {
                                                     ],
                                                     staticClass:
                                                       "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4",
+                                                    class: {
+                                                      "text-green-400":
+                                                        _vm.isSuccess_nilai_tkdn,
+                                                      "text-red-400":
+                                                        _vm.isError_nilai_tkdn
+                                                    },
                                                     attrs: {
+                                                      disabled:
+                                                        _vm.disabled_input_TKDN,
                                                       name: "nilai_tkdn",
                                                       id: "nilai_tkdn",
                                                       type: "text",
@@ -85852,6 +86075,11 @@ var render = function() {
                                                       value: _vm.nilai_tkdn
                                                     },
                                                     on: {
+                                                      keyup: function($event) {
+                                                        return _vm.checkNilaiTKDN(
+                                                          _vm.nilai_tkdn
+                                                        )
+                                                      },
                                                       input: function($event) {
                                                         if (
                                                           $event.target
@@ -85922,6 +86150,12 @@ var render = function() {
                                                     ],
                                                     staticClass:
                                                       "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
+                                                    class: {
+                                                      "text-green-400":
+                                                        _vm.isSuccess_sertifikat_tkdn,
+                                                      "text-red-400":
+                                                        _vm.isError_sertifikat_tkdn
+                                                    },
                                                     attrs: {
                                                       name:
                                                         "nomor_sertifikat_tkdn",
@@ -85936,6 +86170,11 @@ var render = function() {
                                                         _vm.nomor_sertifikat_tkdn
                                                     },
                                                     on: {
+                                                      keyup: function($event) {
+                                                        return _vm.checkSertiTKDN(
+                                                          _vm.nomor_sertifikat_tkdn
+                                                        )
+                                                      },
                                                       input: function($event) {
                                                         if (
                                                           $event.target
@@ -86000,6 +86239,12 @@ var render = function() {
                                                     ],
                                                     staticClass:
                                                       "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
+                                                    class: {
+                                                      "text-green-400":
+                                                        _vm.isSuccess_laporan_tkdn,
+                                                      "text-red-400":
+                                                        _vm.isError_laporan_tkdn
+                                                    },
                                                     attrs: {
                                                       name:
                                                         "nomor_laporan_tkdn",
@@ -86013,6 +86258,11 @@ var render = function() {
                                                         _vm.nomor_laporan_tkdn
                                                     },
                                                     on: {
+                                                      keyup: function($event) {
+                                                        return _vm.checkLapTKDN(
+                                                          _vm.nomor_laporan_tkdn
+                                                        )
+                                                      },
                                                       input: function($event) {
                                                         if (
                                                           $event.target
@@ -86071,6 +86321,12 @@ var render = function() {
                                                     ],
                                                     staticClass:
                                                       "rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full",
+                                                    class: {
+                                                      "text-green-400":
+                                                        _vm.isSuccess_hscode,
+                                                      "text-red-400":
+                                                        _vm.isError_hscode
+                                                    },
                                                     attrs: {
                                                       name: "hs_code",
                                                       id: "hs_code",
@@ -86082,6 +86338,13 @@ var render = function() {
                                                       value: _vm.hs_code
                                                     },
                                                     on: {
+                                                      keypress: function(
+                                                        $event
+                                                      ) {
+                                                        return _vm.checkHsCode(
+                                                          _vm.hs_code
+                                                        )
+                                                      },
                                                       input: function($event) {
                                                         if (
                                                           $event.target

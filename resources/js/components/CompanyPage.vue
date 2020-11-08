@@ -143,24 +143,38 @@
                                             <div class="grid grid-rows-2">
                                                 <div class="flex mb-3 items-center justify-between">
                                                     <div class="w-1/12">
-                                                        <input true-value="1" false-value="0" type="checkbox" name="sni" id="sni" v-model="sni" class="rounded-lg">
+                                                        <!--<input true-value="1" false-value="0" type="checkbox" name="sni" id="sni" v-model="sni" class="rounded-lg">-->
+                                                        <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+                                                            <input name="sni" id="sni" v-model="sni" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
+                                                            <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20">
+                                                                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                                            </svg>
+                                                        </div>
                                                     </div>
-                                                    <label for="sni" class="text-gray-500 font-semibold w-1/6 mr-4">
+                                                    <label @click="toggleInputSNI" for="sni" class="text-gray-500 font-semibold w-1/6 mr-4">
                                                         SNI
                                                     </label>
                                                     <div class="w-full">
-                                                        <input name="nomor_sni" id="nomor_sni" v-model="nomor_sni" type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                        <input :disabled="disabled_input_SNI" name="nomor_sni" id="nomor_sni" v-model="nomor_sni" @keyup="checkSNI(nomor_sni)" type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_nomor_sni, 'text-red-400': isError_nomor_sni}">
+
                                                     </div>
                                                 </div>
                                                 <div class="flex mb-3 items-center justify-between">
                                                     <div class="w-1/12">
-                                                        <input type="checkbox" true-value="1" false-value="0" name="tkdn" id="tkdn" v-model="tkdn" class="rounded-lg">
+                                                        <!--<input type="checkbox" true-value="1" false-value="0" name="tkdn" id="tkdn" v-model="tkdn" class="rounded-lg">-->
+                                                        <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+                                                            <input name="tkdn" id="tkdn" v-model="tkdn" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
+                                                            <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20">
+                                                                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                                            </svg>
+                                                        </div>
                                                     </div>
-                                                    <label for="tkdn" class="text-gray-500 font-semibold w-1/6 mr-4">
+                                                    <label @click="toggleInputTKDN" for="tkdn" class="text-gray-500 font-semibold w-1/6 mr-4">
                                                         TKDN
                                                     </label>
                                                     <div class="w-full">
-                                                        <input name="nilai_tkdn" id="nilai_tkdn" v-model="nilai_tkdn" type="text" placeholder="Nilai TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4">
+                                                        <input :disabled="disabled_input_TKDN" name="nilai_tkdn" id="nilai_tkdn" v-model="nilai_tkdn" @keyup="checkNilaiTKDN(nilai_tkdn)" type="text" placeholder="Nilai TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4" :class="{'text-green-400': isSuccess_nilai_tkdn, 'text-red-400': isError_nilai_tkdn}">
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -174,7 +188,8 @@
                                                         &nbsp;
                                                     </div>
                                                     <div class="w-full">
-                                                        <input v-model="nomor_sertifikat_tkdn" name="nomor_sertifikat_tkdn" id="nomor_sertifikat_tkdn" type="text" placeholder="Nomor Sertifikat TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                        <input v-model="nomor_sertifikat_tkdn" @keyup="checkSertiTKDN(nomor_sertifikat_tkdn)" name="nomor_sertifikat_tkdn" id="nomor_sertifikat_tkdn" type="text" placeholder="Nomor Sertifikat TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_sertifikat_tkdn, 'text-red-400': isError_sertifikat_tkdn}">
+
                                                     </div>
                                                 </div>
                                                 <div class="flex mb-3 items-center justify-between">
@@ -185,7 +200,8 @@
                                                         &nbsp;
                                                     </div>
                                                     <div class="w-full">
-                                                        <input name="nomor_laporan_tkdn" v-model="nomor_laporan_tkdn" id="nomor_laporan_tkdn" type="text" placeholder="Nomor Laporan" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                        <input name="nomor_laporan_tkdn" v-model="nomor_laporan_tkdn" @keyup="checkLapTKDN(nomor_laporan_tkdn)" id="nomor_laporan_tkdn" type="text" placeholder="Nomor Laporan" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_laporan_tkdn, 'text-red-400': isError_laporan_tkdn}">
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -196,7 +212,7 @@
                                                         HS Code
                                                     </div>
                                                     <div class="w-full">
-                                                        <input name="hs_code" id="hs_code" v-model="hs_code" type="text" placeholder="ex. 0987789009876" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                                        <input name="hs_code" id="hs_code" v-model="hs_code" @keypress="checkHsCode(hs_code)" :class="{'text-green-400': isSuccess_hscode, 'text-red-400': isError_hscode}" type="text" placeholder="ex. 0987789009876" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                                     </div>
                                                 </div>
                                             </div>
@@ -392,29 +408,29 @@ export default {
             showModal: false,
             buttonAddProduct: true,
             buttonEditCompany: false,
+            disabled_input_SNI: true,
+            disabled_input_TKDN: true,
 
-            // show_sni: false,
-            // show_tkdn: false,
-            // isRequiredSNI: false,
-            // isRequiredTKDN: false,
-            // nomor_sni: '',
-            // nilai_tkdn: '',
-            // nomor_sertifikat_tkdn: '',
-            // nomor_laporan_tkdn: '',
-            // required: '',
-            // sni: '',
-            // errors: '',
-            // errors_nilai_tkdn: '',
-            // errors_nomor_sertifikat_tkdn: '',
-            // errors_nomor_laporan_tkdn: '',
-            // isSuccess: false,
-            // isError: true,
-            // isSuccess_nil: false,
-            // isError_nil: true,
-            // isSuccess_ser: false,
-            // isError_ser: true,
-            // isSuccess_lap: false,
-            // isError_lap: true,
+            // message_sni: '',
+            // message_nilai_tkdn: '',
+            // message_nomor_sertifikat_tkdn: '',
+            // message_nomor_laporan_tkdn: '',
+
+            isSuccess_nomor_sni: false,
+            isError_nomor_sni: true,
+
+            isSuccess_nilai_tkdn: false,
+            isError_nilai_tkdn: true,
+
+            isSuccess_sertifikat_tkdn: false,
+            isError_sertifikat_tkdn: true,
+
+            isSuccess_laporan_tkdn: false,
+            isError_laporan_tkdn: true,
+
+            isSuccess_hscode: false,
+            isError_hscode: true,
+
             categories: [],
             subcategories: [],
 
@@ -423,6 +439,7 @@ export default {
             isCreatingPost: false,
             status_msg: '',
             status: '',
+
             name: '',
             description: '',
             sni: 0,
@@ -595,19 +612,48 @@ export default {
                 });
         },
 
+        checkHsCode: _.debounce(function () {
+            let regex = /^\d+$/;
+
+            let value = regex.test(this.hs_code);
+            if (value == false) {
+                this.hs_code = null;
+                this.isError_hscode = true;
+                this.isSuccess_hscode = false;
+                // this.message_nilai_tkdn = 'format tidak valid!';
+                // setTimeout(() => {
+                //     this.message_nilai_tkdn = ''
+                // }, 2000)
+            } else {
+                this.isSuccess_hscode = true;
+                this.isError_hscode = false;
+                // this.message_nilai_tkdn = 'format valid';
+                // setTimeout(() => {
+                //     this.message_nilai_tkdn = ''
+                // }, 2000)
+            }
+            return
+        }, 1000),
+
         checkNilaiTKDN: _.debounce(function () {
             let regex = /\d{2}(\.\d{2})?$/;
 
             let value = regex.test(this.nilai_tkdn);
             if (value == false) {
                 this.nilai_tkdn = null;
-                this.isError_nil = true;
-                this.isSuccess_nil = false;
-                this.errors_nilai_tkdn = 'format tidak valid! example(0.00 atau 100.00)';
+                this.isError_nilai_tkdn = true;
+                this.isSuccess_nilai_tkdn = false;
+                // this.message_nilai_tkdn = 'format tidak valid!';
+                // setTimeout(() => {
+                //     this.message_nilai_tkdn = ''
+                // }, 2000)
             } else {
-                this.isSuccess_nil = true;
-                this.isError_nil = false;
-                this.errors_nilai_tkdn = 'format valid';
+                this.isSuccess_nilai_tkdn = true;
+                this.isError_nilai_tkdn = false;
+                // this.message_nilai_tkdn = 'format valid';
+                // setTimeout(() => {
+                //     this.message_nilai_tkdn = ''
+                // }, 2000)
             }
             return
         }, 2000),
@@ -616,14 +662,51 @@ export default {
             let searchRegExp = /[^\w\.\/\:\,\-]+/;
             let valid = check_value.replace(searchRegExp, '');
             this.nomor_sertifikat_tkdn = valid;
-            console.log(valid);
+
+            if (!valid) {
+                this.nomor_sertifikat_tkdn = null;
+                this.isError_sertifikat_tkdn = true;
+                this.isSuccess_sertifikat_tkdn = false;
+                // this.message_nomor_sertifikat_tkdn = 'format tidak valid!';
+                // setTimeout(() => {
+                //     this.message_nomor_sertifikat_tkdn = ''
+                // }, 2000)
+            } else {
+                this.isSuccess_sertifikat_tkdn = true;
+                this.isError_sertifikat_tkdn = false;
+                // this.message_nomor_sertifikat_tkdn = 'format valid';
+                // setTimeout(() => {
+                //     this.message_nomor_sertifikat_tkdn = ''
+                // }, 2000)
+            }
+
+            // console.log(valid);
             return
         }, 2000),
 
         checkLapTKDN: _.debounce(function (check_value) {
+
             let searchRegExp = /[^\w\.\/\:\,\-]+/;
             let valid = check_value.replace(searchRegExp, '');
             this.nomor_laporan_tkdn = valid;
+
+            if (!valid) {
+                this.nomor_laporan_tkdn = null;
+                this.isError_laporan_tkdn = true;
+                this.isSuccess_laporan_tkdn = false;
+                // this.message_nomor_laporan_tkdn = 'format tidak valid!';
+                // setTimeout(() => {
+                //     this.message_nomor_laporan_tkdn = ''
+                // }, 2000)
+            } else {
+                this.isSuccess_laporan_tkdn = true;
+                this.isError_laporan_tkdn = false;
+                // this.message_nomor_laporan_tkdn = 'format valid';
+                // setTimeout(() => {
+                //     this.message_nomor_laporan_tkdn = ''
+                // }, 2000)
+            }
+
             return
         }, 2000),
 
@@ -631,23 +714,58 @@ export default {
             let searchRegExp = /[^\w\.\/\:\,\-]+/;
             let valid = check_value.replace(searchRegExp, '');
             this.nomor_sni = valid;
+
+            // let value = regex.test(this.nomor_sni);
+            if (!valid) {
+                this.nomor_sni = null;
+                this.isError_nomor_sni = true;
+                this.isSuccess_nomor_sni = false;
+                // this.message_sni = 'format tidak valid!';
+                // setTimeout(() => {
+                //     this.message_sni = ''
+                // }, 2000)
+            } else {
+                this.isSuccess_nomor_sni = true;
+                this.isError_nomor_sni = false;
+                // this.message_sni = 'format valid';
+                // setTimeout(() => {
+                //     this.message_sni = ''
+                // }, 2000)
+            }
             return
         }, 2000),
 
-        showSNI: function () {
-            this.show_sni = !this.show_sni;
-            this.required = 'required';
+        toggleInputSNI: function () {
+            this.disabled_input_SNI = !this.disabled_input_SNI;
+            if (this.disabled_input_SNI === true) {
+                this.nomor_sni = '';
+            }
+            // return
         },
-        showTKDN: function () {
-            this.show_tkdn = !this.show_tkdn;
-            this.required = 'required';
+        toggleInputTKDN: function () {
+            this.disabled_input_TKDN = !this.disabled_input_TKDN;
+            if (this.disabled_input_TKDN === true) {
+                this.nilai_tkdn = '';
+            }
         }
+        // showSNI: function () {
+        //     this.show_sni = !this.show_sni;
+        //     this.required = 'required';
+        // },
+        // showTKDN: function () {
+        //     this.show_tkdn = !this.show_tkdn;
+        //     this.required = 'required';
+        // }
 
     }
 }
 </script>
 
 <style>
+input:checked+svg {
+    display: block;
+}
+
 .el-upload--picture-card {
     background-color: #fbfdff;
     border: 1px dashed #c0ccda;
