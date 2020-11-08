@@ -3,7 +3,7 @@
     <header>
         <div class="px-4 py-4 flex justify-between items-center">
 
-            <a href="">
+            <a href="/">
                 <span class="normal-case font-omnia text-gray-600 text-2xl lg:text-2xl tracking-wide font-semibold">
                     Katalogi
                 </span>
