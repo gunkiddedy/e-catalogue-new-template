@@ -4365,7 +4365,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loading: true,
-      products: {},
+      // products: {},
       openTab: 2,
       showModal: false,
       buttonAddProduct: true,
@@ -4405,26 +4405,62 @@ __webpack_require__.r(__webpack_exports__);
       select_category: '',
       select_subcategory: '',
       price: '',
-      imageList: []
+      imageList: [],
+      user: {},
+      provinsi: {},
+      kabupaten: {},
+      kecamatan: {},
+      products: []
     };
   },
   created: function created() {
-    this.loadCategory();
-    this.loadProducts();
+    this.loadCategory(); // this.loadProducts();
+
+    this.loadCompanyDetail();
   },
   methods: {
-    loadProducts: function loadProducts() {
+    dateFormat: function dateFormat(date) {
+      var month = date.toLocaleDateString("en-US", {
+        month: 'short'
+      });
+      return date.getDate() + ' ' + month + ' ' + date.getFullYear();
+    },
+    getCompanyIdFromUrl: function getCompanyIdFromUrl() {
+      var currentUrl = window.location.pathname;
+      var arr = new Array();
+      arr = currentUrl.split("/");
+      var id = arr[2];
+      return id; // console.log(arr);
+    },
+    loadCompanyDetail: function loadCompanyDetail() {
       var _this = this;
 
-      axios.get('/api/products', {
-        params: this.selected
-      }).then(function (response) {
+      var company_id = this.getCompanyIdFromUrl();
+      var url = '/api/company-detail/' + company_id;
+      axios.get(url).then(function (response) {
         _this.loading = false;
-        _this.products = response.data;
+        _this.user = response.data.user;
+        _this.provinsi = response.data.provinsi;
+        _this.kabupaten = response.data.kabupaten;
+        _this.kecamatan = response.data.kecamatan;
+        _this.products = response.data.products;
+        console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
     },
+    // loadProducts: function () {
+    //     axios.get('/api/products', {
+    //             params: this.selected
+    //         })
+    //         .then((response) => {
+    //             this.loading = false
+    //             this.products = response.data;
+    //         })
+    //         .catch(function (error) {
+    //             console.log(error);
+    //         });
+    // },
     updateImageList: function updateImageList(file) {
       this.imageList.push(file.raw);
       console.log(this.imageList);
@@ -85458,7 +85494,13 @@ var render = function() {
                     "flex justify-center items-center flex-col leading-tight"
                 },
                 [
-                  _vm._m(0),
+                  _c("div", { staticClass: "px-4 py-4 text-center" }, [
+                    _c(
+                      "span",
+                      { staticClass: "font-bold text-sm text-gray-700" },
+                      [_vm._v(_vm._s(_vm.user.name))]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -85503,19 +85545,120 @@ var render = function() {
                 staticClass: "border-b border-gray-400 w-full my-4"
               }),
               _vm._v(" "),
-              _vm._m(1),
+              _c(
+                "div",
+                { staticClass: "flex flex-col leading-tight text-gray-600" },
+                [
+                  _c("div", { staticClass: "font-bold text-xs" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "px-4 py-1 flex justify-between items-center"
+                      },
+                      [
+                        _c("div", { staticClass: "mr-2" }, [_vm._v("NIB:")]),
+                        _vm._v(" "),
+                        _vm.user.nib !== null
+                          ? _c("div", [_vm._v(_vm._s(_vm.user.nib))])
+                          : _c("div", [_vm._v("021987678544099")])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "px-4 py-1 flex justify-between items-center"
+                      },
+                      [
+                        _c("div", { staticClass: "mr-2" }, [_vm._v("Email:")]),
+                        _vm._v(" "),
+                        _vm.user.email !== null
+                          ? _c("div", { staticClass: "text-blue-600" }, [
+                              _vm._v(_vm._s(_vm.user.email))
+                            ])
+                          : _c("div", [_vm._v("email@email.com")])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "px-4 py-1 flex justify-between items-center"
+                      },
+                      [
+                        _c("div", { staticClass: "mr-2" }, [
+                          _vm._v("No Telp:")
+                        ]),
+                        _vm._v(" "),
+                        _vm.user.phone !== null
+                          ? _c("div", [_vm._v(_vm._s(_vm.user.phone))])
+                          : _c("div", [_vm._v("098778900987")])
+                      ]
+                    )
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _c("div", {
                 staticClass: "border-b border-gray-400 w-full my-4"
               }),
               _vm._v(" "),
-              _vm._m(2),
+              _c(
+                "div",
+                { staticClass: "flex flex-col leading-tight text-gray-600" },
+                [
+                  _c("div", { staticClass: "font-bold text-xs" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "px-4 py-1 flex justify-between items-center"
+                      },
+                      [
+                        _vm.user.address !== null
+                          ? _c("div", [_vm._v(_vm._s(_vm.user.address))])
+                          : _c("div", [
+                              _vm._v(
+                                "Jl. Rasamala Raya Blok L10 No 14 Perumahan Telaga Pesona Telaga Murni - Cikarang Barat"
+                              )
+                            ])
+                      ]
+                    )
+                  ])
+                ]
+              ),
               _vm._v(" "),
               _c("div", {
                 staticClass: "border-b border-gray-400 w-full my-4"
               }),
               _vm._v(" "),
-              _vm._m(3)
+              _c(
+                "div",
+                { staticClass: "flex flex-col leading-tight text-gray-600" },
+                [
+                  _c("div", { staticClass: "text-xs" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "px-4 py-1 flex justify-between items-center"
+                      },
+                      [
+                        _c("div", { staticClass: "mr-2 font-bold" }, [
+                          _vm._v("Join Date")
+                        ]),
+                        _vm._v(" "),
+                        _c("div", [_vm._v(_vm._s(_vm.user.created_at))])
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ])
+                ]
+              )
             ]
           )
         ]
@@ -86833,7 +86976,7 @@ var render = function() {
                                         ]
                                       ),
                                       _vm._v(" "),
-                                      _vm._m(4),
+                                      _vm._m(1),
                                       _vm._v(" "),
                                       _c(
                                         "div",
@@ -87003,7 +87146,7 @@ var render = function() {
             staticClass: "mt-8 grid grid-cols-5 gap-4",
             class: { hidden: _vm.openTab !== 2, block: _vm.openTab === 2 }
           },
-          _vm._l(_vm.products.data, function(product) {
+          _vm._l(_vm.products, function(product) {
             return _c(
               "div",
               {
@@ -87071,7 +87214,7 @@ var render = function() {
                         "div",
                         { staticClass: "flex items-center justify-start mb-2" },
                         [
-                          _vm._m(5, true),
+                          _vm._m(2, true),
                           _vm._v(" "),
                           product.sni
                             ? _c(
@@ -87118,7 +87261,7 @@ var render = function() {
                       _c(
                         "a",
                         { attrs: { href: "/product-detail/" + product.id } },
-                        [_vm._m(6, true)]
+                        [_vm._m(3, true)]
                       )
                     ])
                   ]
@@ -87135,7 +87278,60 @@ var render = function() {
             staticClass: "mt-8",
             class: { hidden: _vm.openTab !== 1, block: _vm.openTab === 1 }
           },
-          [_vm._m(7)]
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex-1 text-gray-700 border shadow-lg border-gray-400 rounded-lg"
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "h-full px-6 py-6 bg-white rounded-lg relative leading-tight"
+                  },
+                  [
+                    _c(
+                      "p",
+                      {
+                        staticClass:
+                          "normal-case mb-2 font-semibold leading-tight text-lg"
+                      },
+                      [
+                        _vm._v(
+                          "\r\n                            Company Profile"
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.user.additional_info !== null
+                      ? _c(
+                          "p",
+                          { staticClass: "text-gray-600 leading-tight mb-8" },
+                          [
+                            _vm._v(
+                              "\r\n                            " +
+                                _vm._s(_vm.user.additional_info) +
+                                "\r\n                        "
+                            )
+                          ]
+                        )
+                      : _c(
+                          "p",
+                          { staticClass: "text-gray-600 leading-tight mb-8" },
+                          [
+                            _vm._v(
+                              "\r\n                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet libero magni unde eos culpa nihil vero nam, blanditiis quia vel amet, quibusdam et itaque modi non alias. Mollitia, consequuntur deserunt!\r\n                        "
+                            )
+                          ]
+                        )
+                  ]
+                )
+              ]
+            )
+          ]
         ),
         _vm._v(" "),
         _vm.loading
@@ -87276,113 +87472,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "px-4 py-4 text-center" }, [
-      _c("span", { staticClass: "font-bold text-sm text-gray-700" }, [
-        _vm._v("PT.MAJU JAYA PRIMA PERKASA ABADI")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "flex flex-col leading-tight text-gray-600" },
+      { staticClass: "px-4 py-1 flex justify-between items-center" },
       [
-        _c("div", { staticClass: "font-bold text-xs" }, [
-          _c(
-            "div",
-            { staticClass: "px-4 py-1 flex justify-between items-center" },
-            [
-              _c("div", { staticClass: "mr-2" }, [_vm._v("NIB:")]),
-              _vm._v(" "),
-              _c("div", [_vm._v("021987678544099")])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "px-4 py-1 flex justify-between items-center" },
-            [
-              _c("div", { staticClass: "mr-2" }, [_vm._v("Email:")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "text-blue-600" }, [
-                _vm._v("katalogi@gmail.com")
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "px-4 py-1 flex justify-between items-center" },
-            [
-              _c("div", { staticClass: "mr-2" }, [_vm._v("No Telp:")]),
-              _vm._v(" "),
-              _c("div", [_vm._v("021987678544099")])
-            ]
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex flex-col leading-tight text-gray-600" },
-      [
-        _c("div", { staticClass: "font-bold text-xs" }, [
-          _c(
-            "div",
-            { staticClass: "px-4 py-1 flex justify-between items-center" },
-            [
-              _c("div", [
-                _vm._v(
-                  "Jl. Rasamala Raya Blok L10 No 14 Perumahan Telaga Pesona Telaga Murni - Cikarang Barat"
-                )
-              ])
-            ]
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex flex-col leading-tight text-gray-600" },
-      [
-        _c("div", { staticClass: "text-xs" }, [
-          _c(
-            "div",
-            { staticClass: "px-4 py-1 flex justify-between items-center" },
-            [
-              _c("div", { staticClass: "mr-2 font-bold" }, [
-                _vm._v("Join Date")
-              ]),
-              _vm._v(" "),
-              _c("div", [_vm._v("11/08/2020")])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "px-4 py-1 flex justify-between items-center" },
-            [
-              _c("div", { staticClass: "mr-2 font-bold" }, [
-                _vm._v("Login Terakhir")
-              ]),
-              _vm._v(" "),
-              _c("div", [_vm._v("11/08/2020")])
-            ]
-          )
-        ])
+        _c("div", { staticClass: "mr-2 font-bold" }, [
+          _vm._v("Login Terakhir")
+        ]),
+        _vm._v(" "),
+        _c("div", [_vm._v("11/08/2020")])
       ]
     )
   },
@@ -87426,55 +87524,6 @@ var staticRenderFns = [
         _c("p", { staticClass: "text-white leading-none font-bold text-sm" }, [
           _vm._v("See Product")
         ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "flex-1 text-gray-700 border shadow-lg border-gray-400 rounded-lg"
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass:
-              "h-full px-6 py-6 bg-white rounded-lg relative leading-tight"
-          },
-          [
-            _c(
-              "p",
-              {
-                staticClass:
-                  "normal-case mb-2 font-semibold leading-tight text-lg"
-              },
-              [_vm._v("\r\n                            Company Profile")]
-            ),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-gray-600 leading-tight mb-8" }, [
-              _vm._v(
-                "\r\n                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.\r\n                        "
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-gray-600 leading-tight mb-8" }, [
-              _vm._v(
-                "\r\n                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.\r\n                        "
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "text-gray-600 leading-tight mb-8" }, [
-              _vm._v(
-                "\r\n                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.\r\n                        "
-              )
-            ])
-          ]
-        )
       ]
     )
   }

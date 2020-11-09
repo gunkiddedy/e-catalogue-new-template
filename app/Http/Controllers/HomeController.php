@@ -38,7 +38,7 @@ class HomeController extends Controller
         return view('signup');
     }
 
-    public function companyPage()
+    public function companyPage($id)
     {
         return view('company');
     }

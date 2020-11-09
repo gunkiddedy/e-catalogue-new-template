@@ -30,15 +30,15 @@ class Product extends Model
         return $this->belongsTo(SubCategory::class);
     }
 
-    // public function provinsi()
-    // {
-    //     return $this->belongsTo(Provinsi::class);
-    // }
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class);
+    }
 
-    // public function kabupaten()
-    // {
-    //     return $this->belongsTo(Kabupaten::class);
-    // }
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class);
+    }
 
     // satu product mempunyai banyak image (one to many)
     public function images()

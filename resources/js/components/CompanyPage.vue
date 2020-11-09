@@ -9,7 +9,7 @@
 
                 <div class="flex justify-center items-center flex-col leading-tight">
                     <div class="px-4 py-4 text-center">
-                        <span class="font-bold text-sm text-gray-700">PT.MAJU JAYA PRIMA PERKASA ABADI</span>
+                        <span class="font-bold text-sm text-gray-700">{{user.name}}</span>
                     </div>
                     <div class="flex justify-between items-center bg-blue-500 rounded-full px-4 py-1 my-4 leading-tight text-gray-300 text-xs">
                         <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -27,15 +27,18 @@
                     <div class="font-bold text-xs">
                         <div class="px-4 py-1 flex justify-between items-center">
                             <div class="mr-2">NIB:</div>
-                            <div>021987678544099</div>
+                            <div v-if="user.nib !== null">{{user.nib}}</div>
+                            <div v-else>021987678544099</div>
                         </div>
                         <div class="px-4 py-1 flex justify-between items-center">
                             <div class="mr-2">Email:</div>
-                            <div class="text-blue-600">katalogi@gmail.com</div>
+                            <div class="text-blue-600" v-if="user.email !== null">{{user.email}}</div>
+                            <div v-else>email@email.com</div>
                         </div>
                         <div class="px-4 py-1 flex justify-between items-center">
                             <div class="mr-2">No Telp:</div>
-                            <div>021987678544099</div>
+                            <div v-if="user.phone !== null">{{ user.phone }}</div>
+                            <div v-else>098778900987</div>
                         </div>
                     </div>
                 </div>
@@ -45,7 +48,8 @@
                 <div class="flex flex-col leading-tight text-gray-600">
                     <div class="font-bold text-xs">
                         <div class="px-4 py-1 flex justify-between items-center">
-                            <div>Jl. Rasamala Raya Blok L10 No 14 Perumahan Telaga Pesona Telaga Murni - Cikarang Barat</div>
+                            <div v-if="user.address !== null">{{user.address}}</div>
+                            <div v-else>Jl. Rasamala Raya Blok L10 No 14 Perumahan Telaga Pesona Telaga Murni - Cikarang Barat</div>
                         </div>
                     </div>
                 </div>
@@ -56,7 +60,7 @@
                     <div class="text-xs">
                         <div class="px-4 py-1 flex justify-between items-center">
                             <div class="mr-2 font-bold">Join Date</div>
-                            <div>11/08/2020</div>
+                            <div>{{ user.created_at }}</div>
                         </div>
                         <div class="px-4 py-1 flex justify-between items-center">
                             <div class="mr-2 font-bold">Login Terakhir</div>
@@ -348,7 +352,7 @@
                     </div>
                 </div>-->
 
-                <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products.data" :key="product.id">
+                <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products" :key="product.id">
                     <div>
                         <img :src="'/storage/'+product.image_path" alt="" class="rounded-t-lg object-cover w-full h-41">
                     </div>
@@ -398,16 +402,12 @@
                     <div class="h-full px-6 py-6 bg-white rounded-lg relative leading-tight">
                         <p class="normal-case mb-2 font-semibold leading-tight text-lg">
                             Company Profile</p>
-                        <p class="text-gray-600 leading-tight mb-8">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.
+                        <p class="text-gray-600 leading-tight mb-8" v-if="user.additional_info !== null">
+                            {{ user.additional_info }}
                         </p>
-                        <p class="text-gray-600 leading-tight mb-8">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.
+                        <p class="text-gray-600 leading-tight mb-8" v-else>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet libero magni unde eos culpa nihil vero nam, blanditiis quia vel amet, quibusdam et itaque modi non alias. Mollitia, consequuntur deserunt!
                         </p>
-                        <p class="text-gray-600 leading-tight mb-8">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.
-                        </p>
-
                     </div>
                 </div>
             </div>
@@ -457,7 +457,7 @@ export default {
     data() {
         return {
             loading: true,
-            products: {},
+            // products: {},
 
             openTab: 2,
             showModal: false,
@@ -508,28 +508,69 @@ export default {
             select_subcategory: '',
             price: '',
             imageList: [],
+
+            user: {},
+            provinsi: {},
+            kabupaten: {},
+            kecamatan: {},
+            products: [],
         }
     },
 
     created() {
         this.loadCategory();
-        this.loadProducts();
+        // this.loadProducts();
+        this.loadCompanyDetail();
     },
 
     methods: {
 
-        loadProducts: function () {
-            axios.get('/api/products', {
-                    params: this.selected
-                })
+        dateFormat: function (date) {
+            let month = date.toLocaleDateString("en-US", {
+                month: 'short'
+            })
+            return date.getDate() + ' ' + month + ' ' + date.getFullYear();
+        },
+
+        getCompanyIdFromUrl: function () {
+            let currentUrl = window.location.pathname;
+            let arr = new Array();
+            arr = currentUrl.split("/");
+            let id = arr[2];
+            return id;
+            // console.log(arr);
+        },
+
+        loadCompanyDetail: function () {
+            let company_id = this.getCompanyIdFromUrl();
+            let url = '/api/company-detail/' + company_id;
+            axios.get(url)
                 .then((response) => {
-                    this.loading = false
-                    this.products = response.data;
+                    this.loading = false;
+                    this.user = response.data.user;
+                    this.provinsi = response.data.provinsi;
+                    this.kabupaten = response.data.kabupaten;
+                    this.kecamatan = response.data.kecamatan;
+                    this.products = response.data.products;
+                    console.log(response.data);
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         },
+
+        // loadProducts: function () {
+        //     axios.get('/api/products', {
+        //             params: this.selected
+        //         })
+        //         .then((response) => {
+        //             this.loading = false
+        //             this.products = response.data;
+        //         })
+        //         .catch(function (error) {
+        //             console.log(error);
+        //         });
+        // },
 
         updateImageList(file) {
             this.imageList.push(file.raw);

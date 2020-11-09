@@ -24,7 +24,7 @@ Route::view('/', 'welcome');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login', 'HomeController@login')->name('login.page');
 Route::get('/signup', 'HomeController@signup')->name('signup.page');
-Route::get('/company-page', 'HomeController@companyPage')->name('company.page');
+Route::get('/company-page/{id}', 'HomeController@companyPage')->name('company.page');
 Route::get('/company-list', 'HomeController@companyList')->name('company.list');
 Route::get('/product-detail/{id}', 'HomeController@productDetail')->name('product.page');
 
