@@ -6,6 +6,8 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+window.moment = require('moment');
+
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('header-company', require('./components/HeaderCompany.vue').default);

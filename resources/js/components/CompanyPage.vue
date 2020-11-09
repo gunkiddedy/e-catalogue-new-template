@@ -60,7 +60,7 @@
                     <div class="text-xs">
                         <div class="px-4 py-1 flex justify-between items-center">
                             <div class="mr-2 font-bold">Join Date</div>
-                            <div>{{ user.created_at }}</div>
+                            <div>{{ dateFormat(user.created_at) }}</div>
                         </div>
                         <div class="px-4 py-1 flex justify-between items-center">
                             <div class="mr-2 font-bold">Login Terakhir</div>
@@ -526,10 +526,7 @@ export default {
     methods: {
 
         dateFormat: function (date) {
-            let month = date.toLocaleDateString("en-US", {
-                month: 'short'
-            })
-            return date.getDate() + ' ' + month + ' ' + date.getFullYear();
+            return moment(new Date(date)).format('DD/MM/YYYY');
         },
 
         getCompanyIdFromUrl: function () {
