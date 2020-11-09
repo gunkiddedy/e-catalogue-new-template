@@ -305,8 +305,8 @@
             </div>
 
             <!-- PRODUCT CARD -->
-            <div class="mt-8 grid grid-cols-5 gap-2" :class="{'hidden': openTab !== 2, 'block': openTab === 2}">
-                <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative">
+            <div class="mt-8 grid grid-cols-5 gap-4" :class="{'hidden': openTab !== 2, 'block': openTab === 2}">
+                <!--<div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative">
                     <img src="/img/login-img.png" alt="" class="rounded-t-lg">
                     <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41">
                         <p class="normal-case mb-6 font-bold text-sm leading-tight h-2.25rem">
@@ -327,9 +327,9 @@
                                 <span class="text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
                                     trusted suplier
                                 </span>
-                                <!--<span class="text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
+                                <span class="text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
                                     not trusted suplier
-                                </span>-->
+                                </span>
                             </div>
 
                             <p class="font-bold mb-2">
@@ -346,13 +346,56 @@
                             </a>
                         </div>
                     </div>
+                </div>-->
+
+                <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products.data" :key="product.id">
+                    <div>
+                        <img :src="'/storage/'+product.image_path" alt="" class="rounded-t-lg object-cover w-full h-41">
+                    </div>
+                    <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41">
+                        <p class="normal-case mb-6 font-bold text-sm leading-tight h-2.25rem">
+                            {{ product.name }}
+                        </p>
+                        <p class="uppercase text-gray-600 leading-tight text-xs h-2.25rem">
+                            {{ product.company_name }}
+                        </p>
+                        <div>
+                            <p class="mt-2 mb-2 text-xs text-gray-500">
+                                Jakarta Barat
+                            </p>
+
+                            <div class="flex items-center justify-start mb-2">
+                                <div class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2">
+                                    <p class="text-gray-200 text-xs">SNI</p>
+                                </div>
+                                <span v-if="product.sni" class="text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
+                                    trusted suplier</span>
+                                <span v-else class="text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
+                                    not trusted suplier
+                                </span>
+                            </div>
+
+                            <p class="font-bold mb-2">
+                                <span class="text-red-500 font-bold">Rp{{ product.price }}</span>
+                                <span class="text-sm">/pc</span>
+                            </p>
+                            <p class="text-xs mb-4 text-gray-500">
+                                Visit in order to contact the seller
+                            </p>
+                            <a :href="'/product-detail/'+product.id">
+                                <button type="button" class="hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ">
+                                    <p class="text-white leading-none font-bold text-sm">See Product</p>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- ABOUT CARD -->
             <div class="mt-8" v-bind:class="{'hidden': openTab !== 1, 'block': openTab === 1}">
                 <div class="flex-1 text-gray-700 border shadow-lg border-gray-400 rounded-lg">
-                    <div class="h-full px-6 py-6 bg-white rounded-lg relative leading-tight hover:bg-gray-100 ">
+                    <div class="h-full px-6 py-6 bg-white rounded-lg relative leading-tight">
                         <p class="normal-case mb-2 font-semibold leading-tight text-lg">
                             Company Profile</p>
                         <p class="text-gray-600 leading-tight mb-8">
@@ -367,6 +410,15 @@
 
                     </div>
                 </div>
+            </div>
+
+            <!-- loader spin-->
+            <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0">
+                <svg class="animate-spin absolute w-12 h-12" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="122.315px" height="122.88px" viewBox="0 0 122.315 122.88" enable-background="new 0 0 122.315 122.88" xml:space="preserve">
+                    <g>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M94.754,14.534c8.844,0,16.014,7.17,16.014,16.012 c0,8.844-7.17,16.015-16.014,16.015c-8.843,0-16.013-7.17-16.013-16.015C78.741,21.704,85.911,14.534,94.754,14.534L94.754,14.534z M109.265,52.121c-7.205,0-13.049,5.844-13.049,13.048c0,7.207,5.844,13.049,13.049,13.051c7.207,0,13.051-5.844,13.051-13.051 C122.315,57.965,116.472,52.121,109.265,52.121L109.265,52.121z M94.135,89.903c-5.032,0-9.114,4.082-9.114,9.113 c0,5.032,4.082,9.114,9.114,9.114c5.031,0,9.113-4.082,9.113-9.114C103.248,93.985,99.166,89.903,94.135,89.903L94.135,89.903z M59.275,104.65c-5.032,0-9.114,4.081-9.114,9.113c0,5.034,4.082,9.116,9.114,9.116s9.113-4.082,9.113-9.116 C68.389,108.731,64.308,104.65,59.275,104.65L59.275,104.65z M23.652,90.86c-4.717,0-8.54,3.823-8.54,8.54 c0,4.715,3.823,8.54,8.54,8.54c4.714,0,8.538-3.825,8.538-8.54C32.19,94.684,28.366,90.86,23.652,90.86L23.652,90.86z M9.096,54.872C4.072,54.872,0,58.944,0,63.968c0,5.021,4.072,9.093,9.096,9.093c5.021,0,9.093-4.072,9.093-9.093 C18.189,58.944,14.116,54.872,9.096,54.872L9.096,54.872z M23.652,17.026c-6.354,0-11.508,5.155-11.508,11.509 s5.154,11.506,11.508,11.506s11.506-5.152,11.506-11.506S30.006,17.026,23.652,17.026L23.652,17.026z M59.341,0 c-7.651,0-13.858,6.205-13.858,13.855c0,7.651,6.207,13.856,13.858,13.856s13.856-6.205,13.856-13.856 C73.197,6.205,66.992,0,59.341,0L59.341,0z" />
+                    </g>
+                </svg>
             </div>
 
             <div class="flex justify-around items-center mt-16">
@@ -404,6 +456,9 @@ export default {
     name: 'company-page',
     data() {
         return {
+            loading: true,
+            products: {},
+
             openTab: 2,
             showModal: false,
             buttonAddProduct: true,
@@ -458,9 +513,23 @@ export default {
 
     created() {
         this.loadCategory();
+        this.loadProducts();
     },
 
     methods: {
+
+        loadProducts: function () {
+            axios.get('/api/products', {
+                    params: this.selected
+                })
+                .then((response) => {
+                    this.loading = false
+                    this.products = response.data;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
 
         updateImageList(file) {
             this.imageList.push(file.raw);

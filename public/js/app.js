@@ -4308,10 +4308,64 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'company-page',
   data: function data() {
     return {
+      loading: true,
+      products: {},
       openTab: 2,
       showModal: false,
       buttonAddProduct: true,
@@ -4356,8 +4410,21 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.loadCategory();
+    this.loadProducts();
   },
   methods: {
+    loadProducts: function loadProducts() {
+      var _this = this;
+
+      axios.get('/api/products', {
+        params: this.selected
+      }).then(function (response) {
+        _this.loading = false;
+        _this.products = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     updateImageList: function updateImageList(file) {
       this.imageList.push(file.raw);
       console.log(this.imageList);
@@ -4374,7 +4441,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$message.warning("The limit is 5, you have selected ".concat(files.length, " files"));
     },
     createPost: function createPost(e) {
-      var _this = this;
+      var _this2 = this;
 
       e.preventDefault();
 
@@ -4408,24 +4475,24 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': 'multipart/form-data'
         }
       }).then(function (res) {
-        _this.name = '';
-        _this.description = '';
-        _this.sni = '';
-        _this.nomor_sni = '';
-        _this.tkdn = '';
-        _this.nilai_tkdn = '';
-        _this.nomor_sertifikat_tkdn = '';
-        _this.nomor_laporan_tkdn = '';
-        _this.hs_code = '';
-        _this.price = '';
-        _this.select_category = '';
-        _this.select_subcategory = '';
-        _this.status = true;
+        _this2.name = '';
+        _this2.description = '';
+        _this2.sni = '';
+        _this2.nomor_sni = '';
+        _this2.tkdn = '';
+        _this2.nilai_tkdn = '';
+        _this2.nomor_sertifikat_tkdn = '';
+        _this2.nomor_laporan_tkdn = '';
+        _this2.hs_code = '';
+        _this2.price = '';
+        _this2.select_category = '';
+        _this2.select_subcategory = '';
+        _this2.status = true;
 
-        _this.showNotification('Product Successfully Added');
+        _this2.showNotification('Product Successfully Added');
 
-        _this.isCreatingPost = false;
-        _this.imageList = [];
+        _this2.isCreatingPost = false;
+        _this2.imageList = [];
       })["catch"](function (error) {
         console.log(error);
       });
@@ -4470,11 +4537,11 @@ __webpack_require__.r(__webpack_exports__);
       return true;
     },
     showNotification: function showNotification(message) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.status_msg = message;
       setTimeout(function () {
-        _this2.status_msg = '';
+        _this3.status_msg = '';
       }, 2000);
     },
     toggleTabs: function toggleTabs(tabNumber) {
@@ -4492,23 +4559,23 @@ __webpack_require__.r(__webpack_exports__);
       this.showModal = !this.showModal;
     },
     loadCategory: function loadCategory() {
-      var _this3 = this;
+      var _this4 = this;
 
       axios.get('/api/getcategories').then(function (response) {
-        _this3.categories = response.data;
+        _this4.categories = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
     },
     loadSubCategory: function loadSubCategory() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.get('/api/getsubcategories', {
         params: {
           category_id: this.select_category
         }
       }).then(function (response) {
-        _this4.subcategories = response.data;
+        _this5.subcategories = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -4941,23 +5008,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      openTab: 1
+      openTab: 1,
+      product: {},
+      images: [],
+      category: {},
+      subcategory: {},
+      company: {}
     };
   },
+  created: function created() {
+    this.loadProductDetail(); // this.getProductIdFromUrl();
+  },
   methods: {
+    getProductIdFromUrl: function getProductIdFromUrl() {
+      var currentUrl = window.location.pathname;
+      var arr = new Array();
+      arr = currentUrl.split("/");
+      var id = arr[2];
+      return id; // console.log(arr);
+    },
+    loadProductDetail: function loadProductDetail() {
+      var _this = this;
+
+      var product_id = this.getProductIdFromUrl();
+      var url = '/api/product-detail/' + product_id;
+      axios.get(url).then(function (response) {
+        _this.loading = false;
+        _this.product = response.data.product;
+        _this.images = response.data.images;
+        _this.category = response.data.category;
+        _this.subcategory = response.data.subcategory;
+        _this.company = response.data.company;
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     toggleTabs: function toggleTabs(tabNumber) {
       this.openTab = tabNumber;
     }
@@ -5156,6 +5245,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -86910,10 +87000,133 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "mt-8 grid grid-cols-5 gap-2",
+            staticClass: "mt-8 grid grid-cols-5 gap-4",
             class: { hidden: _vm.openTab !== 2, block: _vm.openTab === 2 }
           },
-          [_vm._m(5)]
+          _vm._l(_vm.products.data, function(product) {
+            return _c(
+              "div",
+              {
+                key: product.id,
+                staticClass:
+                  "text-gray-700 rounded-lg bg-white shadow-md h-72 relative"
+              },
+              [
+                _c("div", [
+                  _c("img", {
+                    staticClass: "rounded-t-lg object-cover w-full h-41",
+                    attrs: { src: "/storage/" + product.image_path, alt: "" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41"
+                  },
+                  [
+                    _c(
+                      "p",
+                      {
+                        staticClass:
+                          "normal-case mb-6 font-bold text-sm leading-tight h-2.25rem"
+                      },
+                      [
+                        _vm._v(
+                          "\r\n                            " +
+                            _vm._s(product.name) +
+                            "\r\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "p",
+                      {
+                        staticClass:
+                          "uppercase text-gray-600 leading-tight text-xs h-2.25rem"
+                      },
+                      [
+                        _vm._v(
+                          "\r\n                            " +
+                            _vm._s(product.company_name) +
+                            "\r\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c(
+                        "p",
+                        { staticClass: "mt-2 mb-2 text-xs text-gray-500" },
+                        [
+                          _vm._v(
+                            "\r\n                                Jakarta Barat\r\n                            "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "flex items-center justify-start mb-2" },
+                        [
+                          _vm._m(5, true),
+                          _vm._v(" "),
+                          product.sni
+                            ? _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                    trusted suplier"
+                                  )
+                                ]
+                              )
+                            : _c(
+                                "span",
+                                {
+                                  staticClass:
+                                    "text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
+                                },
+                                [
+                                  _vm._v(
+                                    "\r\n                                    not trusted suplier\r\n                                "
+                                  )
+                                ]
+                              )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "font-bold mb-2" }, [
+                        _c("span", { staticClass: "text-red-500 font-bold" }, [
+                          _vm._v("Rp" + _vm._s(product.price))
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "text-sm" }, [_vm._v("/pc")])
+                      ]),
+                      _vm._v(" "),
+                      _c("p", { staticClass: "text-xs mb-4 text-gray-500" }, [
+                        _vm._v(
+                          "\r\n                                Visit in order to contact the seller\r\n                            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        { attrs: { href: "/product-detail/" + product.id } },
+                        [_vm._m(6, true)]
+                      )
+                    ])
+                  ]
+                )
+              ]
+            )
+          }),
+          0
         ),
         _vm._v(" "),
         _c(
@@ -86922,8 +87135,51 @@ var render = function() {
             staticClass: "mt-8",
             class: { hidden: _vm.openTab !== 1, block: _vm.openTab === 1 }
           },
-          [_vm._m(6)]
+          [_vm._m(7)]
         ),
+        _vm._v(" "),
+        _vm.loading
+          ? _c(
+              "div",
+              {
+                staticClass:
+                  "z-30 flex justify-around relative opacity-25 bg-black inset-0"
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "animate-spin absolute w-12 h-12",
+                    attrs: {
+                      version: "1.1",
+                      id: "Layer_1",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                      x: "0px",
+                      y: "0px",
+                      width: "122.315px",
+                      height: "122.88px",
+                      viewBox: "0 0 122.315 122.88",
+                      "enable-background": "new 0 0 122.315 122.88",
+                      "xml:space": "preserve"
+                    }
+                  },
+                  [
+                    _c("g", [
+                      _c("path", {
+                        attrs: {
+                          "fill-rule": "evenodd",
+                          "clip-rule": "evenodd",
+                          d:
+                            "M94.754,14.534c8.844,0,16.014,7.17,16.014,16.012 c0,8.844-7.17,16.015-16.014,16.015c-8.843,0-16.013-7.17-16.013-16.015C78.741,21.704,85.911,14.534,94.754,14.534L94.754,14.534z M109.265,52.121c-7.205,0-13.049,5.844-13.049,13.048c0,7.207,5.844,13.049,13.049,13.051c7.207,0,13.051-5.844,13.051-13.051 C122.315,57.965,116.472,52.121,109.265,52.121L109.265,52.121z M94.135,89.903c-5.032,0-9.114,4.082-9.114,9.113 c0,5.032,4.082,9.114,9.114,9.114c5.031,0,9.113-4.082,9.113-9.114C103.248,93.985,99.166,89.903,94.135,89.903L94.135,89.903z M59.275,104.65c-5.032,0-9.114,4.081-9.114,9.113c0,5.034,4.082,9.116,9.114,9.116s9.113-4.082,9.113-9.116 C68.389,108.731,64.308,104.65,59.275,104.65L59.275,104.65z M23.652,90.86c-4.717,0-8.54,3.823-8.54,8.54 c0,4.715,3.823,8.54,8.54,8.54c4.714,0,8.538-3.825,8.538-8.54C32.19,94.684,28.366,90.86,23.652,90.86L23.652,90.86z M9.096,54.872C4.072,54.872,0,58.944,0,63.968c0,5.021,4.072,9.093,9.096,9.093c5.021,0,9.093-4.072,9.093-9.093 C18.189,58.944,14.116,54.872,9.096,54.872L9.096,54.872z M23.652,17.026c-6.354,0-11.508,5.155-11.508,11.509 s5.154,11.506,11.508,11.506s11.506-5.152,11.506-11.506S30.006,17.026,23.652,17.026L23.652,17.026z M59.341,0 c-7.651,0-13.858,6.205-13.858,13.855c0,7.651,6.207,13.856,13.858,13.856s13.856-6.205,13.856-13.856 C73.197,6.205,66.992,0,59.341,0L59.341,0z"
+                        }
+                      })
+                    ])
+                  ]
+                )
+              ]
+            )
+          : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "flex justify-around items-center mt-16" }, [
           _c(
@@ -87149,122 +87405,27 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "text-gray-700 rounded-lg bg-white shadow-md h-72 relative"
+        staticClass:
+          "rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2"
+      },
+      [_c("p", { staticClass: "text-gray-200 text-xs" }, [_vm._v("SNI")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass:
+          "hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ",
+        attrs: { type: "button" }
       },
       [
-        _c("img", {
-          staticClass: "rounded-t-lg",
-          attrs: { src: "/img/login-img.png", alt: "" }
-        }),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41"
-          },
-          [
-            _c(
-              "p",
-              {
-                staticClass:
-                  "normal-case mb-6 font-bold text-sm leading-tight h-2.25rem"
-              },
-              [
-                _vm._v(
-                  "\r\n                            Customized Pre-filter untuk Blower dan FFU\r\n                        "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "p",
-              {
-                staticClass:
-                  "uppercase text-gray-600 leading-tight text-xs h-2.25rem"
-              },
-              [
-                _vm._v(
-                  "\r\n                            pt. maju jaya prima perkasa abadi\r\n                        "
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", [
-              _c("p", { staticClass: "mt-2 mb-2 text-xs text-gray-500" }, [
-                _vm._v(
-                  "\r\n                                Jakarta Barat\r\n                            "
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "flex items-center justify-start mb-2" },
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2"
-                    },
-                    [
-                      _c("p", { staticClass: "text-gray-200 text-xs" }, [
-                        _vm._v("SNI")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass:
-                        "text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
-                    },
-                    [
-                      _vm._v(
-                        "\r\n                                    trusted suplier\r\n                                "
-                      )
-                    ]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-bold mb-2" }, [
-                _c("span", { staticClass: "text-red-500 font-bold" }, [
-                  _vm._v("Rp250.000")
-                ]),
-                _vm._v(" "),
-                _c("span", { staticClass: "text-sm" }, [_vm._v("/pc")])
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-xs mb-4 text-gray-500" }, [
-                _vm._v(
-                  "\r\n                                Visit in order to contact the seller\r\n                            "
-                )
-              ]),
-              _vm._v(" "),
-              _c("a", { attrs: { href: "/product-detail" } }, [
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ",
-                    attrs: { type: "button" }
-                  },
-                  [
-                    _c(
-                      "p",
-                      {
-                        staticClass: "text-white leading-none font-bold text-sm"
-                      },
-                      [_vm._v("See Product")]
-                    )
-                  ]
-                )
-              ])
-            ])
-          ]
-        )
+        _c("p", { staticClass: "text-white leading-none font-bold text-sm" }, [
+          _vm._v("See Product")
+        ])
       ]
     )
   },
@@ -87283,7 +87444,7 @@ var staticRenderFns = [
           "div",
           {
             staticClass:
-              "h-full px-6 py-6 bg-white rounded-lg relative leading-tight hover:bg-gray-100 "
+              "h-full px-6 py-6 bg-white rounded-lg relative leading-tight"
           },
           [
             _c(
@@ -88010,62 +88171,43 @@ var render = function() {
               ]
             )
           ]),
-          _vm._v("\r\n            Mesin Peralatan & Industri\r\n        ")
+          _vm._v(
+            "\r\n            " + _vm._s(_vm.category.name) + "\r\n        "
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "flex items-center" }, [
-          _c("span", { staticClass: "text-gray-500" }, [
-            _c(
-              "svg",
-              {
-                staticClass: "w-6",
-                attrs: {
-                  fill: "currentColor",
-                  viewBox: "0 0 20 20",
-                  xmlns: "http://www.w3.org/2000/svg"
-                }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    "fill-rule": "evenodd",
-                    d:
-                      "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
-                    "clip-rule": "evenodd"
-                  }
-                })
-              ]
-            )
-          ]),
-          _vm._v("\r\n            ALat Uji & Ukur\r\n        ")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex items-center" }, [
-          _c("span", { staticClass: "text-gray-500" }, [
-            _c(
-              "svg",
-              {
-                staticClass: "w-6",
-                attrs: {
-                  fill: "currentColor",
-                  viewBox: "0 0 20 20",
-                  xmlns: "http://www.w3.org/2000/svg"
-                }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    "fill-rule": "evenodd",
-                    d:
-                      "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
-                    "clip-rule": "evenodd"
-                  }
-                })
-              ]
-            )
-          ]),
-          _vm._v("\r\n            Pressure Gauge\r\n        ")
-        ])
+        _vm.subcategory.name !== null
+          ? _c("div", { staticClass: "flex items-center" }, [
+              _c("span", { staticClass: "text-gray-500" }, [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "w-4",
+                    attrs: {
+                      fill: "currentColor",
+                      viewBox: "0 0 20 20",
+                      xmlns: "http://www.w3.org/2000/svg"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(
+                "\r\n            " +
+                  _vm._s(_vm.subcategory.name) +
+                  "\r\n        "
+              )
+            ])
+          : _vm._e()
       ]
     ),
     _vm._v(" "),
@@ -88102,13 +88244,25 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(1),
-              _vm._v(" "),
-              _vm._m(2),
-              _vm._v(" "),
-              _vm._m(3),
-              _vm._v(" "),
-              _vm._m(4),
+              _vm._l(_vm.images, function(image) {
+                return _c(
+                  "div",
+                  {
+                    key: image.id,
+                    staticClass:
+                      "shadow rounded-lg bg-white w-20 h-auto px-2 py-2"
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "rounded object-cover w-full h-16",
+                      attrs: {
+                        src: "/storage/" + image.image_path,
+                        alt: image.name
+                      }
+                    })
+                  ]
+                )
+              }),
               _vm._v(" "),
               _c("div", [
                 _c(
@@ -88133,11 +88287,112 @@ var render = function() {
                   ]
                 )
               ])
-            ]
+            ],
+            2
           )
         ]),
         _vm._v(" "),
-        _vm._m(5)
+        _c(
+          "div",
+          { staticClass: "desc-product w-full bg-gray-100 font-semibold" },
+          [
+            _c("div", { staticClass: "flex items-center" }, [
+              _c("p", { staticClass: "mr-2 text-lg leading-tight" }, [
+                _vm._v(_vm._s(_vm.product.name))
+              ]),
+              _vm._v(" "),
+              _vm._m(1)
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "border-t border-gray-300 my-4" }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "flex flex-col text-sm text-gray-600 leading-tight"
+              },
+              [
+                _c("span", { staticClass: "mb-2" }, [
+                  _vm._v("No. SNI: " + _vm._s(_vm.product.nomor_sni))
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "mb-2" }, [
+                  _vm._v(
+                    "No. Sertifikat TKDN: " +
+                      _vm._s(_vm.product.nomor_sertifikat_tkdn)
+                  )
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "mb-2" }, [
+                  _vm._v(
+                    "No. Laporan: " + _vm._s(_vm.product.nomor_laporan_tkdn)
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex items-center justify-between text-sm text-gray-600 leading-tight"
+              },
+              [
+                _c("div", { staticClass: "w-2/6" }, [_vm._v("Nilai TKDN: ")]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "w-full bg-white h-2 rounded-full mr-2 relative"
+                  },
+                  [
+                    _c("div", {
+                      staticClass: "absolute bg-green-500 h-2 rounded-full",
+                      style: "width:" + _vm.product.nilai_tkdn + "%"
+                    })
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-green-500 font-bold" }, [
+                  _vm._v(_vm._s(_vm.product.nilai_tkdn))
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "border-t border-gray-300 my-4" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex items-center justify-start" }, [
+              _c("span", { staticClass: "text-sm text-gray-600 mr-2" }, [
+                _vm._v("Harga:")
+              ]),
+              _vm._v(" "),
+              _c(
+                "span",
+                { staticClass: "font-bold text-lg text-red-600 mr-2" },
+                [_vm._v("Rp." + _vm._s(_vm.product.price))]
+              ),
+              _vm._v(" "),
+              _c("span", [_vm._v("/pc")])
+            ]),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-full mt-40" }, [
+              _c("div", { staticClass: "border-t border-gray-300 my-4" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex items-center" }, [
+                _c("span", { staticClass: "text-gray-600 mr-2 text-sm" }, [
+                  _vm._v("HS Code:")
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-gray-700" }, [
+                  _vm._v(_vm._s(_vm.product.hs_code))
+                ])
+              ])
+            ])
+          ]
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "bg-white h-full w-64 rounded-lg shadow" }, [
@@ -88154,7 +88409,13 @@ var render = function() {
                   "flex justify-center items-center flex-col leading-tight"
               },
               [
-                _vm._m(6),
+                _c("div", { staticClass: "px-4 py-4 text-center" }, [
+                  _c(
+                    "span",
+                    { staticClass: "font-bold text-sm text-gray-700" },
+                    [_vm._v(_vm._s(_vm.company.name))]
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -88197,11 +88458,33 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "border-b border-gray-400 w-full my-4" }),
             _vm._v(" "),
-            _vm._m(7),
+            _c(
+              "div",
+              { staticClass: "flex flex-col leading-tight text-gray-600" },
+              [
+                _c("div", { staticClass: "font-bold text-xs" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "px-4 py-1 flex justify-between items-center"
+                    },
+                    [
+                      _vm.company.address !== null
+                        ? _c("div", [_vm._v(_vm._s(_vm.company.address))])
+                        : _c("div", [
+                            _vm._v(
+                              "Jl. Rasamala Raya Blok L10 No 14 Perumahan Telaga Pesona Telaga Murni - Cikarang Barat"
+                            )
+                          ])
+                    ]
+                  )
+                ])
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "border-b border-gray-400 w-full my-4" }),
             _vm._v(" "),
-            _vm._m(8)
+            _vm._m(3)
           ]
         )
       ])
@@ -88279,7 +88562,46 @@ var render = function() {
           staticClass: "mt-8",
           class: { hidden: _vm.openTab !== 1, block: _vm.openTab === 1 }
         },
-        [_vm._m(9)]
+        [
+          _c("div", { staticClass: "flex-1 text-gray-700" }, [
+            _c(
+              "div",
+              { staticClass: "h-full px-6 py-6 relative leading-tight " },
+              [
+                _c(
+                  "p",
+                  {
+                    staticClass:
+                      "normal-case mb-2 font-semibold leading-tight text-lg"
+                  },
+                  [_vm._v("\r\n                        Deskripsi Produk")]
+                ),
+                _vm._v(" "),
+                _vm.product.description !== null
+                  ? _c(
+                      "p",
+                      { staticClass: "text-gray-600 leading-tight mb-8" },
+                      [
+                        _vm._v(
+                          "\r\n                        " +
+                            _vm._s(_vm.product.description) +
+                            "\r\n                    "
+                        )
+                      ]
+                    )
+                  : _c(
+                      "p",
+                      { staticClass: "text-gray-600 leading-tight mb-8" },
+                      [
+                        _vm._v(
+                          "\r\n                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste fuga repellendus repudiandae voluptas hic ut officia molestias repellat architecto nulla!\r\n                    "
+                        )
+                      ]
+                    )
+              ]
+            )
+          ])
+        ]
       ),
       _vm._v(" "),
       _c(
@@ -88288,7 +88610,46 @@ var render = function() {
           staticClass: "mt-8",
           class: { hidden: _vm.openTab !== 2, block: _vm.openTab === 2 }
         },
-        [_vm._m(10)]
+        [
+          _c("div", { staticClass: "flex-1 text-gray-700" }, [
+            _c(
+              "div",
+              { staticClass: "h-full px-6 py-6 relative leading-tight " },
+              [
+                _c(
+                  "p",
+                  {
+                    staticClass:
+                      "normal-case mb-2 font-semibold leading-tight text-lg"
+                  },
+                  [_vm._v("\r\n                        Tentang Perusahaan")]
+                ),
+                _vm._v(" "),
+                _vm.company.additional_info !== null
+                  ? _c(
+                      "p",
+                      { staticClass: "text-gray-600 leading-tight mb-8" },
+                      [
+                        _vm._v(
+                          "\r\n                        " +
+                            _vm._s(_vm.company.additional_info) +
+                            "\r\n                    "
+                        )
+                      ]
+                    )
+                  : _c(
+                      "p",
+                      { staticClass: "text-gray-600 leading-tight mb-8" },
+                      [
+                        _vm._v(
+                          "\r\n                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur explicabo eos accusamus dicta unde? Officiis voluptas sit a repellat facere?\r\n                    "
+                        )
+                      ]
+                    )
+              ]
+            )
+          ])
+        ]
       )
     ])
   ])
@@ -88310,177 +88671,22 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "shadow-sm rounded-lg bg-white w-20 h-auto px-2 py-2" },
-      [_c("img", { attrs: { src: "/img/login-img.png", alt: "" } })]
+      {
+        staticClass:
+          "rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2"
+      },
+      [_c("p", { staticClass: "text-gray-300 text-xs" }, [_vm._v("SNI")])]
     )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "shadow-sm rounded-lg bg-white w-20 h-auto px-2 py-2" },
-      [_c("img", { attrs: { src: "/img/login-img.png", alt: "" } })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "shadow-sm rounded-lg bg-white w-20 h-auto px-2 py-2" },
-      [_c("img", { attrs: { src: "/img/login-img.png", alt: "" } })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "shadow-sm rounded-lg bg-white w-20 h-auto px-2 py-2" },
-      [_c("img", { attrs: { src: "/img/login-img.png", alt: "" } })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "desc-product w-full bg-gray-100 font-semibold" },
-      [
-        _c("div", { staticClass: "flex items-center" }, [
-          _c("p", { staticClass: "mr-2 text-lg leading-tight" }, [
-            _vm._v("Customized Pre-filter untuk Blower dan FFU")
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass:
-                "rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2"
-            },
-            [_c("p", { staticClass: "text-gray-300 text-xs" }, [_vm._v("SNI")])]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "border-t border-gray-300 my-4" }),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "flex flex-col text-sm text-gray-600 leading-tight" },
-          [
-            _c("span", { staticClass: "mb-2" }, [
-              _vm._v("No. SNI: 1234546789.89")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "mb-2" }, [
-              _vm._v("No. Sertifikat TKDN: 1234546789.89")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "mb-2" }, [
-              _vm._v("No. Laporan: 1234546789.89")
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "flex items-center justify-between text-sm text-gray-600 leading-tight"
-          },
-          [
-            _c("div", { staticClass: "w-2/6" }, [_vm._v("Nilai TKDN: ")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "w-full bg-white h-2 rounded-full mr-2 relative" },
-              [
-                _c("div", {
-                  staticClass: "absolute bg-green-500 h-2 w-3/4 rounded-full"
-                })
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-green-500 font-bold" }, [
-              _vm._v("75%")
-            ])
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "border-t border-gray-300 my-4" }),
-        _vm._v(" "),
-        _c("div", { staticClass: "flex items-center justify-start" }, [
-          _c("span", { staticClass: "text-sm text-gray-600 mr-2" }, [
-            _vm._v("Harga:")
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "font-bold text-lg text-red-600 mr-2" }, [
-            _vm._v("Rp.250.000")
-          ]),
-          _vm._v(" "),
-          _c("span", [_vm._v("/pc")])
-        ]),
-        _vm._v(" "),
-        _c("div", [
-          _c("span", { staticClass: "text-xs text-gray-500" }, [
-            _vm._v("For custom order please contact the company")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "w-full mt-40" }, [
-          _c("div", { staticClass: "border-t border-gray-300 my-4" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "flex items-center" }, [
-            _c("span", { staticClass: "text-gray-600 mr-2 text-sm" }, [
-              _vm._v("HS Code:")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "text-gray-700" }, [
-              _vm._v("8501.10.3000")
-            ])
-          ])
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "px-4 py-4 text-center" }, [
-      _c("span", { staticClass: "font-bold text-sm text-gray-700" }, [
-        _vm._v("PT.MAJU JAYA PRIMA PERKASA ABADI")
+    return _c("div", [
+      _c("span", { staticClass: "text-xs text-gray-500" }, [
+        _vm._v("For custom order please contact the company")
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "flex flex-col leading-tight text-gray-600" },
-      [
-        _c("div", { staticClass: "font-bold text-xs" }, [
-          _c(
-            "div",
-            { staticClass: "px-4 py-1 flex justify-between items-center" },
-            [
-              _c("div", [
-                _vm._v(
-                  "Jl. Rasamala Raya Blok L10 No 14 Perumahan Telaga Pesona Telaga Murni - Cikarang Barat"
-                )
-              ])
-            ]
-          )
-        ])
-      ]
-    )
   },
   function() {
     var _vm = this
@@ -88505,56 +88711,6 @@ var staticRenderFns = [
         ])
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex-1 text-gray-700" }, [
-      _c("div", { staticClass: "h-full px-6 py-6 relative leading-tight " }, [
-        _c(
-          "p",
-          {
-            staticClass: "normal-case mb-2 font-semibold leading-tight text-lg"
-          },
-          [_vm._v("\r\n                        Deskripsi Perusahaan")]
-        ),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-gray-600 leading-tight mb-8" }, [
-          _vm._v(
-            "\r\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.\r\n                    "
-          )
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex-1 text-gray-700" }, [
-      _c("div", { staticClass: "h-full px-6 py-6 relative leading-tight " }, [
-        _c(
-          "p",
-          {
-            staticClass: "normal-case mb-2 font-semibold leading-tight text-lg"
-          },
-          [_vm._v("\r\n                        Tentang Perusahaan")]
-        ),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-gray-600 leading-tight mb-8" }, [
-          _vm._v(
-            "\r\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.\r\n                    "
-          )
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-gray-600 leading-tight mb-8" }, [
-          _vm._v(
-            "\r\n                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.\r\n                    "
-          )
-        ])
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -89355,42 +89511,6 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm.loading
-              ? _c("div", { staticClass: "z-30 flex justify-around" }, [
-                  _c(
-                    "svg",
-                    {
-                      staticClass: "animate-spin absolute w-12 h-12",
-                      attrs: {
-                        version: "1.1",
-                        id: "Layer_1",
-                        xmlns: "http://www.w3.org/2000/svg",
-                        "xmlns:xlink": "http://www.w3.org/1999/xlink",
-                        x: "0px",
-                        y: "0px",
-                        width: "122.315px",
-                        height: "122.88px",
-                        viewBox: "0 0 122.315 122.88",
-                        "enable-background": "new 0 0 122.315 122.88",
-                        "xml:space": "preserve"
-                      }
-                    },
-                    [
-                      _c("g", [
-                        _c("path", {
-                          attrs: {
-                            "fill-rule": "evenodd",
-                            "clip-rule": "evenodd",
-                            d:
-                              "M94.754,14.534c8.844,0,16.014,7.17,16.014,16.012 c0,8.844-7.17,16.015-16.014,16.015c-8.843,0-16.013-7.17-16.013-16.015C78.741,21.704,85.911,14.534,94.754,14.534L94.754,14.534z M109.265,52.121c-7.205,0-13.049,5.844-13.049,13.048c0,7.207,5.844,13.049,13.049,13.051c7.207,0,13.051-5.844,13.051-13.051 C122.315,57.965,116.472,52.121,109.265,52.121L109.265,52.121z M94.135,89.903c-5.032,0-9.114,4.082-9.114,9.113 c0,5.032,4.082,9.114,9.114,9.114c5.031,0,9.113-4.082,9.113-9.114C103.248,93.985,99.166,89.903,94.135,89.903L94.135,89.903z M59.275,104.65c-5.032,0-9.114,4.081-9.114,9.113c0,5.034,4.082,9.116,9.114,9.116s9.113-4.082,9.113-9.116 C68.389,108.731,64.308,104.65,59.275,104.65L59.275,104.65z M23.652,90.86c-4.717,0-8.54,3.823-8.54,8.54 c0,4.715,3.823,8.54,8.54,8.54c4.714,0,8.538-3.825,8.538-8.54C32.19,94.684,28.366,90.86,23.652,90.86L23.652,90.86z M9.096,54.872C4.072,54.872,0,58.944,0,63.968c0,5.021,4.072,9.093,9.096,9.093c5.021,0,9.093-4.072,9.093-9.093 C18.189,58.944,14.116,54.872,9.096,54.872L9.096,54.872z M23.652,17.026c-6.354,0-11.508,5.155-11.508,11.509 s5.154,11.506,11.508,11.506s11.506-5.152,11.506-11.506S30.006,17.026,23.652,17.026L23.652,17.026z M59.341,0 c-7.651,0-13.858,6.205-13.858,13.855c0,7.651,6.207,13.856,13.858,13.856s13.856-6.205,13.856-13.856 C73.197,6.205,66.992,0,59.341,0L59.341,0z"
-                          }
-                        })
-                      ])
-                    ]
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
             _c(
               "div",
               { staticClass: "mt-8 grid grid-cols-5 gap-4" },
@@ -89520,7 +89640,11 @@ var render = function() {
                             ]
                           ),
                           _vm._v(" "),
-                          _vm._m(7, true)
+                          _c(
+                            "a",
+                            { attrs: { href: "/product-detail" + product.id } },
+                            [_vm._m(7, true)]
+                          )
                         ])
                       ]
                     )
@@ -89529,6 +89653,49 @@ var render = function() {
               }),
               0
             ),
+            _vm._v(" "),
+            _vm.loading
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "z-30 flex justify-around relative opacity-25 bg-black inset-0"
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "animate-spin absolute w-12 h-12",
+                        attrs: {
+                          version: "1.1",
+                          id: "Layer_1",
+                          xmlns: "http://www.w3.org/2000/svg",
+                          "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                          x: "0px",
+                          y: "0px",
+                          width: "122.315px",
+                          height: "122.88px",
+                          viewBox: "0 0 122.315 122.88",
+                          "enable-background": "new 0 0 122.315 122.88",
+                          "xml:space": "preserve"
+                        }
+                      },
+                      [
+                        _c("g", [
+                          _c("path", {
+                            attrs: {
+                              "fill-rule": "evenodd",
+                              "clip-rule": "evenodd",
+                              d:
+                                "M94.754,14.534c8.844,0,16.014,7.17,16.014,16.012 c0,8.844-7.17,16.015-16.014,16.015c-8.843,0-16.013-7.17-16.013-16.015C78.741,21.704,85.911,14.534,94.754,14.534L94.754,14.534z M109.265,52.121c-7.205,0-13.049,5.844-13.049,13.048c0,7.207,5.844,13.049,13.049,13.051c7.207,0,13.051-5.844,13.051-13.051 C122.315,57.965,116.472,52.121,109.265,52.121L109.265,52.121z M94.135,89.903c-5.032,0-9.114,4.082-9.114,9.113 c0,5.032,4.082,9.114,9.114,9.114c5.031,0,9.113-4.082,9.113-9.114C103.248,93.985,99.166,89.903,94.135,89.903L94.135,89.903z M59.275,104.65c-5.032,0-9.114,4.081-9.114,9.113c0,5.034,4.082,9.116,9.114,9.116s9.113-4.082,9.113-9.116 C68.389,108.731,64.308,104.65,59.275,104.65L59.275,104.65z M23.652,90.86c-4.717,0-8.54,3.823-8.54,8.54 c0,4.715,3.823,8.54,8.54,8.54c4.714,0,8.538-3.825,8.538-8.54C32.19,94.684,28.366,90.86,23.652,90.86L23.652,90.86z M9.096,54.872C4.072,54.872,0,58.944,0,63.968c0,5.021,4.072,9.093,9.096,9.093c5.021,0,9.093-4.072,9.093-9.093 C18.189,58.944,14.116,54.872,9.096,54.872L9.096,54.872z M23.652,17.026c-6.354,0-11.508,5.155-11.508,11.509 s5.154,11.506,11.508,11.506s11.506-5.152,11.506-11.506S30.006,17.026,23.652,17.026L23.652,17.026z M59.341,0 c-7.651,0-13.858,6.205-13.858,13.855c0,7.651,6.207,13.856,13.858,13.856s13.856-6.205,13.856-13.856 C73.197,6.205,66.992,0,59.341,0L59.341,0z"
+                            }
+                          })
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              : _vm._e(),
             _vm._v(" "),
             _c(
               "div",
@@ -90064,23 +90231,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "/product-detail" } }, [
-      _c(
-        "button",
-        {
-          staticClass:
-            "hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ",
-          attrs: { type: "button" }
-        },
-        [
-          _c(
-            "p",
-            { staticClass: "text-white leading-none font-bold text-sm" },
-            [_vm._v("See Product")]
-          )
-        ]
-      )
-    ])
+    return _c(
+      "button",
+      {
+        staticClass:
+          "hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ",
+        attrs: { type: "button" }
+      },
+      [
+        _c("p", { staticClass: "text-white leading-none font-bold text-sm" }, [
+          _vm._v("See Product")
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

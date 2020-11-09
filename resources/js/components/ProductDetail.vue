@@ -9,24 +9,17 @@
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                 </svg>
             </span>
-            Mesin Peralatan & Industri
+            {{ category.name }}
         </div>
-        <div class="flex items-center">
+        <div class="flex items-center" v-if="subcategory.name !== null">
             <span class="text-gray-500">
-                <svg class="w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                 </svg>
             </span>
-            ALat Uji & Ukur
+            {{ subcategory.name }}
         </div>
-        <div class="flex items-center">
-            <span class="text-gray-500">
-                <svg class="w-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
-            </span>
-            Pressure Gauge
-        </div>
+
     </div>
 
     <!-- MAIN CONTENT-->
@@ -50,17 +43,8 @@
                         </svg>
                     </div>
 
-                    <div class="shadow-sm rounded-lg bg-white w-20 h-auto px-2 py-2">
-                        <img src="/img/login-img.png" alt="">
-                    </div>
-                    <div class="shadow-sm rounded-lg bg-white w-20 h-auto px-2 py-2">
-                        <img src="/img/login-img.png" alt="">
-                    </div>
-                    <div class="shadow-sm rounded-lg bg-white w-20 h-auto px-2 py-2">
-                        <img src="/img/login-img.png" alt="">
-                    </div>
-                    <div class="shadow-sm rounded-lg bg-white w-20 h-auto px-2 py-2">
-                        <img src="/img/login-img.png" alt="">
+                    <div class="shadow rounded-lg bg-white w-20 h-auto px-2 py-2" v-for="image in images" :key="image.id">
+                        <img :src="'/storage/'+image.image_path" :alt="image.name" class="rounded object-cover w-full h-16">
                     </div>
 
                     <div>
@@ -75,7 +59,7 @@
             <div class="desc-product w-full bg-gray-100 font-semibold">
 
                 <div class="flex items-center">
-                    <p class="mr-2 text-lg leading-tight">Customized Pre-filter untuk Blower dan FFU</p>
+                    <p class="mr-2 text-lg leading-tight">{{product.name}}</p>
                     <div class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2">
                         <p class="text-gray-300 text-xs">SNI</p>
                     </div>
@@ -84,23 +68,24 @@
                 <div class="border-t border-gray-300 my-4"></div>
 
                 <div class="flex flex-col text-sm text-gray-600 leading-tight">
-                    <span class="mb-2">No. SNI: 1234546789.89</span>
-                    <span class="mb-2">No. Sertifikat TKDN: 1234546789.89</span>
-                    <span class="mb-2">No. Laporan: 1234546789.89</span>
+                    <span class="mb-2">No. SNI: {{product.nomor_sni}}</span>
+                    <span class="mb-2">No. Sertifikat TKDN: {{product.nomor_sertifikat_tkdn}}</span>
+                    <span class="mb-2">No. Laporan: {{product.nomor_laporan_tkdn}}</span>
                 </div>
+
                 <div class="flex items-center justify-between text-sm text-gray-600 leading-tight">
                     <div class="w-2/6">Nilai TKDN: </div>
                     <div class="w-full bg-white h-2 rounded-full mr-2 relative">
-                        <div class="absolute bg-green-500 h-2 w-3/4 rounded-full"></div>
+                        <div class="absolute bg-green-500 h-2 rounded-full" :style="'width:'+product.nilai_tkdn+'%'"></div>
                     </div>
-                    <div class="text-green-500 font-bold">75%</div>
+                    <div class="text-green-500 font-bold">{{product.nilai_tkdn}}</div>
                 </div>
 
                 <div class="border-t border-gray-300 my-4"></div>
 
                 <div class="flex items-center justify-start">
                     <span class="text-sm text-gray-600 mr-2">Harga:</span>
-                    <span class="font-bold text-lg text-red-600 mr-2">Rp.250.000</span>
+                    <span class="font-bold text-lg text-red-600 mr-2">Rp.{{product.price}}</span>
                     <span>/pc</span>
                 </div>
 
@@ -112,7 +97,7 @@
                     <div class="border-t border-gray-300 my-4"></div>
                     <div class="flex items-center">
                         <span class="text-gray-600 mr-2 text-sm">HS Code:</span>
-                        <span class="text-gray-700">8501.10.3000</span>
+                        <span class="text-gray-700">{{product.hs_code}}</span>
                     </div>
                 </div>
 
@@ -128,7 +113,7 @@
 
                 <div class="flex justify-center items-center flex-col leading-tight">
                     <div class="px-4 py-4 text-center">
-                        <span class="font-bold text-sm text-gray-700">PT.MAJU JAYA PRIMA PERKASA ABADI</span>
+                        <span class="font-bold text-sm text-gray-700">{{company.name}}</span>
                     </div>
                     <div class="flex justify-between items-center bg-blue-500 rounded-full px-4 py-1 my-4 leading-tight text-gray-300 text-xs">
                         <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -145,7 +130,8 @@
                 <div class="flex flex-col leading-tight text-gray-600">
                     <div class="font-bold text-xs">
                         <div class="px-4 py-1 flex justify-between items-center">
-                            <div>Jl. Rasamala Raya Blok L10 No 14 Perumahan Telaga Pesona Telaga Murni - Cikarang Barat</div>
+                            <div v-if="company.address !== null">{{company.address}}</div>
+                            <div v-else>Jl. Rasamala Raya Blok L10 No 14 Perumahan Telaga Pesona Telaga Murni - Cikarang Barat</div>
                         </div>
                     </div>
                 </div>
@@ -191,14 +177,17 @@
 
         </div>
 
-        <!-- Deskripsi CARD -->
+        <!-- Deskripsi Produk -->
         <div class="mt-8" v-bind:class="{'hidden': openTab !== 1, 'block': openTab === 1}">
             <div class="flex-1 text-gray-700">
                 <div class="h-full px-6 py-6 relative leading-tight ">
                     <p class="normal-case mb-2 font-semibold leading-tight text-lg">
-                        Deskripsi Perusahaan</p>
-                    <p class="text-gray-600 leading-tight mb-8">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.
+                        Deskripsi Produk</p>
+                    <p class="text-gray-600 leading-tight mb-8" v-if="product.description !== null">
+                        {{ product.description }}
+                    </p>
+                    <p class="text-gray-600 leading-tight mb-8" v-else>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste fuga repellendus repudiandae voluptas hic ut officia molestias repellat architecto nulla!
                     </p>
                 </div>
             </div>
@@ -209,12 +198,13 @@
                 <div class="h-full px-6 py-6 relative leading-tight ">
                     <p class="normal-case mb-2 font-semibold leading-tight text-lg">
                         Tentang Perusahaan</p>
-                    <p class="text-gray-600 leading-tight mb-8">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.
+                    <p class="text-gray-600 leading-tight mb-8" v-if="company.additional_info !== null">
+                        {{ company.additional_info }}
                     </p>
-                    <p class="text-gray-600 leading-tight mb-8">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Bibendum est ultricies integer quis. Iaculis urna id volutpat lacus laoreet. Mauris vitae ultricies leo integer malesuada. Ac odio tempor orci dapibus ultrices in. Egestas diam in arcu cursus euismod. Dictum fusce ut placerat orci nulla.
+                    <p class="text-gray-600 leading-tight mb-8" v-else>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur explicabo eos accusamus dicta unde? Officiis voluptas sit a repellat facere?
                     </p>
+
                 </div>
             </div>
         </div>
@@ -227,11 +217,49 @@
 export default {
     data() {
         return {
-            openTab: 1
+            openTab: 1,
+            product: {},
+            images: [],
+            category: {},
+            subcategory: {},
+            company: {},
         }
     },
 
+    created() {
+        this.loadProductDetail();
+        // this.getProductIdFromUrl();
+    },
+
     methods: {
+
+        getProductIdFromUrl: function () {
+            let currentUrl = window.location.pathname;
+            let arr = new Array();
+            arr = currentUrl.split("/");
+            let id = arr[2];
+            return id;
+            // console.log(arr);
+        },
+
+        loadProductDetail: function () {
+            let product_id = this.getProductIdFromUrl();
+            let url = '/api/product-detail/' + product_id;
+            axios.get(url)
+                .then((response) => {
+                    this.loading = false
+                    this.product = response.data.product;
+                    this.images = response.data.images;
+                    this.category = response.data.category;
+                    this.subcategory = response.data.subcategory;
+                    this.company = response.data.company;
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        },
+
         toggleTabs: function (tabNumber) {
             this.openTab = tabNumber;
         }

@@ -19,7 +19,24 @@ class ProductController extends Controller
         return ProductResource::collection($products);
     }
 
-    public function createPost(Request $request)
+    public function productDetail($id)
+    {
+        $product = Product::find($id);
+        $images = ProductImage::where('product_id', $id)->with('product')->get();
+        $company = Product::find($id)->user;
+        $category = Product::find($id)->category;
+        $subcategory = Product::find($id)->subcategory;
+        
+        return response()->json([
+            'product' => $product,
+            'images' => $images,
+            'company' => $company,
+            'category' => $category,
+            'subcategory' => $subcategory,
+        ]);
+    }
+
+    public function addProduct(Request $request)
     {
         $request->validate([
             'name'=>'required',

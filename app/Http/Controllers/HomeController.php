@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
+use App\ProductImage;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -46,8 +48,8 @@ class HomeController extends Controller
         return view('company-list');
     }
 
-    public function productDetail()
-    {
+    public function productDetail($id)
+    {        
         return view('product-detail');
     }
 
