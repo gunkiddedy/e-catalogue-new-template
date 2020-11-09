@@ -124,7 +124,7 @@
 
                                 <div class="flex items-center justify-start mb-2">
                                     <h3 class="text-lg leading-tight font-semibold text-gray-400">
-                                        Add New Product <span class="ml-4 font-semibold font-sf-pro" :class="{'text-green-400': status, 'text-red-400': !status }">{{ status_msg }}</span>
+                                        Add New Product <span class="ml-4 text-sm font-sf-pro" :class="{'text-green-400': status, 'text-red-400': !status }">{{ status_msg }}</span>
                                     </h3>
                                 </div>
 
@@ -225,10 +225,10 @@
                                                 <div class="product-name mb-3">
                                                     <div class="inline-block relative w-full">
                                                         <select name="category_id" id="category_id" v-model="select_category" @change="loadSubCategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
-                                                            <option value="" selected="selected">
+                                                            <option class="text-gray-700" value="" selected="selected">
                                                                 -Select Category-
                                                             </option>
-                                                            <option v-for="(cat, i) in categories" :value="cat.id" :key="i">
+                                                            <option class="text-gray-700" v-for="(cat, i) in categories" :value="cat.id" :key="i">
                                                                 {{cat.name}}
                                                             </option>
                                                         </select>
@@ -242,10 +242,10 @@
                                                 <div class="product-name mb-3">
                                                     <div class="inline-block relative w-full">
                                                         <select name="subcategory_id" id="subcategory_id" v-model="select_subcategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
-                                                            <option value="" selected="selected">
+                                                            <option class="text-gray-700" value="" selected="selected">
                                                                 -Select Sub Category-
                                                             </option>
-                                                            <option v-for="(subc, i) in subcategories" :key="i" :value="subc.id">
+                                                            <option class="text-gray-700" v-for="(subc, i) in subcategories" :key="i" :value="subc.id">
                                                                 {{subc.name}}
                                                             </option>
                                                         </select>

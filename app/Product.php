@@ -46,16 +46,20 @@ class Product extends Model
         return $this->hasMany(ProductImage::class);
     }
 
-    // accessor function
+    // ----------accessor function--------------------
     public function getNameAttribute($value)
     {
         return ucfirst($value);
     }
-
     public function getBrandAttribute($value)
     {
         return ucfirst($value);
     }
+    public function getCompanyNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+    // --------------------------------------------
 
     public function scopeWithFilters($query)
     {
