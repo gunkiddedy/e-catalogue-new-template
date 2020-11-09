@@ -10525,8 +10525,16 @@ video {
   height: 20rem;
 }
 
+.h-82{
+  height: 20.5rem;
+}
+
 .h-88{
   height: 22rem;
+}
+
+.h-106{
+  height: 26.5rem;
 }
 
 .h-auto{
@@ -10641,8 +10649,16 @@ video {
   height: 20rem;
 }
 
+.hover\:h-82:hover{
+  height: 20.5rem;
+}
+
 .hover\:h-88:hover{
   height: 22rem;
+}
+
+.hover\:h-106:hover{
+  height: 26.5rem;
 }
 
 .hover\:h-auto:hover{
@@ -34432,8 +34448,16 @@ video {
     height: 20rem;
   }
 
+  .sm\:h-82{
+    height: 20.5rem;
+  }
+
   .sm\:h-88{
     height: 22rem;
+  }
+
+  .sm\:h-106{
+    height: 26.5rem;
   }
 
   .sm\:h-auto{
@@ -34548,8 +34572,16 @@ video {
     height: 20rem;
   }
 
+  .sm\:hover\:h-82:hover{
+    height: 20.5rem;
+  }
+
   .sm\:hover\:h-88:hover{
     height: 22rem;
+  }
+
+  .sm\:hover\:h-106:hover{
+    height: 26.5rem;
   }
 
   .sm\:hover\:h-auto:hover{
@@ -58266,8 +58298,16 @@ video {
     height: 20rem;
   }
 
+  .md\:h-82{
+    height: 20.5rem;
+  }
+
   .md\:h-88{
     height: 22rem;
+  }
+
+  .md\:h-106{
+    height: 26.5rem;
   }
 
   .md\:h-auto{
@@ -58382,8 +58422,16 @@ video {
     height: 20rem;
   }
 
+  .md\:hover\:h-82:hover{
+    height: 20.5rem;
+  }
+
   .md\:hover\:h-88:hover{
     height: 22rem;
+  }
+
+  .md\:hover\:h-106:hover{
+    height: 26.5rem;
   }
 
   .md\:hover\:h-auto:hover{
@@ -82100,8 +82148,16 @@ video {
     height: 20rem;
   }
 
+  .lg\:h-82{
+    height: 20.5rem;
+  }
+
   .lg\:h-88{
     height: 22rem;
+  }
+
+  .lg\:h-106{
+    height: 26.5rem;
   }
 
   .lg\:h-auto{
@@ -82216,8 +82272,16 @@ video {
     height: 20rem;
   }
 
+  .lg\:hover\:h-82:hover{
+    height: 20.5rem;
+  }
+
   .lg\:hover\:h-88:hover{
     height: 22rem;
+  }
+
+  .lg\:hover\:h-106:hover{
+    height: 26.5rem;
   }
 
   .lg\:hover\:h-auto:hover{
@@ -105934,8 +105998,16 @@ video {
     height: 20rem;
   }
 
+  .xl\:h-82{
+    height: 20.5rem;
+  }
+
   .xl\:h-88{
     height: 22rem;
+  }
+
+  .xl\:h-106{
+    height: 26.5rem;
   }
 
   .xl\:h-auto{
@@ -106050,8 +106122,16 @@ video {
     height: 20rem;
   }
 
+  .xl\:hover\:h-82:hover{
+    height: 20.5rem;
+  }
+
   .xl\:hover\:h-88:hover{
     height: 22rem;
+  }
+
+  .xl\:hover\:h-106:hover{
+    height: 26.5rem;
   }
 
   .xl\:hover\:h-auto:hover{

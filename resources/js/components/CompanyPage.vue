@@ -457,7 +457,6 @@ export default {
     data() {
         return {
             loading: true,
-            // products: {},
 
             openTab: 2,
             showModal: false,
