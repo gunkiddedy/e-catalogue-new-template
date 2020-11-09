@@ -518,7 +518,6 @@ export default {
 
     created() {
         this.loadCategory();
-        // this.loadProducts();
         this.loadCompanyDetail();
     },
 
@@ -554,19 +553,6 @@ export default {
                     console.log(error);
                 });
         },
-
-        // loadProducts: function () {
-        //     axios.get('/api/products', {
-        //             params: this.selected
-        //         })
-        //         .then((response) => {
-        //             this.loading = false
-        //             this.products = response.data;
-        //         })
-        //         .catch(function (error) {
-        //             console.log(error);
-        //         });
-        // },
 
         updateImageList(file) {
             this.imageList.push(file.raw);
@@ -854,14 +840,6 @@ export default {
                 this.nilai_tkdn = '';
             }
         }
-        // showSNI: function () {
-        //     this.show_sni = !this.show_sni;
-        //     this.required = 'required';
-        // },
-        // showTKDN: function () {
-        //     this.show_tkdn = !this.show_tkdn;
-        //     this.required = 'required';
-        // }
 
     }
 }

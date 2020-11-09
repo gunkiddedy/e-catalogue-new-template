@@ -73,11 +73,21 @@
                 <!-- RIGHT SIDE-->
                 <div class="desc-product w-full bg-gray-100 font-semibold">
 
-                    <div class="flex items-center">
-                        <p class="mr-2 text-lg leading-tight">{{product.name}}</p>
+                    <div class="flex items-center justify-between">
+                        <p class="text-lg leading-tight">{{product.name}}</p>
                         <div class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2">
                             <p class="text-gray-300 text-xs">SNI</p>
                         </div>
+                        <span class="text-blue-400 ml-6 cursor-pointer" @click="modalEdit()">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                            </svg>
+                        </span>
+                        <span class="text-orange-400 cursor-pointer" @click="deleteProduct()">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                        </span>
                     </div>
 
                     <div class="border-t border-gray-300 my-4"></div>
@@ -169,6 +179,203 @@
         </div>
     </transition>
 
+    <!-- MODAL FORM-->
+    <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center items-center flex">
+        <div class="relative max-w-4xl w-9/12">
+            <!--content-->
+            <div class="bg-white border-0 rounded-lg shadow-lg relative px-6 py-4">
+                <!--header-->
+                <div class="flex justify-end absolute right-0 top-0 -mt-5 -mr-5">
+                    <!-- CLOSE BUTTON CIRCLE-->
+                    <div class="flex items-center justify-center">
+                        <button class="bg-red-500 relative w-12 h-12 rounded-full p-1 border-4 border-white text-white" @click="modalEdit()">
+                            <svg class="w-6 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-start mb-2">
+                    <h3 class="text-lg leading-tight font-semibold text-gray-400">
+                        Add New Product <span class="ml-4 text-sm font-sf-pro" :class="{'text-green-400': status, 'text-red-400': !status }">{{ status_msg }}</span>
+                    </h3>
+                </div>
+
+                <!--body-->
+                <!--<div v-if="status_msg" :class="{'text-green-400': status, 'text-red-400': !status }">
+                                    <span>{{ status_msg }}</span>
+                                </div>-->
+
+                <form>
+                    <div class="grid grid-cols-2 gap-4 h-full">
+                        <!-- LEFT SIDE-->
+                        <div class="left w-full h-full py-2">
+                            <div class="product-name mb-3">
+                                <input id="name" v-model="name" class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Product Name">
+                            </div>
+                            <div class="grid grid-rows-2">
+                                <div class="flex mb-3 items-center justify-between">
+                                    <div class="w-1/12">
+                                        <!--<input true-value="1" false-value="0" type="checkbox" name="sni" id="sni" v-model="sni" class="rounded-lg">-->
+                                        <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+                                            <input name="sni" id="sni" v-model="sni" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
+                                            <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20">
+                                                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <label @click="toggleInputSNI" for="sni" class="text-gray-500 font-semibold w-1/6 mr-4">
+                                        SNI
+                                    </label>
+                                    <div class="w-full">
+                                        <input :disabled="disabled_input_SNI" name="nomor_sni" id="nomor_sni" v-model="nomor_sni" @keyup="checkSNI(nomor_sni)" type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_nomor_sni, 'text-red-400': isError_nomor_sni}">
+
+                                    </div>
+                                </div>
+                                <div class="flex mb-3 items-center justify-between">
+                                    <div class="w-1/12">
+                                        <!--<input type="checkbox" true-value="1" false-value="0" name="tkdn" id="tkdn" v-model="tkdn" class="rounded-lg">-->
+                                        <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+                                            <input name="tkdn" id="tkdn" v-model="tkdn" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
+                                            <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20">
+                                                <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <label @click="toggleInputTKDN" for="tkdn" class="text-gray-500 font-semibold w-1/6 mr-4">
+                                        TKDN
+                                    </label>
+                                    <div class="w-full">
+                                        <input :disabled="disabled_input_TKDN" name="nilai_tkdn" id="nilai_tkdn" v-model="nilai_tkdn" @keyup="checkNilaiTKDN(nilai_tkdn)" type="text" placeholder="Nilai TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4" :class="{'text-green-400': isSuccess_nilai_tkdn, 'text-red-400': isError_nilai_tkdn}">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-rows-2">
+                                <div class="flex mb-3 items-center justify-between">
+                                    <div class="w-1/12">
+                                        &nbsp;
+                                    </div>
+                                    <div class="font-semibold text-lg w-1/6 mr-4">
+                                        &nbsp;
+                                    </div>
+                                    <div class="w-full">
+                                        <input v-model="nomor_sertifikat_tkdn" @keyup="checkSertiTKDN(nomor_sertifikat_tkdn)" name="nomor_sertifikat_tkdn" id="nomor_sertifikat_tkdn" type="text" placeholder="Nomor Sertifikat TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_sertifikat_tkdn, 'text-red-400': isError_sertifikat_tkdn}">
+
+                                    </div>
+                                </div>
+                                <div class="flex mb-3 items-center justify-between">
+                                    <div class="w-1/12">
+                                        &nbsp;
+                                    </div>
+                                    <div class="font-semibold text-lg w-1/6 mr-4">
+                                        &nbsp;
+                                    </div>
+                                    <div class="w-full">
+                                        <input name="nomor_laporan_tkdn" v-model="nomor_laporan_tkdn" @keyup="checkLapTKDN(nomor_laporan_tkdn)" id="nomor_laporan_tkdn" type="text" placeholder="Nomor Laporan" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_laporan_tkdn, 'text-red-400': isError_laporan_tkdn}">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-rows-1">
+                                <div class="flex mb-3 items-center justify-between">
+                                    <div class="text-gray-500 w-26-persen font-semibold mr-4">
+                                        HS Code
+                                    </div>
+                                    <div class="w-full">
+                                        <input name="hs_code" id="hs_code" v-model="hs_code" @keypress="checkHsCode(hs_code)" :class="{'text-green-400': isSuccess_hscode, 'text-red-400': isError_hscode}" type="text" placeholder="ex. 0987789009876" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- RIGHT SIDE-->
+                        <div class="right w-full h-full py-2">
+
+                            <div class="grid grid-rows-2">
+                                <div class="product-name mb-3">
+                                    <div class="inline-block relative w-full">
+                                        <select name="category_id" id="category_id" v-model="select_category" @change="loadSubCategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
+                                            <option class="text-gray-700" value="" selected="selected">
+                                                -Select Category-
+                                            </option>
+                                            <option class="text-gray-700" v-for="(cat, i) in categories" :value="cat.id" :key="i">
+                                                {{cat.name}}
+                                            </option>
+                                        </select>
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-name mb-3">
+                                    <div class="inline-block relative w-full">
+                                        <select name="subcategory_id" id="subcategory_id" v-model="select_subcategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
+                                            <option class="text-gray-700" value="" selected="selected">
+                                                -Select Sub Category-
+                                            </option>
+                                            <option class="text-gray-700" v-for="(subc, i) in subcategories" :key="i" :value="subc.id">
+                                                {{subc.name}}
+                                            </option>
+                                        </select>
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="description mb-3">
+                                <textarea name="description" id="description" v-model="description" placeholder="Tulis deskripsi produk" class="h-30 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"></textarea>
+                            </div>
+
+                            <div class="flex mb-3 items-center justify-between">
+                                <!--<span class="font-semibold mr-4">Rp</span>-->
+                                <div class="w-full">
+                                    <input type="text" name="price" id="price" v-model="price" placeholder="Masukkan harga" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                </div>
+                            </div>
+
+                            <div class="mb-1">
+                                <span class="text-gray-500 text-sm font-semibold">
+                                    *Upload max 5 photos</span>
+                            </div>
+
+                            <div class="button-plus-upload flex px-4 justify-between items-center mb-3">
+                                <div class>
+                                    <el-upload action="#" list-type="picture-card" :on-preview="handlePreview" :on-change="updateImageList" :limit="5" :on-exceed="handleExceed" :on-remove="handleRemove" :auto-upload="false">
+                                        <i class="el-icon-plus" />
+                                    </el-upload>
+                                    <el-dialog :visible.sync="dialogVisible" v-if="!status">
+                                        <img width="100%" :src="dialogImageUrl" alt>
+                                    </el-dialog>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-end">
+                                <button :class="{'disabled': isCreatingPost}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="createPost">
+                                    <svg v-if="isCreatingPost" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    {{ isCreatingPost ? "Submitting..." : "Submit Product" }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- DIV AFTER MODAL SHOW UP -->
+    <div v-if="showModal" class="opacity-25 fixed inset-0 z-30 bg-black"></div>
+
     <!-- TAB DESC -->
     <div class="w-full mt-12">
 
@@ -233,6 +440,7 @@
 export default {
     data() {
         return {
+            showModal: false,
             loading: true,
             openTab: 1,
             product: {},
@@ -251,6 +459,10 @@ export default {
     },
 
     methods: {
+
+        modalEdit: function () {
+            this.showModal = !this.showModal;
+        },
 
         switchImage: function (param) {
             this.indexImage = param;
