@@ -89642,7 +89642,9 @@ var render = function() {
                           _vm._v(" "),
                           _c(
                             "a",
-                            { attrs: { href: "/product-detail" + product.id } },
+                            {
+                              attrs: { href: "/product-detail/" + product.id }
+                            },
                             [_vm._m(7, true)]
                           )
                         ])

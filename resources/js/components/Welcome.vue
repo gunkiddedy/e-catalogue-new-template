@@ -285,7 +285,7 @@
                             <p class="text-xs mb-4 text-gray-500">
                                 Visit in order to contact the seller
                             </p>
-                            <a :href="'/product-detail'+product.id">
+                            <a :href="'/product-detail/'+product.id">
                                 <button type="button" class="hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ">
                                     <p class="text-white leading-none font-bold text-sm">See Product</p>
                                 </button>
