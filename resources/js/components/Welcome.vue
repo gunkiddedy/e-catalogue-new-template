@@ -259,8 +259,8 @@
                         <p class="normal-case mb-6 font-bold text-sm leading-tight h-2.25rem">
                             {{ product.name }}
                         </p>
-                        <p class="uppercase text-gray-600 leading-tight text-xs h-2.25rem">
-                            {{ product.company_name }}
+                        <p class="uppercase text-gray-600 leading-tight text-xs h-2.25rem hover:text-blue-400">
+                            <a :href="'/company-page/'+product.user_id">{{ product.company_name }}</a>
                         </p>
                         <div>
                             <p class="mt-2 mb-2 text-xs text-gray-500">

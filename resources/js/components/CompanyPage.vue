@@ -561,7 +561,6 @@ export default {
         },
         handleRemove(file) {
             this.imageList.splice(file, 1);
-            console.log(this.imageList);
         },
         handlePreview(file) {
             this.dialogImageUrl = file.url

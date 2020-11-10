@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="flex justify-start items-center">
-                            <div class="shadow rounded-lg bg-white w-20 h-auto px-2 py-2 mr-2" v-for="(image, index) in images" :key="image.id">
+                            <div class="shadow rounded-lg bg-white w-20 h-auto px-1 py-1 mr-2" v-for="(image, index) in images" :key="image.id">
                                 <img @click="switchImage(index)" :src="'/storage/'+image.image_path" :alt="image.name" class="rounded object-cover w-full h-16 cursor-pointer">
                             </div>
                         </div>
@@ -82,12 +82,12 @@
                         </div>
 
                         <div class="flex items-center justify-start">
-                            <span class="text-blue-400 mr-2 cursor-pointer" @click="modalEdit(product.id)">
+                            <span class="text-blue-400 mr-2 cursor-pointer hover:shadow-outline" @click="modalEdit(product.id)">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                                 </svg>
                             </span>
-                            <span class="text-orange-400 cursor-pointer" @click="deleteProduct()">
+                            <span class="text-orange-400 cursor-pointer hover:shadow-outline" @click="deleteProduct()">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                                 </svg>
@@ -98,18 +98,32 @@
 
                     <div class="border-t border-gray-300 my-4"></div>
 
-                    <div class="flex flex-col text-sm text-gray-600 leading-tight">
-                        <span class="mb-2">No. SNI: {{product.nomor_sni}}</span>
-                        <span class="mb-2">No. Sertifikat TKDN: {{product.nomor_sertifikat_tkdn}}</span>
-                        <span class="mb-2">No. Laporan: {{product.nomor_laporan_tkdn}}</span>
+                    <div class="flex flex-col text-sm leading-tight w-7/12">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-500">No. SNI:</span>
+                            <span class="text-gray-600">{{product.nomor_sni}}</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-500">No. Sertifikat TKDN: </span>
+                            <span class="text-gray-600">{{product.nomor_sertifikat_tkdn}}</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-gray-500">No. Laporan: </span>
+                            <span class="text-gray-600">{{product.nomor_laporan_tkdn}}</span>
+                        </div>
                     </div>
 
-                    <div class="flex items-center justify-between text-sm text-gray-600 leading-tight">
+                    <div class="flex items-center justify-between text-sm text-gray-500 leading-tight">
                         <div class="w-2/6">Nilai TKDN: </div>
                         <div class="w-full bg-white h-2 rounded-full mr-2 relative">
                             <div class="absolute bg-green-500 h-2 rounded-full" :style="'width:'+product.nilai_tkdn+'%'"></div>
                         </div>
-                        <div class="text-green-500 font-bold">{{product.nilai_tkdn}}</div>
+                        <div class="text-green-500 font-bold" v-if="product.nilai_tkdn !== null">
+                            {{product.nilai_tkdn}}
+                        </div>
+                        <div class="text-green-500 font-bold" v-else>
+                            0
+                        </div>
                     </div>
 
                     <div class="border-t border-gray-300 my-4"></div>
@@ -127,8 +141,8 @@
                     <div class="w-full mt-40">
                         <div class="border-t border-gray-300 my-3"></div>
                         <div class="flex items-center">
-                            <span class="text-gray-600 mr-2 text-sm">HS Code:</span>
-                            <span class="text-gray-700">{{product.hs_code}}</span>
+                            <span class="text-gray-500 mr-2 text-sm">HS Code:</span>
+                            <span class="text-gray-600">{{product.hs_code}}</span>
                         </div>
                     </div>
 
@@ -349,13 +363,16 @@
                                     *Upload max 5 photos</span>
                             </div>
 
+                            <!-- ======================UPLOAD IMAGE HERE=============================-->
                             <div class="button-plus-upload flex px-4 justify-between items-center mb-3">
                                 <div class>
                                     <el-upload action="#" list-type="picture-card" :on-preview="handlePreview" :on-change="updateImageList" :limit="5" :on-exceed="handleExceed" :on-remove="handleRemove" :auto-upload="false">
                                         <i class="el-icon-plus" />
                                     </el-upload>
+
+                                    <!-- (this mean modal preview)-->
                                     <el-dialog :visible.sync="dialogVisible" v-if="!status">
-                                        <img width="100%" :src="dialogImageUrl" alt>
+                                        <img :src="dialogImageUrl" alt="" width="100%">
                                     </el-dialog>
                                 </div>
                             </div>
@@ -664,6 +681,10 @@ export default {
                     this.select_category = response.data.category.id;
                     this.select_subcategory = response.data.subcategory.id;
 
+                    this.images.forEach(file => {
+                        this.imageList.push('/storage/' + file.image_path);
+                    });
+
                     if (response.data.product.sni === 1)
                         this.disabled_input_SNI = false;
                     else
@@ -675,11 +696,13 @@ export default {
                         this.disabled_input_TKDN = true;
 
                     console.log(response.data);
+                    console.log(this.imageList);
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
             this.showModal = !this.showModal;
+            this.imageList = [];
         },
 
         switchImage: function (param) {
@@ -817,7 +840,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity .5s;
@@ -827,5 +850,32 @@ export default {
 .fade-enter,
 .fade-leave-to {
     opacity: 0;
+}
+
+input:checked+svg {
+    display: block;
+}
+
+.el-upload--picture-card {
+    background-color: #fbfdff;
+    border: 1px dashed #c0ccda;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 4rem;
+    height: 4rem;
+    line-height: 74px;
+    vertical-align: top;
+}
+
+.el-upload-list--picture-card .el-upload-list__item {
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #c0ccda;
+    border-radius: 6px;
+    box-sizing: border-box;
+    width: 4rem;
+    height: 4rem;
+    margin: 0 8px 8px 0;
+    display: inline-block;
 }
 </style>

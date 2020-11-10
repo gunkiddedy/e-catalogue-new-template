@@ -49,15 +49,15 @@ class Product extends Model
     // ----------accessor function--------------------
     public function getNameAttribute($value)
     {
-        return ucfirst($value);
+        return ucwords($value);
     }
     public function getBrandAttribute($value)
     {
-        return ucfirst($value);
+        return ucwords($value);
     }
     public function getCompanyNameAttribute($value)
     {
-        return ucfirst($value);
+        return ucwords($value);
     }
     // --------------------------------------------
 
