@@ -4459,7 +4459,7 @@ __webpack_require__.r(__webpack_exports__);
     handleExceed: function handleExceed(files, imageList) {
       this.$message.warning("The limit is 5, you have selected ".concat(files.length, " files"));
     },
-    createPost: function createPost(e) {
+    addProduct: function addProduct(e) {
       var _this2 = this;
 
       e.preventDefault();
@@ -4804,10 +4804,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -5250,27 +5248,121 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
+    var _ref;
+
+    return _ref = {
       showModal: false,
       loading: true,
       openTab: 1,
+      disabled_input_SNI: true,
+      disabled_input_TKDN: true,
+      // message_sni: '',
+      // message_nilai_tkdn: '',
+      // message_nomor_sertifikat_tkdn: '',
+      // message_nomor_laporan_tkdn: '',
+      isSuccess_nomor_sni: false,
+      isError_nomor_sni: true,
+      isSuccess_nilai_tkdn: false,
+      isError_nilai_tkdn: true,
+      isSuccess_sertifikat_tkdn: false,
+      isError_sertifikat_tkdn: true,
+      isSuccess_laporan_tkdn: false,
+      isError_laporan_tkdn: true,
+      isSuccess_hscode: false,
+      isError_hscode: true,
+      categories: [],
+      subcategories: [],
       product: {},
       images: [],
       category: {},
       subcategory: {},
       company: {},
-      indexImage: 0
-    };
+      indexImage: 0,
+      name: '',
+      description: '',
+      sni: 0,
+      nomor_sni: '',
+      tkdn: 0,
+      nilai_tkdn: '',
+      nomor_sertifikat_tkdn: '',
+      nomor_laporan_tkdn: '',
+      hs_code: '',
+      select_category: '',
+      select_subcategory: '',
+      price: '',
+      imageList: [],
+      isCreatingPost: false,
+      dialogImageUrl: '',
+      dialogVisible: false
+    }, _defineProperty(_ref, "isCreatingPost", false), _defineProperty(_ref, "status_msg", ''), _defineProperty(_ref, "status", ''), _ref;
   },
   created: function created() {
-    this.loadProductDetail(); // this.getProductIdFromUrl();
+    this.loadProductDetail();
+    this.loadCategory();
+    this.getSubCategory();
   },
   methods: {
-    modalEdit: function modalEdit() {
-      this.showModal = !this.showModal;
+    updateImageList: function updateImageList(file) {
+      this.imageList.push(file.raw);
+      console.log(this.imageList);
     },
-    switchImage: function switchImage(param) {
-      this.indexImage = param;
+    handleRemove: function handleRemove(file) {
+      this.imageList.splice(file, 1);
+      console.log(this.imageList);
+    },
+    handlePreview: function handlePreview(file) {
+      this.dialogImageUrl = file.url;
+      this.dialogVisible = true;
+    },
+    handleExceed: function handleExceed(files, imageList) {
+      this.$message.warning("The limit is 5, you have selected ".concat(files.length, " files"));
+    },
+    validateForm: function validateForm() {
+      if (this.imageList.length < 0) {
+        this.status = false;
+        this.showNotification('Image Product cannot be empty');
+        return false;
+      }
+
+      if (!this.name) {
+        this.status = false;
+        this.showNotification('name cannot be empty');
+        return false;
+      }
+
+      if (!this.description) {
+        this.status = false;
+        this.showNotification('description cannot be empty');
+        return false;
+      }
+
+      if (!this.nomor_sertifikat_tkdn) {
+        this.status = false;
+        this.showNotification('nomor sertifikat tkdn cannot be empty');
+        return false;
+      }
+
+      if (!this.nomor_laporan_tkdn) {
+        this.status = false;
+        this.showNotification('nomor laporan tkdn cannot be empty');
+        return false;
+      }
+
+      if (!this.hs_code) {
+        this.status = false;
+        this.showNotification('hs code cannot be empty');
+        return false;
+      }
+
+      return true;
+    },
+    showNotification: function showNotification(message) {
+      var _this = this;
+
+      this.status_msg = message;
+      setTimeout(function () {
+        _this.status_msg = '';
+      }, 2000);
     },
     getProductIdFromUrl: function getProductIdFromUrl() {
       var currentUrl = window.location.pathname;
@@ -5279,25 +5371,224 @@ __webpack_require__.r(__webpack_exports__);
       var id = arr[2];
       return id; // console.log(arr);
     },
+    updateProduct: function updateProduct(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+
+      if (!this.validateForm()) {
+        return false;
+      } // const that = this
+
+
+      this.isCreatingPost = true;
+      var formData = new FormData();
+      formData.append('name', this.name);
+      formData.append('description', this.description);
+      formData.append('sni', this.sni);
+      formData.append('nomor_sni', this.nomor_sni);
+      formData.append('tkdn', this.tkdn);
+      formData.append('nilai_tkdn', this.nilai_tkdn);
+      formData.append('nomor_sertifikat_tkdn', this.nomor_sertifikat_tkdn);
+      formData.append('nomor_laporan_tkdn', this.nomor_laporan_tkdn);
+      formData.append('hs_code', this.hs_code);
+      formData.append('price', this.price);
+      formData.append('category_id', this.select_category);
+      formData.append('subcategory_id', this.select_subcategory);
+      this.imageList.forEach(function (file) {
+        formData.append('images[]', file, file.name);
+      });
+      axios.post('/api/update-product', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function (res) {
+        _this2.name = '';
+        _this2.description = '';
+        _this2.sni = '';
+        _this2.nomor_sni = '';
+        _this2.tkdn = '';
+        _this2.nilai_tkdn = '';
+        _this2.nomor_sertifikat_tkdn = '';
+        _this2.nomor_laporan_tkdn = '';
+        _this2.hs_code = '';
+        _this2.price = '';
+        _this2.select_category = '';
+        _this2.select_subcategory = '';
+        _this2.status = true;
+
+        _this2.showNotification('Product Successfully Updated');
+
+        _this2.isCreatingPost = false;
+        _this2.imageList = [];
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
     loadProductDetail: function loadProductDetail() {
-      var _this = this;
+      var _this3 = this;
 
       var product_id = this.getProductIdFromUrl();
       var url = '/api/product-detail/' + product_id;
       axios.get(url).then(function (response) {
-        _this.loading = false;
-        _this.product = response.data.product;
-        _this.images = response.data.images;
-        _this.category = response.data.category;
-        _this.subcategory = response.data.subcategory;
-        _this.company = response.data.company;
+        _this3.loading = false;
+        _this3.product = response.data.product;
+        _this3.images = response.data.images;
+        _this3.category = response.data.category;
+        _this3.subcategory = response.data.subcategory;
+        _this3.company = response.data.company;
         console.log(response.data);
       })["catch"](function (error) {
         console.log(error);
       });
     },
+    modalEdit: function modalEdit(product_id) {
+      var _this4 = this;
+
+      var url = '/api/product-detail/' + product_id;
+      axios.get(url).then(function (response) {
+        _this4.name = response.data.product.name;
+        _this4.description = response.data.product.description;
+        _this4.sni = response.data.product.sni;
+        _this4.nomor_sni = response.data.product.nomor_sni;
+        _this4.tkdn = response.data.product.tkdn;
+        _this4.nilai_tkdn = response.data.product.nilai_tkdn;
+        _this4.nomor_sertifikat_tkdn = response.data.product.nomor_sertifikat_tkdn;
+        _this4.nomor_laporan_tkdn = response.data.product.nomor_laporan_tkdn;
+        _this4.hs_code = response.data.product.hs_code;
+        _this4.price = response.data.product.price;
+        _this4.select_category = response.data.category.id;
+        _this4.select_subcategory = response.data.subcategory.id;
+        if (response.data.product.sni === 1) _this4.disabled_input_SNI = false;else _this4.disabled_input_SNI = true;
+        if (response.data.product.tkdn === 1) _this4.disabled_input_TKDN = false;else _this4.disabled_input_TKDN = true;
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.showModal = !this.showModal;
+    },
+    switchImage: function switchImage(param) {
+      this.indexImage = param;
+    },
     toggleTabs: function toggleTabs(tabNumber) {
       this.openTab = tabNumber;
+    },
+    loadCategory: function loadCategory() {
+      var _this5 = this;
+
+      axios.get('/api/getcategories').then(function (response) {
+        _this5.categories = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    loadSubCategory: function loadSubCategory() {
+      var _this6 = this;
+
+      axios.get('/api/getsubcategories', {
+        params: {
+          category_id: this.select_category
+        }
+      }).then(function (response) {
+        _this6.subcategories = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getSubCategory: function getSubCategory() {
+      var _this7 = this;
+
+      axios.get('/api/get-subcategories').then(function (response) {
+        _this7.subcategories = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    checkHsCode: _.debounce(function () {
+      var regex = /^\d+$/;
+      var value = regex.test(this.hs_code);
+
+      if (value == false) {
+        this.hs_code = null;
+        this.isError_hscode = true;
+        this.isSuccess_hscode = false;
+      } else {
+        this.isSuccess_hscode = true;
+        this.isError_hscode = false;
+      }
+
+      return;
+    }, 1000),
+    checkNilaiTKDN: _.debounce(function () {
+      var regex = /\d{2}(\.\d{2})?$/;
+      var value = regex.test(this.nilai_tkdn);
+
+      if (value == false) {
+        this.nilai_tkdn = null;
+        this.isError_nilai_tkdn = true;
+        this.isSuccess_nilai_tkdn = false;
+      } else {
+        this.isSuccess_nilai_tkdn = true;
+        this.isError_nilai_tkdn = false;
+      }
+
+      return;
+    }, 2000),
+    checkSertiTKDN: _.debounce(function (check_value) {
+      var searchRegExp = /[^\w\.\/\:\,\-]+/;
+      var valid = check_value.replace(searchRegExp, '');
+      this.nomor_sertifikat_tkdn = valid;
+
+      if (!valid) {
+        this.nomor_sertifikat_tkdn = null;
+        this.isError_sertifikat_tkdn = true;
+        this.isSuccess_sertifikat_tkdn = false;
+      } else {
+        this.isSuccess_sertifikat_tkdn = true;
+        this.isError_sertifikat_tkdn = false;
+      }
+
+      return;
+    }, 2000),
+    checkLapTKDN: _.debounce(function (check_value) {
+      var searchRegExp = /[^\w\.\/\:\,\-]+/;
+      var valid = check_value.replace(searchRegExp, '');
+      this.nomor_laporan_tkdn = valid;
+
+      if (!valid) {
+        this.nomor_laporan_tkdn = null;
+        this.isError_laporan_tkdn = true;
+        this.isSuccess_laporan_tkdn = false;
+      } else {
+        this.isSuccess_laporan_tkdn = true;
+        this.isError_laporan_tkdn = false;
+      }
+
+      return;
+    }, 2000),
+    checkSNI: _.debounce(function (check_value) {
+      var searchRegExp = /[^\w\.\/\:\,\-]+/;
+      var valid = check_value.replace(searchRegExp, '');
+      this.nomor_sni = valid;
+
+      if (!valid) {
+        this.nomor_sni = null;
+        this.isError_nomor_sni = true;
+        this.isSuccess_nomor_sni = false;
+      } else {
+        this.isSuccess_nomor_sni = true;
+        this.isError_nomor_sni = false;
+      }
+
+      return;
+    }, 2000),
+    toggleInputSNI: function toggleInputSNI(sni) {
+      this.disabled_input_SNI = !this.disabled_input_SNI;
+      if (this.disabled_input_SNI === true) this.nomor_sni = '';
+    },
+    toggleInputTKDN: function toggleInputTKDN(param) {
+      this.disabled_input_TKDN = !this.disabled_input_TKDN;
+      if (this.disabled_input_TKDN === true) this.nilai_tkdn = '';
     }
   }
 });
@@ -108899,7 +109190,7 @@ var render = function() {
                                                 disabled: _vm.isCreatingPost
                                               },
                                               attrs: { type: "button" },
-                                              on: { click: _vm.createPost }
+                                              on: { click: _vm.addProduct }
                                             },
                                             [
                                               _vm.isCreatingPost
@@ -110300,7 +110591,7 @@ var render = function() {
                                   "text-blue-400 mr-2 cursor-pointer",
                                 on: {
                                   click: function($event) {
-                                    return _vm.modalEdit()
+                                    return _vm.modalEdit(_vm.product.id)
                                   }
                                 }
                               },
@@ -110504,9 +110795,20 @@ var render = function() {
                             _c(
                               "span",
                               {
-                                staticClass: "font-bold text-sm text-gray-700"
+                                staticClass:
+                                  "font-bold text-sm text-gray-700 cursor-pointer hover:text-blue-400"
                               },
-                              [_vm._v(_vm._s(_vm.company.name))]
+                              [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "/company-page/" + _vm.company.id
+                                    }
+                                  },
+                                  [_vm._v(_vm._s(_vm.company.name))]
+                                )
+                              ]
                             )
                           ]),
                           _vm._v(" "),
@@ -110698,9 +111000,7 @@ var render = function() {
                               "text-lg leading-tight font-semibold text-gray-400"
                           },
                           [
-                            _vm._v(
-                              "\r\n                        Add New Product "
-                            ),
+                            _vm._v("\r\n                        Edit Product "),
                             _c(
                               "span",
                               {
@@ -111336,7 +111636,12 @@ var render = function() {
                                                 {
                                                   key: i,
                                                   staticClass: "text-gray-700",
-                                                  domProps: { value: cat.id }
+                                                  domProps: {
+                                                    value: cat.id,
+                                                    selected:
+                                                      _vm.select_category ==
+                                                      cat.id
+                                                  }
                                                 },
                                                 [
                                                   _vm._v(
@@ -111414,26 +111719,29 @@ var render = function() {
                                               id: "subcategory_id"
                                             },
                                             on: {
-                                              change: function($event) {
-                                                var $$selectedVal = Array.prototype.filter
-                                                  .call(
-                                                    $event.target.options,
-                                                    function(o) {
-                                                      return o.selected
-                                                    }
-                                                  )
-                                                  .map(function(o) {
-                                                    var val =
-                                                      "_value" in o
-                                                        ? o._value
-                                                        : o.value
-                                                    return val
-                                                  })
-                                                _vm.select_subcategory = $event
-                                                  .target.multiple
-                                                  ? $$selectedVal
-                                                  : $$selectedVal[0]
-                                              }
+                                              change: [
+                                                function($event) {
+                                                  var $$selectedVal = Array.prototype.filter
+                                                    .call(
+                                                      $event.target.options,
+                                                      function(o) {
+                                                        return o.selected
+                                                      }
+                                                    )
+                                                    .map(function(o) {
+                                                      var val =
+                                                        "_value" in o
+                                                          ? o._value
+                                                          : o.value
+                                                      return val
+                                                    })
+                                                  _vm.select_subcategory = $event
+                                                    .target.multiple
+                                                    ? $$selectedVal
+                                                    : $$selectedVal[0]
+                                                },
+                                                _vm.getSubCategory
+                                              ]
                                             }
                                           },
                                           [
@@ -111462,7 +111770,12 @@ var render = function() {
                                                 {
                                                   key: i,
                                                   staticClass: "text-gray-700",
-                                                  domProps: { value: subc.id }
+                                                  domProps: {
+                                                    value: subc.id,
+                                                    selected:
+                                                      _vm.select_subcategory ==
+                                                      subc.id
+                                                  }
                                                 },
                                                 [
                                                   _vm._v(
@@ -111659,7 +111972,7 @@ var render = function() {
                                         "flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none",
                                       class: { disabled: _vm.isCreatingPost },
                                       attrs: { type: "button" },
-                                      on: { click: _vm.createPost }
+                                      on: { click: _vm.updateProduct }
                                     },
                                     [
                                       _vm.isCreatingPost
@@ -111702,8 +112015,8 @@ var render = function() {
                                         "\r\n                                    " +
                                           _vm._s(
                                             _vm.isCreatingPost
-                                              ? "Submitting..."
-                                              : "Submit Product"
+                                              ? "Updating..."
+                                              : "Update Product"
                                           ) +
                                           "\r\n                                "
                                       )

@@ -20,9 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('products', 'Api\ProductController@index');
 Route::post('add-product', 'Api\ProductController@addProduct');
+Route::post('update-product', 'Api\ProductController@updateProduct');
 Route::get('product-detail/{id}', 'Api\ProductController@productDetail');
 
 Route::get('company-detail/{id}', 'Api\CompanyController@companyDetail');
 
 Route::get('getcategories', 'Api\CategoryController@getCategory');
 Route::get('getsubcategories', 'Api\CategoryController@getSubCategory');
+Route::get('get-subcategories', 'Api\CategoryController@getSubCategories');

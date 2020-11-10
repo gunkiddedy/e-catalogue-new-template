@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="flex items-center justify-start">
-                            <span class="text-blue-400 mr-2 cursor-pointer" @click="modalEdit()">
+                            <span class="text-blue-400 mr-2 cursor-pointer" @click="modalEdit(product.id)">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                                 </svg>
@@ -144,7 +144,9 @@
 
                     <div class="flex justify-center items-center flex-col leading-tight">
                         <div class="px-4 py-4 text-center">
-                            <span class="font-bold text-sm text-gray-700">{{company.name}}</span>
+                            <span class="font-bold text-sm text-gray-700 cursor-pointer hover:text-blue-400">
+                                <a :href="'/company-page/'+company.id">{{company.name}}</a>
+                            </span>
                         </div>
                         <div class="flex justify-between items-center bg-blue-500 rounded-full px-4 py-1 my-4 leading-tight text-gray-300 text-xs">
                             <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -204,26 +206,21 @@
 
                 <div class="flex items-center justify-start mb-2">
                     <h3 class="text-lg leading-tight font-semibold text-gray-400">
-                        Add New Product <span class="ml-4 text-sm font-sf-pro" :class="{'text-green-400': status, 'text-red-400': !status }">{{ status_msg }}</span>
+                        Edit Product <span class="ml-4 text-sm font-sf-pro" :class="{'text-green-400': status, 'text-red-400': !status }">{{ status_msg }}</span>
                     </h3>
                 </div>
 
                 <!--body-->
-                <!--<div v-if="status_msg" :class="{'text-green-400': status, 'text-red-400': !status }">
-                                    <span>{{ status_msg }}</span>
-                                </div>-->
-
                 <form>
                     <div class="grid grid-cols-2 gap-4 h-full">
                         <!-- LEFT SIDE-->
                         <div class="left w-full h-full py-2">
                             <div class="product-name mb-3">
-                                <input id="name" v-model="name" class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Product Name">
+                                <input v-model="name" id="name" class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Product Name">
                             </div>
                             <div class="grid grid-rows-2">
                                 <div class="flex mb-3 items-center justify-between">
                                     <div class="w-1/12">
-                                        <!--<input true-value="1" false-value="0" type="checkbox" name="sni" id="sni" v-model="sni" class="rounded-lg">-->
                                         <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
                                             <input name="sni" id="sni" v-model="sni" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
                                             <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20">
@@ -241,7 +238,6 @@
                                 </div>
                                 <div class="flex mb-3 items-center justify-between">
                                     <div class="w-1/12">
-                                        <!--<input type="checkbox" true-value="1" false-value="0" name="tkdn" id="tkdn" v-model="tkdn" class="rounded-lg">-->
                                         <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
                                             <input name="tkdn" id="tkdn" v-model="tkdn" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
                                             <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20">
@@ -308,7 +304,7 @@
                                             <option class="text-gray-700" value="" selected="selected">
                                                 -Select Category-
                                             </option>
-                                            <option class="text-gray-700" v-for="(cat, i) in categories" :value="cat.id" :key="i">
+                                            <option class="text-gray-700" v-for="(cat, i) in categories" :value="cat.id" :key="i" :selected="select_category == cat.id">
                                                 {{cat.name}}
                                             </option>
                                         </select>
@@ -321,11 +317,11 @@
                                 </div>
                                 <div class="product-name mb-3">
                                     <div class="inline-block relative w-full">
-                                        <select name="subcategory_id" id="subcategory_id" v-model="select_subcategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
+                                        <select name="subcategory_id" id="subcategory_id" v-model="select_subcategory" @change="getSubCategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
                                             <option class="text-gray-700" value="" selected="selected">
                                                 -Select Sub Category-
                                             </option>
-                                            <option class="text-gray-700" v-for="(subc, i) in subcategories" :key="i" :value="subc.id">
+                                            <option class="text-gray-700" v-for="(subc, i) in subcategories" :key="i" :value="subc.id" :selected="select_subcategory == subc.id">
                                                 {{subc.name}}
                                             </option>
                                         </select>
@@ -365,12 +361,12 @@
                             </div>
 
                             <div class="flex items-center justify-end">
-                                <button :class="{'disabled': isCreatingPost}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="createPost">
+                                <button :class="{'disabled': isCreatingPost}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateProduct">
                                     <svg v-if="isCreatingPost" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
-                                    {{ isCreatingPost ? "Submitting..." : "Submit Product" }}
+                                    {{ isCreatingPost ? "Updating..." : "Update Product" }}
                                 </button>
                             </div>
                         </div>
@@ -449,6 +445,33 @@ export default {
             showModal: false,
             loading: true,
             openTab: 1,
+
+            disabled_input_SNI: true,
+            disabled_input_TKDN: true,
+
+            // message_sni: '',
+            // message_nilai_tkdn: '',
+            // message_nomor_sertifikat_tkdn: '',
+            // message_nomor_laporan_tkdn: '',
+
+            isSuccess_nomor_sni: false,
+            isError_nomor_sni: true,
+
+            isSuccess_nilai_tkdn: false,
+            isError_nilai_tkdn: true,
+
+            isSuccess_sertifikat_tkdn: false,
+            isError_sertifikat_tkdn: true,
+
+            isSuccess_laporan_tkdn: false,
+            isError_laporan_tkdn: true,
+
+            isSuccess_hscode: false,
+            isError_hscode: true,
+
+            categories: [],
+            subcategories: [],
+
             product: {},
             images: [],
             category: {},
@@ -456,22 +479,93 @@ export default {
             company: {},
 
             indexImage: 0,
+
+            name: '',
+            description: '',
+            sni: 0,
+            nomor_sni: '',
+            tkdn: 0,
+            nilai_tkdn: '',
+            nomor_sertifikat_tkdn: '',
+            nomor_laporan_tkdn: '',
+            hs_code: '',
+            select_category: '',
+            select_subcategory: '',
+            price: '',
+            imageList: [],
+
+            isCreatingPost: false,
+            dialogImageUrl: '',
+            dialogVisible: false,
+            isCreatingPost: false,
+            status_msg: '',
+            status: '',
+
         }
     },
 
     created() {
         this.loadProductDetail();
-        // this.getProductIdFromUrl();
+        this.loadCategory();
+        this.getSubCategory();
     },
 
     methods: {
 
-        modalEdit: function () {
-            this.showModal = !this.showModal;
+        updateImageList(file) {
+            this.imageList.push(file.raw);
+            console.log(this.imageList);
+        },
+        handleRemove(file) {
+            this.imageList.splice(file, 1);
+            console.log(this.imageList);
+        },
+        handlePreview(file) {
+            this.dialogImageUrl = file.url
+            this.dialogVisible = true
+        },
+        handleExceed(files, imageList) {
+            this.$message.warning(`The limit is 5, you have selected ${files.length} files`);
         },
 
-        switchImage: function (param) {
-            this.indexImage = param;
+        validateForm() {
+            if (this.imageList.length < 0) {
+                this.status = false
+                this.showNotification('Image Product cannot be empty')
+                return false
+            }
+            if (!this.name) {
+                this.status = false
+                this.showNotification('name cannot be empty')
+                return false
+            }
+            if (!this.description) {
+                this.status = false
+                this.showNotification('description cannot be empty')
+                return false
+            }
+            if (!this.nomor_sertifikat_tkdn) {
+                this.status = false
+                this.showNotification('nomor sertifikat tkdn cannot be empty')
+                return false
+            }
+            if (!this.nomor_laporan_tkdn) {
+                this.status = false
+                this.showNotification('nomor laporan tkdn cannot be empty')
+                return false
+            }
+            if (!this.hs_code) {
+                this.status = false
+                this.showNotification('hs code cannot be empty')
+                return false
+            }
+            return true
+        },
+        showNotification(message) {
+            this.status_msg = message
+            setTimeout(() => {
+                this.status_msg = ''
+            }, 2000)
         },
 
         getProductIdFromUrl: function () {
@@ -481,6 +575,58 @@ export default {
             let id = arr[2];
             return id;
             // console.log(arr);
+        },
+
+        updateProduct(e) {
+            e.preventDefault()
+            if (!this.validateForm()) {
+                return false
+            }
+            // const that = this
+            this.isCreatingPost = true;
+            const formData = new FormData();
+
+            formData.append('name', this.name);
+            formData.append('description', this.description);
+            formData.append('sni', this.sni);
+            formData.append('nomor_sni', this.nomor_sni);
+            formData.append('tkdn', this.tkdn);
+            formData.append('nilai_tkdn', this.nilai_tkdn);
+            formData.append('nomor_sertifikat_tkdn', this.nomor_sertifikat_tkdn);
+            formData.append('nomor_laporan_tkdn', this.nomor_laporan_tkdn);
+            formData.append('hs_code', this.hs_code);
+            formData.append('price', this.price);
+            formData.append('category_id', this.select_category);
+            formData.append('subcategory_id', this.select_subcategory);
+
+            this.imageList.forEach(file => {
+                formData.append('images[]', file, file.name);
+            });
+
+            axios.post('/api/update-product', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then((res) => {
+                this.name = '';
+                this.description = '';
+                this.sni = '';
+                this.nomor_sni = '';
+                this.tkdn = '';
+                this.nilai_tkdn = '';
+                this.nomor_sertifikat_tkdn = '';
+                this.nomor_laporan_tkdn = '';
+                this.hs_code = '';
+                this.price = '';
+                this.select_category = '';
+                this.select_subcategory = '';
+                this.status = true;
+                this.showNotification('Product Successfully Updated');
+                this.isCreatingPost = false;
+                this.imageList = [];
+            }).catch((error) => {
+                console.log(error);
+            });
         },
 
         loadProductDetail: function () {
@@ -501,8 +647,171 @@ export default {
                 });
         },
 
+        modalEdit: function (product_id) {
+            let url = '/api/product-detail/' + product_id;
+            axios.get(url)
+                .then((response) => {
+                    this.name = response.data.product.name;
+                    this.description = response.data.product.description;
+                    this.sni = response.data.product.sni;
+                    this.nomor_sni = response.data.product.nomor_sni;
+                    this.tkdn = response.data.product.tkdn;
+                    this.nilai_tkdn = response.data.product.nilai_tkdn;
+                    this.nomor_sertifikat_tkdn = response.data.product.nomor_sertifikat_tkdn;
+                    this.nomor_laporan_tkdn = response.data.product.nomor_laporan_tkdn;
+                    this.hs_code = response.data.product.hs_code;
+                    this.price = response.data.product.price;
+                    this.select_category = response.data.category.id;
+                    this.select_subcategory = response.data.subcategory.id;
+
+                    if (response.data.product.sni === 1)
+                        this.disabled_input_SNI = false;
+                    else
+                        this.disabled_input_SNI = true;
+
+                    if (response.data.product.tkdn === 1)
+                        this.disabled_input_TKDN = false;
+                    else
+                        this.disabled_input_TKDN = true;
+
+                    console.log(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            this.showModal = !this.showModal;
+        },
+
+        switchImage: function (param) {
+            this.indexImage = param;
+        },
+
         toggleTabs: function (tabNumber) {
             this.openTab = tabNumber;
+        },
+
+        loadCategory: function () {
+            axios.get('/api/getcategories')
+                .then((response) => {
+                    this.categories = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        loadSubCategory: function () {
+            axios.get('/api/getsubcategories', {
+                    params: {
+                        category_id: this.select_category
+                    }
+                })
+                .then((response) => {
+                    this.subcategories = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        getSubCategory: function () {
+            axios.get('/api/get-subcategories')
+                .then((response) => {
+                    this.subcategories = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        checkHsCode: _.debounce(function () {
+            let regex = /^\d+$/;
+
+            let value = regex.test(this.hs_code);
+            if (value == false) {
+                this.hs_code = null;
+                this.isError_hscode = true;
+                this.isSuccess_hscode = false;
+            } else {
+                this.isSuccess_hscode = true;
+                this.isError_hscode = false;
+            }
+            return
+        }, 1000),
+
+        checkNilaiTKDN: _.debounce(function () {
+            let regex = /\d{2}(\.\d{2})?$/;
+            let value = regex.test(this.nilai_tkdn);
+
+            if (value == false) {
+                this.nilai_tkdn = null;
+                this.isError_nilai_tkdn = true;
+                this.isSuccess_nilai_tkdn = false;
+            } else {
+                this.isSuccess_nilai_tkdn = true;
+                this.isError_nilai_tkdn = false;
+            }
+            return
+        }, 2000),
+
+        checkSertiTKDN: _.debounce(function (check_value) {
+            let searchRegExp = /[^\w\.\/\:\,\-]+/;
+            let valid = check_value.replace(searchRegExp, '');
+            this.nomor_sertifikat_tkdn = valid;
+
+            if (!valid) {
+                this.nomor_sertifikat_tkdn = null;
+                this.isError_sertifikat_tkdn = true;
+                this.isSuccess_sertifikat_tkdn = false;
+            } else {
+                this.isSuccess_sertifikat_tkdn = true;
+                this.isError_sertifikat_tkdn = false;
+            }
+            return
+        }, 2000),
+
+        checkLapTKDN: _.debounce(function (check_value) {
+
+            let searchRegExp = /[^\w\.\/\:\,\-]+/;
+            let valid = check_value.replace(searchRegExp, '');
+            this.nomor_laporan_tkdn = valid;
+
+            if (!valid) {
+                this.nomor_laporan_tkdn = null;
+                this.isError_laporan_tkdn = true;
+                this.isSuccess_laporan_tkdn = false;
+            } else {
+                this.isSuccess_laporan_tkdn = true;
+                this.isError_laporan_tkdn = false;
+            }
+            return
+        }, 2000),
+
+        checkSNI: _.debounce(function (check_value) {
+            let searchRegExp = /[^\w\.\/\:\,\-]+/;
+            let valid = check_value.replace(searchRegExp, '');
+            this.nomor_sni = valid;
+
+            if (!valid) {
+                this.nomor_sni = null;
+                this.isError_nomor_sni = true;
+                this.isSuccess_nomor_sni = false;
+            } else {
+                this.isSuccess_nomor_sni = true;
+                this.isError_nomor_sni = false;
+            }
+            return
+        }, 2000),
+
+        toggleInputSNI: function (sni) {
+            this.disabled_input_SNI = !this.disabled_input_SNI;
+            if (this.disabled_input_SNI === true)
+                this.nomor_sni = '';
+        },
+        toggleInputTKDN: function (param) {
+            this.disabled_input_TKDN = !this.disabled_input_TKDN;
+            if (this.disabled_input_TKDN === true)
+                this.nilai_tkdn = '';
         }
     }
 }
