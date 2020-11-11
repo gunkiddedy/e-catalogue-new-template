@@ -13,20 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
-// Auth::routes();
+Auth::routes();
+
 
 Route::view('/', 'welcome');
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/login', 'HomeController@login')->name('login.page');
-Route::get('/signup', 'HomeController@signup')->name('signup.page');
-Route::get('/company-page/{id}', 'HomeController@companyPage')->name('company.page');
-Route::get('/company-list', 'HomeController@companyList')->name('company.list');
-Route::get('/product-detail/{id}', 'HomeController@productDetail')->name('product.page');
+// Route::get('/login', 'HomeController@login')->name('login');
 
-// Route::post('/add-product', 'Api\ProductController@createPost');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/company-page/{id}', 'WebController@companyPage')->name('company.page');
+Route::get('/company-list', 'WebController@companyList')->name('company.list');
+Route::get('/product-detail/{id}', 'WebController@productDetail')->name('product.page');
 

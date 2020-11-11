@@ -1,9 +1,11 @@
 <template>
 <div>
     <div class="flex">
-        <div class="image-login w-3/5 h-screen">
-            <img src="/img/sign-up-img.png" alt="" class="w-full h-full">
-        </div>
+        <transition name="fade">
+            <div class="image-login w-3/5 h-screen">
+                <img src="/img/sign-up-img.png" alt="" class="w-full h-full">
+            </div>
+        </transition>
 
         <!-- FORM SIGNUP 1-->
         <div class="login-form bg-gray-300 w-2/5 h-screen px-24 py-6" v-if="form_signup1">
@@ -12,7 +14,7 @@
 
                 <div class="flex items-center justify-end">
                     <a href="/">
-                        <button class="bg-white relative w-8 h-8 rounded-full p-1 text-gray-800 focus:outline-none">
+                        <button class="bg-white relative w-8 h-8 hover:shadow-outline rounded-full p-1 text-gray-800 focus:outline-none">
                             <svg class=" w-4 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
@@ -68,7 +70,7 @@
                 </div>-->
 
                 <div>
-                    <button @click="nextPage" class="px-6 py-2 w-full rounded-lg bg-orange-custom text-white font-semibold leading-tight" type="button">
+                    <button @click="nextPage" class="px-6 py-2 w-full hover:bg-orange-400 rounded-lg bg-orange-custom text-white font-semibold leading-tight" type="button">
                         Next
                     </button>
                 </div>
@@ -79,13 +81,14 @@
                     <div class="mr-6"><span class="text-gray-500 font-semibold">Already have an account?</span></div>
                     <div>
                         <a href="/login">
-                            <span class="text-blue-600 font-bold">Sign in</span>
+                            <span class="text-blue-600 font-bold hover:text-blue-400">Sign in</span>
                         </a>
                     </div>
                 </div>
 
             </div>
         </div>
+
         <!-- FORM SIGNUP 2-->
         <div class="login-form bg-gray-300 w-2/5 h-screen px-24 py-6 transition duration-150 ease-in-out" v-if="form_signup2">
 
@@ -93,7 +96,7 @@
 
                 <div class="flex items-center justify-end">
                     <a href="/">
-                        <button class="bg-white relative w-8 h-8 rounded-full p-1 text-gray-800 focus:outline-none">
+                        <button class="bg-white relative w-8 h-8 hover:shadow-outline rounded-full p-1 text-gray-800 focus:outline-none">
                             <svg class=" w-4 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
@@ -130,7 +133,7 @@
                 </div>
 
                 <div>
-                    <button @click="nextPage" class="px-6 py-2 w-full rounded-lg bg-orange-custom text-white font-semibold leading-tight" type="button">
+                    <button @click="nextPage" class="px-6 py-2 w-full hover:bg-orange-400 rounded-lg bg-orange-custom text-white font-semibold leading-tight" type="button">
                         Sign Up
                     </button>
                 </div>
@@ -141,7 +144,7 @@
                     <div class="mr-6"><span class="text-gray-500 font-semibold">Already have an account?</span></div>
                     <div>
                         <a href="/login">
-                            <span class="text-blue-600 font-bold">Sign in</span>
+                            <span class="text-blue-600 font-bold hover:text-blue-400">Sign in</span>
                         </a>
                     </div>
                 </div>
@@ -170,3 +173,16 @@ export default {
     }
 }
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
+}
+
+/* .fade-leave-active below version 2.1.8 */
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+</style>

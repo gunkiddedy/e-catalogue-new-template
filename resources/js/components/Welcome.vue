@@ -253,7 +253,7 @@
 
                 <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products.data" :key="product.id">
                     <div>
-                        <img :src="'/storage/'+product.image_path" alt="" class="rounded-t-lg object-cover w-full h-41">
+                        <img :src="'/storage/'+product.image_path" alt="" class="hover:opacity-75 rounded-t-lg object-cover w-full h-41">
                     </div>
                     <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41">
                         <p class="normal-case mb-6 font-bold text-sm leading-tight h-2.25rem">

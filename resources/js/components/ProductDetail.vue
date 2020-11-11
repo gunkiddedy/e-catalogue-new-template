@@ -43,7 +43,7 @@
 
                     <!-- IMG ZOOM-->
                     <div class="img-zoom bg-white bg-cover rounded shadow px-4 py-4 h-106">
-                        <img :src="'/storage/'+images[indexImage].image_path" :alt="images[indexImage].name" class="rounded object-cover w-full h-full">
+                        <img :src="'/storage/'+images[indexImage].image_path" alt="img-zoom" class="rounded object-cover w-full h-full hover:opacity-75">
                     </div>
 
                     <!--<span>{{indexImage}}</span>-->
@@ -57,8 +57,8 @@
                         </div>
 
                         <div class="flex justify-start items-center">
-                            <div class="shadow rounded-lg bg-white w-20 h-auto px-1 py-1 mr-2" v-for="(image, index) in images" :key="image.id">
-                                <img @click="switchImage(index)" :src="'/storage/'+image.image_path" :alt="image.name" class="rounded object-cover w-full h-16 cursor-pointer">
+                            <div class="shadow rounded-lg bg-white w-20 h-auto px-1 py-1 mr-2" v-for="(image, i) in images" :key="i.id">
+                                <img @mouseover="switchImage(i)" :src="'/storage/'+image.image_path" alt="img-thumb" class="rounded object-cover w-full h-16 cursor-pointer hover:opacity-75">
                             </div>
                         </div>
 
@@ -154,7 +154,8 @@
             <div class="bg-white h-full w-64 rounded-lg shadow">
 
                 <div class="flex justify-center items-center flex-col my-6">
-                    <div class="bg-blue-500 rounded-full w-20 h-20"></div>
+                    <!--<div class="bg-blue-500 rounded-full w-20 h-20"></div>-->
+                    <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-20 h-20 mx-auto">
 
                     <div class="flex justify-center items-center flex-col leading-tight">
                         <div class="px-4 py-4 text-center">
@@ -370,20 +371,24 @@
                                         <i class="el-icon-plus" />
                                     </el-upload>
 
+                                    <span class="shadow ml-2 mr-2" v-for="(image, i) in images" :key="i.id">
+                                        <img :src="'/storage/'+image.image_path" alt="img-thumb" class="rounded object-cover w-full h-16 cursor-pointer hover:opacity-75">
+                                    </span>
+
                                     <!-- (this mean modal preview)-->
-                                    <el-dialog :visible.sync="dialogVisible" v-if="!status">
+                                    <el-dialog :visible.sync="dialogVisible" v-for="(image, i) in images" :key="i.id">
                                         <img :src="dialogImageUrl" alt="" width="100%">
                                     </el-dialog>
                                 </div>
                             </div>
 
                             <div class="flex items-center justify-end">
-                                <button :class="{'disabled': isCreatingPost}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateProduct">
-                                    <svg v-if="isCreatingPost" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <button :class="{'disabled': isUpdatingProduct}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateProduct">
+                                    <svg v-if="isUpdatingProduct" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                     </svg>
-                                    {{ isCreatingPost ? "Updating..." : "Update Product" }}
+                                    {{ isUpdatingProduct ? "Updating..." : "Update Product" }}
                                 </button>
                             </div>
                         </div>
@@ -473,21 +478,14 @@ export default {
 
             isSuccess_nomor_sni: false,
             isError_nomor_sni: true,
-
             isSuccess_nilai_tkdn: false,
             isError_nilai_tkdn: true,
-
             isSuccess_sertifikat_tkdn: false,
             isError_sertifikat_tkdn: true,
-
             isSuccess_laporan_tkdn: false,
             isError_laporan_tkdn: true,
-
             isSuccess_hscode: false,
             isError_hscode: true,
-
-            categories: [],
-            subcategories: [],
 
             product: {},
             images: [],
@@ -497,6 +495,8 @@ export default {
 
             indexImage: 0,
 
+            categories: [],
+            subcategories: [],
             name: '',
             description: '',
             sni: 0,
@@ -511,10 +511,9 @@ export default {
             price: '',
             imageList: [],
 
-            isCreatingPost: false,
+            isUpdatingProduct: false,
             dialogImageUrl: '',
             dialogVisible: false,
-            isCreatingPost: false,
             status_msg: '',
             status: '',
 
@@ -533,14 +532,17 @@ export default {
             this.imageList.push(file.raw);
             console.log(this.imageList);
         },
+
         handleRemove(file) {
             this.imageList.splice(file, 1);
             console.log(this.imageList);
         },
+
         handlePreview(file) {
             this.dialogImageUrl = file.url
             this.dialogVisible = true
         },
+
         handleExceed(files, imageList) {
             this.$message.warning(`The limit is 5, you have selected ${files.length} files`);
         },
@@ -585,7 +587,7 @@ export default {
             }, 2000)
         },
 
-        getProductIdFromUrl: function () {
+        getProductIdFromUrl() {
             let currentUrl = window.location.pathname;
             let arr = new Array();
             arr = currentUrl.split("/");
@@ -600,7 +602,7 @@ export default {
                 return false
             }
             // const that = this
-            this.isCreatingPost = true;
+            this.isUpdatingProduct = true;
             const formData = new FormData();
 
             formData.append('name', this.name);
@@ -639,14 +641,14 @@ export default {
                 this.select_subcategory = '';
                 this.status = true;
                 this.showNotification('Product Successfully Updated');
-                this.isCreatingPost = false;
+                this.isUpdatingProduct = false;
                 this.imageList = [];
             }).catch((error) => {
                 console.log(error);
             });
         },
 
-        loadProductDetail: function () {
+        loadProductDetail() {
             let product_id = this.getProductIdFromUrl();
             let url = '/api/product-detail/' + product_id;
             axios.get(url)
@@ -664,7 +666,7 @@ export default {
                 });
         },
 
-        modalEdit: function (product_id) {
+        modalEdit(product_id) {
             let url = '/api/product-detail/' + product_id;
             axios.get(url)
                 .then((response) => {
@@ -705,15 +707,15 @@ export default {
             this.imageList = [];
         },
 
-        switchImage: function (param) {
+        switchImage(param) {
             this.indexImage = param;
         },
 
-        toggleTabs: function (tabNumber) {
+        toggleTabs(tabNumber) {
             this.openTab = tabNumber;
         },
 
-        loadCategory: function () {
+        loadCategory() {
             axios.get('/api/getcategories')
                 .then((response) => {
                     this.categories = response.data;
@@ -723,7 +725,7 @@ export default {
                 });
         },
 
-        loadSubCategory: function () {
+        loadSubCategory() {
             axios.get('/api/getsubcategories', {
                     params: {
                         category_id: this.select_category
@@ -737,7 +739,7 @@ export default {
                 });
         },
 
-        getSubCategory: function () {
+        getSubCategory() {
             axios.get('/api/get-subcategories')
                 .then((response) => {
                     this.subcategories = response.data;
@@ -826,12 +828,12 @@ export default {
             return
         }, 2000),
 
-        toggleInputSNI: function (sni) {
+        toggleInputSNI(sni) {
             this.disabled_input_SNI = !this.disabled_input_SNI;
             if (this.disabled_input_SNI === true)
                 this.nomor_sni = '';
         },
-        toggleInputTKDN: function (param) {
+        toggleInputTKDN(param) {
             this.disabled_input_TKDN = !this.disabled_input_TKDN;
             if (this.disabled_input_TKDN === true)
                 this.nilai_tkdn = '';

@@ -15,6 +15,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Styles -->
+    <link rel="icon" href="{{ 'img/box-icon.svg' }}" type="image/x-icon"/>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>

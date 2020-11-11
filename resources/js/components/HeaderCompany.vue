@@ -35,7 +35,7 @@
             </div>
             <div v-if="!isauth" class="w-64 flex justify-between items-center">
                 <a href="/login">
-                    <button class="bg-orange-custom px-4 py-2 rounded-lg w-48" type="button">
+                    <button class="bg-orange-custom px-4 py-2 rounded-lg w-48 hover:bg-orange-400" type="button">
                         <span class="leading-tight text-white font-semibold">Login / Register</span>
                     </button>
                 </a>
