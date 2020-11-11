@@ -36,7 +36,9 @@
                 </div>
 
             </div>
+        </transition>
 
+        <transition name="fade">
             <div class="w-full">
 
                 <div class="relative">

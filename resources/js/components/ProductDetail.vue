@@ -10,26 +10,28 @@
     </div>
 
     <!-- Breadcrumbs-->
-    <div class="flex px-4 mt-4 items-center justify-start text-blue-400 text-xs font-bold">
-        <div>Semua Kategori</div>
-        <div class="flex items-center">
-            <span class="text-gray-500">
-                <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
-            </span>
-            {{ category.name }}
-        </div>
-        <div class="flex items-center" v-if="subcategory.name !== null">
-            <span class="text-gray-500">
-                <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
-            </span>
-            {{ subcategory.name }}
-        </div>
+    <transition name="fade">
+        <div class="flex px-4 mt-4 items-center justify-start text-blue-400 text-xs font-bold">
+            <div>Semua Kategori</div>
+            <div class="flex items-center">
+                <span class="text-gray-500">
+                    <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                </span>
+                {{ category.name }}
+            </div>
+            <div class="flex items-center" v-if="subcategory.name !== null">
+                <span class="text-gray-500">
+                    <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                </span>
+                {{ subcategory.name }}
+            </div>
 
-    </div>
+        </div>
+    </transition>
 
     <!-- MAIN CONTENT-->
     <transition name="fade">
@@ -401,62 +403,64 @@
     <div v-if="showModal" class="opacity-25 fixed inset-0 z-30 bg-black"></div>
 
     <!-- TAB DESC -->
-    <div class="w-full mt-12">
+    <transition name="fade">
+        <div class="w-full mt-12">
 
-        <div class="flex justify-between items-center border-b leading-loose">
+            <div class="flex justify-between items-center border-b leading-loose">
 
-            <!-- NAV TAB -->
-            <div>
-                <ul class="flex border-b border-gray-300 font-bold">
-                    <li class="-mb-px mx-8 cursor-pointer">
-                        <span class="inline-block py-2 px-4 text-blue-500 font-semibold  hover:text-blue-800" @click="toggleTabs(1)" v-bind:class="{'text-blue-600': openTab !== 1, 'border-b-2 border-blue-500': openTab === 1}">
-                            Deskripsi
-                        </span>
-                    </li>
-                    <li class="mr-1 cursor-pointer">
-                        <span class="inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" @click="toggleTabs(2)" v-bind:class="{'text-blue-600': openTab !== 2, 'border-b-2 border-blue-500': openTab === 2}">
-                            Tentang Perusahaan
-                        </span>
-                    </li>
-                </ul>
+                <!-- NAV TAB -->
+                <div>
+                    <ul class="flex border-b border-gray-300 font-bold">
+                        <li class="-mb-px mx-8 cursor-pointer">
+                            <span class="inline-block py-2 px-4 text-blue-500 font-semibold  hover:text-blue-800" @click="toggleTabs(1)" v-bind:class="{'text-blue-600': openTab !== 1, 'border-b-2 border-blue-500': openTab === 1}">
+                                Deskripsi
+                            </span>
+                        </li>
+                        <li class="mr-1 cursor-pointer">
+                            <span class="inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" @click="toggleTabs(2)" v-bind:class="{'text-blue-600': openTab !== 2, 'border-b-2 border-blue-500': openTab === 2}">
+                                Tentang Perusahaan
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END NAV TAB -->
+
             </div>
-            <!-- END NAV TAB -->
 
-        </div>
-
-        <!-- Deskripsi Produk -->
-        <div class="mt-8" v-bind:class="{'hidden': openTab !== 1, 'block': openTab === 1}">
-            <div class="flex-1 text-gray-700">
-                <div class="h-full px-6 py-6 relative leading-tight ">
-                    <p class="normal-case mb-2 font-semibold leading-tight text-lg">
-                        Deskripsi Produk</p>
-                    <p class="text-gray-600 leading-tight mb-8" v-if="product.description !== null">
-                        {{ product.description }}
-                    </p>
-                    <p class="text-gray-600 leading-tight mb-8" v-else>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste fuga repellendus repudiandae voluptas hic ut officia molestias repellat architecto nulla!
-                    </p>
+            <!-- Deskripsi Produk -->
+            <div class="mt-8" v-bind:class="{'hidden': openTab !== 1, 'block': openTab === 1}">
+                <div class="flex-1 text-gray-700">
+                    <div class="h-full px-6 py-6 relative leading-tight ">
+                        <p class="normal-case mb-2 font-semibold leading-tight text-lg">
+                            Deskripsi Produk</p>
+                        <p class="text-gray-600 leading-tight mb-8" v-if="product.description !== null">
+                            {{ product.description }}
+                        </p>
+                        <p class="text-gray-600 leading-tight mb-8" v-else>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste fuga repellendus repudiandae voluptas hic ut officia molestias repellat architecto nulla!
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Tentang Perusahaan CARD -->
-        <div class="mt-8" v-bind:class="{'hidden': openTab !== 2, 'block': openTab === 2}">
-            <div class="flex-1 text-gray-700">
-                <div class="h-full px-6 py-6 relative leading-tight ">
-                    <p class="normal-case mb-2 font-semibold leading-tight text-lg">
-                        Tentang Perusahaan</p>
-                    <p class="text-gray-600 leading-tight mb-8" v-if="company.additional_info !== null">
-                        {{ company.additional_info }}
-                    </p>
-                    <p class="text-gray-600 leading-tight mb-8" v-else>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur explicabo eos accusamus dicta unde? Officiis voluptas sit a repellat facere?
-                    </p>
+            <!-- Tentang Perusahaan CARD -->
+            <div class="mt-8" v-bind:class="{'hidden': openTab !== 2, 'block': openTab === 2}">
+                <div class="flex-1 text-gray-700">
+                    <div class="h-full px-6 py-6 relative leading-tight ">
+                        <p class="normal-case mb-2 font-semibold leading-tight text-lg">
+                            Tentang Perusahaan</p>
+                        <p class="text-gray-600 leading-tight mb-8" v-if="company.additional_info !== null">
+                            {{ company.additional_info }}
+                        </p>
+                        <p class="text-gray-600 leading-tight mb-8" v-else>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur explicabo eos accusamus dicta unde? Officiis voluptas sit a repellat facere?
+                        </p>
 
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
+    </transition>
 </div>
 </template>
 

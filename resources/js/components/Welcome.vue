@@ -249,51 +249,53 @@
             </div>
 
             <!-- PRODUCTS  -->
-            <div class="mt-8 grid grid-cols-5 gap-4">
+            <transition name="fade">
+                <div class="mt-8 grid grid-cols-5 gap-4">
 
-                <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products.data" :key="product.id">
-                    <div>
-                        <img :src="'/storage/'+product.image_path" alt="" class="hover:opacity-75 rounded-t-lg object-cover w-full h-41">
-                    </div>
-                    <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41">
-                        <p class="normal-case mb-6 font-bold text-sm leading-tight h-2.25rem">
-                            {{ product.name }}
-                        </p>
-                        <p class="uppercase text-gray-600 leading-tight text-xs h-2.25rem hover:text-blue-400">
-                            <a :href="'/company-page/'+product.user_id">{{ product.company_name }}</a>
-                        </p>
+                    <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products.data" :key="product.id">
                         <div>
-                            <p class="mt-2 mb-2 text-xs text-gray-500">
-                                Jakarta Barat
+                            <img :src="'/storage/'+product.image_path" alt="" class="hover:opacity-75 rounded-t-lg object-cover w-full h-41">
+                        </div>
+                        <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41">
+                            <p class="normal-case mb-6 font-bold text-sm leading-tight h-2.25rem">
+                                {{ product.name }}
                             </p>
+                            <p class="uppercase text-gray-600 leading-tight text-xs h-2.25rem hover:text-blue-400">
+                                <a :href="'/company-page/'+product.user_id">{{ product.company_name }}</a>
+                            </p>
+                            <div>
+                                <p class="mt-2 mb-2 text-xs text-gray-500">
+                                    Jakarta Barat
+                                </p>
 
-                            <div class="flex items-center justify-start mb-2">
-                                <div class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2">
-                                    <p class="text-gray-200 text-xs">SNI</p>
+                                <div class="flex items-center justify-start mb-2">
+                                    <div class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2">
+                                        <p class="text-gray-200 text-xs">SNI</p>
+                                    </div>
+                                    <span v-if="product.sni" class="text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
+                                        trusted suplier</span>
+                                    <span v-else class="text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
+                                        not trusted suplier
+                                    </span>
                                 </div>
-                                <span v-if="product.sni" class="text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
-                                    trusted suplier</span>
-                                <span v-else class="text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal">
-                                    not trusted suplier
-                                </span>
-                            </div>
 
-                            <p class="font-bold mb-2">
-                                <span class="text-red-500 font-bold">Rp{{ product.price }}</span>
-                                <span class="text-sm">/pc</span>
-                            </p>
-                            <p class="text-xs mb-4 text-gray-500">
-                                Visit in order to contact the seller
-                            </p>
-                            <a :href="'/product-detail/'+product.id">
-                                <button type="button" class="hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ">
-                                    <p class="text-white leading-none font-bold text-sm">See Product</p>
-                                </button>
-                            </a>
+                                <p class="font-bold mb-2">
+                                    <span class="text-red-500 font-bold">Rp{{ product.price }}</span>
+                                    <span class="text-sm">/pc</span>
+                                </p>
+                                <p class="text-xs mb-4 text-gray-500">
+                                    Visit in order to contact the seller
+                                </p>
+                                <a :href="'/product-detail/'+product.id">
+                                    <button type="button" class="hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg ">
+                                        <p class="text-white leading-none font-bold text-sm">See Product</p>
+                                    </button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </transition>
 
             <!-- loader spin-->
             <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0">
@@ -443,3 +445,16 @@ export default {
     }
 }
 </script>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
+}
+
+/* .fade-leave-active below version 2.1.8 */
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+</style>

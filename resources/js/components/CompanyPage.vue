@@ -73,7 +73,9 @@
                 </div>
 
             </div>
+        </transition>
 
+        <transition name="fade">
             <div class="w-full">
 
                 <div class="flex justify-between items-center border-b leading-loose">
