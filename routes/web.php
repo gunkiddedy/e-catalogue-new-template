@@ -14,17 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Auth::routes();
+// Auth::routes();
 
 
-Route::view('/', 'welcome');
+// Route::view('/', 'welcome');
 
 // Route::get('/login', 'HomeController@login')->name('login');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/company-page/{id}', 'WebController@companyPage')->name('company.page');
-Route::get('/company-list', 'WebController@companyList')->name('company.list');
-Route::get('/product-detail/{id}', 'WebController@productDetail')->name('product.page');
+// Route::get('/company-page/{id}', 'WebController@companyPage')->name('company.page');
+// Route::get('/company-list', 'WebController@companyList')->name('company.list');
+// Route::get('/product-detail/{id}', 'WebController@productDetail')->name('product.page');
+
+Route::get('/{any}', function(){
+    return view('welcome');
+})->where('any', '.*');
 

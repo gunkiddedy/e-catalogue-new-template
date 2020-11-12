@@ -13,13 +13,13 @@
                 <div class="w-full bg-gray-300 h-full ">
 
                     <div class="flex items-center justify-end">
-                        <a href="/">
+                        <router-link to="/">
                             <button class="bg-white relative w-8 h-8 hover:shadow-outline rounded-full p-1 text-gray-800 focus:outline-none">
                                 <svg class=" w-4 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                 </svg>
                             </button>
-                        </a>
+                        </router-link>
                     </div>
 
                     <div class="mt-16 w-1/2 flex flex-wrap">
@@ -33,10 +33,9 @@
 
                     <div class="border-t border-gray-400 w-full my-8"></div>
 
-                    <form>
-                        <!--<input type="hidden" name="access_token">-->
+                    <form @submit.prevent="handleLogin">
                         <div class="mb-4 flex items-center relative">
-                            <input id="email" type="email" name="email" v-model="email" placeholder="Email (example@gmail.com)" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" required autocomplete="email">
+                            <input id="email" type="email" name="email" v-model="form.email" placeholder="Email (example@gmail.com)" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" required autocomplete="email">
                             <svg class="w-4 absolute right-0 mr-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
@@ -44,7 +43,7 @@
                         </div>
 
                         <div class="mb-4 flex items-center relative">
-                            <input id="password" type="password" name="password" v-model="password" placeholder="Password" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                            <input id="password" type="password" name="password" v-model="form.password" placeholder="Password" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                             <svg class="w-4 absolute right-0 mr-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
                                 <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
@@ -71,7 +70,7 @@
                         </div>
 
                         <div>
-                            <button @click="login" type="button" class="px-6 py-2 w-full rounded-lg hover:bg-orange-400 bg-orange-custom text-white font-semibold leading-tight">
+                            <button type="submit" class="px-6 py-2 w-full rounded-lg hover:bg-orange-400 bg-orange-custom text-white font-semibold leading-tight">
                                 Sign in
                             </button>
                         </div>
@@ -82,9 +81,9 @@
                     <div class="flex">
                         <div class="mr-6"><span class="text-gray-500 font-semibold">Don't have an account?</span></div>
                         <div>
-                            <a href="/register">
+                            <router-link to="/register">
                                 <span class="text-blue-600 font-bold hover:text-blue-400">Sign Up</span>
-                            </a>
+                            </router-link>
                         </div>
                     </div>
 
@@ -99,34 +98,31 @@
 
 <script>
 export default {
-    // props: ['route'],
 
     data() {
         return {
-            email: '',
-            password: ''
+            form: {
+                email: '',
+                password: ''
+            }
         }
     },
 
     methods: {
 
-        login(e) {
-            e.preventDefault();
-
-            const formData = new FormData();
-
-            formData.append('email', this.email);
-            formData.append('password', this.password);
-
-            axios.post('/api/auth/login', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }).then((res) => {
-                console.log(res)
-            }).catch((error) => {
-                console.log(error);
-            });
+        handleLogin() {
+            axios.get('/sanctum/csrf-cookie')
+                .then(response => {
+                    console.log(response)
+                    axios.post('/login', this.form)
+                        .then((response) => {
+                            console.log(response)
+                        }).catch((error) => {
+                            console.log(error);
+                        });
+                }).catch((error) => {
+                    console.log(error)
+                });
         },
 
     }

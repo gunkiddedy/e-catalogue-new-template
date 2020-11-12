@@ -37,7 +37,8 @@ module.exports = {
     height: ['responsive', 'hover'],
     transitionDuration: ['responsive', 'hover', 'focus'],
     fontFamily: ['responsive', 'hover', 'focus'],
-    animation: ['responsive', 'hover', 'focus']
+    animation: ['responsive', 'hover', 'focus'],
+    rotate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
   },
   plugins: [],
 }

@@ -3,11 +3,11 @@
     <header>
         <div class="px-4 py-4 flex justify-between items-center">
 
-            <a href="/">
+            <router-link to="/">
                 <span class="normal-case font-omnia text-gray-600 text-2xl lg:text-2xl tracking-wide font-semibold">
                     Katalogi
                 </span>
-            </a>
+            </router-link>
 
             <div class="w-full mx-16 relative">
                 <form action="" method="GET">
@@ -34,11 +34,11 @@
                 <div class="leading-tight text-sm font-semibold text-gray-600">PT.MAJU JAYA PRIMA...</div>
             </div>
             <div v-if="!isauth" class="w-64 flex justify-between items-center">
-                <a href="/login">
+                <router-link to="/login">
                     <button class="bg-orange-custom px-4 py-2 rounded-lg w-48 hover:bg-orange-400" type="button">
                         <span class="leading-tight text-white font-semibold">Login / Register</span>
                     </button>
-                </a>
+                </router-link>
             </div>
         </div>
     </header>

@@ -22939,6 +22939,142 @@ video {
   --transform-rotate: -1deg;
 }
 
+.active\:rotate-0:active{
+  --transform-rotate: 0;
+}
+
+.active\:rotate-1:active{
+  --transform-rotate: 1deg;
+}
+
+.active\:rotate-2:active{
+  --transform-rotate: 2deg;
+}
+
+.active\:rotate-3:active{
+  --transform-rotate: 3deg;
+}
+
+.active\:rotate-6:active{
+  --transform-rotate: 6deg;
+}
+
+.active\:rotate-12:active{
+  --transform-rotate: 12deg;
+}
+
+.active\:rotate-45:active{
+  --transform-rotate: 45deg;
+}
+
+.active\:rotate-90:active{
+  --transform-rotate: 90deg;
+}
+
+.active\:rotate-180:active{
+  --transform-rotate: 180deg;
+}
+
+.active\:-rotate-180:active{
+  --transform-rotate: -180deg;
+}
+
+.active\:-rotate-90:active{
+  --transform-rotate: -90deg;
+}
+
+.active\:-rotate-45:active{
+  --transform-rotate: -45deg;
+}
+
+.active\:-rotate-12:active{
+  --transform-rotate: -12deg;
+}
+
+.active\:-rotate-6:active{
+  --transform-rotate: -6deg;
+}
+
+.active\:-rotate-3:active{
+  --transform-rotate: -3deg;
+}
+
+.active\:-rotate-2:active{
+  --transform-rotate: -2deg;
+}
+
+.active\:-rotate-1:active{
+  --transform-rotate: -1deg;
+}
+
+.group:hover .group-hover\:rotate-0{
+  --transform-rotate: 0;
+}
+
+.group:hover .group-hover\:rotate-1{
+  --transform-rotate: 1deg;
+}
+
+.group:hover .group-hover\:rotate-2{
+  --transform-rotate: 2deg;
+}
+
+.group:hover .group-hover\:rotate-3{
+  --transform-rotate: 3deg;
+}
+
+.group:hover .group-hover\:rotate-6{
+  --transform-rotate: 6deg;
+}
+
+.group:hover .group-hover\:rotate-12{
+  --transform-rotate: 12deg;
+}
+
+.group:hover .group-hover\:rotate-45{
+  --transform-rotate: 45deg;
+}
+
+.group:hover .group-hover\:rotate-90{
+  --transform-rotate: 90deg;
+}
+
+.group:hover .group-hover\:rotate-180{
+  --transform-rotate: 180deg;
+}
+
+.group:hover .group-hover\:-rotate-180{
+  --transform-rotate: -180deg;
+}
+
+.group:hover .group-hover\:-rotate-90{
+  --transform-rotate: -90deg;
+}
+
+.group:hover .group-hover\:-rotate-45{
+  --transform-rotate: -45deg;
+}
+
+.group:hover .group-hover\:-rotate-12{
+  --transform-rotate: -12deg;
+}
+
+.group:hover .group-hover\:-rotate-6{
+  --transform-rotate: -6deg;
+}
+
+.group:hover .group-hover\:-rotate-3{
+  --transform-rotate: -3deg;
+}
+
+.group:hover .group-hover\:-rotate-2{
+  --transform-rotate: -2deg;
+}
+
+.group:hover .group-hover\:-rotate-1{
+  --transform-rotate: -1deg;
+}
+
 .translate-x-0{
   --transform-translate-x: 0;
 }
@@ -46862,6 +46998,142 @@ video {
     --transform-rotate: -1deg;
   }
 
+  .sm\:active\:rotate-0:active{
+    --transform-rotate: 0;
+  }
+
+  .sm\:active\:rotate-1:active{
+    --transform-rotate: 1deg;
+  }
+
+  .sm\:active\:rotate-2:active{
+    --transform-rotate: 2deg;
+  }
+
+  .sm\:active\:rotate-3:active{
+    --transform-rotate: 3deg;
+  }
+
+  .sm\:active\:rotate-6:active{
+    --transform-rotate: 6deg;
+  }
+
+  .sm\:active\:rotate-12:active{
+    --transform-rotate: 12deg;
+  }
+
+  .sm\:active\:rotate-45:active{
+    --transform-rotate: 45deg;
+  }
+
+  .sm\:active\:rotate-90:active{
+    --transform-rotate: 90deg;
+  }
+
+  .sm\:active\:rotate-180:active{
+    --transform-rotate: 180deg;
+  }
+
+  .sm\:active\:-rotate-180:active{
+    --transform-rotate: -180deg;
+  }
+
+  .sm\:active\:-rotate-90:active{
+    --transform-rotate: -90deg;
+  }
+
+  .sm\:active\:-rotate-45:active{
+    --transform-rotate: -45deg;
+  }
+
+  .sm\:active\:-rotate-12:active{
+    --transform-rotate: -12deg;
+  }
+
+  .sm\:active\:-rotate-6:active{
+    --transform-rotate: -6deg;
+  }
+
+  .sm\:active\:-rotate-3:active{
+    --transform-rotate: -3deg;
+  }
+
+  .sm\:active\:-rotate-2:active{
+    --transform-rotate: -2deg;
+  }
+
+  .sm\:active\:-rotate-1:active{
+    --transform-rotate: -1deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-0{
+    --transform-rotate: 0;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-1{
+    --transform-rotate: 1deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-2{
+    --transform-rotate: 2deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-3{
+    --transform-rotate: 3deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-6{
+    --transform-rotate: 6deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-12{
+    --transform-rotate: 12deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-45{
+    --transform-rotate: 45deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-90{
+    --transform-rotate: 90deg;
+  }
+
+  .group:hover .sm\:group-hover\:rotate-180{
+    --transform-rotate: 180deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-180{
+    --transform-rotate: -180deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-90{
+    --transform-rotate: -90deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-45{
+    --transform-rotate: -45deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-12{
+    --transform-rotate: -12deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-6{
+    --transform-rotate: -6deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-3{
+    --transform-rotate: -3deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-2{
+    --transform-rotate: -2deg;
+  }
+
+  .group:hover .sm\:group-hover\:-rotate-1{
+    --transform-rotate: -1deg;
+  }
+
   .sm\:translate-x-0{
     --transform-translate-x: 0;
   }
@@ -70709,6 +70981,142 @@ video {
   }
 
   .md\:focus\:-rotate-1:focus{
+    --transform-rotate: -1deg;
+  }
+
+  .md\:active\:rotate-0:active{
+    --transform-rotate: 0;
+  }
+
+  .md\:active\:rotate-1:active{
+    --transform-rotate: 1deg;
+  }
+
+  .md\:active\:rotate-2:active{
+    --transform-rotate: 2deg;
+  }
+
+  .md\:active\:rotate-3:active{
+    --transform-rotate: 3deg;
+  }
+
+  .md\:active\:rotate-6:active{
+    --transform-rotate: 6deg;
+  }
+
+  .md\:active\:rotate-12:active{
+    --transform-rotate: 12deg;
+  }
+
+  .md\:active\:rotate-45:active{
+    --transform-rotate: 45deg;
+  }
+
+  .md\:active\:rotate-90:active{
+    --transform-rotate: 90deg;
+  }
+
+  .md\:active\:rotate-180:active{
+    --transform-rotate: 180deg;
+  }
+
+  .md\:active\:-rotate-180:active{
+    --transform-rotate: -180deg;
+  }
+
+  .md\:active\:-rotate-90:active{
+    --transform-rotate: -90deg;
+  }
+
+  .md\:active\:-rotate-45:active{
+    --transform-rotate: -45deg;
+  }
+
+  .md\:active\:-rotate-12:active{
+    --transform-rotate: -12deg;
+  }
+
+  .md\:active\:-rotate-6:active{
+    --transform-rotate: -6deg;
+  }
+
+  .md\:active\:-rotate-3:active{
+    --transform-rotate: -3deg;
+  }
+
+  .md\:active\:-rotate-2:active{
+    --transform-rotate: -2deg;
+  }
+
+  .md\:active\:-rotate-1:active{
+    --transform-rotate: -1deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-0{
+    --transform-rotate: 0;
+  }
+
+  .group:hover .md\:group-hover\:rotate-1{
+    --transform-rotate: 1deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-2{
+    --transform-rotate: 2deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-3{
+    --transform-rotate: 3deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-6{
+    --transform-rotate: 6deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-12{
+    --transform-rotate: 12deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-45{
+    --transform-rotate: 45deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-90{
+    --transform-rotate: 90deg;
+  }
+
+  .group:hover .md\:group-hover\:rotate-180{
+    --transform-rotate: 180deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-180{
+    --transform-rotate: -180deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-90{
+    --transform-rotate: -90deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-45{
+    --transform-rotate: -45deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-12{
+    --transform-rotate: -12deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-6{
+    --transform-rotate: -6deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-3{
+    --transform-rotate: -3deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-2{
+    --transform-rotate: -2deg;
+  }
+
+  .group:hover .md\:group-hover\:-rotate-1{
     --transform-rotate: -1deg;
   }
 
@@ -94562,6 +94970,142 @@ video {
     --transform-rotate: -1deg;
   }
 
+  .lg\:active\:rotate-0:active{
+    --transform-rotate: 0;
+  }
+
+  .lg\:active\:rotate-1:active{
+    --transform-rotate: 1deg;
+  }
+
+  .lg\:active\:rotate-2:active{
+    --transform-rotate: 2deg;
+  }
+
+  .lg\:active\:rotate-3:active{
+    --transform-rotate: 3deg;
+  }
+
+  .lg\:active\:rotate-6:active{
+    --transform-rotate: 6deg;
+  }
+
+  .lg\:active\:rotate-12:active{
+    --transform-rotate: 12deg;
+  }
+
+  .lg\:active\:rotate-45:active{
+    --transform-rotate: 45deg;
+  }
+
+  .lg\:active\:rotate-90:active{
+    --transform-rotate: 90deg;
+  }
+
+  .lg\:active\:rotate-180:active{
+    --transform-rotate: 180deg;
+  }
+
+  .lg\:active\:-rotate-180:active{
+    --transform-rotate: -180deg;
+  }
+
+  .lg\:active\:-rotate-90:active{
+    --transform-rotate: -90deg;
+  }
+
+  .lg\:active\:-rotate-45:active{
+    --transform-rotate: -45deg;
+  }
+
+  .lg\:active\:-rotate-12:active{
+    --transform-rotate: -12deg;
+  }
+
+  .lg\:active\:-rotate-6:active{
+    --transform-rotate: -6deg;
+  }
+
+  .lg\:active\:-rotate-3:active{
+    --transform-rotate: -3deg;
+  }
+
+  .lg\:active\:-rotate-2:active{
+    --transform-rotate: -2deg;
+  }
+
+  .lg\:active\:-rotate-1:active{
+    --transform-rotate: -1deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-0{
+    --transform-rotate: 0;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-1{
+    --transform-rotate: 1deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-2{
+    --transform-rotate: 2deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-3{
+    --transform-rotate: 3deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-6{
+    --transform-rotate: 6deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-12{
+    --transform-rotate: 12deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-45{
+    --transform-rotate: 45deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-90{
+    --transform-rotate: 90deg;
+  }
+
+  .group:hover .lg\:group-hover\:rotate-180{
+    --transform-rotate: 180deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-180{
+    --transform-rotate: -180deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-90{
+    --transform-rotate: -90deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-45{
+    --transform-rotate: -45deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-12{
+    --transform-rotate: -12deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-6{
+    --transform-rotate: -6deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-3{
+    --transform-rotate: -3deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-2{
+    --transform-rotate: -2deg;
+  }
+
+  .group:hover .lg\:group-hover\:-rotate-1{
+    --transform-rotate: -1deg;
+  }
+
   .lg\:translate-x-0{
     --transform-translate-x: 0;
   }
@@ -118409,6 +118953,142 @@ video {
   }
 
   .xl\:focus\:-rotate-1:focus{
+    --transform-rotate: -1deg;
+  }
+
+  .xl\:active\:rotate-0:active{
+    --transform-rotate: 0;
+  }
+
+  .xl\:active\:rotate-1:active{
+    --transform-rotate: 1deg;
+  }
+
+  .xl\:active\:rotate-2:active{
+    --transform-rotate: 2deg;
+  }
+
+  .xl\:active\:rotate-3:active{
+    --transform-rotate: 3deg;
+  }
+
+  .xl\:active\:rotate-6:active{
+    --transform-rotate: 6deg;
+  }
+
+  .xl\:active\:rotate-12:active{
+    --transform-rotate: 12deg;
+  }
+
+  .xl\:active\:rotate-45:active{
+    --transform-rotate: 45deg;
+  }
+
+  .xl\:active\:rotate-90:active{
+    --transform-rotate: 90deg;
+  }
+
+  .xl\:active\:rotate-180:active{
+    --transform-rotate: 180deg;
+  }
+
+  .xl\:active\:-rotate-180:active{
+    --transform-rotate: -180deg;
+  }
+
+  .xl\:active\:-rotate-90:active{
+    --transform-rotate: -90deg;
+  }
+
+  .xl\:active\:-rotate-45:active{
+    --transform-rotate: -45deg;
+  }
+
+  .xl\:active\:-rotate-12:active{
+    --transform-rotate: -12deg;
+  }
+
+  .xl\:active\:-rotate-6:active{
+    --transform-rotate: -6deg;
+  }
+
+  .xl\:active\:-rotate-3:active{
+    --transform-rotate: -3deg;
+  }
+
+  .xl\:active\:-rotate-2:active{
+    --transform-rotate: -2deg;
+  }
+
+  .xl\:active\:-rotate-1:active{
+    --transform-rotate: -1deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-0{
+    --transform-rotate: 0;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-1{
+    --transform-rotate: 1deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-2{
+    --transform-rotate: 2deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-3{
+    --transform-rotate: 3deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-6{
+    --transform-rotate: 6deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-12{
+    --transform-rotate: 12deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-45{
+    --transform-rotate: 45deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-90{
+    --transform-rotate: 90deg;
+  }
+
+  .group:hover .xl\:group-hover\:rotate-180{
+    --transform-rotate: 180deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-180{
+    --transform-rotate: -180deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-90{
+    --transform-rotate: -90deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-45{
+    --transform-rotate: -45deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-12{
+    --transform-rotate: -12deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-6{
+    --transform-rotate: -6deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-3{
+    --transform-rotate: -3deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-2{
+    --transform-rotate: -2deg;
+  }
+
+  .group:hover .xl\:group-hover\:-rotate-1{
     --transform-rotate: -1deg;
   }
 

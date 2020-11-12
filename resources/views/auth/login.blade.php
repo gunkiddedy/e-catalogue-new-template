@@ -188,7 +188,7 @@
 
 </div> --}}
 
-<div class="bg-gray-100">
+{{-- <div class="bg-gray-100">
     <login-page></login-page>
-</div>
+</div> --}}
 @endsection

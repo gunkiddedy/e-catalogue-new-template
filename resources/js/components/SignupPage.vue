@@ -8,19 +8,18 @@
         </transition>
 
         <!-- FORM SIGNUP 1-->
-        <!--<transition name="fade">-->
         <div class="login-form bg-gray-300 w-2/5 h-screen px-24 py-6" v-if="form_signup1">
 
             <div class="w-full bg-gray-300 h-full ">
 
                 <div class="flex items-center justify-end">
-                    <a href="/">
+                    <router-link to="/">
                         <button class="bg-white relative w-8 h-8 hover:shadow-outline rounded-full p-1 text-gray-800 focus:outline-none">
                             <svg class=" w-4 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                         </button>
-                    </a>
+                    </router-link>
                 </div>
 
                 <div class="mt-2 w-1/2 flex flex-wrap">
@@ -81,30 +80,28 @@
                 <div class="flex">
                     <div class="mr-6"><span class="text-gray-500 font-semibold">Already have an account?</span></div>
                     <div>
-                        <a href="/login">
+                        <router-link to="/login">
                             <span class="text-blue-600 font-bold hover:text-blue-400">Sign in</span>
-                        </a>
+                        </router-link>
                     </div>
                 </div>
 
             </div>
         </div>
-        <!--</transition>-->
 
         <!-- FORM SIGNUP 2-->
-        <!--<transition name="fade">-->
         <div class="login-form bg-gray-300 w-2/5 h-screen px-24 py-6 transition duration-150 ease-in-out" v-if="form_signup2">
 
             <div class="w-full bg-gray-300 h-full ">
 
                 <div class="flex items-center justify-end">
-                    <a href="/">
+                    <router-link to="/">
                         <button class="bg-white relative w-8 h-8 hover:shadow-outline rounded-full p-1 text-gray-800 focus:outline-none">
                             <svg class=" w-4 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                         </button>
-                    </a>
+                    </router-link>
                 </div>
 
                 <div class="mt-2 w-3/4 flex flex-wrap">
@@ -146,15 +143,14 @@
                 <div class="flex">
                     <div class="mr-6"><span class="text-gray-500 font-semibold">Already have an account?</span></div>
                     <div>
-                        <a href="/login">
+                        <router-link to="/login">
                             <span class="text-blue-600 font-bold hover:text-blue-400">Sign in</span>
-                        </a>
+                        </router-link>
                     </div>
                 </div>
 
             </div>
         </div>
-        <!--</transition>-->
     </div>
 
 </div>
