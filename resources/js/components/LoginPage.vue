@@ -7,7 +7,6 @@
             </div>
         </transition>
 
-        <!-- LOGIN FORM-->
         <transition name="fade">
             <div class="login-form bg-gray-300 w-2/5 h-screen px-24 py-6">
 
@@ -35,8 +34,9 @@
                     <div class="border-t border-gray-400 w-full my-8"></div>
 
                     <form>
+                        <!--<input type="hidden" name="access_token">-->
                         <div class="mb-4 flex items-center relative">
-                            <input id="email" type="email" name="email" placeholder="Email (example@gmail.com)" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" required autocomplete="email">
+                            <input id="email" type="email" name="email" v-model="email" placeholder="Email (example@gmail.com)" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" required autocomplete="email">
                             <svg class="w-4 absolute right-0 mr-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="mb-4 flex items-center relative">
-                            <input id="password" type="password" name="password" placeholder="Password" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                            <input id="password" type="password" name="password" v-model="password" placeholder="Password" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                             <svg class="w-4 absolute right-0 mr-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
                                 <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
@@ -62,8 +62,6 @@
                                 <label for="remember" class="text-gray-500 font-semibold">
                                     Stay signed in
                                 </label>
-                                <!--<input type="checkbox" name="" id="" class="border border-gray-600 mr-2">
-                            <span class="text-sm text-gray-600 font-semibold">Stay signed in</span>-->
                             </div>
                             <div>
                                 <a href="/password/reset">
@@ -73,7 +71,7 @@
                         </div>
 
                         <div>
-                            <button class="px-6 py-2 w-full rounded-lg hover:bg-orange-400 bg-orange-custom text-white font-semibold leading-tight" type="button">
+                            <button @click="login" type="button" class="px-6 py-2 w-full rounded-lg hover:bg-orange-400 bg-orange-custom text-white font-semibold leading-tight">
                                 Sign in
                             </button>
                         </div>
@@ -101,7 +99,37 @@
 
 <script>
 export default {
+    // props: ['route'],
 
+    data() {
+        return {
+            email: '',
+            password: ''
+        }
+    },
+
+    methods: {
+
+        login(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+
+            formData.append('email', this.email);
+            formData.append('password', this.password);
+
+            axios.post('/api/auth/login', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }).then((res) => {
+                console.log(res)
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
+
+    }
 }
 </script>
 
