@@ -39,8 +39,10 @@ class AuthController extends Controller
                 'message' => 'These credentials do not match our records.'
             ], 404);
         }
+
+        $rand = rand(9999, 99999);
     
-        $token = $user->createToken('mejiku_hibiniu')->plainTextToken;
+        $token = $user->createToken('mejikuhibiniu'.$rand)->plainTextToken;
     
         $response = [
             'success'   => true,
@@ -66,9 +68,9 @@ class AuthController extends Controller
     {
 
         $request->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required', 'min:6', 'confirmed']
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed'
         ]);
 
         User::create([
