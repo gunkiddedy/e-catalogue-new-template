@@ -12,11 +12,13 @@ export default {
     routes: [
         {
             path: '*',
-            component: PageNotFound
+            component: PageNotFound,
+            name: 'page-not-found'
         },
         {
             path: '/',
             component: Welcome,
+            name: 'welcome'
         },
         {
             path: '/login',

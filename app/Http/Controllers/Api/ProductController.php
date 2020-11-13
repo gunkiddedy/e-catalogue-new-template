@@ -7,6 +7,7 @@ use App\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,8 +48,7 @@ class ProductController extends Controller
         ]);
 
         $images = $request->images;
-        // $user_id = Auth::id();
-        $user_id = 2;
+        $user_id = Auth::id();
 
         if($request->hasFile('images')) {
             //delete image on table product_images firts----
@@ -169,8 +169,11 @@ class ProductController extends Controller
             $category_id = $request->category_id;
             $subcategory_id = $request->subcategory_id;
             $images = $request->images;
-            $user_id = 2;
-            $company_name = 'PT.SIDO MUNCUL';
+            $user_id = Auth::id();
+            $provinsi_id = Auth::user()->provinsi_id;
+            $kabupaten_id = Auth::user()->kabupaten_id;
+            $kecamatan_id = Auth::user()->kecamatan_id;
+            $company_name = Auth::user()->name;
 
             if($request->hasFile('images')) {
                 foreach($images as $image_product)
@@ -187,8 +190,6 @@ class ProductController extends Controller
                 $filenametostore = $filename.'_'.$user_id.'.'.$extension;
 
                 $product = Product::create([
-                    'user_id' => $user_id,
-                    'company_name' => $company_name,
                     'name' => $name,
                     'description' => $description,
                     'sni' => $sni,
@@ -201,6 +202,11 @@ class ProductController extends Controller
                     'hs_code' => $hs_code,
                     'category_id' => $category_id,
                     'subcategory_id' => $subcategory_id,
+                    'user_id' => $user_id,
+                    'company_name' => $company_name,
+                    'provinsi_id' => $provinsi_id,
+                    'kabupaten_id' => $kabupaten_id,
+                    'kecamatan_id' => $kecamatan_id,
                     'image_path' => 'images/'.$filenametostore
                 ]);
 

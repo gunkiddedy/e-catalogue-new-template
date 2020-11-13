@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="px-16 bg-gray-100">
-        <header-component></header-component>
+        <header-component :isauth="true"></header-component>
         <div class="flex px-4 py-4 mt-4">
             <transition name="fade">
                 <div class="bg-white h-full w-64 rounded-lg mr-6 shadow">
@@ -316,8 +316,12 @@
                     <!-- PRODUCT CARD -->
                     <div class="mt-8 grid grid-cols-5 gap-4" :class="{'hidden': openTab !== 2, 'block': openTab === 2}">
                         <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products" :key="product.id">
-                            <div>
+                            <div class="flex justify-end">
                                 <img :src="'/storage/'+product.image_path" alt="" class="hover:opacity-75 rounded-t-lg object-cover w-full h-41">
+                                <span v-if="product.is_active == 1" class="px-2 bg-gray-100 rounded-tr-md rounded-bl-md text-gray-600 shadow-md text-xs font-semibold absolute">
+                                    Active</span>
+                                <span v-else class="px-2 bg-gray-100 rounded-tr-md rounded-bl-md text-red-600 shadow-md text-xs font-semibold absolute">
+                                    Inactive</span>
                             </div>
                             <div class="absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41">
                                 <p class="normal-case mb-6 font-bold text-sm leading-tight h-2.25rem">
@@ -537,6 +541,18 @@ export default {
             this.$message.warning(`The limit is 5, you have selected ${files.length} files`);
         },
 
+        // userLogout() {
+        //     axios.get('/sanctum/csrf-cookie').then((res) => {
+        //         axios.post('/api/logout').then((res2) => {
+        //             console.log('logout')
+        //         }).catch((err2) => {
+
+        //         });
+        //     }).catch((err) => {
+        //         console.log(err)
+        //     });
+        // },
+
         addProduct(e) {
             e.preventDefault()
             if (!this.validateForm()) {
@@ -563,33 +579,35 @@ export default {
                 formData.append('images[]', file, file.name);
             });
 
-            // $.each(this.imageList, function (key, image) {
-            //     formData.append(`images[${key}]`, image);
-            // });
-
-            axios.post('/api/add-product', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }).then((res) => {
-                this.name = '';
-                this.description = '';
-                this.sni = '';
-                this.nomor_sni = '';
-                this.tkdn = '';
-                this.nilai_tkdn = '';
-                this.nomor_sertifikat_tkdn = '';
-                this.nomor_laporan_tkdn = '';
-                this.hs_code = '';
-                this.price = '';
-                this.select_category = '';
-                this.select_subcategory = '';
-                this.status = true;
-                this.showNotification('Product Successfully Added');
-                this.isSubmittingProduct = false;
-                this.imageList = [];
-            }).catch((error) => {
-                console.log(error);
+            axios.get('/sanctum/csrf-cookie').then((res1) => {
+                console.log(res1)
+                axios.post('/api/add-product', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then((res2) => {
+                    console.log(res2)
+                    this.name = '';
+                    this.description = '';
+                    this.sni = '';
+                    this.nomor_sni = '';
+                    this.tkdn = '';
+                    this.nilai_tkdn = '';
+                    this.nomor_sertifikat_tkdn = '';
+                    this.nomor_laporan_tkdn = '';
+                    this.hs_code = '';
+                    this.price = '';
+                    this.select_category = '';
+                    this.select_subcategory = '';
+                    this.status = true;
+                    this.showNotification('Product Successfully Added');
+                    this.isSubmittingProduct = false;
+                    this.imageList = [];
+                }).catch((error) => {
+                    console.log(error)
+                });
+            }).catch((err) => {
+                console.log(err)
             });
         },
 

@@ -722,7 +722,9 @@ export default {
         },
 
         switchImage(param) {
-            this.indexImage = param;
+            setTimeout(() => {
+                this.indexImage = param;
+            }, 500);
         },
 
         toggleTabs(tabNumber) {

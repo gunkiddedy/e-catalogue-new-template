@@ -22,13 +22,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('products', 'Api\ProductController@index');
-Route::post('add-product', 'Api\ProductController@addProduct');
-Route::post('update-product', 'Api\ProductController@updateProduct');
-Route::get('product-detail/{id}', 'Api\ProductController@productDetail');
+Route::post('login', 'AuthController@login');
+Route::post('logout', 'AuthController@logout');
+Route::post('register', 'AuthController@register');
 
+Route::get('products', 'Api\ProductController@index');
+Route::get('product-detail/{id}', 'Api\ProductController@productDetail');
 Route::get('company-detail/{id}', 'Api\CompanyController@companyDetail');
 
 Route::get('getcategories', 'Api\CategoryController@getCategory');
 Route::get('getsubcategories', 'Api\CategoryController@getSubCategory');
 Route::get('get-subcategories', 'Api\CategoryController@getSubCategories');
+
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('add-product', 'Api\ProductController@addProduct');
+    Route::post('update-product', 'Api\ProductController@updateProduct');    
+});

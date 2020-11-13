@@ -161,7 +161,14 @@ export default {
     data() {
         return {
             form_signup1: true,
-            form_signup2: false
+            form_signup2: false,
+            form: {
+                name: '',
+                email: '',
+                password: '',
+                password_confirmation: ''
+            },
+            errors: []
         }
     },
 
@@ -169,6 +176,13 @@ export default {
         nextPage: function () {
             this.form_signup1 = false;
             this.form_signup2 = true;
+        },
+        registerUser() {
+            axios.post('/api/register', this.form).then(() => {
+                console.log('saved');
+            }).catch((error) => {
+                this.errors = error.response.data.errors;
+            })
         }
     }
 }
