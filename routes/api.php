@@ -14,11 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -35,7 +31,6 @@ Route::get('getsubcategories', 'Api\CategoryController@getSubCategory');
 Route::get('get-subcategories', 'Api\CategoryController@getSubCategories');
 
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('add-product', 'Api\ProductController@addProduct');
-    Route::post('update-product', 'Api\ProductController@updateProduct');    
-});
+Route::post('add-product', 'Api\ProductController@addProduct');
+Route::post('update-product', 'Api\ProductController@updateProduct');    
+

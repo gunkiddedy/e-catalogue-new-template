@@ -12,19 +12,6 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        // $request->validate([
-        //     'email' => ['required', 'email'],
-        //     'password' => ['required']
-        // ]);
-
-        // if (Auth::attempt($request->only('email', 'password'))){
-        //     $user = User::first();
-        //     $token = $user->createToken('mejikuhibiniu')->plainTextToken;
-        //     return response()->json(Auth::user(), 200);
-        // }
-        // throw ValidationException::withMessages([
-        //     'email' =>['The provided credentials are incorect.']
-        // ]);
 
         $request->validate([
             'email' => 'required|email',
@@ -41,13 +28,10 @@ class AuthController extends Controller
         }
 
         $rand = rand(9999, 99999);
-    
-        $token = $user->createToken('mejikuhibiniu'.$rand)->plainTextToken;
-    
+        
         $response = [
             'success'   => true,
             'user'      => $user,
-            'token'     => $token
         ];
     
         return response()->json($response, 201);
@@ -56,11 +40,9 @@ class AuthController extends Controller
     
     public function logout()
     {
-        $user = Auth::id();
-        $user->tokens()->delete();
         Auth::logout();
         return response()->json([
-            'success'    => true
+            'message'    => 'logout success'
         ], 200);
     }
 
