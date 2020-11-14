@@ -14,12 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', 'AuthController@login');
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('add-product', 'Api\ProductController@addProduct');
+    Route::post('update-product', 'Api\ProductController@updateProduct');
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+});
+
 Route::post('logout', 'AuthController@logout');
+Route::post('login', 'AuthController@login');
+
 Route::post('register', 'AuthController@register');
 
 Route::get('products', 'Api\ProductController@index');
@@ -31,6 +46,4 @@ Route::get('getsubcategories', 'Api\CategoryController@getSubCategory');
 Route::get('get-subcategories', 'Api\CategoryController@getSubCategories');
 
 
-Route::post('add-product', 'Api\ProductController@addProduct');
-Route::post('update-product', 'Api\ProductController@updateProduct');    
 

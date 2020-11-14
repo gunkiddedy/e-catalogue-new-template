@@ -114,7 +114,7 @@ export default {
                 password: ''
             },
             errors: {},
-            isLoging: false
+            isLoging: false,
         }
     },
 
@@ -127,21 +127,21 @@ export default {
                 .then(response => {
                     axios.post('/api/login', this.form)
                         .then((response) => {
-                            if (response) {
-                                if (response.data.user.role === 'member') {
-                                    this.$router.push({
-                                        name: "company-page",
-                                        params: {
-                                            id: response.data.user.id
-                                        }
-                                    });
-                                } else if (response.data.user.role === 'admin') {
-                                    this.$router.push({
-                                        name: "page-not-found"
-                                    });
-                                }
+                            if (response.data.user.role === 'member') {
+                                this.$router.push({
+                                    name: "company-page",
+                                    params: {
+                                        id: response.data.user.id
+                                    }
+                                });
+                            } else if (response.data.user.role === 'admin') {
+                                this.$router.push({
+                                    name: "page-not-found"
+                                });
                             }
                             this.isLoging = false;
+                            localStorage.setItem('isloggedIn', 'true');
+                            this.isloggedIn = true;
                             console.log(response)
                         })
                         .catch((error) => {

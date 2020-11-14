@@ -29,11 +29,25 @@
                 </button>
             </div>
 
-            <div v-if="isauth" class="w-64 flex justify-between items-center">
-                <div class="border-l h-8 border-gray-600 mr-4"></div>
-                <div class="leading-tight text-sm font-semibold text-gray-600">PT.MAJU JAYA PRIMA...</div>
+            <!-- dropdown profile -->
+            <div class="relative" v-if="isloggedIn === 'true'">
+                <div class="w-full flex justify-between items-center">
+                    <!--<div class="border-l h-8 border-gray-600 mr-4"></div>-->
+                    <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-8 h-8 mx-auto mr-2">
+                    <div @click="toggleDropdownUser" class="leading-tight text-sm font-semibold text-gray-600 cursor-pointer">
+                        PT.MAJU JAYA PRIMA...
+                    </div>
+                </div>
+                <div v-if="showUserDropdown" class="shadow user-drop bg-white absolute py-2 px-4 rounded-lg right-0 w-48 flex flex-col">
+                    <span class="text-gray-700 font-semibold text-sm cursor-pointer" @click="logoutUser">
+                        Logout</span>
+                    <span class="text-gray-700 font-semibold text-sm cursor-pointer">
+                        Profile</span>
+                </div>
             </div>
-            <div v-if="!isauth" class="w-64 flex justify-between items-center">
+
+            <!-- login register button-->
+            <div v-else class="w-64 flex justify-between items-center">
                 <router-link to="/login">
                     <button class="bg-orange-custom px-4 py-2 rounded-lg w-48 hover:bg-orange-400" type="button">
                         <span class="leading-tight text-white font-semibold">Login / Register</span>
@@ -50,16 +64,38 @@
 export default {
     data() {
         return {
-            isauth: false
+            isloggedIn: 'false',
+            showUserDropdown: false,
         }
     },
 
     mounted() {
-
+        this.isloggedIn = localStorage.getItem('isloggedIn');
     },
 
     methods: {
+        toggleDropdownUser() {
+            this.showUserDropdown = !this.showUserDropdown;
+        },
 
+        logoutUser() {
+            axios.get('/sanctum/csrf-cookie')
+                .then(response => {
+                    axios.post('/api/logout')
+                        .then(res => {
+                            this.$router.push({
+                                name: "login"
+                            });
+                            localStorage.setItem('isloggedIn', 'false');
+                            this.isloggedIn = 'false';
+                            console.log(res);
+                        }).catch(err => {
+                            console.log(err);
+                        });
+                }).catch(error => {
+                    console.log(error);
+                });
+        }
     },
 
 }
