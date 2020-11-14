@@ -33,15 +33,15 @@
             <div class="relative" v-if="isloggedIn === 'true'">
                 <div class="w-full flex justify-between items-center">
                     <!--<div class="border-l h-8 border-gray-600 mr-4"></div>-->
-                    <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-8 h-8 mx-auto mr-2">
-                    <div @click="toggleDropdownUser" class="leading-tight text-sm font-semibold text-gray-600 cursor-pointer">
+                    <div class="leading-tight text-sm font-semibold text-gray-600">
                         PT.MAJU JAYA PRIMA...
                     </div>
+                    <img @click="toggleDropdownUser" src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-8 h-8 mx-auto ml-2 cursor-pointer">
                 </div>
                 <div v-if="showUserDropdown" class="shadow user-drop bg-white absolute py-2 px-4 rounded-lg right-0 w-48 flex flex-col">
-                    <span class="text-gray-700 font-semibold text-sm cursor-pointer" @click="logoutUser">
+                    <span class="text-gray-500 hover:text-blue-400  font-semibold cursor-pointer mb-1" @click="logoutUser">
                         Logout</span>
-                    <span class="text-gray-700 font-semibold text-sm cursor-pointer">
+                    <span class="text-gray-500 hover:text-blue-400  font-semibold cursor-pointer mb-1">
                         Profile</span>
                 </div>
             </div>
@@ -88,7 +88,7 @@ export default {
                             });
                             localStorage.setItem('isloggedIn', 'false');
                             this.isloggedIn = 'false';
-                            console.log(res);
+                            // console.log(res);
                         }).catch(err => {
                             console.log(err);
                         });

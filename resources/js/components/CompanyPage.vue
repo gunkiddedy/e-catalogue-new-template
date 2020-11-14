@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="px-16 bg-gray-100">
-        <header-component :isauth="true"></header-component>
+        <header-component></header-component>
         <div class="flex px-4 py-4 mt-4">
             <transition name="fade">
                 <div class="bg-white h-full w-64 rounded-lg mr-6 shadow">

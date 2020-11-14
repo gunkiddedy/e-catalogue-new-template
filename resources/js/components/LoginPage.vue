@@ -141,8 +141,8 @@ export default {
                             }
                             this.isLoging = false;
                             localStorage.setItem('isloggedIn', 'true');
-                            this.isloggedIn = true;
-                            console.log(response)
+                            // this.isloggedIn = true;
+                            // console.log(response)
                         })
                         .catch((error) => {
                             this.errors = error.response.data;
