@@ -39,10 +39,12 @@
                     <img @click="toggleDropdownUser" src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-8 h-8 mx-auto ml-2 cursor-pointer">
                 </div>
                 <div v-if="showUserDropdown" class="shadow user-drop bg-white absolute py-2 px-4 rounded-lg right-0 w-48 flex flex-col">
-                    <span class="text-gray-500 hover:text-blue-400  font-semibold cursor-pointer mb-1" @click="logoutUser">
-                        Logout</span>
-                    <span class="text-gray-500 hover:text-blue-400  font-semibold cursor-pointer mb-1">
-                        Profile</span>
+                    <span class="rounded px-2 py-2 hover:bg-gray-100 text-gray-500 hover:text-blue-400   font-semibold cursor-pointer leading-tight" @click="logoutUser">
+                        Logout
+                    </span>
+                    <span class="rounded px-2 py-2 hover:bg-gray-100 text-gray-500 hover:text-blue-400   font-semibold cursor-pointer leading-tight">
+                        Profile
+                    </span>
                 </div>
             </div>
 

@@ -33,7 +33,8 @@ return [
 
     'lifetime' => env('SESSION_LIFETIME', 120),
 
-    'expire_on_close' => false,
+    // default false --dedyss--
+    'expire_on_close' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +47,8 @@ return [
     |
     */
 
-    'encrypt' => false,
+    // default false --dedyss--
+    'encrypt' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -166,7 +168,8 @@ return [
     |
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE', null),
+    // default null --dedyss--
+    'secure' => env('SESSION_SECURE_COOKIE', true),
 
     /*
     |--------------------------------------------------------------------------

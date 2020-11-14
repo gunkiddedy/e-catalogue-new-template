@@ -27,16 +27,21 @@ class AuthController extends Controller
             ], 404);
         }
 
-        $rand = rand(9999, 99999);
+        // $rand = rand(9999, 99999);
+        
+        $token = $user->createToken('gegewepe_token')->plainTextToken;
         
         $response = [
             'success'   => true,
-            'user'      => $user,
+            'user' => $user,
+            'token' => $token,
         ];
     
         return response()->json($response, 201);
 
     }
+
+
     
     public function logout()
     {
