@@ -862,6 +862,7 @@ input:checked+svg {
     display: block;
 }
 
+/*
 .el-upload--picture-card {
     background-color: #fbfdff;
     border: 1px dashed #c0ccda;
@@ -883,5 +884,5 @@ input:checked+svg {
     height: 4rem;
     margin: 0 8px 8px 0;
     display: inline-block;
-}
+}*/
 </style>
