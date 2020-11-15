@@ -530,7 +530,7 @@ export default {
                     this.kabupaten = response.data.kabupaten;
                     this.kecamatan = response.data.kecamatan;
                     this.products = response.data.products;
-                    console.log(response.data);
+                    // console.log(response.data);
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -706,46 +706,28 @@ export default {
 
         checkHsCode: _.debounce(function () {
             let regex = /^\d+$/;
-
             let value = regex.test(this.hs_code);
             if (value == false) {
                 this.hs_code = null;
                 this.isError_hscode = true;
                 this.isSuccess_hscode = false;
-                // this.message_nilai_tkdn = 'format tidak valid!';
-                // setTimeout(() => {
-                //     this.message_nilai_tkdn = ''
-                // }, 2000)
             } else {
                 this.isSuccess_hscode = true;
                 this.isError_hscode = false;
-                // this.message_nilai_tkdn = 'format valid';
-                // setTimeout(() => {
-                //     this.message_nilai_tkdn = ''
-                // }, 2000)
             }
             return
         }, 1000),
 
         checkNilaiTKDN: _.debounce(function () {
             let regex = /\d{2}(\.\d{2})?$/;
-
             let value = regex.test(this.nilai_tkdn);
             if (value == false) {
                 this.nilai_tkdn = null;
                 this.isError_nilai_tkdn = true;
                 this.isSuccess_nilai_tkdn = false;
-                // this.message_nilai_tkdn = 'format tidak valid!';
-                // setTimeout(() => {
-                //     this.message_nilai_tkdn = ''
-                // }, 2000)
             } else {
                 this.isSuccess_nilai_tkdn = true;
                 this.isError_nilai_tkdn = false;
-                // this.message_nilai_tkdn = 'format valid';
-                // setTimeout(() => {
-                //     this.message_nilai_tkdn = ''
-                // }, 2000)
             }
             return
         }, 2000),
@@ -759,20 +741,10 @@ export default {
                 this.nomor_sertifikat_tkdn = null;
                 this.isError_sertifikat_tkdn = true;
                 this.isSuccess_sertifikat_tkdn = false;
-                // this.message_nomor_sertifikat_tkdn = 'format tidak valid!';
-                // setTimeout(() => {
-                //     this.message_nomor_sertifikat_tkdn = ''
-                // }, 2000)
             } else {
                 this.isSuccess_sertifikat_tkdn = true;
                 this.isError_sertifikat_tkdn = false;
-                // this.message_nomor_sertifikat_tkdn = 'format valid';
-                // setTimeout(() => {
-                //     this.message_nomor_sertifikat_tkdn = ''
-                // }, 2000)
             }
-
-            // console.log(valid);
             return
         }, 2000),
 
@@ -786,17 +758,9 @@ export default {
                 this.nomor_laporan_tkdn = null;
                 this.isError_laporan_tkdn = true;
                 this.isSuccess_laporan_tkdn = false;
-                // this.message_nomor_laporan_tkdn = 'format tidak valid!';
-                // setTimeout(() => {
-                //     this.message_nomor_laporan_tkdn = ''
-                // }, 2000)
             } else {
                 this.isSuccess_laporan_tkdn = true;
                 this.isError_laporan_tkdn = false;
-                // this.message_nomor_laporan_tkdn = 'format valid';
-                // setTimeout(() => {
-                //     this.message_nomor_laporan_tkdn = ''
-                // }, 2000)
             }
 
             return
@@ -812,17 +776,9 @@ export default {
                 this.nomor_sni = null;
                 this.isError_nomor_sni = true;
                 this.isSuccess_nomor_sni = false;
-                // this.message_sni = 'format tidak valid!';
-                // setTimeout(() => {
-                //     this.message_sni = ''
-                // }, 2000)
             } else {
                 this.isSuccess_nomor_sni = true;
                 this.isError_nomor_sni = false;
-                // this.message_sni = 'format valid';
-                // setTimeout(() => {
-                //     this.message_sni = ''
-                // }, 2000)
             }
             return
         }, 2000),

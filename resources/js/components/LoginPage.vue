@@ -37,9 +37,9 @@
                         <span class="text-red-400 font-semibold text-sm mb-2">{{ errors.message }}</span>
                     </div>
 
-                    <form>
+                    <form @submit.prevent="handleLogin">
                         <div class="mb-4 flex items-center relative">
-                            <input id="email" type="email" name="email" v-model="form.email" placeholder="Email (example@gmail.com)" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" required autocomplete="email">
+                            <input id="email" type="email" name="email" v-model="user.email" placeholder="Email (example@gmail.com)" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" required autocomplete="email">
                             <svg class="w-4 absolute right-0 mr-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
                                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
@@ -47,7 +47,7 @@
                         </div>
 
                         <div class="mb-4 flex items-center relative">
-                            <input id="password" type="password" name="password" v-model="form.password" placeholder="Password" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                            <input id="password" type="password" name="password" v-model="user.password" placeholder="Password" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                             <svg class="w-4 absolute right-0 mr-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
                                 <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path>
@@ -130,11 +130,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
 
     data() {
         return {
-            form: {
+            user: {
                 email: '',
                 password: ''
             },
@@ -150,14 +151,19 @@ export default {
         }, 700)
     },
 
-    methods: {
+    computed: {
+        ...mapGetters({
+            DATA_USER: 'currentUser/DATA_USER',
+            DATA_TOKEN: 'currentUser/DATA_TOKEN'
+        })
+    },
 
-        handleLogin(e) {
-            e.preventDefault()
+    methods: {
+        handleLogin() {
             this.isLoging = true;
             axios.get('/sanctum/csrf-cookie')
-                .then(response => {
-                    axios.post('/api/login', this.form)
+                .then((response) => {
+                    axios.post('/api/login', this.user)
                         .then((response) => {
                             if (response.data.user.role === 'member') {
                                 this.$router.push({
@@ -173,11 +179,12 @@ export default {
                             }
                             this.isLoging = false;
                             localStorage.setItem('isloggedIn', 'true');
-                            // this.isloggedIn = true;
-                            // console.log(response)
+                            this.$store.dispatch('currentUser/GET_USER_DATA', response.data);
+                            console.log(this.DATA_USER);
+                            console.log(this.DATA_TOKEN);
                         })
                         .catch((error) => {
-                            this.errors = error.response.data;
+                            this.errors = error;
                             this.isLoging = false;
                             console.log(this.errors)
                         });
