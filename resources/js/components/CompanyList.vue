@@ -43,6 +43,7 @@
             <transition name="fade">
                 <div class="w-full">
 
+                    <!-- search company-->
                     <div class="relative">
                         <form action="" method="GET">
                             <button type="submit" class="absolute right-0 mt-2 mr-2 text-gray-500">
@@ -56,39 +57,44 @@
 
                     <div class="mt-10 mb-12 w-full h-full">
 
-                        <div class="bg-white rounded-lg px-8 py-4 shadow my-4">
+                        <!-- company list with their products-->
+                        <div class="bg-white rounded-lg px-8 py-4 shadow my-4" v-for="(member, index) in members" :key="index">
 
                             <div class="flex items-center justify-between">
                                 <!-- BLUE CIRCLE-->
                                 <div class="flex items-center justify-between">
 
-                                    <div class="bg-blue-500 rounded-full w-16 h-16 mr-6"></div>
+                                    <!--<div class="bg-blue-500 rounded-full w-16 h-16 mr-6"></div>-->
+                                    <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-16 h-16 mx-auto mr-4">
 
                                     <!-- COMPANY NAME-->
                                     <div class="grid grid-rows-3">
                                         <div>
                                             <p class="uppercase font-semibold text-sm text-gray-500">
-                                                PT.MAJU JAYA PRIMA PERKASA ABADI
+                                                {{ member.name }}
                                             </p>
                                         </div>
                                         <div>
-                                            <span class="text-sm text-blue-500 font-semibold">majujaya@prima.com</span>
+                                            <span class="text-sm text-blue-500 font-semibold">
+                                                {{ member.email }}
+                                            </span>
                                         </div>
                                         <div>
-                                            <span class="text-sm text-gray-500">Bekasi, Jawa Barat, Indonesia</span>
+                                            <span v-if="member.address !== null">{{member.address}}</span>
+                                            <span class="text-sm text-gray-500" v-else>Bekasi, Jawa Barat, Indonesia</span>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- 3 BUTTONS-->
                                 <div class="flex items-center justify-between">
-                                    <div class="mr-4">
-                                        <button @click="onClickShowMore()" type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-gray-500 px-4 py-1">
+                                    <!--<div class="mr-4">
+                                        <button type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-gray-500 px-4 py-1">
                                             <span class="text-gray-500 text-sm font-semibold">
-                                                {{ show_more_text }}
+                                                Show more
                                             </span>
                                         </button>
-                                    </div>
+                                    </div>-->
                                     <div class="mr-4">
                                         <button type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-red-500 px-4 py-1 text-red-500">
                                             <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -109,231 +115,22 @@
                             </div>
 
                             <!-- IMAGE PRODUCT-->
-                            <div class="border-t border-gray-300 w-full mt-6" v-if="showProductCompany"></div>
-                            <div class="grid grid-cols-6 gap-4 mt-6 px-1" v-if="showProductCompany">
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                            <div>
+                                <div class="border-t border-gray-300 w-full mt-6"></div>
+                                <div class="grid grid-cols-6 gap-4 mt-6 px-1">
+                                    <div class="flex flex-col" v-for="(product, i) in member.products" :key="i">
 
-                        <div class="bg-white rounded-lg px-8 py-4 shadow my-4">
-
-                            <div class="flex items-center justify-between">
-                                <!-- BLUE CIRCLE-->
-                                <div class="flex items-center justify-between">
-
-                                    <div class="bg-blue-500 rounded-full w-16 h-16 mr-6"></div>
-
-                                    <!-- COMPANY NAME-->
-                                    <div class="grid grid-rows-3">
-                                        <div>
-                                            <p class="uppercase font-semibold text-sm text-gray-500">
-                                                PT.MAJU JAYA PRIMA PERKASA ABADI
-                                            </p>
+                                        <div class="bg-gray-100 rounded-lg w-32 h-32 shadow mb-2 px-2 py-2">
+                                            <img :src="'/storage/'+product.image_path" :alt="product.name" class="rounded object-cover w-full h-full cursor-pointer hover:opacity-75">
                                         </div>
-                                        <div>
-                                            <span class="text-sm text-blue-500 font-semibold">majujaya@prima.com</span>
-                                        </div>
-                                        <div>
-                                            <span class="text-sm text-gray-500">Bekasi, Jawa Barat, Indonesia</span>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <!-- 3 BUTTONS-->
-                                <div class="flex items-center justify-between">
-                                    <div class="mr-4">
-                                        <button @click="onClickShowMore2()" type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-gray-500 px-4 py-1">
-                                            <span class="text-gray-500 text-sm font-semibold">
-                                                Show More
-                                            </span>
-                                        </button>
-                                    </div>
-                                    <div class="mr-4">
-                                        <button type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-red-500 px-4 py-1 text-red-500">
-                                            <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            <span class="text-red-500 text-sm font-semibold">Remove</span>
-                                        </button>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="focus:outline-none flex items-center justify-between bg-blue-600 rounded-lg border border-blue-600 px-4 py-1 text-gray-100">
-                                            <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            <span class="text-gray-100 text-sm font-semibold">Approve</span>
-                                        </button>
+                                        <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
+                                            {{ product.name }}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- IMAGE PRODUCT-->
-                            <div class="grid grid-cols-6 gap-4 mt-6" v-if="showProductCompany2">
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="bg-white rounded-lg px-8 py-4 shadow my-4">
-
-                            <div class="flex items-center justify-between">
-                                <!-- BLUE CIRCLE-->
-                                <div class="flex items-center justify-between">
-
-                                    <div class="bg-blue-500 rounded-full w-16 h-16 mr-6"></div>
-
-                                    <!-- COMPANY NAME-->
-                                    <div class="grid grid-rows-3">
-                                        <div>
-                                            <p class="uppercase font-semibold text-sm text-gray-500">
-                                                PT.MAJU JAYA PRIMA PERKASA ABADI
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <span class="text-sm text-blue-500 font-semibold">majujaya@prima.com</span>
-                                        </div>
-                                        <div>
-                                            <span class="text-sm text-gray-500">Bekasi, Jawa Barat, Indonesia</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 3 BUTTONS-->
-                                <div class="flex items-center justify-between">
-                                    <div class="mr-4">
-                                        <button @click="onClickShowMore3()" type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-gray-500 px-4 py-1">
-                                            <span class="text-gray-500 text-sm font-semibold">
-                                                Show More
-                                            </span>
-                                        </button>
-                                    </div>
-                                    <div class="mr-4">
-                                        <button type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-red-500 px-4 py-1 text-red-500">
-                                            <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            <span class="text-red-500 text-sm font-semibold">Remove</span>
-                                        </button>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="focus:outline-none flex items-center justify-between bg-blue-600 rounded-lg border border-blue-600 px-4 py-1 text-gray-100">
-                                            <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            <span class="text-gray-100 text-sm font-semibold">Approve</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- IMAGE PRODUCT-->
-                            <div class="grid grid-cols-6 gap-4 mt-6" v-if="showProductCompany3">
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <div class="bg-gray-400 rounded-lg w-32 h-32 shadow mb-2"></div>
-                                    <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                        CUSTOMIZED PRE FILTER, FILTER UNTUK BLOWER
-                                    </span>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -349,19 +146,31 @@
 export default {
     data() {
         return {
-            show_more_text: 'Show More',
-            showProductCompany: false
+            members: []
         }
     },
+
+    created() {
+        this.loadMembers();
+    },
+
     methods: {
-        onClickShowMore: function () {
-            this.showProductCompany = !this.showProductCompany;
-            if (this.showProductCompany === true) {
-                this.show_more_text = 'Show Less';
-            } else {
-                this.show_more_text = 'Show More';
-            }
-        }
+        loadMembers() {
+            axios.get('/sanctum/csrf-cookie')
+                .then((response) => {
+                    axios.get('/api/members')
+                        .then((response) => {
+                            this.members = response.data;
+                            // console.log(response.data);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }).catch(error => {
+                    console.log(error);
+                })
+        },
+
     },
 }
 </script>

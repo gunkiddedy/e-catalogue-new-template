@@ -30,15 +30,15 @@
             </div>
 
             <!-- dropdown profile -->
-            <div class="relative" v-if="isloggedIn === 'true'">
+            <div class="relative    " v-if="isloggedIn === 'true'">
                 <div class="w-full flex justify-between items-center">
                     <!--<div class="border-l h-8 border-gray-600 mr-4"></div>-->
-                    <div class="leading-tight text-sm font-semibold text-gray-600">
+                    <div class="leading-tight text-sm font-semibold text-gray-600 w-32">
                         {{ companyName }}
                     </div>
                     <img @click="toggleDropdownUser" src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-8 h-8 mx-auto ml-2 cursor-pointer">
                 </div>
-                <div v-if="showUserDropdown" class="shadow user-drop bg-white absolute py-2 px-4 rounded-lg right-0 w-48 flex flex-col">
+                <div v-if="showUserDropdown" class="z-20 shadow user-drop bg-white absolute py-2 px-4 rounded-lg right-0 w-48 flex flex-col">
                     <span class="rounded px-2 py-2 hover:bg-gray-100 text-gray-500 hover:text-blue-400   font-semibold cursor-pointer leading-tight" @click="logoutUser">
                         Logout
                     </span>
