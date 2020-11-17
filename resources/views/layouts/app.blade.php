@@ -20,7 +20,8 @@
 </head>
 <body>
     <div id="app" class="bg-gray-100 font-sf-pro">
-        @yield('content')
+        {{-- @yield('content') --}}
+        <app-component></app-component>
     </div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="flex" v-if="!loading">
+    <div class="flex" v-if="!isloading">
         <transition name="fade">
             <div class="image-login w-3/5 h-screen">
                 <img src="/img/login-img.png" alt="" class="w-full h-full">
@@ -102,7 +102,7 @@
     </div>
 
     <!-- loader spin-->
-    <div v-if="loading" class="mx-auto flex h-screen">
+    <div v-if="isloading" class="mx-auto flex h-screen">
         <div class="flex justify-center items-center w-full">
             <!--<svg class="animate-spin w-12" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="122.315px" height="122.88px" viewBox="0 0 122.315 122.88" enable-background="new 0 0 122.315 122.88" xml:space="preserve">
                 <g>
@@ -130,7 +130,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import {
+    mapGetters
+} from 'vuex'
 export default {
 
     data() {
@@ -141,21 +143,14 @@ export default {
             },
             errors: {},
             isLoging: false,
-            loading: true,
+            isloading: true,
         }
     },
 
     mounted() {
         setTimeout(() => {
-            this.loading = false;
+            this.isloading = false;
         }, 700)
-    },
-
-    computed: {
-        ...mapGetters({
-            DATA_USER: 'currentUser/DATA_USER',
-            DATA_TOKEN: 'currentUser/DATA_TOKEN'
-        })
     },
 
     methods: {
@@ -179,9 +174,8 @@ export default {
                             }
                             this.isLoging = false;
                             localStorage.setItem('isloggedIn', 'true');
-                            this.$store.dispatch('currentUser/GET_USER_DATA', response.data);
-                            console.log(this.DATA_USER);
-                            console.log(this.DATA_TOKEN);
+                            localStorage.setItem('username', response.data.user.name);
+                            localStorage.setItem('user_id', response.data.user.id);
                         })
                         .catch((error) => {
                             this.errors = error;

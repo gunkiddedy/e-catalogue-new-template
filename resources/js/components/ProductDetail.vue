@@ -100,7 +100,8 @@
                                 </div>
                             </div>
 
-                            <div class="flex items-center justify-start">
+                            <!-- icon edit delete-->
+                            <div class="flex items-center justify-start" v-if="isloggedIn === 'true' && user_id == product.user_id">
                                 <span class="text-blue-400 mr-2 cursor-pointer px-1 py-1 rounded-full hover:bg-gray-200" @click="modalEdit(product.id)">
                                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
@@ -545,6 +546,8 @@ export default {
             status_msg: '',
             status: '',
 
+            isloggedIn: 'false',
+            user_id: '',
         }
     },
 
@@ -552,6 +555,11 @@ export default {
         this.loadProductDetail();
         this.loadCategory();
         this.getSubCategory();
+    },
+
+    mounted() {
+        this.isloggedIn = localStorage.getItem('isloggedIn');
+        this.user_id = localStorage.getItem('user_id');
     },
 
     methods: {
@@ -650,30 +658,37 @@ export default {
                 formData.append('images[]', file, file.name);
             });
 
-            axios.post('/api/update-product', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }).then((res) => {
-                this.name = '';
-                this.description = '';
-                this.sni = '';
-                this.nomor_sni = '';
-                this.tkdn = '';
-                this.nilai_tkdn = '';
-                this.nomor_sertifikat_tkdn = '';
-                this.nomor_laporan_tkdn = '';
-                this.hs_code = '';
-                this.price = '';
-                this.select_category = '';
-                this.select_subcategory = '';
-                this.status = true;
-                this.showNotification('Product Successfully Updated');
-                this.isUpdatingProduct = false;
-                this.imageList = [];
-            }).catch((error) => {
-                console.log(error);
-            });
+            axios.get('/sanctum/csrf-cookie')
+                .then((response) => {
+                    axios.post('/api/update-product', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }).then((res) => {
+                        this.name = '';
+                        this.description = '';
+                        this.sni = '';
+                        this.nomor_sni = '';
+                        this.tkdn = '';
+                        this.nilai_tkdn = '';
+                        this.nomor_sertifikat_tkdn = '';
+                        this.nomor_laporan_tkdn = '';
+                        this.hs_code = '';
+                        this.price = '';
+                        this.select_category = '';
+                        this.select_subcategory = '';
+                        this.status = true;
+                        this.showNotification('Product Successfully Updated');
+                        this.isUpdatingProduct = false;
+                        this.imageList = [];
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+
         },
 
         loadProductDetail() {

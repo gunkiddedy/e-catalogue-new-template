@@ -98,21 +98,23 @@
                         <!-- END NAV TAB -->
 
                         <div>
-                            <!-- BUTTON ADD PRODUCT & EDIT COMPANY PROFILE-->
-                            <button v-if="buttonAddProduct" @click="toggleModal()" type="button" class="bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
-                                <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                </svg>
-                                Add New Product
-                            </button>
+                            <div v-if="isloggedIn === 'true'">
+                                <!-- BUTTON ADD PRODUCT & EDIT COMPANY PROFILE-->
+                                <button v-if="buttonAddProduct" @click="toggleModal()" type="button" class="bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
+                                    <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    Add New Product
+                                </button>
 
-                            <button v-if="buttonEditCompany" @click="toggleModal()" type="button" class="bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
-                                <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                </svg>
-                                Edit Company Profile
-                            </button>
-                            <!-- BUTTON ADD PRODUCT & EDIT COMPANY PROFILE-->
+                                <button v-if="buttonEditCompany" @click="toggleModal()" type="button" class="bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
+                                    <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    Edit Company Profile
+                                </button>
+                            </div>
+                            
 
                             <!-- MODAL FORM-->
                             <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center items-center flex">
@@ -437,6 +439,7 @@
 
 <script>
 import _ from 'lodash';
+import { mapGetters } from 'vuex';
 
 export default {
     props: ['id'],
@@ -495,7 +498,20 @@ export default {
             kabupaten: {},
             kecamatan: {},
             products: [],
+
+            isloggedIn: 'false'
         }
+    },
+
+    computed: {
+        ...mapGetters({
+            userId: 'currentUser/userId',
+            userRole: 'currentUser/userRole',
+        })
+    },
+
+    mounted() {
+        this.isloggedIn = localStorage.getItem('isloggedIn');
     },
 
     created() {

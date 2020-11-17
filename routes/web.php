@@ -29,6 +29,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/product-detail/{id}', 'WebController@productDetail')->name('product.page');
 
 Route::get('/{any}', function(){
-    return view('welcome');
+    return view('layouts.app');
 })->where('any', '.*');
 

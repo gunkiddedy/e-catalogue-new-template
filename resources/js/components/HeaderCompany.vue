@@ -34,7 +34,7 @@
                 <div class="w-full flex justify-between items-center">
                     <!--<div class="border-l h-8 border-gray-600 mr-4"></div>-->
                     <div class="leading-tight text-sm font-semibold text-gray-600">
-                        PT.MAJU JAYA PRIMA...
+                        {{ companyName }}
                     </div>
                     <img @click="toggleDropdownUser" src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-8 h-8 mx-auto ml-2 cursor-pointer">
                 </div>
@@ -43,7 +43,7 @@
                         Logout
                     </span>
                     <span class="rounded px-2 py-2 hover:bg-gray-100 text-gray-500 hover:text-blue-400   font-semibold cursor-pointer leading-tight">
-                        Profile
+                        <router-link :to="{ name: 'company-page', params: {id: user_id } }">My Catalog</router-link>
                     </span>
                 </div>
             </div>
@@ -68,11 +68,14 @@ export default {
         return {
             isloggedIn: 'false',
             showUserDropdown: false,
+            user_id: '',
         }
     },
 
     mounted() {
         this.isloggedIn = localStorage.getItem('isloggedIn');
+        this.companyName = localStorage.getItem('username');
+        this.user_id = localStorage.getItem('user_id');
     },
 
     methods: {
@@ -89,8 +92,9 @@ export default {
                                 name: "login"
                             });
                             localStorage.setItem('isloggedIn', 'false');
+                            localStorage.removeItem('username');
+                            localStorage.removeItem('user_id');
                             this.isloggedIn = 'false';
-                            // console.log(res);
                         }).catch(err => {
                             console.log(err);
                         });

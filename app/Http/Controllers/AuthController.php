@@ -29,12 +29,11 @@ class AuthController extends Controller
 
         // $rand = rand(9999, 99999);
         
-        $token = $user->createToken('gegewepe_token')->plainTextToken;
+        // $token = $user->createToken('gegewepe_token')->plainTextToken;
         
         $response = [
             'success'   => true,
-            'user' => $user,
-            'token' => $token,
+            'user' => $user
         ];
     
         return response()->json($response, 201);

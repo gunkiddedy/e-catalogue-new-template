@@ -1,31 +1,41 @@
 const state = {
-    users: [],
-    token: '',
+    userInformation: [],
+    userRole: '',
+    userId: '',
 };
 
 const getters = {
-    DATA_USER: state => {
-        return state.users
-    },
-    DATA_TOKEN: state => {
-        return state.token
-    }
+    userData: state => state.userInformation,
+    userRole: state => state.userRole,
+    userId: state => state.userId,
 };
 
 const mutations = {
-    GET_USER_DATA : (state, payload) => {
-        state.users.push(payload);
+    HANDLE_LOGIN : (state, payload) => {
+        state.userInformation.push(payload);
+        state.userRole = payload.user.role;
+        state.userId = payload.user.id;
+        localStorage.setItem('username', payload.user.name);
+        localStorage.setItem('user_id', payload.user.id);
+        localStorage.setItem('isloggedIn', 'true');
     },
-    GET_USER_TOKEN : (state, payload) => {
-        state.token = payload.token;
+    HANDLE_LOGOUT: (state) => {
+        state.userInformation = [];
+        state.userRole = '';
+        state.userId = '';
+        state.companyName = '';
+        localStorage.removeItem('username');
+        localStorage.removeItem('user_id');
+        localStorage.setItem('isloggedIn', 'false');
     }
 };
 
 const actions = {
-    GET_USER_DATA: (context, payload) => {
-        context.commit('GET_USER_DATA', payload);
-        context.commit('GET_USER_TOKEN', payload);
-    }
+    handleLogin: (context, payload) => {
+        context.commit('HANDLE_LOGIN', payload);
+    },
+
+    handleLogout: context => context.commit('HANDLE_LOGOUT')
 };
 
 export default {
