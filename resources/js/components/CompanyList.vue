@@ -62,55 +62,62 @@
                     </div>
 
                     <div class="mt-10 mb-12 w-full h-full">
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- company list with their products-->
+                            <div class="bg-white rounded-lg px-8 py-4 shadow" v-for="(company, index) in companies" :key="index">
 
-                        <!-- company list with their products-->
-                        <div class="bg-white rounded-lg px-8 py-4 shadow my-4" v-for="(company, index) in companies" :key="index">
-
-                            <div class="flex items-center justify-between">
-                                <!-- BLUE CIRCLE-->
                                 <div class="flex items-center justify-between">
+                                    <!-- BLUE CIRCLE-->
+                                    <div class="flex items-center justify-between">
 
-                                    <!--<div class="bg-blue-500 rounded-full w-16 h-16 mr-6"></div>-->
-                                    <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-16 h-16 mx-auto mr-4">
+                                        <!--<div class="bg-blue-500 rounded-full w-16 h-16 mr-6"></div>-->
+                                        <router-link :to="{ name: 'company-page', params: {id: company.id } }">
+                                            <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-16 h-16 mx-auto mr-4">
+                                        </router-link>
 
-                                    <!-- COMPANY NAME-->
-                                    <div class="grid grid-rows-3">
-                                        <div>
-                                            <p class="uppercase font-semibold text-sm text-gray-500">
-                                                {{ company.name }}
-                                            </p>
+                                        <!-- COMPANY NAME-->
+                                        <div class="grid grid-rows-3">
+                                            <div>
+                                                <router-link :to="{ name: 'company-page', params: {id: company.id } }">
+                                                    <p class="uppercase font-semibold text-sm text-gray-500 hover:text-blue-500">
+                                                        {{ company.name }}
+                                                    </p>
+                                                </router-link>
+                                            </div>
+                                            <div>
+                                                <span class="text-sm text-blue-500 font-semibold">
+                                                    {{ company.email }}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <span class="text-sm text-gray-500" v-if="company.address !== null">{{company.address}}</span>
+                                                <span class="text-sm text-gray-500" v-else>Bekasi, Jawa Barat, Indonesia</span>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <span class="text-sm text-blue-500 font-semibold">
-                                                {{ company.email }}
+                                    </div>
+                                </div>
+
+                                <!-- IMAGE PRODUCT-->
+                                <!--<div>
+                                    <div class="border-t border-gray-300 w-full mt-6"></div>
+                                    <div class="grid grid-cols-6 gap-4 mt-6 px-1">
+                                        <div class="flex flex-col" v-for="(product, i) in company.products" :key="i">
+                                            <router-link :to="{ name: 'product-detail', params: {id: product.id } }">
+                                                <div class="bg-gray-100 rounded-lg w-32 h-32 shadow mb-2 px-2 py-2">
+                                                    <img :src="'/storage/'+product.image_path" :alt="product.name" class="rounded object-cover w-full h-full cursor-pointer hover:opacity-75">
+                                                </div>
+                                            </router-link>
+                                            <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
+                                                {{ product.name }}
                                             </span>
                                         </div>
-                                        <div>
-                                            <span v-if="company.address !== null">{{company.address}}</span>
-                                            <span class="text-sm text-gray-500" v-else>Bekasi, Jawa Barat, Indonesia</span>
-                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                </div>-->
 
-                            <!-- IMAGE PRODUCT-->
-                            <div>
-                                <div class="border-t border-gray-300 w-full mt-6"></div>
-                                <div class="grid grid-cols-6 gap-4 mt-6 px-1">
-                                    <div class="flex flex-col" v-for="(product, i) in company.products" :key="i">
-                                        <router-link :to="{ name: 'product-detail', params: {id: product.id } }">
-                                            <div class="bg-gray-100 rounded-lg w-32 h-32 shadow mb-2 px-2 py-2">
-                                                <img :src="'/storage/'+product.image_path" :alt="product.name" class="rounded object-cover w-full h-full cursor-pointer hover:opacity-75">
-                                            </div>
-                                        </router-link>
-                                        <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                            {{ product.name }}
-                                        </span>
-                                    </div>
-                                </div>
                             </div>
-
                         </div>
+
+                        
 
                     </div>
                 </div>
@@ -132,6 +139,12 @@ export default {
 
     created() {
         this.loadMembers();
+    },
+
+    mounted() {
+        if(localStorage.getItem('isloggedIn')== 'false'){
+            this.$router.push('/login');
+        }
     },
 
     methods: {

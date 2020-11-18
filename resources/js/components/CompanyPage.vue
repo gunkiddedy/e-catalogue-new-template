@@ -363,6 +363,7 @@
                                 </div>
                             </div>
                         </div>
+                        <div v-if="product_not_found !== ''">{{ product_not_found }}</div>
                     </div>
 
                     <!-- ABOUT CARD -->
@@ -445,6 +446,7 @@ export default {
     props: ['id'],
     data() {
         return {
+            product_not_found: '',
             loading: true,
 
             openTab: 2,
@@ -546,6 +548,9 @@ export default {
                     this.kabupaten = response.data.kabupaten;
                     this.kecamatan = response.data.kecamatan;
                     this.products = response.data.products;
+                    if(response.data.products.length == 0){
+                        this.product_not_found = 'product not found';
+                    }
                     // console.log(response.data);
                 })
                 .catch(function (error) {

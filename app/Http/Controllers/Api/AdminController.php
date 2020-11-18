@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function companyList()
     {
-        $companies = User::with('products')->where('role', '=', 'member')->get();
+        $companies = User::where('role', '=', 'member')->get();
                 
         return response()->json($companies);
     }
