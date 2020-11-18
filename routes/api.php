@@ -3,25 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
+// SANCTUM AREA
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('add-product', 'Api\ProductController@addProduct');
     Route::post('update-product', 'Api\ProductController@updateProduct');
@@ -32,9 +14,15 @@ Route::middleware('auth:sanctum')->group(function () {
     
 });
 
+// ADMIN AREA
+Route::get('company-list', 'Api\AdminController@companyList');
+Route::get('product-list', 'Api\AdminController@productList');
+Route::get('approving-product/{id}', 'Api\AdminController@approvingProduct');
+Route::get('product-list-detail-image/{id}', 'Api\AdminController@productListDetailImage');
 
-Route::get('members', 'Api\MemberController@index');
-Route::get('member-products/{id}', 'Api\MemberController@memberProducts');
+Route::get('user-blacklist', 'Api\AdminController@userBlacklist');
+
+// PUBLIC AREA
 Route::post('logout', 'AuthController@logout');
 Route::post('login', 'AuthController@login')->name('login');
 

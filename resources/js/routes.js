@@ -3,6 +3,8 @@ import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import CompanyPage from './components/CompanyPage';
 import CompanyList from './components/CompanyList';
+import ProductList from './components/ProductList';
+import UserBlacklist from './components/UserBlacklist';
 import ProductDetail from './components/ProductDetail';
 import PageNotFound from './components/PageNotFound';
 
@@ -40,6 +42,16 @@ export default {
             path: '/company-list',
             component: CompanyList,
             name: 'company-list'
+        },
+        {
+            path: '/product-list',
+            component: ProductList,
+            name: 'product-list'
+        },
+        {
+            path: '/user-blacklist',
+            component: UserBlacklist,
+            name: 'user-blacklist'
         },
         {
             path: '/product-detail/:id',

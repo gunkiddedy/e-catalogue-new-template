@@ -9,30 +9,36 @@
                     <div class="grid grid-cols-1 my-2 px-1">
 
                         <div class="text-gray-500 flex items-center justify-between">
-                            <button type="button" class="w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg">
-                                <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10.496 2.132a1 1 0 00-.992 0l-7 4A1 1 0 003 8v7a1 1 0 100 2h14a1 1 0 100-2V8a1 1 0 00.496-1.868l-7-4zM6 9a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1zm3 1a1 1 0 012 0v3a1 1 0 11-2 0v-3zm5-1a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1z" clip-rule="evenodd">
-                                    </path>
-                                </svg>
-                                <span class="font-semibold">Company List</span>
-                            </button>
+                            <router-link to="/company-list" class="w-full">
+                                <button type="button" class="w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg text-gray-300">
+                                    <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M10.496 2.132a1 1 0 00-.992 0l-7 4A1 1 0 003 8v7a1 1 0 100 2h14a1 1 0 100-2V8a1 1 0 00.496-1.868l-7-4zM6 9a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1zm3 1a1 1 0 012 0v3a1 1 0 11-2 0v-3zm5-1a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1z" clip-rule="evenodd">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold">Company List</span>
+                                </button>
+                            </router-link>
                         </div>
                         <div class="text-gray-500 flex items-center justify-between">
-                            <button type="button" class="w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg">
-                                <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clip-rule="evenodd"></path>
-                                    <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
-                                </svg>
-                                <span class="font-semibold">Product List</span>
-                            </button>
+                            <router-link to="/product-list" class="w-full">
+                                <button type="button" class="w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg">
+                                    <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clip-rule="evenodd"></path>
+                                        <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
+                                    </svg>
+                                    <span class="font-semibold">Product List</span>
+                                </button>
+                            </router-link>
                         </div>
                         <div class="text-gray-500 flex items-center justify-between">
-                            <button type="button" class="w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg">
-                                <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"></path>
-                                </svg>
-                                <span class="font-semibold">Blacklisted User</span>
-                            </button>
+                            <router-link to="/user-blacklist" class="w-full">
+                                <button type="button" class="w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg">
+                                    <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="font-semibold">Blacklisted User</span>
+                                </button>
+                            </router-link>
                         </div>
 
                     </div>
@@ -58,7 +64,7 @@
                     <div class="mt-10 mb-12 w-full h-full">
 
                         <!-- company list with their products-->
-                        <div class="bg-white rounded-lg px-8 py-4 shadow my-4" v-for="(member, index) in members" :key="index">
+                        <div class="bg-white rounded-lg px-8 py-4 shadow my-4" v-for="(company, index) in companies" :key="index">
 
                             <div class="flex items-center justify-between">
                                 <!-- BLUE CIRCLE-->
@@ -71,45 +77,18 @@
                                     <div class="grid grid-rows-3">
                                         <div>
                                             <p class="uppercase font-semibold text-sm text-gray-500">
-                                                {{ member.name }}
+                                                {{ company.name }}
                                             </p>
                                         </div>
                                         <div>
                                             <span class="text-sm text-blue-500 font-semibold">
-                                                {{ member.email }}
+                                                {{ company.email }}
                                             </span>
                                         </div>
                                         <div>
-                                            <span v-if="member.address !== null">{{member.address}}</span>
+                                            <span v-if="company.address !== null">{{company.address}}</span>
                                             <span class="text-sm text-gray-500" v-else>Bekasi, Jawa Barat, Indonesia</span>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <!-- 3 BUTTONS-->
-                                <div class="flex items-center justify-between">
-                                    <!--<div class="mr-4">
-                                        <button type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-gray-500 px-4 py-1">
-                                            <span class="text-gray-500 text-sm font-semibold">
-                                                Show more
-                                            </span>
-                                        </button>
-                                    </div>-->
-                                    <div class="mr-4">
-                                        <button type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-red-500 px-4 py-1 text-red-500">
-                                            <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            <span class="text-red-500 text-sm font-semibold">Remove</span>
-                                        </button>
-                                    </div>
-                                    <div>
-                                        <button type="button" class="focus:outline-none flex items-center justify-between bg-blue-600 rounded-lg border border-blue-600 px-4 py-1 text-gray-100">
-                                            <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            <span class="text-gray-100 text-sm font-semibold">Approve</span>
-                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -118,12 +97,12 @@
                             <div>
                                 <div class="border-t border-gray-300 w-full mt-6"></div>
                                 <div class="grid grid-cols-6 gap-4 mt-6 px-1">
-                                    <div class="flex flex-col" v-for="(product, i) in member.products" :key="i">
-
-                                        <div class="bg-gray-100 rounded-lg w-32 h-32 shadow mb-2 px-2 py-2">
-                                            <img :src="'/storage/'+product.image_path" :alt="product.name" class="rounded object-cover w-full h-full cursor-pointer hover:opacity-75">
-                                        </div>
-
+                                    <div class="flex flex-col" v-for="(product, i) in company.products" :key="i">
+                                        <router-link :to="{ name: 'product-detail', params: {id: product.id } }">
+                                            <div class="bg-gray-100 rounded-lg w-32 h-32 shadow mb-2 px-2 py-2">
+                                                <img :src="'/storage/'+product.image_path" :alt="product.name" class="rounded object-cover w-full h-full cursor-pointer hover:opacity-75">
+                                            </div>
+                                        </router-link>
                                         <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
                                             {{ product.name }}
                                         </span>
@@ -146,7 +125,8 @@
 export default {
     data() {
         return {
-            members: []
+            companies: [],
+            isActive: false,
         }
     },
 
@@ -158,9 +138,9 @@ export default {
         loadMembers() {
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
-                    axios.get('/api/members')
+                    axios.get('/api/company-list')
                         .then((response) => {
-                            this.members = response.data;
+                            this.companies = response.data;
                             // console.log(response.data);
                         })
                         .catch(error => {
@@ -175,7 +155,15 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.router-link-active,
+.router-link-exact-active {
+   background-color: #4299e1;
+   color: #e2e8f0;
+   cursor: pointer;
+   border-radius: 0.5rem;
+ }
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity .5s;
