@@ -12,9 +12,19 @@ class AdminController extends Controller
 {
     public function companyList()
     {
-        $companies = User::where('role', '=', 'member')->get();
+        $companies = User::where([
+            ['role', '=', 'member'],
+            ['is_blacklist', '=', 0]
+        ])->orderBy('is_active')->get();
                 
         return response()->json($companies);
+    }
+
+    public function userBlacklist()
+    {   
+        $users = User::where('is_blacklist', '=', 1)->get();
+
+        return response()->json($users);
     }
 
     public function approvingProduct($id)
@@ -25,6 +35,35 @@ class AdminController extends Controller
         
         return response()->json('product successfuly updated');
     }
+
+    public function setUserActive($id)
+    {
+        $user = User::find($id);
+        $user->is_active = 1;
+        $user->is_blacklist = 0;
+        $user->save();
+        
+        return response()->json('user successfuly activated');
+    }
+
+    public function setUserInActive($id)
+    {
+        $user = User::find($id);
+        $user->is_active = 0;
+        $user->is_blacklist = 1;
+        $user->save();
+        
+        return response()->json('user successfuly disabled');
+    }
+
+    // public function blacklistUser($id)
+    // {
+    //     $user = User::find($id);
+    //     $user->is_blacklist = 1;
+    //     $user->save();
+        
+    //     return response()->json('user successfuly disabled');
+    // }
 
     public function productList()
     {
@@ -50,10 +89,4 @@ class AdminController extends Controller
         ]);
     }
 
-    public function userBlacklist()
-    {   
-        $users = User::where('is_active', '=', 0)->get();
-
-        return response()->json($users);
-    }
 }

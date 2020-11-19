@@ -249,6 +249,10 @@
                     </div>
                 </div>
 
+                <div v-if="product_not_found !== ''" class="my-4 flex justify-center text-red-500">
+                    {{ product_not_found }}
+                </div>
+
                 <!-- PRODUCTS  -->
                 <!--<transition name="fade">-->
                 <div class="mt-8 grid grid-cols-5 gap-4">
@@ -374,16 +378,17 @@ export default {
             showModalCat: false,
             showModalSubCat: false,
             loading: true,
-            products: {}
+            products: {},
+            product_not_found: '',
         }
     },
 
-    created() {
-        this.loadProducts();
-    },
+    // created() {
+    //     this.loadProducts();
+    // },
 
     mounted() {
-        // this.loadProducts();
+        this.loadProducts();
         // this.getResults();
         // this.getWindowWidth();
         // this.apiCategories();
@@ -398,6 +403,10 @@ export default {
                 .then((response) => {
                     this.loading = false
                     this.products = response.data;
+                    if(response.data.length == 0){
+                        this.product_not_found = 'product not found';
+                    }
+                    console.log(response.data);
                 })
                 .catch(function (error) {
                     console.log(error);

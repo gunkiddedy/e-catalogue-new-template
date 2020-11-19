@@ -176,6 +176,7 @@ export default {
                             localStorage.setItem('isloggedIn', 'true');
                             localStorage.setItem('username', response.data.user.name);
                             localStorage.setItem('user_id', response.data.user.id);
+                            localStorage.setItem('user_role', response.data.user.role);
                         })
                         .catch((error) => {
                             this.errors = error;

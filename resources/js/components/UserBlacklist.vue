@@ -3,14 +3,13 @@
     <div class="px-16 bg-gray-100">
         <header-component></header-component>
         <div class="flex px-4 py-4 mt-4">
+            <!-- SIDEBAR MENU-->
             <transition name="fade">
                 <div class="bg-white h-full w-64 rounded-lg mr-6 shadow px-1 py-1">
-
                     <div class="grid grid-cols-1 my-2 px-1">
-
                         <div class="text-gray-500 flex items-center justify-between">
                             <router-link to="/company-list" class="w-full">
-                                <button type="button" class="w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg">
+                                <button type="button" class="w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg text-gray-500">
                                     <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M10.496 2.132a1 1 0 00-.992 0l-7 4A1 1 0 003 8v7a1 1 0 100 2h14a1 1 0 100-2V8a1 1 0 00.496-1.868l-7-4zM6 9a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1zm3 1a1 1 0 012 0v3a1 1 0 11-2 0v-3zm5-1a1 1 0 00-1 1v3a1 1 0 102 0v-3a1 1 0 00-1-1z" clip-rule="evenodd">
                                         </path>
@@ -40,16 +39,14 @@
                                 </button>
                             </router-link>
                         </div>
-
                     </div>
-
                 </div>
             </transition>
 
             <transition name="fade">
                 <div class="w-full">
 
-                    <!-- search company-->
+                    <!-- COMPANY SEARCH-->
                     <div class="relative">
                         <form action="" method="GET">
                             <button type="submit" class="absolute right-0 mt-2 mr-2 text-gray-500">
@@ -61,84 +58,72 @@
                         </form>
                     </div>
 
+                    <div v-if="product_not_found !== ''" class="my-4 flex justify-center text-gray-500">
+                        {{ product_not_found }}
+                    </div>
+
+                    <!-- loader spin-->
+                    <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0 mt-4">
+                        <svg class="w-12 absolute" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                            <circle cx="15" cy="15" r="15">
+                                <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+                                <animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="105" cy="15" r="15">
+                                <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                    </div>
+
                     <div class="mt-10 mb-12 w-full h-full">
+                        <div class="grid grid-cols-4 gap-4">
+                            <!-- company list with their products-->
+                            <div class="bg-white rounded-lg flex flex-col px-0 py-0 shadow" v-for="(company, index) in companies" :key="index">
 
-                        <!-- company list with their products-->
-                        <div class="bg-white rounded-lg px-8 py-4 shadow my-4" v-for="(member, index) in members" :key="index">
-
-                            <div class="flex items-center justify-between">
+                                <!-- USER ACTIVE STATUS-->
+                                <div class="flex justify-end mb-1">
+                                    <!--<span v-if="company.is_active === 1" class="px-2 bg-gray-100 rounded-tr-md rounded-bl-md text-blue-500 shadow-sm text-xs font-semibold">Active User</span>-->
+                                    <span class="px-2 bg-gray-100 rounded-tr-md rounded-bl-md text-gray-500 shadow-sm text-sm font-semibold">Blacklisted User</span>
+                                </div>
                                 <!-- BLUE CIRCLE-->
-                                <div class="flex items-center justify-between">
-
-                                    <!--<div class="bg-blue-500 rounded-full w-16 h-16 mr-6"></div>-->
-                                    <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-16 h-16 mx-auto mr-4">
-
+                                <div class="flex flex-col items-center px-2 py-2">
+                                    <router-link :to="{ name: 'company-page', params: {id: company.id } }">
+                                        <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-16 h-16 mb-2">
+                                    </router-link>
                                     <!-- COMPANY NAME-->
-                                    <div class="grid grid-rows-3">
-                                        <div>
-                                            <p class="uppercase font-semibold text-sm text-gray-500">
-                                                {{ member.name }}
-                                            </p>
-                                        </div>
-                                        <div>
-                                            <span class="text-sm text-blue-500 font-semibold">
-                                                {{ member.email }}
-                                            </span>
-                                        </div>
-                                        <div>
-                                            <span v-if="member.address !== null">{{member.address}}</span>
-                                            <span class="text-sm text-gray-500" v-else>Bekasi, Jawa Barat, Indonesia</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- 3 BUTTONS-->
-                                <div class="flex items-center justify-between">
-                                    <div class="mr-4">
-                                        <button type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-gray-500 px-4 py-1">
-                                            <span class="text-gray-500 text-sm font-semibold">
-                                                Show more
-                                            </span>
-                                        </button>
-                                    </div>
-                                    <div class="mr-4">
-                                        <button type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-red-500 px-4 py-1 text-red-500">
-                                            <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            <span class="text-red-500 text-sm font-semibold">Remove</span>
-                                        </button>
-                                    </div>
                                     <div>
-                                        <button type="button" class="focus:outline-none flex items-center justify-between bg-blue-600 rounded-lg border border-blue-600 px-4 py-1 text-gray-100">
-                                            <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                                            </svg>
-                                            <span class="text-gray-100 text-sm font-semibold">Approve</span>
-                                        </button>
+                                        <router-link :to="{ name: 'company-page', params: {id: company.id } }">
+                                            <p class="uppercase font-semibold text-sm text-gray-500 hover:text-blue-500">
+                                                {{ company.name }}
+                                            </p>
+                                        </router-link>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- IMAGE PRODUCT-->
-                            <div>
-                                <div class="border-t border-gray-300 w-full mt-6"></div>
-                                <div class="grid grid-cols-6 gap-4 mt-6 px-1">
-                                    <div class="flex flex-col" v-for="(product, i) in member.products" :key="i">
-
-                                        <div class="bg-gray-100 rounded-lg w-32 h-32 shadow mb-2 px-2 py-2">
-                                            <img :src="'/storage/'+product.image_path" :alt="product.name" class="rounded object-cover w-full h-full cursor-pointer hover:opacity-75">
-                                        </div>
-
-                                        <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                            {{ product.name }}
+                                    <div>
+                                        <span class="text-sm text-blue-500 font-semibold hover:text-blue-700">
+                                            <a :href="'mailto:'+company.email">{{ company.email }}</a>
                                         </span>
                                     </div>
+
+                                    <div class="w-3/4 px-1">
+                                        <span class="text-xs text-gray-500 hover:text-blue-500">{{company.address}}</span>
+                                        <span class="text-xs text-gray-500 hover:text-blue-500" v-if="company.address === null">Bekasi, Jawa Barat, Indonesia</span>
+                                    </div>
+
+                                    <!-- BUTTON SET USER-->
+                                    <div class="my-3">
+                                        <button @click="setUserActive(company.id)" class="bg-blue-500 rounded-full px-3 py-1 hover:bg-blue-600 text-white hover:text-gray-100 font-semibold text-xs">
+                                            {{ approvinguser && approvingUserId === company.id ? 'Processing...': 'Set Active'}}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </transition>
@@ -152,22 +137,52 @@
 export default {
     data() {
         return {
-            users: []
+            companies: [],
+            loading: true,
+            approvinguser: false,
+            approvingUserId: null,
+            product_not_found: '',
         }
     },
 
-    created() {
+    mounted() {
         this.loadMembers();
+        if(localStorage.getItem('isloggedIn')== 'false'){
+            this.$router.push('/login');
+        }
     },
 
     methods: {
+        setUserActive(user_id){
+            this.approvinguser = true;
+            this.approvingUserId = user_id;
+            axios.get('/sanctum/csrf-cookie')
+                .then((response) => {
+                    axios.get('/api/set-user-active/' + user_id)
+                        .then((response) => {
+                            setTimeout(()=>{
+                                this.approvinguser = false;
+                            },1000);
+                            this.loadMembers();
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }).catch(error => {
+                    console.log(error);
+                })
+        },
         loadMembers() {
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
                     axios.get('/api/user-blacklist')
                         .then((response) => {
-                            this.users = response.data;
-                            // console.log(response.data);
+                            this.loading = false;
+                            this.companies = response.data;
+                            if(response.data.length == 0){
+                                this.product_not_found = 'user not found';
+                            }
                         })
                         .catch(error => {
                             console.log(error);
@@ -189,6 +204,7 @@ export default {
    cursor: pointer;
    border-radius: 0.5rem;
  }
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity .5s;

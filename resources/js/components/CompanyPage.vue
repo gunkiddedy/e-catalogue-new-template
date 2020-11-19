@@ -363,7 +363,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="product_not_found !== ''">{{ product_not_found }}</div>
+                        <!--<div v-if="product_not_found !== ''">{{ product_not_found }}</div>-->
+                        <div v-if="product_not_found !== ''" class="my-4 flex justify-center text-gray-500">
+                            {{ product_not_found }}
+                        </div>
                     </div>
 
                     <!-- ABOUT CARD -->

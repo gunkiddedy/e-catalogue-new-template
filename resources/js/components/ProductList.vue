@@ -61,6 +61,28 @@
                         </form>
                     </div>
 
+                    <div v-if="product_not_found !== ''" class="my-4 flex justify-center text-gray-500">
+                        {{ product_not_found }}
+                    </div>
+
+                    <!-- loader spin-->
+                    <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0 mt-4">
+                        <svg class="w-12 absolute" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                            <circle cx="15" cy="15" r="15">
+                                <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+                                <animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="105" cy="15" r="15">
+                                <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                    </div>
+
                     <div class="mt-10 mb-12 w-full h-full">
 
                         <!-- company list with their products-->
@@ -180,12 +202,14 @@
 export default {
     data() {
         return {
+            loading: true,
             products: [],
             images: [],
             showImageProduct: false,
             isLoading: false,
             approving: false,
             approvingId: null,
+            product_not_found: '',
         }
     },
 
@@ -199,7 +223,11 @@ export default {
                 .then((response) => {
                     axios.get('/api/product-list')
                         .then((response) => {
+                            this.loading = false;
                             this.products = response.data;
+                            if(response.data.length == 0){
+                                this.product_not_found = 'product not found';
+                            }
                             console.log(response.data);
                         })
                         .catch(error => {

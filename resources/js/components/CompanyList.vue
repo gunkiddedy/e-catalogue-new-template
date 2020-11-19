@@ -3,11 +3,10 @@
     <div class="px-16 bg-gray-100">
         <header-component></header-component>
         <div class="flex px-4 py-4 mt-4">
+            <!-- SIDEBAR MENU-->
             <transition name="fade">
                 <div class="bg-white h-full w-64 rounded-lg mr-6 shadow px-1 py-1">
-
                     <div class="grid grid-cols-1 my-2 px-1">
-
                         <div class="text-gray-500 flex items-center justify-between">
                             <router-link to="/company-list" class="w-full">
                                 <button type="button" class="w-full flex items-center leading-tight text-sm py-4 px-4 hover:bg-blue-500 hover:text-gray-300 rounded-lg text-gray-300">
@@ -40,16 +39,14 @@
                                 </button>
                             </router-link>
                         </div>
-
                     </div>
-
                 </div>
             </transition>
 
             <transition name="fade">
                 <div class="w-full">
-
-                    <!-- search company-->
+                    
+                    <!-- COMPANY SEARCH-->
                     <div class="relative">
                         <form action="" method="GET">
                             <button type="submit" class="absolute right-0 mt-2 mr-2 text-gray-500">
@@ -61,22 +58,49 @@
                         </form>
                     </div>
 
+                    <div v-if="product_not_found !== ''" class="my-4 flex justify-center text-gray-500">
+                        {{ product_not_found }}
+                    </div>
+
+                    <!-- loader spin-->
+                    <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0 mt-4">
+                        <svg class="w-12 absolute" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                            <circle cx="15" cy="15" r="15">
+                                <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+                                <animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="105" cy="15" r="15">
+                                <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                    </div>
+
                     <div class="mt-10 mb-12 w-full h-full">
-                        <div class="grid grid-cols-2 gap-4">
+                        
+                        <div class="grid grid-cols-4 gap-4">
                             <!-- company list with their products-->
-                            <div class="bg-white rounded-lg px-8 py-4 shadow" v-for="(company, index) in companies" :key="index">
+                            <div class="bg-white rounded-lg flex flex-col px-0 py-0 shadow" v-for="(company, index) in companies" :key="index">
 
-                                <div class="flex items-center justify-between">
+                                <!-- USER ACTIVE STATUS-->
+                                <div class="flex justify-end mb-1">
+                                    <span v-if="company.is_active === 1 && company.is_blacklist ===0" class="px-2 bg-gray-100 rounded-tr-md rounded-bl-md text-blue-500 shadow-sm text-sm font-semibold">Active</span>
+                                    <span v-else class="px-2 bg-gray-100 rounded-tr-md rounded-bl-md text-red-600 shadow-sm text-xs font-semibold">Inactive User</span>
+                                </div>
+
+                                <!--<div class="flex items-center justify-between">-->
                                     <!-- BLUE CIRCLE-->
-                                    <div class="flex items-center justify-between">
-
+                                    <div class="flex flex-col items-center px-2 py-2">
                                         <!--<div class="bg-blue-500 rounded-full w-16 h-16 mr-6"></div>-->
                                         <router-link :to="{ name: 'company-page', params: {id: company.id } }">
-                                            <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-16 h-16 mx-auto mr-4">
+                                            <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-16 h-16 mb-2">
                                         </router-link>
-
                                         <!-- COMPANY NAME-->
-                                        <div class="grid grid-rows-3">
+                                        <!--<div class="grid grid-rows-3">-->
                                             <div>
                                                 <router-link :to="{ name: 'company-page', params: {id: company.id } }">
                                                     <p class="uppercase font-semibold text-sm text-gray-500 hover:text-blue-500">
@@ -84,18 +108,31 @@
                                                     </p>
                                                 </router-link>
                                             </div>
+
                                             <div>
-                                                <span class="text-sm text-blue-500 font-semibold">
-                                                    {{ company.email }}
+                                                <span class="text-sm text-blue-500 font-semibold hover:text-blue-700">
+                                                    <a :href="'mailto:'+company.email">{{ company.email }}</a>
                                                 </span>
                                             </div>
-                                            <div>
-                                                <span class="text-sm text-gray-500" v-if="company.address !== null">{{company.address}}</span>
-                                                <span class="text-sm text-gray-500" v-else>Bekasi, Jawa Barat, Indonesia</span>
+
+                                            <div class="w-3/4 px-1">
+                                                <span class="text-xs text-gray-500 hover:text-blue-500">{{company.address}}</span>
+                                                <span class="text-xs text-gray-500 hover:text-blue-500" v-if="company.address === null">Bekasi, Jawa Barat, Indonesia</span>
                                             </div>
-                                        </div>
+
+                                            <!-- BUTTON SET USER-->
+                                            <div class="my-3">
+                                                <button v-if="company.is_active === 1 && company.is_blacklist === 0" @click="setUserInActive(company.id)" class="bg-gray-500 rounded-full px-3 py-1 hover:bg-red-600 text-white hover:text-gray-100 font-semibold text-xs">
+                                                    {{ approvinguser && approvingUserId === company.id ? 'Processing...': 'Blacklist'}}
+                                                </button>
+                                                <button v-if="company.is_active === 0 && company.is_blacklist === 0" @click="setUserActive(company.id)" class="bg-blue-500 rounded-full px-3 py-1 hover:bg-blue-600 text-white hover:text-gray-100 font-semibold text-xs">
+                                                    {{ approvinguser && approvingUserId === company.id ? 'Processing...': 'Set Active'}}
+                                                </button>
+                                            </div>
+
+                                        <!--</div>-->
                                     </div>
-                                </div>
+                                <!--</div>-->
 
                                 <!-- IMAGE PRODUCT-->
                                 <!--<div>
@@ -120,6 +157,7 @@
                         
 
                     </div>
+                    
                 </div>
             </transition>
         </div>
@@ -133,28 +171,76 @@ export default {
     data() {
         return {
             companies: [],
-            isActive: false,
+            loading: true,
+            approvinguser: false,
+            approvingUserId: null,
+            product_not_found: '',
         }
     },
 
-    created() {
-        this.loadMembers();
-    },
+    // created() {
+    //     this.loadMembers();
+    // },
 
     mounted() {
+        this.loadMembers();
         if(localStorage.getItem('isloggedIn')== 'false'){
             this.$router.push('/login');
         }
     },
 
     methods: {
+        setUserActive(user_id){
+            this.approvinguser = true;
+            this.approvingUserId = user_id;
+            axios.get('/sanctum/csrf-cookie')
+                .then((response) => {
+                    axios.get('/api/set-user-active/' + user_id)
+                        .then((response) => {
+                            setTimeout(()=>{
+                                this.approvinguser = false;
+                            },1000);
+                            this.loadMembers();
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }).catch(error => {
+                    console.log(error);
+                })
+        },
+        setUserInActive(user_id){
+            this.approvinguser = true;
+            this.approvingUserId = user_id;
+            axios.get('/sanctum/csrf-cookie')
+                .then((response) => {
+                    axios.get('/api/set-user-inactive/' + user_id)
+                        .then((response) => {
+                            setTimeout(()=>{
+                                this.approvinguser = false;
+                            },1000);
+                            this.loadMembers();
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }).catch(error => {
+                    console.log(error);
+                })
+        },
         loadMembers() {
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
                     axios.get('/api/company-list')
                         .then((response) => {
+                            this.loading = false;
                             this.companies = response.data;
-                            // console.log(response.data);
+                            if(response.data.length == 0){
+                                this.product_not_found = 'company not found';
+                            }
+                            console.log(response.data);
                         })
                         .catch(error => {
                             console.log(error);

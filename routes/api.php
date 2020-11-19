@@ -21,6 +21,8 @@ Route::get('approving-product/{id}', 'Api\AdminController@approvingProduct');
 Route::get('product-list-detail-image/{id}', 'Api\AdminController@productListDetailImage');
 
 Route::get('user-blacklist', 'Api\AdminController@userBlacklist');
+Route::get('set-user-active/{id}', 'Api\AdminController@setUserActive');
+Route::get('set-user-inactive/{id}', 'Api\AdminController@setUserInActive');
 
 // PUBLIC AREA
 Route::post('logout', 'AuthController@logout');
