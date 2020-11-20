@@ -158,7 +158,7 @@ export default {
             this.approvingUserId = user_id;
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
-                    axios.get('/api/set-user-active/' + user_id)
+                    axios.post('/api/set-user-active/' + user_id)
                         .then((response) => {
                             setTimeout(()=>{
                                 this.approvinguser = false;

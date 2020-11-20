@@ -195,13 +195,13 @@ export default {
             this.approvingUserId = user_id;
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
-                    axios.get('/api/set-user-active/' + user_id)
+                    axios.post('/api/set-user-active/' + user_id)
                         .then((response) => {
                             setTimeout(()=>{
                                 this.approvinguser = false;
                             },1000);
                             this.loadMembers();
-                            console.log(response);
+                            // console.log(response);
                         })
                         .catch(error => {
                             console.log(error);
@@ -215,13 +215,13 @@ export default {
             this.approvingUserId = user_id;
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
-                    axios.get('/api/set-user-inactive/' + user_id)
+                    axios.post('/api/set-user-inactive/' + user_id)
                         .then((response) => {
                             setTimeout(()=>{
                                 this.approvinguser = false;
                             },1000);
                             this.loadMembers();
-                            console.log(response);
+                            // console.log(response);
                         })
                         .catch(error => {
                             console.log(error);
@@ -240,7 +240,7 @@ export default {
                             if(response.data.length == 0){
                                 this.product_not_found = 'company not found';
                             }
-                            console.log(response.data);
+                            // console.log(response.data);
                         })
                         .catch(error => {
                             console.log(error);

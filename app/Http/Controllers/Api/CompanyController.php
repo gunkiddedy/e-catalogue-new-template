@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -24,4 +25,16 @@ class CompanyController extends Controller
             'products' => $products,
         ]);
     }
+
+    public function updateCompanyProfile()
+    {
+        $user_id = Auth::id();
+        
+        $user = User::find($user_id);
+        $user->additional_info = $request->get('additional_info');
+        $user->save();
+        
+        return response()->json('info successfuly updated');
+    }
+
 }

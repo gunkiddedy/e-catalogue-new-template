@@ -12,7 +12,6 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -26,10 +25,6 @@ class AuthController extends Controller
                 'message' => 'These credentials do not match our records.'
             ], 404);
         }
-
-        // $rand = rand(9999, 99999);
-        
-        // $token = $user->createToken('gegewepe_token')->plainTextToken;
         
         $response = [
             'success'   => true,
@@ -37,7 +32,6 @@ class AuthController extends Controller
         ];
     
         return response()->json($response, 201);
-
     }
 
 

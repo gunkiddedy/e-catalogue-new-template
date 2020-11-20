@@ -243,7 +243,7 @@ export default {
             this.approvingId = product_id;
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
-                    axios.get('/api/approving-product/' + product_id)
+                    axios.post('/api/approving-product/' + product_id)
                         .then((response) => {
                             this.loadProducts();
                             console.log(response);

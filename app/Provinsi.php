@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Island;
 use Illuminate\Database\Eloquent\Model;
 
 class Provinsi extends Model
@@ -23,6 +24,11 @@ class Provinsi extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function island()
+    {
+        return $this->belongsTo(Island::class);
     }
 
     // ACCESSOR function

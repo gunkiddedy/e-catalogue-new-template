@@ -63,17 +63,17 @@ class Product extends Model
 
     public function scopeWithFilters($query)
     {
-        return $query->when(count(request()->input('category_items', [])), function ($query) {
-            $query->whereIn('category_id', request()->input('category_items'));
+        return $query->when(count(request()->input('selectedCategory', [])), function ($query) {
+            $query->whereIn('category_id', request()->input('selectedCategory'));
         })
-        ->when(count(request()->input('subcategory_items', [])), function ($query) {
-            $query->whereIn('subcategory_id', request()->input('subcategory_items'));
+        ->when(count(request()->input('selectedSubCategory', [])), function ($query) {
+            $query->whereIn('subcategory_id', request()->input('selectedSubCategory'));
         })
-        ->when(count(request()->input('select_provinsi', [])), function ($query) {
-            $query->whereIn('provinsi_id', request()->input('select_provinsi'));
+        ->when(count(request()->input('selectedProvinsi', [])), function ($query) {
+            $query->whereIn('provinsi_id', request()->input('selectedProvinsi'));
         })
-        ->when(count(request()->input('select_kabupaten', [])), function ($query) {
-            $query->whereIn('kabupaten_id', request()->input('select_kabupaten'));
+        ->when(count(request()->input('selectedKabupaten', [])), function ($query) {
+            $query->whereIn('kabupaten_id', request()->input('selectedKabupaten'));
         });
     }
 }

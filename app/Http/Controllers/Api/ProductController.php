@@ -15,7 +15,16 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::withFilters()->where('is_active', '1')->orderBy('id', 'desc')->paginate(12);
+        $products = Product::withFilters()->where('is_active', '1')->orderBy('id', 'desc')->paginate(15);
+
+        return ProductResource::collection($products);
+    }
+
+    // search global on header component
+    public function search(Request $request)
+    {
+        $products = Product::withFilters()->where('name', 'like', '%'.$request->keyword.'%')
+                    ->orWhere('company_name', 'like', '%'.$request->keyword.'%')->paginate(12);
 
         return ProductResource::collection($products);
     }

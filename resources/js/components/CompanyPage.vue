@@ -100,21 +100,59 @@
                         <div>
                             <div v-if="isloggedIn === 'true'">
                                 <!-- BUTTON ADD PRODUCT & EDIT COMPANY PROFILE-->
-                                <button v-if="buttonAddProduct" @click="toggleModal()" type="button" class="bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
-                                    <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <button v-if="buttonAddProduct" @click="toggleModal()" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
+                                    <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
                                     </svg>
                                     Add New Product
                                 </button>
 
-                                <button v-if="buttonEditCompany" @click="toggleModal()" type="button" class="bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
-                                    <svg class="w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                    </svg>
+                                <button v-if="buttonEditCompany" @click="modalEditInfo(user.id)" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
+                                    <svg class="w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                                     Edit Company Profile
                                 </button>
                             </div>
-                            
+
+                            <!-- MODAL EDIT INFO-->
+                            <div v-if="showModalInfo" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center items-center flex">
+                                <div class="relative max-w-4xl w-full">
+                                    <div class="bg-white border-0 rounded-lg shadow-lg relative px-6 py-4">
+                                        <div class="flex justify-end absolute right-0 top-0 -mt-5 -mr-5">
+                                            <!-- CLOSE BUTTON CIRCLE-->
+                                            <div class="flex items-center justify-center">
+                                                <button class="bg-red-500 relative w-12 h-12 rounded-full p-1 border-4 border-white text-white" @click="toggleModalInfo()">
+                                                    <svg class="w-6 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex items-center justify-start mb-2">
+                                            <h3 class="text-lg leading-tight font-semibold text-gray-400">
+                                                Edit Company Profil <span class="ml-4 text-sm font-sf-pro" :class="{'text-green-400': status, 'text-red-400': !status }">{{ status_msg }}</span>
+                                            </h3>
+                                        </div>
+
+                                        <form>
+                                        <div class="w-full py-2">
+                                            <div class="product-name mb-3">
+                                                <textarea id="additional_info" v-model="additional_info" class="w-full h-56 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
+                                            </div>
+                                            <div class="flex items-center justify-end">
+                                                <button :class="{'disabled': isUpdatingInfo}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateCompanyInfo()">
+                                                    <svg v-if="isUpdatingInfo" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                    </svg>
+                                                    {{ isUpdatingInfo ? "Updating..." : "Update info" }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- MODAL FORM-->
                             <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center items-center flex">
@@ -312,6 +350,7 @@
                             </div>
                             <!-- DIV AFTER MODAL SHOW UP -->
                             <div v-if="showModal" class="opacity-25 fixed inset-0 z-30 bg-black"></div>
+                            <div v-if="showModalInfo" class="opacity-25 fixed inset-0 z-30 bg-black"></div>
                         </div>
                     </div>
 
@@ -454,6 +493,7 @@ export default {
 
             openTab: 2,
             showModal: false,
+            showModalInfo: false,
             buttonAddProduct: true,
             buttonEditCompany: false,
 
@@ -479,6 +519,7 @@ export default {
             dialogImageUrl: '',
             dialogVisible: false,
             isSubmittingProduct: false,
+            isUpdatingInfo: false,
             status_msg: '',
             status: '',
 
@@ -504,7 +545,9 @@ export default {
             kecamatan: {},
             products: [],
 
-            isloggedIn: 'false'
+            isloggedIn: 'false',
+
+            additional_info: '',
         }
     },
 
@@ -525,6 +568,51 @@ export default {
     },
 
     methods: {
+
+        modalEditInfo(user_id) {
+            let url = '/api/company-info/' + user_id;
+            axios.get('/sanctum/csrf-cookie')
+                .then(response => {
+                    axios.get(url)
+                        .then((response) => {
+                            this.additional_info = response.data.additional_info;
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                    this.showModalInfo = !this.showModalInfo;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+
+        updateCompanyInfo(){
+            this.isUpdatingInfo = true;
+            
+            const formData = new FormData();
+            formData.append('additional_info', this.additional_info);
+
+            axios.get('/sanctum/csrf-cookie')
+                .then(response => {
+                    axios.post('/api/update-company-info', formData, {
+                        headers: {'content-type': 'application/json'}
+                    })
+                    .then((response) => {
+                        console.log(response);
+                        this.isUpdatingInfo = false;
+                        this.additional_info = '';
+                        this.showModalInfo = !this.showModalInfo;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
 
         dateFormat(date) {
             return moment(new Date(date)).format('DD/MM/YYYY');
@@ -702,6 +790,10 @@ export default {
         },
         toggleModal() {
             this.showModal = !this.showModal;
+        },
+
+        toggleModalInfo(){
+            this.showModalInfo = !this.showModalInfo;
         },
 
         loadCategory() {

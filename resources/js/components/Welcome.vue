@@ -58,97 +58,129 @@
             <!-- PROVINSI MODAL-->
             <div v-if="showModalProv" class="h-full w-full" :class="{'relative': showModalProv, 'inset-0':showModalProv, 'z-50': showModalProv}">
                 <div class="bg-white border-0 rounded-lg shadow-lg px-6 py-4">
-                    <div class="grid grid-cols-5 gap-2">
+                    <div class="grid grid-cols-5 gap-4">
                         <div>
-                            <p class="font-semibold text-lg">Sumatera</p>
-                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                            </div>
+                            <p class="font-semibold text-sm uppercase text-gray-600">{{ islands[0].name }}</p>
+                            <ul class="mt-2">
+                                <li  v-for="(prov, i) in islands[0].provinsis" :key="i" class="text-xs text-gray-500 hover:text-gray-600 hover:bg-gray-100 font-semibold cursor-pointer mt-1" @click="handleSelectingProvinsi(prov.id, prov.name)">
+                                    <span class="text-pink-400" v-if="isSelectingProvId === prov.id">
+                                        {{ prov.name }}
+                                    </span>
+                                    <span v-else>
+                                        {{ prov.name }}
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                         <div>
-                            <p class="font-semibold text-lg">Jawa</p>
-                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                            </div>
+                            <p class="font-semibold text-sm uppercase text-gray-600">{{ islands[1].name }}</p>
+                            <ul class="mt-2">
+                                <li  v-for="(prov, i) in islands[1].provinsis" :key="i" class="text-xs text-gray-500 hover:text-gray-600 font-semibold  hover:bg-gray-100 cursor-pointer mt-1" @click="handleSelectingProvinsi(prov.id, prov.name)">
+                                    <span class="text-pink-400" v-if="isSelectingProvId === prov.id">
+                                        {{ prov.name }}
+                                    </span>
+                                    <span v-else>
+                                        {{ prov.name }}
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                         <div>
-                            <p class="font-semibold text-lg">Kalimantan</p>
-                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                            </div>
+                            <p class="font-semibold text-sm uppercase text-gray-600">{{ islands[2].name }}</p>
+                            <ul class="mt-2">
+                                <li  v-for="(prov, i) in islands[2].provinsis" :key="i" class="text-xs text-gray-500 hover:text-gray-600 font-semibold  hover:bg-gray-100 cursor-pointer mt-1" @click="handleSelectingProvinsi(prov.id, prov.name)">
+                                    <span class="text-pink-400" v-if="isSelectingProvId === prov.id">
+                                        {{ prov.name }}
+                                    </span>
+                                    <span v-else>
+                                        {{ prov.name }}
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                         <div>
-                            <p class="font-semibold text-lg">Sulawesi</p>
-                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                            </div>
+                            <p class="font-semibold text-sm uppercase text-gray-600">{{ islands[3].name }}</p>
+                            <ul class="mt-2">
+                                <li  v-for="(prov, i) in islands[3].provinsis" :key="i" class="text-xs text-gray-500 hover:text-gray-600 font-semibold  hover:bg-gray-100 cursor-pointer mt-1" @click="handleSelectingProvinsi(prov.id, prov.name)">
+                                    <span class="text-pink-400" v-if="isSelectingProvId === prov.id">
+                                        {{ prov.name }}
+                                    </span>
+                                    <span v-else>
+                                        {{ prov.name }}
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                         <div>
-                            <p class="font-semibold text-lg">Papua</p>
-                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                            </div>
+                            <p class="font-semibold text-sm uppercase text-gray-600">{{ islands[4].name }}</p>
+                            <ul class="mt-2">
+                                <li  v-for="(prov, i) in islands[4].provinsis" :key="i" class="text-xs text-gray-500 hover:text-gray-600 font-semibold  hover:bg-gray-100 cursor-pointer mt-1" @click="handleSelectingProvinsi(prov.id, prov.name)">
+                                    <span class="text-pink-400" v-if="isSelectingProvId === prov.id">
+                                        {{ prov.name }}
+                                    </span>
+                                    <span v-else>
+                                        {{ prov.name }}
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
-                    <div class="w-full border-t border-gray-400 my-6"></div>
-                    <div class="grid grid-cols-5 gap-2">
+                    <div class="w-full border-t border-gray-400 my-4"></div>
+
+                    <div class="grid grid-cols-5 gap-4">
                         <div>
-                            <p class="font-semibold text-lg">Nusa Tenggara</p>
-                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                            </div>
+                            <p class="font-semibold text-sm uppercase text-gray-600">{{ islands[5].name }}</p>
+                            <ul class="mt-2">
+                                <li  v-for="(prov, i) in islands[5].provinsis" :key="i" class="text-xs text-gray-500 hover:text-gray-600 font-semibold  hover:bg-gray-100 cursor-pointer mt-1" @click="handleSelectingProvinsi(prov.id, prov.name)">
+                                    <span class="text-pink-400" v-if="isSelectingProvId === prov.id">
+                                        {{ prov.name }}
+                                    </span>
+                                    <span v-else>
+                                        {{ prov.name }}
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                         <div>
-                            <p class="font-semibold text-lg">Maluku</p>
-                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                            </div>
+                            <p class="font-semibold text-sm uppercase text-gray-600">{{ islands[6].name }}</p>
+                            <ul class="mt-2">
+                                <li  v-for="(prov, i) in islands[6].provinsis" :key="i" class="text-xs text-gray-500 hover:text-gray-600 font-semibold  hover:bg-gray-100 cursor-pointer mt-1" @click="handleSelectingProvinsi(prov.id, prov.name)">
+                                    <span class="text-pink-400" v-if="isSelectingProvId === prov.id">
+                                        {{ prov.name }}
+                                    </span>
+                                    <span v-else>
+                                        {{ prov.name }}
+                                    </span>
+                                </li>
+                            </ul>
                         </div>
                         <div>
-                            <p class="font-semibold text-lg">Bali</p>
-                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
-                                <span>Aceh</span>
-                                <span>Sumatera Utara</span>
+                            <p class="font-semibold text-sm uppercase text-gray-600">{{ islands[7].name }}</p>
+                            <ul class="mt-2">
+                                <li  v-for="(prov, i) in islands[7].provinsis" :key="i" class="text-xs text-gray-500 hover:text-gray-600 font-semibold  hover:bg-gray-100 cursor-pointer mt-1" @click="handleSelectingProvinsi(prov.id, prov.name)">
+                                    <span class="text-pink-400" v-if="isSelectingProvId === prov.id">
+                                        {{ prov.name }}
+                                    </span>
+                                    <span v-else>
+                                        {{ prov.name }}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--<span>{{ selectingProvinsi }}</span>-->
+                        <div class="col-span-2">
+                            <div class="flex justify-end items-center">
+                                <button @click="applyFilterProvinsi" class="hover:bg-blue-600 flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" >
+                                    <svg v-if="isFilteringProvinsi" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    {{ isFilteringProvinsi ? 'Filtering...': 'Apply filter' }}
+                                </button>
+                                <button @click="resetFilterProvinsi" class="ml-4 flex items-center text-white border border-gray-500 bg-gray-500 hover:bg-gray-600 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" >
+                                    <svg v-if="isResetingProvinsi" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    {{ isResetingProvinsi ? 'Reseting...': 'Reset filter' }}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -156,18 +188,41 @@
             </div>
 
             <!-- KABUPATEN MODAL-->
-            <div v-if="showModalKab" class="h-full w-1/5" :class="{'relative': showModalKab, 'inset-0':showModalKab, 'z-50': showModalKab}">
-                <div class="bg-white border-0 rounded-lg shadow-lg px-6 py-4">
+            <div v-if="showModalKab" class="h-full w-2/7" :class="{'relative': showModalKab, 'inset-0':showModalKab, 'z-50': showModalKab}">
+                <div class="bg-white border-0 rounded-lg shadow-lg px-4 py-4 h-88 overflow-y-auto">
                     <div class="grid grid-cols-1">
                         <div class="text-left">
-                            <p class="font-semibold text-lg">DKI Jakarta</p>
+                            <p class="font-semibold text-lg">{{ provinsiTerpilih }}</p>
+                            <p class="font-semibold text-lg" v-if="provinsiTerpilih ===''">
+                                Provinsi belum dipilih!
+                            </p>
+
                             <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
-                                <span>Jakarta Utara</span>
-                                <span>Jakarta Selatan</span>
-                                <span>Jakarta Barat</span>
-                                <span>Jakarta Timur</span>
-                                <span>Jakarta Pusat</span>
+                                <ul class="mt-2">
+                                    <li  v-for="(kab, i) in kabupatens" :key="i" class="text-xs text-gray-500 hover:text-gray-600 font-semibold  hover:bg-gray-100 cursor-pointer mt-1" @click="handleSelectingKabupaten(kab.id)">
+                                        <span class="text-pink-400" v-if="isSelectingKabId === kab.id">
+                                            {{ kab.name }}
+                                        </span>
+                                        <span v-else>
+                                            {{ kab.name }}
+                                        </span>
+                                    </li>
+                                </ul>
                             </div>
+
+                            <div class="flex content-end my-4">
+                                <button @click="applyFilterKabupaten" class="hover:bg-blue-600 flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" >
+                                    <svg v-if="isFilteringKabupaten" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    {{ isFilteringKabupaten ? 'Filtering...': 'Apply' }}
+                                </button>
+                                <button @click="resetFilterKabupaten" class="ml-2 flex items-center text-white border border-gray-500 bg-gray-500 hover:bg-gray-600 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" >
+                                    <svg v-if="isResetingKabupaten" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    {{ isResetingKabupaten ? 'Reseting...': 'Reset' }}
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -249,9 +304,7 @@
                     </div>
                 </div>
 
-                <div v-if="product_not_found !== ''" class="my-4 flex justify-center text-red-500">
-                    {{ product_not_found }}
-                </div>
+                
 
                 <!-- PRODUCTS  -->
                 <!--<transition name="fade">-->
@@ -306,11 +359,6 @@
 
                 <!-- loader spin-->
                 <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0">
-                    <!--<svg class="animate-spin absolute w-12 h-12" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="122.315px" height="122.88px" viewBox="0 0 122.315 122.88" enable-background="new 0 0 122.315 122.88" xml:space="preserve">
-                        <g>
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M94.754,14.534c8.844,0,16.014,7.17,16.014,16.012 c0,8.844-7.17,16.015-16.014,16.015c-8.843,0-16.013-7.17-16.013-16.015C78.741,21.704,85.911,14.534,94.754,14.534L94.754,14.534z M109.265,52.121c-7.205,0-13.049,5.844-13.049,13.048c0,7.207,5.844,13.049,13.049,13.051c7.207,0,13.051-5.844,13.051-13.051 C122.315,57.965,116.472,52.121,109.265,52.121L109.265,52.121z M94.135,89.903c-5.032,0-9.114,4.082-9.114,9.113 c0,5.032,4.082,9.114,9.114,9.114c5.031,0,9.113-4.082,9.113-9.114C103.248,93.985,99.166,89.903,94.135,89.903L94.135,89.903z M59.275,104.65c-5.032,0-9.114,4.081-9.114,9.113c0,5.034,4.082,9.116,9.114,9.116s9.113-4.082,9.113-9.116 C68.389,108.731,64.308,104.65,59.275,104.65L59.275,104.65z M23.652,90.86c-4.717,0-8.54,3.823-8.54,8.54 c0,4.715,3.823,8.54,8.54,8.54c4.714,0,8.538-3.825,8.538-8.54C32.19,94.684,28.366,90.86,23.652,90.86L23.652,90.86z M9.096,54.872C4.072,54.872,0,58.944,0,63.968c0,5.021,4.072,9.093,9.096,9.093c5.021,0,9.093-4.072,9.093-9.093 C18.189,58.944,14.116,54.872,9.096,54.872L9.096,54.872z M23.652,17.026c-6.354,0-11.508,5.155-11.508,11.509 s5.154,11.506,11.508,11.506s11.506-5.152,11.506-11.506S30.006,17.026,23.652,17.026L23.652,17.026z M59.341,0 c-7.651,0-13.858,6.205-13.858,13.855c0,7.651,6.207,13.856,13.858,13.856s13.856-6.205,13.856-13.856 C73.197,6.205,66.992,0,59.341,0L59.341,0z" />
-                        </g>
-                    </svg>-->
                     <svg class="w-12 absolute" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
                         <circle cx="15" cy="15" r="15">
                             <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
@@ -325,6 +373,10 @@
                             <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
                         </circle>
                     </svg>
+                </div>
+
+                <div v-if="product_not_found !== ''" class="my-4 flex justify-center text-gray-500">
+                    {{ product_not_found }}
                 </div>
 
                 <!-- PAGINATION -->
@@ -379,69 +431,233 @@ export default {
             showModalSubCat: false,
             loading: true,
             products: {},
+
             product_not_found: '',
+
+            islands: [],
+            kabupatens: [],
+            selectingProvinsi: [],
+            selectedProvinsi: [],
+            selectingKabupaten: [],
+            selectedKabupaten: [],
+            isFilteringProvinsi: false,
+            isResetingProvinsi: false,
+            isSelectingProvId: false,
+            isFilteringKabupaten: false,
+            isResetingKabupaten: false,
+            isSelectingKabId: false,
+
+            provinsiTerpilih: '',
+
+            selected: {
+                searchData: {},
+                selectedProvinsi: [],
+                selectedKabupaten: []
+            }
         }
     },
 
-    // created() {
-    //     this.loadProducts();
-    // },
-
     mounted() {
         this.loadProducts();
-        // this.getResults();
-        // this.getWindowWidth();
-        // this.apiCategories();
+    },
 
+    watch: {
+        selected: {
+            handler: function () {
+                this.loadProducts();
+            },
+            deep: true
+        }
     },
 
     methods: {
-        loadProducts: function () {
-            axios.get('/api/products', {
-                    params: this.selected
-                })
-                .then((response) => {
-                    this.loading = false
-                    this.products = response.data;
-                    if(response.data.length == 0){
-                        this.product_not_found = 'product not found';
+        resetFilterProvinsi(){
+            this.isResetingProvinsi = true;
+            setTimeout(()=> {
+                this.isResetingProvinsi = false;
+                this.showModalProv = false;
+                this.showModalProduct = true;
+                this.showModalSidebar = false;
+                this.showModalBackground = false;
+                this.isSelectingProvId = false;
+
+                this.selectingProvinsi = [];
+                this.selected.selectedProvinsi = [];
+                this.provinsiTerpilih = '';
+            },1500);
+        },
+
+        applyFilterProvinsi(){
+            this.isFilteringProvinsi = true;
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
+                this.selected.selectedProvinsi = this.selectingProvinsi;
+                setTimeout(()=>{
+                    this.isFilteringProvinsi = false;
+                    this.showModalProv = false;
+                    this.showModalProduct = true;
+                    this.showModalSidebar = false;
+                    this.showModalBackground = false;
+                },1500);
+                // console.log(this.selectedProvinsi);
+            }).catch(err => {
+                console.log(err);
+            });
+        },
+
+        handleSelectingProvinsi(param, param2){
+            if (this.selectingProvinsi.includes(param) === false)
+                this.selectingProvinsi.push(param);
+            else 
+                alert('sudah dipilih');
+            
+            //berapapun banyaknya element yg masuk, hapus semua lalu ambil elemen teakhir :-) 
+            this.selectingProvinsi.splice(0, this.selectingProvinsi.length -1);
+            this.isSelectingProvId = param;
+            this.provinsiTerpilih = param2;
+        },
+
+        resetFilterKabupaten(){
+            this.isResetingKabupaten = true;
+            setTimeout(()=> {
+                this.isResetingKabupaten = false;
+                this.showModalKab = false;
+                this.showModalProduct = true;
+                this.showModalSidebar = false;
+                this.showModalBackground = false;
+                this.isSelectingKabId = false;
+
+                this.selectingKabupaten = [];
+                this.selected.selectedKabupaten = [];
+            },1500);
+        },
+
+        applyFilterKabupaten(){
+            this.isFilteringKabupaten = true;
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
+                this.selected.selectedKabupaten = this.selectingKabupaten;
+                setTimeout(()=>{
+                    this.isFilteringKabupaten = false;
+                    this.showModalKab = false;
+                    this.showModalProduct = true;
+                    this.showModalSidebar = false;
+                    this.showModalBackground = false;
+                },1500);
+                // console.log(this.selectedProvinsi);
+            }).catch(err => {
+                console.log(err);
+            });
+        },
+
+        handleSelectingKabupaten(param){
+            if (this.selectingKabupaten.includes(param) === false)
+                this.selectingKabupaten.push(param);
+            else 
+                alert('sudah dipilih');
+            
+            //berapapun banyaknya element yg masuk, hapus semua lalu ambil elemen teakhir :-) 
+            this.selectingKabupaten.splice(0, this.selectingKabupaten.length -1);
+            this.isSelectingKabId = param;
+        },
+
+        provinsiModal: function () {
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
+                axios.get('/api/get-island-with-provinsis')
+                .then(response => {
+                    this.showModalProv = !this.showModalProv;
+                    if (this.showModalProv === true) {
+                        this.showModalBackground = true;
+                        this.showModalSidebar = true;
+                        this.showModalProduct = false;
+                        this.showModalKab = false;
+                        this.showModalCat = false;
+                        this.showModalSubCat = false;
+                        this.islands = response.data;
+                        console.log(this.islands);
+                    } else {
+                        this.showModalProduct = true;
+                        this.showModalSidebar = false;
+                        this.showModalBackground = false;
+                        this.islands = [];
+                        console.log(this.islands);
                     }
-                    console.log(response.data);
                 })
-                .catch(function (error) {
+                .catch(response => {
                     console.log(error);
                 });
+            })
+            .catch(error => {
+                console.log(error);
+            });
         },
-        provinsiModal: function () {
-            this.showModalProv = !this.showModalProv;
-            if (this.showModalProv === true) {
-                this.showModalBackground = true;
-                this.showModalSidebar = true;
-                this.showModalProduct = false;
-                this.showModalKab = false;
-                this.showModalCat = false;
-                this.showModalSubCat = false;
-            } else {
-                this.showModalProduct = true;
-                this.showModalSidebar = false;
-                this.showModalBackground = false;
-            }
-        },
+
         kabupatenModal: function () {
-            this.showModalKab = !this.showModalKab;
-            if (this.showModalKab === true) {
-                this.showModalBackground = true;
-                this.showModalSidebar = true;
-                this.showModalProduct = false;
-                this.showModalProv = false;
-                this.showModalCat = false;
-                this.showModalSubCat = false;
-            } else {
-                this.showModalProduct = true;
-                this.showModalSidebar = false;
-                this.showModalBackground = false;
-            }
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
+                axios.get('/api/get-kabupatens-by-provinsi-id', {
+                    params: {
+                        provinsi_id: this.selected.selectedProvinsi
+                    }
+                })
+                .then(response => {
+                    this.showModalKab = !this.showModalKab;
+                    if (this.showModalKab === true) {
+                        this.showModalBackground = true;
+                        this.showModalSidebar = true;
+                        this.showModalProduct = false;
+                        this.showModalProv = false;
+                        this.showModalCat = false;
+                        this.showModalSubCat = false;
+                        this.kabupatens = response.data;
+                        console.log(response.data);
+                    } else {
+                        this.showModalProduct = true;
+                        this.showModalSidebar = false;
+                        this.showModalBackground = false;
+                        this.kabupatens = [];
+                    }
+                })
+                .catch(response => {
+                    console.log(error);
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
         },
+
+        loadProducts: function () {
+            axios.get('/api/products', {
+                params: this.selected
+            })
+            .then((response) => {
+                this.loading = false
+                this.products = response.data;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        },
+
+        searchProduct: function () {
+            axios.get('/api/search-products', {
+                params: {
+                    keyword: this.keyword
+                }
+            })
+            .then((response) => {
+                this.searchData = response.data;
+                this.products = this.searchData;
+                this.loading = false
+                // console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        },
+        
         categoryModal: function () {
             this.showModalCat = !this.showModalCat;
             if (this.showModalCat === true) {
