@@ -401,7 +401,7 @@
                 <div v-if="product_not_found" class="my-4 flex justify-center text-gray-500">
                     {{ product_not_found }}
                 </div>
-
+                {{ stateSearch }}
                 <!-- PAGINATION -->
                 <div class="flex justify-around items-center mt-16">
                     <ul class="flex justify-between items-center leading-tight font-bold text-gray-700">
@@ -430,7 +430,7 @@
             </div>
 
         </div>
-
+        
     </div>
 
     <!-- DIV AFTER MODAL SHOW UP -->
@@ -489,7 +489,7 @@ export default {
             categoryTerpilih: '',
 
             selected: {
-                searchData: {},
+                keywords: '',
                 selectedProvinsi: [],
                 selectedKabupaten: [],
                 selectedCategory: [],
@@ -505,6 +505,14 @@ export default {
 
     mounted() {
         this.getTotalProducts();
+        // console.log(this.selected.searchData);
+    },
+
+    computed: {
+        stateSearch: function () {
+            let keyword =  this.$store.getters['searchProducts/get_keyword'];
+            this.selected.keywords = keyword;
+        }
     },
 
     watch: {
@@ -517,6 +525,27 @@ export default {
     },
 
     methods: {
+
+        loadProducts: function () {
+            axios.get('/api/products', {
+                params: this.selected
+            })
+            .then((response) => {
+                this.loading = false
+                this.products = response.data;
+                console.log(response.data);
+                this.currentProducts = response.data.data.length;
+                if(!response.data.data.length)
+                    this.product_not_found = 'product not found';
+                else
+                    this.product_not_found = '';
+                console.log(`data product sekarang: ${response.data.data.length}`);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        },
+
         getTotalProducts(){
             axios.get('/api/total-products')
             .then(res =>{
@@ -842,26 +871,6 @@ export default {
                 });
             })
             .catch(error => {
-                console.log(error);
-            });
-        },
-
-        loadProducts: function () {
-            axios.get('/api/products', {
-                params: this.selected
-            })
-            .then((response) => {
-                this.loading = false
-                this.products = response.data;
-                console.log(response.data);
-                this.currentProducts = response.data.data.length;
-                if(!response.data.data.length)
-                    this.product_not_found = 'product not found';
-                else
-                    this.product_not_found = '';
-                console.log(`data product sekarang: ${response.data.data.length}`);
-            })
-            .catch(function (error) {
                 console.log(error);
             });
         },

@@ -74,6 +74,9 @@ class Product extends Model
         })
         ->when(count(request()->input('selectedKabupaten', [])), function ($query) {
             $query->whereIn('kabupaten_id', request()->input('selectedKabupaten'));
+        })
+        ->when(request()->input('keywords'), function ($query) {
+            $query->where('name', 'like', '%'.request()->input('keywords').'%');
         });
     }
 }

@@ -1,5 +1,5 @@
 const state = {
-    keyword: {}
+    keyword: ''
 };
 
 const getters = {
