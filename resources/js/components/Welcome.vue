@@ -188,8 +188,8 @@
             </div>
 
             <!-- KABUPATEN MODAL-->
-            <div v-if="showModalKab" class="h-full w-2/7" :class="{'relative': showModalKab, 'inset-0':showModalKab, 'z-50': showModalKab}">
-                <div class="bg-white border-0 rounded-lg shadow-lg px-4 py-4 max-h-full overflow-auto">
+            <div v-if="showModalKab" class="w-2/7 overflow-y-auto" :class="{'relative': showModalKab, 'inset-0':showModalKab, 'z-50': showModalKab, 'h-full':!isSelectingProvId,'h-82':isSelectingProvId}">
+                <div class="bg-white border-0 rounded-lg shadow-lg px-6 py-4">
                     <div class="grid grid-cols-1">
                         <div class="text-left">
                             <p class="font-semibold text-lg">{{ provinsiTerpilih }}</p>
