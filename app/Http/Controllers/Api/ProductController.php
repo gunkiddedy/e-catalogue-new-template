@@ -20,6 +20,13 @@ class ProductController extends Controller
         return ProductResource::collection($products);
     }
 
+    public function totalProducts()
+    {
+        $products = Product::all();
+
+        return response()->json($products);
+    }
+
     // search global on header component
     public function search(Request $request)
     {

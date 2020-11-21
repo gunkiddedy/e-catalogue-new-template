@@ -52,6 +52,7 @@ Route::post('register', 'AuthController@register');
 
 Route::get('products', 'Api\ProductController@index');
 Route::get('search-products', 'Api\ProductController@search');
+Route::get('total-products', 'Api\ProductController@totalProducts');
 Route::get('product-detail/{id}', 'Api\ProductController@productDetail');
 Route::get('company-detail/{id}', 'Api\CompanyController@companyDetail');
 

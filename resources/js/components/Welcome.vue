@@ -312,7 +312,9 @@
 
                 <!-- PRODUCT PAGE DESCRIPTIONS -->
                 <div class="flex justify-between items-center">
-                    <p class="leading-tight text-sm">Menampilkan 12 produk dari +100 ribu produk yang ada di <span class="font-bold">Katalogi</span></p>
+                    <p class="leading-tight text-sm">
+                        Menampilkan {{ currentProducts }} produk dari {{ '+'+totalProducts }} produk yang ada di <span class="font-bold">Katalogi</span>
+                    </p>
                     <div class="flex justify-between items-center">
                         <p class="mr-2 text-sm">Urutkan :</p>
                         <button type="button" class="bg-white w-48 flex justify-between leading-tight text-sm py-2 px-4 border rounded border-gray-400 text-left">
@@ -455,6 +457,8 @@ export default {
             products: {},
 
             product_not_found: '',
+            currentProducts: 0,
+            totalProducts: 0,
 
             islands: [],
             kabupatens: [],
@@ -494,8 +498,9 @@ export default {
         }
     },
 
-    mounted() {
+    created() {
         this.loadProducts();
+        this.getTotalProducts();
     },
 
     watch: {
@@ -508,6 +513,17 @@ export default {
     },
 
     methods: {
+        getTotalProducts(){
+            axios.get('/api/total-products')
+            .then(res =>{
+                console.log(res.data);
+                this.totalProducts = res.data.length;
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        },
+
         resetFilterProvinsi(){
             this.isResetingProvinsi = true;
             setTimeout(()=> {
@@ -833,6 +849,10 @@ export default {
             .then((response) => {
                 this.loading = false
                 this.products = response.data;
+                console.log(response.data);
+                response.data.data.length < 1 ? this.product_not_found = 'product not found': '';
+                this.currentProducts = response.data.data.length;
+                console.log(`data product sekarang: ${response.data.data.length}`);
             })
             .catch(function (error) {
                 console.log(error);
