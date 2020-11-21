@@ -233,25 +233,34 @@
                 <div class="bg-white border-0 rounded-lg shadow-lg px-6 py-4">
                     <div class="grid grid-cols-1">
                         <div class="text-left">
-                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 font-semibold">
-                                <span>ALat Elektronik</span>
-                                <span>Alat Uji dan Ukur</span>
-                                <span>Konstruksi dan Properti</span>
-                                <span>Mesin</span>
-                                <span>Alat Pelindung Diri</span>
-                                <span>Alat Industri</span>
-                                <span>Alat Mekanik dan Suku Cadang</span>
-                                <span>Lampu dan Aksesoris</span>
-                                <span>Karet dan Plastik</span>
-                                <span>Bahan Kimia</span>
-                                <span>Alat Berat</span>
-                                <span>Kerajinan dan Kesenian</span>
+                            <p class="font-semibold text-lg">Categories</p>
+
+                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
+                                <ul class="mt-2">
+                                    <li  v-for="(cat, i) in categories" :key="i" class="text-xs text-gray-500 hover:text-gray-600 font-semibold  hover:bg-gray-100 cursor-pointer mt-1" @click="handleSelectingCategory(cat.id, cat.name)">
+                                        <span class="text-pink-400" v-if="isSelectingCatId === cat.id">
+                                            {{ cat.name }}
+                                        </span>
+                                        <span v-else>
+                                            {{ cat.name }}
+                                        </span>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="my-4">
-                            <button type="button" class="bg-blue-600 text-white px-6 py-2 w-full rounded-lg">
-                                See All Categories
-                            </button>
+
+                            <div class="flex content-end my-4">
+                                <button @click="applyFilterCategory" class="hover:bg-blue-600 flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" >
+                                    <svg v-if="isFilteringCategory" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    {{ isFilteringCategory ? 'Filtering...': 'Apply' }}
+                                </button>
+                                <button @click="resetFilterCategory" class="ml-2 flex items-center text-white border border-gray-500 bg-gray-500 hover:bg-gray-600 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" >
+                                    <svg v-if="isResetingCategory" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    {{ isResetingCategory ? 'Reseting...': 'Reset' }}
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -262,32 +271,44 @@
                 <div class="bg-white border-0 rounded-lg shadow-lg px-6 py-4">
                     <div class="grid grid-cols-1">
                         <div class="text-left">
-                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 font-semibold">
-                                <span>ALat Elektronik</span>
-                                <span>Alat Uji dan Ukur</span>
-                                <span>Konstruksi dan Properti</span>
-                                <span>Mesin</span>
-                                <span>Alat Pelindung Diri</span>
-                                <span>Alat Industri</span>
-                                <span>Alat Mekanik dan Suku Cadang</span>
-                                <span>Lampu dan Aksesoris</span>
-                                <span>Karet dan Plastik</span>
-                                <span>Bahan Kimia</span>
-                                <span>Alat Berat</span>
-                                <span>Kerajinan dan Kesenian</span>
+                            <p class="font-semibold text-lg">{{ categoryTerpilih }}</p>
+                            <p class="font-semibold text-lg" v-if="categoryTerpilih ===''">
+                                Category belum dipilih!
+                            </p>
+
+                            <div class="flex flex-col text-sm text-gray-500 hover:text-gray-600 mt-2 font-semibold">
+                                <ul class="mt-2">
+                                    <li  v-for="(subcat, i) in subcategories" :key="i" class="text-xs text-gray-500 hover:text-gray-600 font-semibold  hover:bg-gray-100 cursor-pointer mt-1" @click="handleSelectingSubCategory(subcat.id)">
+                                        <span class="text-pink-400" v-if="isSelectingSubCatId === subcat.id">
+                                            {{ subcat.name }}
+                                        </span>
+                                        <span v-else>
+                                            {{ subcat.name }}
+                                        </span>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
-                        <div class="my-4">
-                            <button type="button" class="bg-blue-600 text-white px-6 py-2 w-full rounded-lg">
-                                See All Sub Categories
-                            </button>
+
+                            <div class="flex content-end my-4">
+                                <button @click="applyFilterSubCategory" class="hover:bg-blue-600 flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" >
+                                    <svg v-if="isFilteringSubCategory" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    {{ isFilteringSubCategory ? 'Filtering...': 'Apply' }}
+                                </button>
+                                <button @click="resetFilterSubCategory" class="ml-2 flex items-center text-white border border-gray-500 bg-gray-500 hover:bg-gray-600 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" >
+                                    <svg v-if="isResetingSubCategory" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    {{ isResetingSubCategory ? 'Reseting...': 'Reset' }}
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- PRODUCT SHOW WHEN MODAL IS FALSE-->
-            <div class="w-full" v-if="showModalProduct">
+            <div class="w-full" v-if="containerProduct">
 
                 <!-- PRODUCT PAGE DESCRIPTIONS -->
                 <div class="flex justify-between items-center">
@@ -422,13 +443,14 @@
 export default {
     data() {
         return {
-            showModalProduct: true,
+            containerProduct: true,
             showModalBackground: false,
             showModalSidebar: false,
             showModalProv: false,
             showModalKab: false,
             showModalCat: false,
             showModalSubCat: false,
+
             loading: true,
             products: {},
 
@@ -436,23 +458,38 @@ export default {
 
             islands: [],
             kabupatens: [],
+            categories: [],
+            subcategories: [],
+
             selectingProvinsi: [],
-            selectedProvinsi: [],
             selectingKabupaten: [],
-            selectedKabupaten: [],
+            selectingCategory: [],
+            selectingSubCategory: [],
+
             isFilteringProvinsi: false,
-            isResetingProvinsi: false,
-            isSelectingProvId: false,
             isFilteringKabupaten: false,
+            isFilteringCategory: false,
+            isFilteringSubCategory: false,
+
+            isResetingProvinsi: false,
             isResetingKabupaten: false,
+            isResetingCategory: false,
+            isResetingSubCategory: false,
+
+            isSelectingProvId: false,
             isSelectingKabId: false,
+            isSelectingCatId: false,
+            isSelectingSubCatId: false,
 
             provinsiTerpilih: '',
+            categoryTerpilih: '',
 
             selected: {
                 searchData: {},
                 selectedProvinsi: [],
-                selectedKabupaten: []
+                selectedKabupaten: [],
+                selectedCategory: [],
+                selectedSubCategory: []
             }
         }
     },
@@ -476,7 +513,7 @@ export default {
             setTimeout(()=> {
                 this.isResetingProvinsi = false;
                 this.showModalProv = false;
-                this.showModalProduct = true;
+                this.containerProduct = true;
                 this.showModalSidebar = false;
                 this.showModalBackground = false;
                 this.isSelectingProvId = false;
@@ -484,6 +521,56 @@ export default {
                 this.selectingProvinsi = [];
                 this.selected.selectedProvinsi = [];
                 this.provinsiTerpilih = '';
+                this.selectingKabupaten = [];
+                this.selected.selectedKabupaten = [];
+            },1500);
+        },
+
+        resetFilterKabupaten(){
+            this.isResetingKabupaten = true;
+            setTimeout(()=> {
+                this.isResetingKabupaten = false;
+                this.showModalKab = false;
+                this.containerProduct = true;
+                this.showModalSidebar = false;
+                this.showModalBackground = false;
+                this.isSelectingKabId = false;
+
+                this.selectingKabupaten = [];
+                this.selected.selectedKabupaten = [];
+            },1500);
+        },
+
+        resetFilterCategory(){
+            this.isResetingCategory = true;
+            setTimeout(()=> {
+                this.isResetingCategory = false;
+                this.showModalCat = false;
+                this.containerProduct = true;
+                this.showModalSidebar = false;
+                this.showModalBackground = false;
+                this.isSelectingCatId = false;
+
+                this.selectingCategory = [];
+                this.selected.selectedCategory = [];
+                this.categoryTerpilih = '';
+                this.selectingSubCategory = [];
+                this.selected.selectedSubCategory = [];
+            },1500);
+        },
+
+        resetFilterSubCategory(){
+            this.isResetingSubCategory = true;
+            setTimeout(()=> {
+                this.isResetingSubCategory = false;
+                this.showModalSubCat = false;
+                this.containerProduct = true;
+                this.showModalSidebar = false;
+                this.showModalBackground = false;
+                this.isSelectingSubCatId = false;
+
+                this.selectingSubCategory = [];
+                this.selected.selectedSubCategory = [];
             },1500);
         },
 
@@ -495,7 +582,64 @@ export default {
                 setTimeout(()=>{
                     this.isFilteringProvinsi = false;
                     this.showModalProv = false;
-                    this.showModalProduct = true;
+                    this.containerProduct = true;
+                    this.showModalSidebar = false;
+                    this.showModalBackground = false;
+                    this.selected.selectedKabupaten = [];
+                    this.selectingKabupaten = [];
+                },1500);
+                // console.log(this.selectedProvinsi);
+            }).catch(err => {
+                console.log(err);
+            });
+        },
+
+        applyFilterKabupaten(){
+            this.isFilteringKabupaten = true;
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
+                this.selected.selectedKabupaten = this.selectingKabupaten;
+                setTimeout(()=>{
+                    this.isFilteringKabupaten = false;
+                    this.showModalKab = false;
+                    this.containerProduct = true;
+                    this.showModalSidebar = false;
+                    this.showModalBackground = false;
+                },1500);
+                // console.log(this.selectedProvinsi);
+            }).catch(err => {
+                console.log(err);
+            });
+        },
+
+        applyFilterCategory(){
+            this.isFilteringCategory = true;
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
+                this.selected.selectedCategory = this.selectingCategory;
+                setTimeout(()=>{
+                    this.isFilteringCategory = false;
+                    this.showModalCat = false;
+                    this.containerProduct = true;
+                    this.showModalSidebar = false;
+                    this.showModalBackground = false;
+                    this.selected.selectedSubCategory = [];
+                    this.selectingSubCategory = [];
+                },1500);
+            }).catch(err => {
+                console.log(err);
+            });
+        },
+
+        applyFilterSubCategory(){
+            this.isFilteringSubCategory = true;
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
+                this.selected.selectedSubCategory = this.selectingSubCategory;
+                setTimeout(()=>{
+                    this.isFilteringSubCategory = false;
+                    this.showModalSubCat = false;
+                    this.containerProduct = true;
                     this.showModalSidebar = false;
                     this.showModalBackground = false;
                 },1500);
@@ -517,39 +661,6 @@ export default {
             this.provinsiTerpilih = param2;
         },
 
-        resetFilterKabupaten(){
-            this.isResetingKabupaten = true;
-            setTimeout(()=> {
-                this.isResetingKabupaten = false;
-                this.showModalKab = false;
-                this.showModalProduct = true;
-                this.showModalSidebar = false;
-                this.showModalBackground = false;
-                this.isSelectingKabId = false;
-
-                this.selectingKabupaten = [];
-                this.selected.selectedKabupaten = [];
-            },1500);
-        },
-
-        applyFilterKabupaten(){
-            this.isFilteringKabupaten = true;
-            axios.get('/sanctum/csrf-cookie')
-            .then(response => {
-                this.selected.selectedKabupaten = this.selectingKabupaten;
-                setTimeout(()=>{
-                    this.isFilteringKabupaten = false;
-                    this.showModalKab = false;
-                    this.showModalProduct = true;
-                    this.showModalSidebar = false;
-                    this.showModalBackground = false;
-                },1500);
-                // console.log(this.selectedProvinsi);
-            }).catch(err => {
-                console.log(err);
-            });
-        },
-
         handleSelectingKabupaten(param){
             if (this.selectingKabupaten.includes(param) === false)
                 this.selectingKabupaten.push(param);
@@ -561,6 +672,29 @@ export default {
             this.isSelectingKabId = param;
         },
 
+        handleSelectingCategory(param, param2){
+            if (this.selectingCategory.includes(param) === false)
+                this.selectingCategory.push(param);
+            else 
+                alert('sudah dipilih');
+            
+            //berapapun banyaknya element yg masuk, hapus semua lalu ambil elemen teakhir :-) 
+            this.selectingCategory.splice(0, this.selectingCategory.length -1);
+            this.isSelectingCatId = param;
+            this.categoryTerpilih = param2;
+        },
+
+        handleSelectingSubCategory(param){
+            if (this.selectingSubCategory.includes(param) === false)
+                this.selectingSubCategory.push(param);
+            else 
+                alert('sudah dipilih');
+            
+            //berapapun banyaknya element yg masuk, hapus semua lalu ambil elemen teakhir :-) 
+            this.selectingSubCategory.splice(0, this.selectingSubCategory.length -1);
+            this.isSelectingSubCatId = param;
+        },
+
         provinsiModal: function () {
             axios.get('/sanctum/csrf-cookie')
             .then(response => {
@@ -570,14 +704,14 @@ export default {
                     if (this.showModalProv === true) {
                         this.showModalBackground = true;
                         this.showModalSidebar = true;
-                        this.showModalProduct = false;
+                        this.containerProduct = false;
                         this.showModalKab = false;
                         this.showModalCat = false;
                         this.showModalSubCat = false;
                         this.islands = response.data;
                         console.log(this.islands);
                     } else {
-                        this.showModalProduct = true;
+                        this.containerProduct = true;
                         this.showModalSidebar = false;
                         this.showModalBackground = false;
                         this.islands = [];
@@ -606,17 +740,81 @@ export default {
                     if (this.showModalKab === true) {
                         this.showModalBackground = true;
                         this.showModalSidebar = true;
-                        this.showModalProduct = false;
+                        this.containerProduct = false;
                         this.showModalProv = false;
                         this.showModalCat = false;
                         this.showModalSubCat = false;
                         this.kabupatens = response.data;
                         console.log(response.data);
                     } else {
-                        this.showModalProduct = true;
+                        this.containerProduct = true;
                         this.showModalSidebar = false;
                         this.showModalBackground = false;
                         this.kabupatens = [];
+                    }
+                })
+                .catch(response => {
+                    console.log(error);
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+
+        categoryModal: function () {
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
+                axios.get('/api/getcategories')
+                .then(response => {
+                    this.showModalCat = !this.showModalCat;
+                    if (this.showModalCat === true) {
+                        this.showModalBackground = true;
+                        this.showModalSidebar = true;
+                        this.containerProduct = false;
+                        this.showModalProv = false;
+                        this.showModalKab = false;
+                        this.showModalSubCat = false;
+                        this.categories = response.data;
+                    } else {
+                        this.containerProduct = true;
+                        this.showModalSidebar = false;
+                        this.showModalBackground = false;
+                        this.categories = [];
+                    }
+                })
+                .catch(response => {
+                    console.log(error);
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        },
+
+        subcategoryModal: function () {
+            axios.get('/sanctum/csrf-cookie')
+            .then(response => {
+                axios.get('/api/get-subcategories-by-category-id', {
+                    params: {
+                        category_id: this.selected.selectedCategory
+                    }
+                })
+                .then(response => {
+                    this.showModalSubCat = !this.showModalSubCat;
+                    if (this.showModalSubCat === true) {
+                        this.showModalBackground = true;
+                        this.showModalSidebar = true;
+                        this.containerProduct = false;
+                        this.showModalProv = false;
+                        this.showModalKab = false;
+                        this.showModalCat = false;
+                        this.subcategories = response.data;
+                    } else {
+                        this.containerProduct = true;
+                        this.showModalSidebar = false;
+                        this.showModalBackground = false;
+                        this.subcategories = [];
                     }
                 })
                 .catch(response => {
@@ -658,36 +856,6 @@ export default {
             });
         },
         
-        categoryModal: function () {
-            this.showModalCat = !this.showModalCat;
-            if (this.showModalCat === true) {
-                this.showModalBackground = true;
-                this.showModalSidebar = true;
-                this.showModalProduct = false;
-                this.showModalProv = false;
-                this.showModalKab = false;
-                this.showModalSubCat = false;
-            } else {
-                this.showModalProduct = true;
-                this.showModalSidebar = false;
-                this.showModalBackground = false;
-            }
-        },
-        subcategoryModal: function () {
-            this.showModalSubCat = !this.showModalSubCat;
-            if (this.showModalSubCat === true) {
-                this.showModalBackground = true;
-                this.showModalSidebar = true;
-                this.showModalProduct = false;
-                this.showModalProv = false;
-                this.showModalKab = false;
-                this.showModalCat = false;
-            } else {
-                this.showModalProduct = true;
-                this.showModalSidebar = false;
-                this.showModalBackground = false;
-            }
-        }
     }
 }
 </script>

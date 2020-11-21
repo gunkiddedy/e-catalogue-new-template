@@ -57,7 +57,7 @@ Route::get('company-detail/{id}', 'Api\CompanyController@companyDetail');
 
 // get category and subcategory (dependent dropdown)
 Route::get('getcategories', 'Api\CategoryController@getCategory');
-Route::get('getsubcategories', 'Api\CategoryController@getSubCategory');
+Route::get('get-subcategories-by-category-id', 'Api\CategoryController@getSubCategory');
 
 // get all subcategories
 Route::get('get-subcategories', 'Api\CategoryController@getSubCategories');
