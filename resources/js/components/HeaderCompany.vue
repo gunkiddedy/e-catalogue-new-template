@@ -8,15 +8,16 @@
                     Katalogi
                 </span>
             </router-link>
-
+            
+            <!-- SEARCH PRODUCTS-->
             <div class="w-full mx-16 relative">
-                <form action="" method="GET">
-                    <button type="submit" class="absolute right-0 mt-2 mr-2 text-gray-500">
+                <form>
+                    <button @click="searchProducts()" type="button" class="absolute right-0 mt-2 mr-2 text-gray-500">
                         <svg class="w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
                             <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                     </button>
-                    <input class="shadow appearance-none rounded-lg w-full py-2 px-3 text-gray-700 leading-tight  focus:outline-none focus:shadow-inner" id="search" type="search" placeholder="Search products">
+                    <input v-model="keyword" class="shadow appearance-none rounded-lg w-full py-2 px-3 text-gray-700 leading-tight  focus:outline-none focus:shadow-inner" id="search" type="search" placeholder="Search products">
                 </form>
             </div>
 

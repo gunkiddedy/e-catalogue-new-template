@@ -398,7 +398,7 @@
                     </svg>
                 </div>
 
-                <div v-if="product_not_found !== ''" class="my-4 flex justify-center text-gray-500">
+                <div v-if="product_not_found" class="my-4 flex justify-center text-gray-500">
                     {{ product_not_found }}
                 </div>
 
@@ -850,8 +850,11 @@ export default {
                 this.loading = false
                 this.products = response.data;
                 console.log(response.data);
-                response.data.data.length < 1 ? this.product_not_found = 'product not found': '';
                 this.currentProducts = response.data.data.length;
+                if(!response.data.data.length)
+                    this.product_not_found = 'product not found';
+                else
+                    this.product_not_found = '';
                 console.log(`data product sekarang: ${response.data.data.length}`);
             })
             .catch(function (error) {

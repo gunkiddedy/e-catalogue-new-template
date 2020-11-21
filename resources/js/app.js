@@ -2,18 +2,18 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 import VueRouter from 'vue-router';
-// import Vuex from 'vuex';
+import Vuex from 'vuex';
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import routes from './routes';
-// import indexStore from './store/index';
+import searchData from './store/index';
 
 Vue.use(ElementUI);
 Vue.use(VueRouter);
-// Vue.use(Vuex);
+Vue.use(Vuex);
 
-// const store = new Vuex.Store(indexStore);
+const store = new Vuex.Store(searchData);
 const router = new VueRouter(routes);
 
 
@@ -35,6 +35,6 @@ Vue.component('app-component', require('./components/App.vue').default);
 
 const app = new Vue({
     el: '#app',
-    // store:store,
+    store:store,
     router: router
 });
