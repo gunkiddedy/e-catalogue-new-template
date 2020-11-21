@@ -807,7 +807,7 @@ export default {
         },
 
         loadSubCategory() {
-            axios.get('/api/getsubcategories', {
+            axios.get('/api/get-subcategories-by-category-id', {
                     params: {
                         category_id: this.select_category
                     }
