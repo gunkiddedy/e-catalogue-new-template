@@ -500,6 +500,10 @@ export default {
 
     created() {
         this.loadProducts();
+        // this.getTotalProducts();
+    },
+
+    mounted() {
         this.getTotalProducts();
     },
 
@@ -862,22 +866,22 @@ export default {
             });
         },
 
-        searchProduct: function () {
-            axios.get('/api/search-products', {
-                params: {
-                    keyword: this.keyword
-                }
-            })
-            .then((response) => {
-                this.searchData = response.data;
-                this.products = this.searchData;
-                this.loading = false
-                // console.log(response.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        },
+        // searchProduct: function () {
+        //     axios.get('/api/search-products', {
+        //         params: {
+        //             keyword: this.keyword
+        //         }
+        //     })
+        //     .then((response) => {
+        //         this.searchData = response.data;
+        //         this.products = this.searchData;
+        //         this.loading = false
+        //         // console.log(response.data);
+        //     })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+        // },
         
     }
 }

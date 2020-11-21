@@ -12,7 +12,7 @@
             <!-- SEARCH PRODUCTS-->
             <div class="w-full mx-16 relative">
                 <form>
-                    <button @click="searchProducts()" type="button" class="absolute right-0 mt-2 mr-2 text-gray-500">
+                    <button type="submit" class="absolute right-0 mt-2 mr-2 text-gray-500">
                         <svg class="w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
                             <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
@@ -73,6 +73,7 @@ export default {
             isloggedIn: 'false',
             showUserDropdown: false,
             user_id: '',
+            keyword: ''
         }
     },
 

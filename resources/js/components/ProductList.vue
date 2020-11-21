@@ -215,6 +215,17 @@ export default {
 
     mounted() {
         this.loadProducts();
+        if(localStorage.getItem('isloggedIn')== 'false'){
+            this.$router.push('/login');
+        }
+        if(localStorage.getItem('user_role')== 'member' || localStorage.getItem('user_id') !== '1' ){
+            this.$router.push({
+                name: "company-page",
+                params: {
+                    id: localStorage.getItem('user_id')
+                }
+            });
+        }
     },
 
     methods: {
