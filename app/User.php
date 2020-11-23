@@ -72,4 +72,11 @@ class User extends Authenticatable
     {
         return ucwords($value);
     }
+
+    public function scopeWithFilters($query)
+    {
+        return $query->when(request()->input('keyword'), function ($query) {
+            $query->where('name', 'like', '%'.request()->input('keyword').'%');
+        });
+    }
 }

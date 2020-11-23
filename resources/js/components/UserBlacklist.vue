@@ -48,13 +48,13 @@
 
                     <!-- COMPANY SEARCH-->
                     <div class="relative">
-                        <form action="" method="GET">
+                        <form @submit.prevent="searchCompanies">
                             <button type="submit" class="absolute right-0 mt-2 mr-2 text-gray-500">
                                 <svg class="w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
                                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
                             </button>
-                            <input class="shadow appearance-none rounded-full w-full py-1 px-3 text-gray-700 leading-tight  focus:outline-none focus:shadow-inner" id="search" type="search" placeholder="Search company">
+                            <input v-model="keyword" class="shadow appearance-none rounded-full w-full py-1 px-3 text-gray-700 leading-tight  focus:outline-none focus:shadow-inner" id="search" type="search" placeholder="Search company">
                         </form>
                     </div>
 
@@ -146,7 +146,11 @@ export default {
             approvinguser: false,
             approvingUserId: null,
             product_not_found: '',
-            pagination: {}
+            pagination: {},
+            keyword: '',
+            selected: {
+                keyword: ''
+            }
         }
     },
 
@@ -163,6 +167,15 @@ export default {
                     id: localStorage.getItem('user_id')
                 }
             });
+        }
+    },
+
+    watch: {
+        selected: {
+            handler: function () {
+                this.loadMembers();
+            },
+            deep: true
         }
     },
 
@@ -187,23 +200,34 @@ export default {
                     console.log(error);
                 })
         },
+        searchCompanies(){
+            axios.get('/sanctum/csrf-cookie')
+            .then(res => {
+                this.selected.keyword = this.keyword;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        },
         loadMembers() {
             let current_page  = this.pagination.current_page;
             let pageNum = current_page ? current_page : 1;
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
-                    axios.get('/api/user-blacklist?page='+pageNum)
-                        .then((response) => {
-                            this.loading = false;
-                            this.pagination = response.data;
-                            this.companies = response.data.data;
-                            if(response.data.length == 0){
-                                this.product_not_found = 'user not found';
-                            }
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
+                    axios.get('/api/user-blacklist?page='+pageNum, {
+                        params: this.selected
+                    })
+                    .then((response) => {
+                        this.loading = false;
+                        this.pagination = response.data;
+                        this.companies = response.data.data;
+                        if(response.data.length == 0){
+                            this.product_not_found = 'user not found';
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
                 }).catch(error => {
                     console.log(error);
                 })

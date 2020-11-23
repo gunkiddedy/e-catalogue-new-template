@@ -12,19 +12,29 @@ class AdminController extends Controller
 {
     public function companyList()
     {
-        $companies = User::where([
-            ['role', '=', 'member'],
-            ['is_blacklist', '=', 0]
-        ])->orderBy('is_active')->paginate(8);
+        $companies = User::withFilters()->where([
+                ['role', '=', 'member'],
+                ['is_blacklist', '=', 0]
+            ])->orderBy('id', 'desc')->paginate(4);
                 
         return response()->json($companies);
     }
 
     public function userBlacklist()
     {   
-        $users = User::where('is_blacklist', '=', 1)->paginate(8);
+        $users = User::withFilters()->where([
+            ['role', '=', 'member'],
+            ['is_blacklist', '=', 1]
+        ])->orderBy('id', 'desc')->paginate(4);
 
         return response()->json($users);
+    }
+
+    public function productList()
+    {
+        $products = Product::withFilters()->orderBy('is_active')->paginate(5);
+
+        return response()->json($products);
     }
 
     public function approvingProduct($id)
@@ -54,13 +64,6 @@ class AdminController extends Controller
         $user->save();
         
         return response()->json('user successfuly disabled');
-    }
-
-    public function productList()
-    {
-        $products = Product::orderBy('is_active')->paginate(5);
-
-        return response()->json($products);
     }
 
     public function productListDetailImage($id)

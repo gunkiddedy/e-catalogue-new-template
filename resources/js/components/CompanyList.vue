@@ -46,13 +46,13 @@
                 <div class="w-full">
                     <!-- COMPANY SEARCH-->
                     <div class="relative">
-                        <form action="" method="GET">
+                        <form @submit.prevent="searchCompanies">
                             <button type="submit" class="absolute right-0 mt-2 mr-2 text-gray-500">
                                 <svg class="w-4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
                                     <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                 </svg>
                             </button>
-                            <input class="shadow appearance-none rounded-full w-full py-1 px-3 text-gray-700 leading-tight  focus:outline-none focus:shadow-inner" id="search" type="search" placeholder="Search company">
+                            <input v-model="keyword" class="shadow appearance-none rounded-full w-full py-1 px-3 text-gray-700 leading-tight  focus:outline-none focus:shadow-inner" id="search" type="search" placeholder="Search company">
                         </form>
                     </div>
                     <div v-if="product_not_found !== ''" class="my-4 flex justify-center text-gray-500">
@@ -85,58 +85,40 @@
                                     <span v-else class="px-2 bg-gray-100 rounded-tr-md rounded-bl-md text-red-600 shadow-sm text-xs font-semibold">Inactive User</span>
                                 </div>
                                 <!--<div class="flex items-center justify-between">-->
-                                    <!-- BLUE CIRCLE-->
-                                    <div class="flex flex-col items-center px-2 py-2">
-                                        <!--<div class="bg-blue-500 rounded-full w-16 h-16 mr-6"></div>-->
+                                <!-- BLUE CIRCLE-->
+                                <div class="flex flex-col items-center px-2 py-2">
+                                    <!--<div class="bg-blue-500 rounded-full w-16 h-16 mr-6"></div>-->
+                                    <router-link :to="{ name: 'company-page', params: {id: company.id } }">
+                                        <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-16 h-16 mb-2">
+                                    </router-link>
+                                    <!-- COMPANY NAME-->
+                                    <div>
                                         <router-link :to="{ name: 'company-page', params: {id: company.id } }">
-                                            <img src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-16 h-16 mb-2">
+                                            <p class="uppercase font-semibold text-sm text-gray-500 hover:text-blue-500">
+                                                {{ company.name }}
+                                            </p>
                                         </router-link>
-                                        <!-- COMPANY NAME-->
-                                        <!--<div class="grid grid-rows-3">-->
-                                        <div>
-                                            <router-link :to="{ name: 'company-page', params: {id: company.id } }">
-                                                <p class="uppercase font-semibold text-sm text-gray-500 hover:text-blue-500">
-                                                    {{ company.name }}
-                                                </p>
-                                            </router-link>
-                                        </div>
-                                        <div>
-                                            <span class="text-sm text-blue-500 font-semibold hover:text-blue-700">
-                                                <a :href="'mailto:'+company.email">{{ company.email }}</a>
-                                            </span>
-                                        </div>
-                                        <div class="w-3/4 px-1">
-                                            <span class="text-xs text-gray-500 hover:text-blue-500">{{company.address}}</span>
-                                            <span class="text-xs text-gray-500 hover:text-blue-500" v-if="company.address === null">Bekasi, Jawa Barat, Indonesia</span>
-                                        </div>
-                                        <!-- BUTTON SET USER-->
-                                        <div class="my-3">
-                                            <button v-if="company.is_active === 1 && company.is_blacklist === 0" @click="setUserInActive(company.id)" class="bg-gray-500 rounded-full px-3 py-1 hover:bg-red-600 text-white hover:text-gray-100 font-semibold text-xs">
-                                                {{ approvinguser && approvingUserId === company.id ? 'Processing...': 'Blacklist'}}
-                                            </button>
-                                            <button v-if="company.is_active === 0 && company.is_blacklist === 0" @click="setUserActive(company.id)" class="bg-blue-500 rounded-full px-3 py-1 hover:bg-blue-600 text-white hover:text-gray-100 font-semibold text-xs">
-                                                {{ approvinguser && approvingUserId === company.id ? 'Processing...': 'Set Active'}}
-                                            </button>
-                                        </div>
-                                        <!--</div>-->
                                     </div>
-                                <!--</div>-->
-                                <!-- IMAGE PRODUCT-->
-                                <!--<div>
-                                    <div class="border-t border-gray-300 w-full mt-6"></div>
-                                    <div class="grid grid-cols-6 gap-4 mt-6 px-1">
-                                        <div class="flex flex-col" v-for="(product, i) in company.products" :key="i">
-                                            <router-link :to="{ name: 'product-detail', params: {id: product.id } }">
-                                                <div class="bg-gray-100 rounded-lg w-32 h-32 shadow mb-2 px-2 py-2">
-                                                    <img :src="'/storage/'+product.image_path" :alt="product.name" class="rounded object-cover w-full h-full cursor-pointer hover:opacity-75">
-                                                </div>
-                                            </router-link>
-                                            <span class="text-gray-500 leading-tight font-semibold text-xs tracking-normal">
-                                                {{ product.name }}
-                                            </span>
-                                        </div>
+                                    <div>
+                                        <span class="text-sm text-blue-500 font-semibold hover:text-blue-700">
+                                            <a :href="'mailto:'+company.email">{{ company.email }}</a>
+                                        </span>
                                     </div>
-                                </div>-->
+                                    <div class="w-3/4 px-1">
+                                        <span class="text-xs text-gray-500 hover:text-blue-500">{{company.address}}</span>
+                                        <span class="text-xs text-gray-500 hover:text-blue-500" v-if="company.address === null">Bekasi, Jawa Barat, Indonesia</span>
+                                    </div>
+                                    <!-- BUTTON BLACKLIST USER-->
+                                    <div class="my-3">
+                                        <button v-if="company.is_active === 1 && company.is_blacklist === 0" @click="setUserInActive(company.id)" class="bg-gray-500 rounded-full px-3 py-1 hover:bg-red-600 text-white hover:text-gray-100 font-semibold text-xs">
+                                            {{ approvinguser && approvingUserId === company.id ? 'Processing...': 'Blacklist'}}
+                                        </button>
+                                        <button v-if="company.is_active === 0 && company.is_blacklist === 0" @click="setUserActive(company.id)" class="bg-blue-500 rounded-full px-3 py-1 hover:bg-blue-600 text-white hover:text-gray-100 font-semibold text-xs">
+                                            {{ approvinguser && approvingUserId === company.id ? 'Processing...': 'Set Active'}}
+                                        </button>
+                                    </div>
+                                    <!--</div>-->
+                                </div>
                             </div>
                         </div>
                         <!-- PAGINATION -->
@@ -161,13 +143,13 @@ export default {
             approvinguser: false,
             approvingUserId: null,
             product_not_found: '',
-            pagination: {}
+            pagination: {},
+            keyword: '',
+            selected: {
+                keyword: ''
+            }
         }
     },
-
-    // created() {
-    //     this.loadMembers();
-    // },
 
     mounted() {
         this.loadMembers();
@@ -183,6 +165,15 @@ export default {
                     id: localStorage.getItem('user_id')
                 }
             });
+        }
+    },
+
+    watch: {
+        selected: {
+            handler: function () {
+                this.loadMembers();
+            },
+            deep: true
         }
     },
 
@@ -207,6 +198,7 @@ export default {
                     console.log(error);
                 })
         },
+        
         setUserInActive(user_id){
             this.approvinguser = true;
             this.approvingUserId = user_id;
@@ -227,27 +219,40 @@ export default {
                     console.log(error);
                 })
         },
+
+        searchCompanies(){
+            axios.get('/sanctum/csrf-cookie')
+            .then(res => {
+                this.selected.keyword = this.keyword;
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        },
+
         loadMembers() {
             let current_page  = this.pagination.current_page;
             let pageNum = current_page ? current_page : 1;
             axios.get('/sanctum/csrf-cookie')
-                .then((response) => {
-                    axios.get('/api/company-list?page='+pageNum)
-                        .then((response) => {
-                            this.loading = false;
-                            this.pagination = response.data;
-                            this.companies = response.data.data;
-                            if(response.data.length == 0){
-                                this.product_not_found = 'company not found';
-                            }
-                            console.log(response.data);
-                        })
-                        .catch(error => {
-                            console.log(error);
-                        });
-                }).catch(error => {
-                    console.log(error);
+            .then((response) => {
+                axios.get('/api/company-list?page='+pageNum, {
+                    params: this.selected
                 })
+                .then((response) => {
+                    this.loading = false;
+                    this.pagination = response.data;
+                    this.companies = response.data.data;
+                    if(response.data.length == 0){
+                        this.product_not_found = 'company not found';
+                    }
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            }).catch(error => {
+                console.log(error);
+            })
         },
 
     },
