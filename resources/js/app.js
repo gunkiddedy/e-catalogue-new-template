@@ -17,7 +17,7 @@ const store = new Vuex.Store(searchData);
 const router = new VueRouter(routes);
 
 
-Vue.component('pagination-component', require('./components/Pagination.vue').default);
+Vue.component('pagination', require('./components/Pagination.vue').default);
 Vue.component('header-component', require('./components/HeaderCompany.vue').default);
 Vue.component('footer-component', require('./components/Footer.vue').default);
 Vue.component('app-component', require('./components/App.vue').default);

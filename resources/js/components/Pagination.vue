@@ -1,29 +1,24 @@
 <template>
-    <ul class="flex list-reset border border-grey-light rounded w-auto font-sans">
-        <li v-if="pagination.current_page > 1">
-            <a class="block hover:text-white hover:bg-blue text-blue border-r border-grey-light px-3 py-2" 
-                href="#"
-                @click.prevent="change(pagination.current_page -1)"
-            >
-                Previous
+    <ul class="flex justify-between items-center leading-tight font-bold text-gray-700">
+        <div v-if="pagination.current_page > 1" class="rounded-full bg-gray-500 text-orange-100">
+            <a href="#" @click.prevent="change(pagination.current_page -1)">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
             </a>
-        </li>
-        <li v-for="page in pages" :key="page" >
-            <a :class="[page == pagination.current_page ? 'text-white bg-blue border-r border-blue':'hover:text-white hover:bg-blue text-blue border-r border-grey-light', 'block px-3 py-2']" 
-               href="#"
-               @click.stop="change(page)"
-            >
+        </div>
+
+        <li v-for="page in pages" :key="page" class="px-4">
+            <a :class="[page == pagination.current_page ? 'text-orange-400 underline':'']" href="#" @click.stop="change(page)">
                 {{ page }}
             </a>
         </li>
-        <li v-if="pagination.current_page < pagination.last_page">
-            <a class="block hover:text-white hover:bg-blue text-blue px-3 py-2" 
-               href="#"
-               @click.prevent="change(pagination.current_page + 1)"
-            >
-                Next
+
+        <div v-if="pagination.current_page < pagination.last_page" class="rounded-full bg-orange-500 text-orange-100">
+            <a href="#" @click.prevent="change(pagination.current_page + 1)">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                </svg>
             </a>
-        </li>
+        </div>
     </ul>
 </template>
 

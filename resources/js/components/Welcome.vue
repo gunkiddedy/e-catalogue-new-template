@@ -330,7 +330,6 @@
                 
 
                 <!-- PRODUCTS  -->
-                <!--<transition name="fade">-->
                 <div class="mt-8 grid grid-cols-5 gap-4">
 
                     <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products.data" :key="product.id">
@@ -378,7 +377,6 @@
                         </div>
                     </div>
                 </div>
-                <!--</transition>-->
 
                 <!-- loader spin-->
                 <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0">
@@ -401,30 +399,10 @@
                 <div v-if="product_not_found" class="my-4 flex justify-center text-gray-500">
                     {{ product_not_found }}
                 </div>
-                {{ stateSearch }}
+
                 <!-- PAGINATION -->
                 <div class="flex justify-around items-center mt-16">
-                    <ul class="flex justify-between items-center leading-tight font-bold text-gray-700">
-                        <div class="rounded-full bg-gray-500 text-orange-100">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                        <li class="px-4 underline text-orange-400">1</li>
-                        <li class="px-4">2</li>
-                        <li class="px-4">3</li>
-                        <li class="px-4">4</li>
-                        <li class="px-4">5</li>
-                        <li class="px-4">6</li>
-                        <li class="px-4">7</li>
-                        <li class="px-4">8</li>
-                        <li class="px-4">9</li>
-                        <div class="rounded-full bg-orange-500 text-orange-100">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                        </div>
-                    </ul>
+                    <pagination :pagination="pagination" @paginate="loadProducts" />
                 </div>
 
             </div>
@@ -494,18 +472,19 @@ export default {
                 selectedKabupaten: [],
                 selectedCategory: [],
                 selectedSubCategory: []
-            }
+            },
+
+            pagination: {},
         }
     },
 
     created() {
-        this.loadProducts();
-        // this.getTotalProducts();
+        // this.loadProducts();
     },
 
     mounted() {
+        this.loadProducts();
         this.getTotalProducts();
-        // console.log(this.selected.searchData);
     },
 
     computed: {
@@ -527,19 +506,22 @@ export default {
     methods: {
 
         loadProducts: function () {
-            axios.get('/api/products', {
+            let current_page  = this.pagination.current_page;
+            let pageNum = current_page ? current_page : 1;
+            axios.get(`/api/products?page=${pageNum}`, {
                 params: this.selected
             })
             .then((response) => {
                 this.loading = false
                 this.products = response.data;
-                console.log(response.data);
+                this.pagination = response.data.meta;
+                // console.log(response.data);
                 this.currentProducts = response.data.data.length;
                 if(!response.data.data.length)
                     this.product_not_found = 'product not found';
                 else
                     this.product_not_found = '';
-                console.log(`data product sekarang: ${response.data.data.length}`);
+                // console.log(`data product sekarang: ${response.data.data.length}`);
             })
             .catch(function (error) {
                 console.log(error);
@@ -758,7 +740,7 @@ export default {
                         this.showModalCat = false;
                         this.showModalSubCat = false;
                         this.islands = response.data;
-                        console.log(this.islands);
+                        // console.log(this.islands);
                     } else {
                         this.containerProduct = true;
                         this.showModalSidebar = false;
@@ -794,7 +776,7 @@ export default {
                         this.showModalCat = false;
                         this.showModalSubCat = false;
                         this.kabupatens = response.data;
-                        console.log(response.data);
+                        // console.log(response.data);
                     } else {
                         this.containerProduct = true;
                         this.showModalSidebar = false;
@@ -873,24 +855,7 @@ export default {
             .catch(error => {
                 console.log(error);
             });
-        },
-
-        // searchProduct: function () {
-        //     axios.get('/api/search-products', {
-        //         params: {
-        //             keyword: this.keyword
-        //         }
-        //     })
-        //     .then((response) => {
-        //         this.searchData = response.data;
-        //         this.products = this.searchData;
-        //         this.loading = false
-        //         // console.log(response.data);
-        //     })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-        // },
+        }
         
     }
 }

@@ -18,7 +18,7 @@ class ProductController extends Controller
         $products = Product::withFilters()
             ->where('is_active', '1')
             ->orderBy('id', 'desc')
-            ->paginate(15);
+            ->paginate(5);
 
         return ProductResource::collection($products);
     }
