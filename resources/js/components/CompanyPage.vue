@@ -100,14 +100,14 @@
                         <div>
                             <div v-if="isloggedIn === 'true'">
                                 <!-- BUTTON ADD PRODUCT & EDIT COMPANY PROFILE-->
-                                <button v-if="buttonAddProduct" @click="toggleModal()" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
+                                <button v-if="buttonAddProduct && user.id == userId" @click="toggleModal()" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
                                     <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
                                     </svg>
                                     Add New Product
                                 </button>
 
-                                <button v-if="buttonEditCompany" @click="modalEditInfo(user.id)" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
+                                <button v-if="buttonEditCompany && user.id == userId" @click="modalEditInfo(user.id)" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
                                     <svg class="w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                                     Edit Company Profile
                                 </button>
@@ -140,7 +140,7 @@
                                                 <textarea id="additional_info" v-model="additional_info" class="w-full h-56 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
                                             </div>
                                             <div class="flex items-center justify-end">
-                                                <button :class="{'disabled': isUpdatingInfo}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateCompanyInfo()">
+                                                <button :class="{'disabled': isUpdatingInfo}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateCompanyInfo(user.id)">
                                                     <svg v-if="isUpdatingInfo" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -457,7 +457,7 @@
 
 <script>
 import _ from 'lodash';
-import { mapGetters } from 'vuex';
+// import { mapGetters } from 'vuex';
 
 export default {
     props: ['id'],
@@ -521,6 +521,7 @@ export default {
             products: [],
 
             isloggedIn: 'false',
+            userId: '',
 
             additional_info: '',
 
@@ -529,14 +530,15 @@ export default {
     },
 
     computed: {
-        ...mapGetters({
-            userId: 'currentUser/userId',
-            userRole: 'currentUser/userRole',
-        })
+        // ...mapGetters({
+        //     userId: 'currentUser/userId',
+        //     userRole: 'currentUser/userRole',
+        // })
     },
 
     mounted() {
         this.isloggedIn = localStorage.getItem('isloggedIn');
+        this.userId = localStorage.getItem('user_id');
     },
 
     created() {
@@ -547,13 +549,13 @@ export default {
     methods: {
 
         modalEditInfo(user_id) {
-            let url = '/api/company-info/' + user_id;
+            let url = '/api/company-detail/' + user_id;
             axios.get('/sanctum/csrf-cookie')
                 .then(response => {
                     axios.get(url)
                         .then((response) => {
-                            this.additional_info = response.data.additional_info;
-                            console.log(response);
+                            this.additional_info = response.data.user.additional_info;
+                            console.log(response.data);
                         })
                         .catch(error => {
                             console.log(error);
@@ -565,22 +567,17 @@ export default {
                 });
         },
 
-        updateCompanyInfo(){
+        updateCompanyInfo(user_id){
             this.isUpdatingInfo = true;
-            
-            const formData = new FormData();
-            formData.append('additional_info', this.additional_info);
-
             axios.get('/sanctum/csrf-cookie')
                 .then(response => {
-                    axios.post('/api/update-company-info', formData, {
-                        headers: {'content-type': 'application/json'}
-                    })
+                    axios.post('/api/update-company-info/'+user_id, {
+                        additional_info: this.additional_info})
                     .then((response) => {
-                        console.log(response);
                         this.isUpdatingInfo = false;
-                        this.additional_info = '';
                         this.showModalInfo = !this.showModalInfo;
+                        this.user.additional_info = this.additional_info;
+                        console.log(response);
                     })
                     .catch(error => {
                         console.log(error);
@@ -638,18 +635,6 @@ export default {
         handleExceed(files, imageList) {
             this.$message.warning(`The limit is 5, you have selected ${files.length} files`);
         },
-
-        // userLogout() {
-        //     axios.get('/sanctum/csrf-cookie').then((res) => {
-        //         axios.post('/api/logout').then((res2) => {
-        //             console.log('logout')
-        //         }).catch((err2) => {
-
-        //         });
-        //     }).catch((err) => {
-        //         console.log(err)
-        //     });
-        // },
 
         addProduct(e) {
             e.preventDefault()

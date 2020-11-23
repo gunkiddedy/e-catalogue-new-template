@@ -30,17 +30,6 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
-    // search global on header component
-    // public function search(Request $request)
-    // {
-    //     $products = Product::withFilters()
-    //         ->where('name', 'like', '%'.$request->keyword.'%')
-    //         // ->orWhere('company_name', 'like', '%'.$request->keyword.'%')
-    //         ->paginate(15);
-
-    //     return ProductResource::collection($products);
-    // }
-
     public function productDetail($id)
     {
         $product = Product::find($id);

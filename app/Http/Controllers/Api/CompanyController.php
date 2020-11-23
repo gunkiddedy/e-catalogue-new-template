@@ -27,9 +27,9 @@ class CompanyController extends Controller
         ]);
     }
 
-    public function updateCompanyProfile()
+    public function updateCompanyProfile(Request $request, $user_id)
     {
-        $user_id = Auth::id();
+        // $user_id = Auth::id();
         
         $user = User::find($user_id);
         $user->additional_info = $request->get('additional_info');

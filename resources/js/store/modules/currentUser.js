@@ -26,7 +26,8 @@ const mutations = {
         state.companyName = '';
         localStorage.removeItem('username');
         localStorage.removeItem('user_id');
-        localStorage.setItem('isloggedIn', 'false');
+        localStorage.removeItem('isloggedIn');
+        localStorage.removeItem('user_role');
     }
 };
 

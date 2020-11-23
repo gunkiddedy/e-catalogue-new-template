@@ -41,6 +41,7 @@ Route::post('set-user-inactive/{id}', 'Api\AdminController@setUserInActive');
 // =============== MEMBER AREA==================================
 Route::post('add-product', 'Api\ProductController@addProduct');
 Route::post('update-product', 'Api\ProductController@updateProduct');
+Route::post('update-company-info/{id}', 'Api\CompanyController@updateCompanyProfile');
 // ================END MEMBER ==================================
 
 
