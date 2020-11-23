@@ -188,7 +188,10 @@
 
                         </div>
                         
-
+                        <!-- PAGINATION -->
+                        <div class="flex justify-around items-center mt-16">
+                            <pagination :pagination="pagination" @paginate="loadProducts" />
+                        </div>
                     </div>
                 </div>
             </transition>
@@ -210,11 +213,13 @@ export default {
             approving: false,
             approvingId: null,
             product_not_found: '',
+            pagination: {}
         }
     },
 
     mounted() {
         this.loadProducts();
+
         if(localStorage.getItem('isloggedIn')== 'false'){
             this.$router.push('/login');
         }
@@ -230,12 +235,15 @@ export default {
 
     methods: {
         loadProducts() {
+            let current_page  = this.pagination.current_page;
+            let pageNum = current_page ? current_page : 1;
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
-                    axios.get('/api/product-list')
+                    axios.get('/api/product-list?page='+pageNum)
                         .then((response) => {
                             this.loading = false;
-                            this.products = response.data;
+                            this.pagination = response.data;
+                            this.products = response.data.data;
                             if(response.data.length == 0){
                                 this.product_not_found = 'product not found';
                             }

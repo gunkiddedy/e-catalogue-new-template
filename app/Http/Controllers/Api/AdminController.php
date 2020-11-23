@@ -15,14 +15,14 @@ class AdminController extends Controller
         $companies = User::where([
             ['role', '=', 'member'],
             ['is_blacklist', '=', 0]
-        ])->orderBy('is_active')->get();
+        ])->orderBy('is_active')->paginate(8);
                 
         return response()->json($companies);
     }
 
     public function userBlacklist()
     {   
-        $users = User::where('is_blacklist', '=', 1)->get();
+        $users = User::where('is_blacklist', '=', 1)->paginate(8);
 
         return response()->json($users);
     }
@@ -56,36 +56,19 @@ class AdminController extends Controller
         return response()->json('user successfuly disabled');
     }
 
-    // public function blacklistUser($id)
-    // {
-    //     $user = User::find($id);
-    //     $user->is_blacklist = 1;
-    //     $user->save();
-        
-    //     return response()->json('user successfuly disabled');
-    // }
-
     public function productList()
     {
-        $products = Product::orderBy('is_active')->get();
+        $products = Product::orderBy('is_active')->paginate(5);
 
         return response()->json($products);
     }
 
     public function productListDetailImage($id)
     {
-        // $product = Product::find($id);
         $images = ProductImage::where('product_id', $id)->with('product')->get();
-        // $company = Product::find($id)->user;
-        // $category = Product::find($id)->category;
-        // $subcategory = Product::find($id)->subcategory;
         
         return response()->json([
-            // 'product' => $product,
             'images' => $images,
-            // 'company' => $company,
-            // 'category' => $category,
-            // 'subcategory' => $subcategory,
         ]);
     }
 

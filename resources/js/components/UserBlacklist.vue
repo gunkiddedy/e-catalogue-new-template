@@ -124,6 +124,10 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- PAGINATION -->
+                        <div class="flex justify-around items-center mt-16">
+                            <pagination :pagination="pagination" @paginate="loadMembers" />
+                        </div>
                     </div>
                 </div>
             </transition>
@@ -142,11 +146,13 @@ export default {
             approvinguser: false,
             approvingUserId: null,
             product_not_found: '',
+            pagination: {}
         }
     },
 
     mounted() {
         this.loadMembers();
+
         if(localStorage.getItem('isloggedIn')== 'false'){
             this.$router.push('/login');
         }
@@ -182,12 +188,15 @@ export default {
                 })
         },
         loadMembers() {
+            let current_page  = this.pagination.current_page;
+            let pageNum = current_page ? current_page : 1;
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
-                    axios.get('/api/user-blacklist')
+                    axios.get('/api/user-blacklist?page='+pageNum)
                         .then((response) => {
                             this.loading = false;
-                            this.companies = response.data;
+                            this.pagination = response.data;
+                            this.companies = response.data.data;
                             if(response.data.length == 0){
                                 this.product_not_found = 'user not found';
                             }

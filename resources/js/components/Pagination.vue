@@ -6,9 +6,10 @@
                 </svg>
             </a>
         </div>
-
+        
+        <!-- only show when total data > paginate(per page)-->
         <li v-for="page in pages" :key="page" class="px-4">
-            <a :class="[page == pagination.current_page ? 'text-orange-400 underline':'']" href="#" @click.stop="change(page)">
+            <a v-if="pagination.total > pagination.per_page" :class="[page == pagination.current_page ? 'text-orange-400 underline':'']" href="#" @click.stop="change(page)">
                 {{ page }}
             </a>
         </li>

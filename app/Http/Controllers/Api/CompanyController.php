@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\User;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -15,8 +16,8 @@ class CompanyController extends Controller
         $provinsi = User::find($id)->provinsi;
         $kabupaten = User::find($id)->kabupaten;
         $kecamatan = User::find($id)->kecamatan;
-        $products = User::find($id)->products;
-
+        // $products = User::find($id)->products;
+        $products = Product::where('user_id', '=', $id)->paginate(5);
         return response()->json([
             'user' => $user,
             'provinsi' => $provinsi,

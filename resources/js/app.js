@@ -7,13 +7,13 @@ import Vuex from 'vuex';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import routes from './routes';
-import searchData from './store/index';
+import dataStore from './store/index';
 
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
-const store = new Vuex.Store(searchData);
+const store = new Vuex.Store(dataStore);
 const router = new VueRouter(routes);
 
 
