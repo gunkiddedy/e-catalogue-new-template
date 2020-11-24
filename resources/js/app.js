@@ -21,6 +21,7 @@ Vue.component('pagination', require('./components/Pagination.vue').default);
 Vue.component('header-component', require('./components/HeaderCompany.vue').default);
 Vue.component('footer-component', require('./components/Footer.vue').default);
 Vue.component('app-component', require('./components/App.vue').default);
+Vue.component('admin-sidebar', require('./components/AdminSidebar.vue').default);
 // Vue.component('company-page', require('./components/CompanyPage.vue').default);
 // Vue.component('company-list', require('./components/CompanyList.vue').default);
 // Vue.component('product-detail', require('./components/ProductDetail.vue').default);

@@ -5,11 +5,6 @@
 
         <!-- loader spin-->
         <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0">
-            <!--<svg class="animate-spin absolute w-12 h-12" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="122.315px" height="122.88px" viewBox="0 0 122.315 122.88" enable-background="new 0 0 122.315 122.88" xml:space="preserve">
-                <g>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M94.754,14.534c8.844,0,16.014,7.17,16.014,16.012 c0,8.844-7.17,16.015-16.014,16.015c-8.843,0-16.013-7.17-16.013-16.015C78.741,21.704,85.911,14.534,94.754,14.534L94.754,14.534z M109.265,52.121c-7.205,0-13.049,5.844-13.049,13.048c0,7.207,5.844,13.049,13.049,13.051c7.207,0,13.051-5.844,13.051-13.051 C122.315,57.965,116.472,52.121,109.265,52.121L109.265,52.121z M94.135,89.903c-5.032,0-9.114,4.082-9.114,9.113 c0,5.032,4.082,9.114,9.114,9.114c5.031,0,9.113-4.082,9.113-9.114C103.248,93.985,99.166,89.903,94.135,89.903L94.135,89.903z M59.275,104.65c-5.032,0-9.114,4.081-9.114,9.113c0,5.034,4.082,9.116,9.114,9.116s9.113-4.082,9.113-9.116 C68.389,108.731,64.308,104.65,59.275,104.65L59.275,104.65z M23.652,90.86c-4.717,0-8.54,3.823-8.54,8.54 c0,4.715,3.823,8.54,8.54,8.54c4.714,0,8.538-3.825,8.538-8.54C32.19,94.684,28.366,90.86,23.652,90.86L23.652,90.86z M9.096,54.872C4.072,54.872,0,58.944,0,63.968c0,5.021,4.072,9.093,9.096,9.093c5.021,0,9.093-4.072,9.093-9.093 C18.189,58.944,14.116,54.872,9.096,54.872L9.096,54.872z M23.652,17.026c-6.354,0-11.508,5.155-11.508,11.509 s5.154,11.506,11.508,11.506s11.506-5.152,11.506-11.506S30.006,17.026,23.652,17.026L23.652,17.026z M59.341,0 c-7.651,0-13.858,6.205-13.858,13.855c0,7.651,6.207,13.856,13.858,13.856s13.856-6.205,13.856-13.856 C73.197,6.205,66.992,0,59.341,0L59.341,0z" />
-                </g>
-            </svg>-->
             <svg class="w-12 h-12 mt-4 absolute" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
                 <circle cx="15" cy="15" r="15">
                     <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
@@ -46,7 +41,12 @@
                     </span>
                     {{ subcategory.name }}
                 </div>
-
+                <!-- STATUS MESSAGE-->
+                <span 
+                    class="ml-4 font-sf-pro" 
+                    :class="{'text-green-400': status, 'text-red-400': !status }">
+                    {{ status_msg }}
+                </span>
             </div>
         </transition>
 
@@ -233,7 +233,7 @@
                     <div class="flex justify-end absolute right-0 top-0 -mt-5 -mr-5">
                         <!-- CLOSE BUTTON CIRCLE-->
                         <div class="flex items-center justify-center">
-                            <button class="bg-red-500 relative w-12 h-12 rounded-full p-1 border-4 border-white text-white" @click="modalEdit()">
+                            <button class="bg-red-500 relative w-12 h-12 rounded-full p-1 border-4 border-white text-white" @click="modalEdit(product.id)">
                                 <svg class="w-6 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                 </svg>
@@ -243,7 +243,7 @@
 
                     <div class="flex items-center justify-start mb-2">
                         <h3 class="text-lg leading-tight font-semibold text-gray-400">
-                            Edit Product <span class="ml-4 text-sm font-sf-pro" :class="{'text-green-400': status, 'text-red-400': !status }">{{ status_msg }}</span>
+                            Edit Product
                         </h3>
                     </div>
 
@@ -253,13 +253,13 @@
                             <!-- LEFT SIDE-->
                             <div class="left w-full h-full py-2">
                                 <div class="product-name mb-3">
-                                    <input v-model="name" id="name" class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Product Name">
+                                    <input v-model="productForm.name" id="name" class="appearance-none block w-full text-gray-700 border border-gray-300 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Product Name">
                                 </div>
                                 <div class="grid grid-rows-2">
                                     <div class="flex mb-3 items-center justify-between">
                                         <div class="w-1/12">
                                             <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-                                                <input name="sni" id="sni" v-model="sni" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
+                                                <input id="sni" v-model="productForm.sni" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
                                                 <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20">
                                                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                                                 </svg>
@@ -269,14 +269,14 @@
                                             SNI
                                         </label>
                                         <div class="w-full">
-                                            <input :disabled="disabled_input_SNI" name="nomor_sni" id="nomor_sni" v-model="nomor_sni" @keyup="checkSNI(nomor_sni)" type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_nomor_sni, 'text-red-400': isError_nomor_sni}">
+                                            <input :disabled="disabled_input_SNI" id="nomor_sni" v-model="productForm.nomor_sni" @keyup="checkSNI(productForm.nomor_sni)" type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_nomor_sni, 'text-red-400': isError_nomor_sni}">
 
                                         </div>
                                     </div>
                                     <div class="flex mb-3 items-center justify-between">
                                         <div class="w-1/12">
                                             <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-                                                <input name="tkdn" id="tkdn" v-model="tkdn" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
+                                                <input id="tkdn" v-model="productForm.tkdn" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
                                                 <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20">
                                                     <path d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
                                                 </svg>
@@ -286,7 +286,7 @@
                                             TKDN
                                         </label>
                                         <div class="w-full">
-                                            <input :disabled="disabled_input_TKDN" name="nilai_tkdn" id="nilai_tkdn" v-model="nilai_tkdn" @keyup="checkNilaiTKDN(nilai_tkdn)" type="text" placeholder="Nilai TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4" :class="{'text-green-400': isSuccess_nilai_tkdn, 'text-red-400': isError_nilai_tkdn}">
+                                            <input :disabled="disabled_input_TKDN" id="nilai_tkdn" v-model="productForm.nilai_tkdn" @keyup="checkNilaiTKDN(productForm.nilai_tkdn)" type="text" placeholder="Nilai TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4" :class="{'text-green-400': isSuccess_nilai_tkdn, 'text-red-400': isError_nilai_tkdn}">
 
                                         </div>
                                     </div>
@@ -301,7 +301,7 @@
                                             &nbsp;
                                         </div>
                                         <div class="w-full">
-                                            <input v-model="nomor_sertifikat_tkdn" @keyup="checkSertiTKDN(nomor_sertifikat_tkdn)" name="nomor_sertifikat_tkdn" id="nomor_sertifikat_tkdn" type="text" placeholder="Nomor Sertifikat TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_sertifikat_tkdn, 'text-red-400': isError_sertifikat_tkdn}">
+                                            <input v-model="productForm.nomor_sertifikat_tkdn" @keyup="checkSertiTKDN(productForm.nomor_sertifikat_tkdn)" id="nomor_sertifikat_tkdn" type="text" placeholder="Nomor Sertifikat TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_sertifikat_tkdn, 'text-red-400': isError_sertifikat_tkdn}">
 
                                         </div>
                                     </div>
@@ -313,7 +313,7 @@
                                             &nbsp;
                                         </div>
                                         <div class="w-full">
-                                            <input name="nomor_laporan_tkdn" v-model="nomor_laporan_tkdn" @keyup="checkLapTKDN(nomor_laporan_tkdn)" id="nomor_laporan_tkdn" type="text" placeholder="Nomor Laporan" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_laporan_tkdn, 'text-red-400': isError_laporan_tkdn}">
+                                            <input v-model="productForm.nomor_laporan_tkdn" @keyup="checkLapTKDN(productForm.nomor_laporan_tkdn)" id="nomor_laporan_tkdn" type="text" placeholder="Nomor Laporan" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_laporan_tkdn, 'text-red-400': isError_laporan_tkdn}">
 
                                         </div>
                                     </div>
@@ -325,8 +325,13 @@
                                             HS Code
                                         </div>
                                         <div class="w-full">
-                                            <input name="hs_code" id="hs_code" v-model="hs_code" @keypress="checkHsCode(hs_code)" :class="{'text-green-400': isSuccess_hscode, 'text-red-400': isError_hscode}" type="text" placeholder="ex. 0987789009876" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                            <input id="hs_code" v-model="productForm.hs_code" @keypress="checkHsCode(productForm.hs_code)" :class="{'text-green-400': isSuccess_hscode, 'text-red-400': isError_hscode}" type="text" placeholder="ex. 0987789009876" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-start items-center">
+                                    <div class="shadow rounded-lg bg-white w-20 h-auto px-1 py-1 mr-2" v-for="(image, i) in images" :key="i.id">
+                                        <img @mouseover="switchImage(i)" :src="'/storage/'+image.image_path" alt="img-thumb" class="rounded object-cover w-full h-16 cursor-pointer hover:opacity-75">
                                     </div>
                                 </div>
 
@@ -337,11 +342,11 @@
                                 <div class="grid grid-rows-2">
                                     <div class="product-name mb-3">
                                         <div class="inline-block relative w-full">
-                                            <select name="category_id" id="category_id" v-model="select_category" @change="loadSubCategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
-                                                <option class="text-gray-700" value="" selected="selected">
+                                            <select id="category_id" v-model="productForm.category_id" @change="getSubCategoryByCategoryId" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
+                                                <option class="text-gray-700">
                                                     -Select Category-
                                                 </option>
-                                                <option class="text-gray-700" v-for="(cat, i) in categories" :value="cat.id" :key="i" :selected="select_category == cat.id">
+                                                <option class="text-gray-700" v-for="(cat, i) in categories" :value="cat.id" :key="i" :selected="productForm.category_id == cat.id">
                                                     {{cat.name}}
                                                 </option>
                                             </select>
@@ -354,11 +359,11 @@
                                     </div>
                                     <div class="product-name mb-3">
                                         <div class="inline-block relative w-full">
-                                            <select name="subcategory_id" id="subcategory_id" v-model="select_subcategory" @change="getSubCategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
-                                                <option class="text-gray-700" value="" selected="selected">
+                                            <select id="subcategory_id" v-model="productForm.subcategory_id" @change="getSubCategory" class="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-3 pr-8 rounded-lg text-gray-500 leading-tight focus:outline-none">
+                                                <option class="text-gray-700">
                                                     -Select Sub Category-
                                                 </option>
-                                                <option class="text-gray-700" v-for="(subc, i) in subcategories" :key="i" :value="subc.id" :selected="select_subcategory == subc.id">
+                                                <option class="text-gray-700" v-for="(subc, i) in subcategories" :key="i" :value="subc.id" :selected="productForm.subcategory_id == subc.id">
                                                     {{subc.name}}
                                                 </option>
                                             </select>
@@ -371,13 +376,13 @@
                                     </div>
                                 </div>
                                 <div class="description mb-3">
-                                    <textarea name="description" id="description" v-model="description" placeholder="Tulis deskripsi produk" class="h-30 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"></textarea>
+                                    <textarea id="description" v-model="productForm.description" placeholder="Tulis deskripsi produk" class="h-30 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full"></textarea>
                                 </div>
 
                                 <div class="flex mb-3 items-center justify-between">
                                     <!--<span class="font-semibold mr-4">Rp</span>-->
                                     <div class="w-full">
-                                        <input type="text" name="price" id="price" v-model="price" placeholder="Masukkan harga" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+                                        <input type="text" id="price" v-model="productForm.price" placeholder="Masukkan harga" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
                                     </div>
                                 </div>
 
@@ -393,9 +398,9 @@
                                             <i class="el-icon-plus" />
                                         </el-upload>
 
-                                        <span class="shadow ml-2 mr-2" v-for="(image, i) in images" :key="i.id">
+                                        <!--<span class="shadow ml-2 mr-2" v-for="(image, i) in images" :key="i.id">
                                             <img :src="'/storage/'+image.image_path" alt="img-thumb" class="rounded object-cover w-full h-16 cursor-pointer hover:opacity-75">
-                                        </span>
+                                        </span>-->
 
                                         <!-- (this mean modal preview)-->
                                         <el-dialog :visible.sync="dialogVisible" v-for="(image, i) in images" :key="i.id">
@@ -405,7 +410,7 @@
                                 </div>
 
                                 <div class="flex items-center justify-end">
-                                    <button :class="{'disabled': isUpdatingProduct}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateProduct">
+                                    <button :class="{'disabled': isUpdatingProduct}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateProduct(product.id)">
                                         <svg v-if="isUpdatingProduct" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -526,18 +531,21 @@ export default {
 
             categories: [],
             subcategories: [],
-            name: '',
-            description: '',
-            sni: 0,
-            nomor_sni: '',
-            tkdn: 0,
-            nilai_tkdn: '',
-            nomor_sertifikat_tkdn: '',
-            nomor_laporan_tkdn: '',
-            hs_code: '',
-            select_category: '',
-            select_subcategory: '',
-            price: '',
+
+            productForm: {
+                name: '',
+                description: '',
+                sni: 0,
+                nomor_sni: '',
+                tkdn: 0,
+                nilai_tkdn: '',
+                nomor_sertifikat_tkdn: '',
+                nomor_laporan_tkdn: '',
+                hs_code: '',
+                category_id: '',
+                subcategory_id: '',
+                price: '',
+            },
             imageList: [],
 
             isUpdatingProduct: false,
@@ -584,32 +592,32 @@ export default {
         },
 
         validateForm() {
-            if (this.imageList.length < 0) {
-                this.status = false
-                this.showNotification('Image Product cannot be empty')
-                return false
-            }
-            if (!this.name) {
+            // if (this.imageList.length < 0) {
+            //     this.status = false
+            //     this.showNotification('Image Product cannot be empty')
+            //     return false
+            // }
+            if (!this.productForm.name) {
                 this.status = false
                 this.showNotification('name cannot be empty')
                 return false
             }
-            if (!this.description) {
+            if (!this.productForm.description) {
                 this.status = false
                 this.showNotification('description cannot be empty')
                 return false
             }
-            if (!this.nomor_sertifikat_tkdn) {
+            if (!this.productForm.nomor_sertifikat_tkdn) {
                 this.status = false
                 this.showNotification('nomor sertifikat tkdn cannot be empty')
                 return false
             }
-            if (!this.nomor_laporan_tkdn) {
+            if (!this.productForm.nomor_laporan_tkdn) {
                 this.status = false
                 this.showNotification('nomor laporan tkdn cannot be empty')
                 return false
             }
-            if (!this.hs_code) {
+            if (!this.productForm.hs_code) {
                 this.status = false
                 this.showNotification('hs code cannot be empty')
                 return false
@@ -620,82 +628,50 @@ export default {
             this.status_msg = message
             setTimeout(() => {
                 this.status_msg = ''
-            }, 2000)
+            }, 5000)
         },
 
-        // getProductIdFromUrl() {
-        //     let currentUrl = window.location.pathname;
-        //     let arr = new Array();
-        //     arr = currentUrl.split("/");
-        //     let id = arr[2];
-        //     return id;
-        //     // console.log(arr);
-        // },
-
-        updateProduct(e) {
-            e.preventDefault()
-            if (!this.validateForm()) {
+        updateProduct(product_id) {
+            if(!this.validateForm())
                 return false
-            }
-            // const that = this
             this.isUpdatingProduct = true;
-            const formData = new FormData();
-
-            formData.append('name', this.name);
-            formData.append('description', this.description);
-            formData.append('sni', this.sni);
-            formData.append('nomor_sni', this.nomor_sni);
-            formData.append('tkdn', this.tkdn);
-            formData.append('nilai_tkdn', this.nilai_tkdn);
-            formData.append('nomor_sertifikat_tkdn', this.nomor_sertifikat_tkdn);
-            formData.append('nomor_laporan_tkdn', this.nomor_laporan_tkdn);
-            formData.append('hs_code', this.hs_code);
-            formData.append('price', this.price);
-            formData.append('category_id', this.select_category);
-            formData.append('subcategory_id', this.select_subcategory);
-
-            this.imageList.forEach(file => {
-                formData.append('images[]', file, file.name);
-            });
-
             axios.get('/sanctum/csrf-cookie')
-                .then((response) => {
-                    axios.post('/api/update-product', formData, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
-                    }).then((res) => {
-                        this.name = '';
-                        this.description = '';
-                        this.sni = '';
-                        this.nomor_sni = '';
-                        this.tkdn = '';
-                        this.nilai_tkdn = '';
-                        this.nomor_sertifikat_tkdn = '';
-                        this.nomor_laporan_tkdn = '';
-                        this.hs_code = '';
-                        this.price = '';
-                        this.select_category = '';
-                        this.select_subcategory = '';
-                        this.status = true;
-                        this.showNotification('Product Successfully Updated');
-                        this.isUpdatingProduct = false;
-                        this.imageList = [];
-                    }).catch((error) => {
-                        console.log(error);
-                    });
-                })
-                .catch(error => {
-                    console.log(error);
-                })
+            .then((response) => {
+                axios.post('/api/update-product/'+product_id, this.productForm)
+                .then((res) => {
+                    this.productForm.name = '';
+                    this.productForm.description = '';
+                    this.productForm.sni = '';
+                    this.productForm.nomor_sni = '';
+                    this.productForm.tkdn = '';
+                    this.productForm.nilai_tkdn = '';
+                    this.productForm.nomor_sertifikat_tkdn = '';
+                    this.productForm.nomor_laporan_tkdn = '';
+                    this.productForm.hs_code = '';
+                    this.productForm.price = '';
+                    this.productForm.category_id = '';
+                    this.productForm.subcategory_id = '';
+                    this.isUpdatingProduct = false;
+                    this.showModal = false;
 
+                    this.status = true;
+                    this.showNotification('Product Successfully Updated');
+                    this.imageList = [];
+                }).catch((error) => {
+                    console.log(error);
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
         },
 
         loadProductDetail() {
-            // let product_id = this.getProductIdFromUrl();
             let product_id = this.id;
             let url = '/api/product-detail/' + product_id;
-            axios.get(url)
+            axios.get('/sanctum/csrf-cookie')
+            .then(res => {
+                axios.get(url)
                 .then((response) => {
                     this.loading = false;
                     this.product = response.data.product;
@@ -708,45 +684,51 @@ export default {
                 .catch(function (error) {
                     console.log(error);
                 });
+            })
+            .catch(err => {
+                console.log(err);
+            });
         },
 
         modalEdit(product_id) {
             let url = '/api/product-detail/' + product_id;
             axios.get(url)
-                .then((response) => {
-                    this.name = response.data.product.name;
-                    this.description = response.data.product.description;
-                    this.sni = response.data.product.sni;
-                    this.nomor_sni = response.data.product.nomor_sni;
-                    this.tkdn = response.data.product.tkdn;
-                    this.nilai_tkdn = response.data.product.nilai_tkdn;
-                    this.nomor_sertifikat_tkdn = response.data.product.nomor_sertifikat_tkdn;
-                    this.nomor_laporan_tkdn = response.data.product.nomor_laporan_tkdn;
-                    this.hs_code = response.data.product.hs_code;
-                    this.price = response.data.product.price;
-                    this.select_category = response.data.category.id;
-                    this.select_subcategory = response.data.subcategory.id;
+            .then((response) => {
+                this.productForm.name = response.data.product.name;
+                this.productForm.description = response.data.product.description;
+                this.productForm.sni = response.data.product.sni;
+                this.productForm.nomor_sni = response.data.product.nomor_sni;
+                this.productForm.tkdn = response.data.product.tkdn;
+                this.productForm.nilai_tkdn = response.data.product.nilai_tkdn;
+                this.productForm.nomor_sertifikat_tkdn = response.data.product.nomor_sertifikat_tkdn;
+                this.productForm.nomor_laporan_tkdn = response.data.product.nomor_laporan_tkdn;
+                this.productForm.hs_code = response.data.product.hs_code;
+                this.productForm.price = response.data.product.price;
+                this.productForm.category_id = response.data.category.id;
+                this.productForm.subcategory_id = response.data.subcategory.id;
 
-                    this.images.forEach(file => {
-                        this.imageList.push('/storage/' + file.image_path);
-                    });
+                console.log(this.productForm.select_subcategory + '---' +this.productForm.select_subcategory);
 
-                    if (response.data.product.sni === 1)
-                        this.disabled_input_SNI = false;
-                    else
-                        this.disabled_input_SNI = true;
-
-                    if (response.data.product.tkdn === 1)
-                        this.disabled_input_TKDN = false;
-                    else
-                        this.disabled_input_TKDN = true;
-
-                    console.log(response.data);
-                    console.log(this.imageList);
-                })
-                .catch(function (error) {
-                    console.log(error);
+                this.images.forEach(file => {
+                    this.imageList.push('/storage/' + file.image_path);
                 });
+
+                if (response.data.product.sni === 1)
+                    this.disabled_input_SNI = false;
+                else
+                    this.disabled_input_SNI = true;
+
+                if (response.data.product.tkdn === 1)
+                    this.disabled_input_TKDN = false;
+                else
+                    this.disabled_input_TKDN = true;
+
+                console.log(response.data);
+                console.log(this.imageList);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
             this.showModal = !this.showModal;
             this.imageList = [];
         },
@@ -754,7 +736,7 @@ export default {
         switchImage(param) {
             setTimeout(() => {
                 this.indexImage = param;
-            }, 500);
+            }, 100);
         },
 
         toggleTabs(tabNumber) {
@@ -771,10 +753,10 @@ export default {
                 });
         },
 
-        loadSubCategory() {
-            axios.get('/api/getsubcategories', {
+        getSubCategoryByCategoryId() {
+            axios.get('/api/get-subcategories-by-category-id', {
                     params: {
-                        category_id: this.select_category
+                        category_id: this.productForm.category_id
                     }
                 })
                 .then((response) => {
@@ -798,9 +780,9 @@ export default {
         checkHsCode: _.debounce(function () {
             let regex = /^\d+$/;
 
-            let value = regex.test(this.hs_code);
+            let value = regex.test(this.productForm.hs_code);
             if (value == false) {
-                this.hs_code = null;
+                this.productForm.hs_code = null;
                 this.isError_hscode = true;
                 this.isSuccess_hscode = false;
             } else {
@@ -812,10 +794,10 @@ export default {
 
         checkNilaiTKDN: _.debounce(function () {
             let regex = /\d{2}(\.\d{2})?$/;
-            let value = regex.test(this.nilai_tkdn);
+            let value = regex.test(this.productForm.nilai_tkdn);
 
             if (value == false) {
-                this.nilai_tkdn = null;
+                this.productForm.nilai_tkdn = null;
                 this.isError_nilai_tkdn = true;
                 this.isSuccess_nilai_tkdn = false;
             } else {
@@ -828,10 +810,10 @@ export default {
         checkSertiTKDN: _.debounce(function (check_value) {
             let searchRegExp = /[^\w\.\/\:\,\-]+/;
             let valid = check_value.replace(searchRegExp, '');
-            this.nomor_sertifikat_tkdn = valid;
+            this.productForm.nomor_sertifikat_tkdn = valid;
 
             if (!valid) {
-                this.nomor_sertifikat_tkdn = null;
+                this.productForm.nomor_sertifikat_tkdn = null;
                 this.isError_sertifikat_tkdn = true;
                 this.isSuccess_sertifikat_tkdn = false;
             } else {
@@ -845,10 +827,10 @@ export default {
 
             let searchRegExp = /[^\w\.\/\:\,\-]+/;
             let valid = check_value.replace(searchRegExp, '');
-            this.nomor_laporan_tkdn = valid;
+            this.productForm.nomor_laporan_tkdn = valid;
 
             if (!valid) {
-                this.nomor_laporan_tkdn = null;
+                this.productForm.nomor_laporan_tkdn = null;
                 this.isError_laporan_tkdn = true;
                 this.isSuccess_laporan_tkdn = false;
             } else {
@@ -861,10 +843,10 @@ export default {
         checkSNI: _.debounce(function (check_value) {
             let searchRegExp = /[^\w\.\/\:\,\-]+/;
             let valid = check_value.replace(searchRegExp, '');
-            this.nomor_sni = valid;
+            this.productForm.nomor_sni = valid;
 
             if (!valid) {
-                this.nomor_sni = null;
+                this.productForm.nomor_sni = null;
                 this.isError_nomor_sni = true;
                 this.isSuccess_nomor_sni = false;
             } else {
@@ -877,12 +859,12 @@ export default {
         toggleInputSNI(sni) {
             this.disabled_input_SNI = !this.disabled_input_SNI;
             if (this.disabled_input_SNI === true)
-                this.nomor_sni = '';
+                this.productForm.nomor_sni = '';
         },
         toggleInputTKDN(param) {
             this.disabled_input_TKDN = !this.disabled_input_TKDN;
             if (this.disabled_input_TKDN === true)
-                this.nilai_tkdn = '';
+                this.productForm.nilai_tkdn = '';
         }
     }
 }

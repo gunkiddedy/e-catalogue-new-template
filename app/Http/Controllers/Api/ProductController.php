@@ -49,21 +49,15 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request, $id)
     {    
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-            'hs_code' => 'required',
-            'category_id' => 'required'
-        ]);
 
         $images = $request->images;
         $user_id = Auth::id();
 
         if($request->hasFile('images')) {
-            //delete image on table product_images firts----
+            
             $imgp = DB::table('product_images')->where('product_id', $id)->get();
-
+            
+            //delete image on table product_images firts----
             for($i=0; $i<count($imgp); $i++){
                 if($imgp[$i]->image_path){
                     Storage::delete('/public/'.$imgp[$i]->image_path);
@@ -71,10 +65,11 @@ class ProductController extends Controller
             }
 
             // get index 0 of images array----
-            foreach($images as $imagex){}
-            $filenamewithextension = $imagex->getClientOriginalName();
+            foreach($images as $image_product){}
+
+            $filenamewithextension = $image_product->getClientOriginalName();
             $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-            $extension = $imagex->getClientOriginalExtension();
+            $extension = $image_product->getClientOriginalExtension();
             $filenametostore = $filename.'_'.$user_id.'.'.$extension;
 
             $product = Product::find($id);
@@ -139,7 +134,7 @@ class ProductController extends Controller
             ]);
         }
         // return redirect('/member')->with('success', 'product '.$product->name.' updated successfully');
-        return response()->json('msg', 'success');
+        return response()->json(['message' => 'product successfuly updated']);
     }
 
     public function destroy($id)

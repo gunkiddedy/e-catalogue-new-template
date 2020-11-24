@@ -3,7 +3,7 @@
     <div class="px-16 bg-gray-100">
         <header-component></header-component>
         <div class="flex px-4 py-4 mt-4">
-            <transition name="fade">
+            <!--<transition name="fade">
                 <div class="bg-white h-full w-64 rounded-lg mr-6 shadow px-1 py-1">
 
                     <div class="grid grid-cols-1 my-2 px-1">
@@ -44,8 +44,8 @@
                     </div>
 
                 </div>
-            </transition>
-
+            </transition>-->
+            <admin-sidebar></admin-sidebar>
             <transition name="fade">
                 <div class="w-full">
 
@@ -289,6 +289,7 @@ export default {
                 .then((response) => {
                     axios.post('/api/approving-product/' + product_id)
                         .then((response) => {
+                            this.$store.dispatch('messageForAdmin/handleProductRequest');
                             this.loadProducts();
                             console.log(response);
                         })
@@ -327,13 +328,6 @@ export default {
 </script>
 
 <style scoped>
-.router-link-active,
-.router-link-exact-active {
-   background-color: #4299e1;
-   color: #e2e8f0;
-   cursor: pointer;
-   border-radius: 0.5rem;
- }
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity .5s;

@@ -75,4 +75,31 @@ class AdminController extends Controller
         ]);
     }
 
+    public function companyRequest()
+    {
+        $request = User::where([
+            ['is_active', '=', 0],
+            ['is_blacklist', '=', 0]
+        ])->count();
+        
+        return response()->json($request);
+    }
+
+    public function productRequest()
+    {
+        $request = Product::where('is_active', 0)->count();
+        
+        return response()->json($request);
+    }
+    
+    public function blacklistRequest()
+    {
+        $request = User::where([
+            ['is_active', '=', 0],
+            ['is_blacklist', '=', 1]
+        ])->count();
+        
+        return response()->json($request);
+    }
+
 }

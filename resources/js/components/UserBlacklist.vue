@@ -4,7 +4,7 @@
         <header-component></header-component>
         <div class="flex px-4 py-4 mt-4">
             <!-- SIDEBAR MENU-->
-            <transition name="fade">
+            <!--<transition name="fade">
                 <div class="bg-white h-full w-64 rounded-lg mr-6 shadow px-1 py-1">
                     <div class="grid grid-cols-1 my-2 px-1">
                         <div class="text-gray-500 flex items-center justify-between">
@@ -41,8 +41,8 @@
                         </div>
                     </div>
                 </div>
-            </transition>
-
+            </transition>-->
+            <admin-sidebar></admin-sidebar>
             <transition name="fade">
                 <div class="w-full">
 
@@ -190,6 +190,7 @@ export default {
                             setTimeout(()=>{
                                 this.approvinguser = false;
                             },1000);
+                            this.$store.dispatch('messageForAdmin/handleBlacklistRequest');
                             this.loadMembers();
                             console.log(response);
                         })
@@ -238,14 +239,6 @@ export default {
 </script>
 
 <style scoped>
-.router-link-active,
-.router-link-exact-active {
-   background-color: #4299e1;
-   color: #e2e8f0;
-   cursor: pointer;
-   border-radius: 0.5rem;
- }
-
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity .5s;

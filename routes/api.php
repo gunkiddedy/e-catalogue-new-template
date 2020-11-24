@@ -22,25 +22,30 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('company-list', 'Api\AdminController@companyList');
 Route::get('product-list', 'Api\AdminController@productList');
 
-// approv or reject user product
+                // approv or reject user product
 Route::post('approving-product/{id}', 'Api\AdminController@approvingProduct');
 
-// show more/less image 
+                // show more/less image 
 Route::get('product-list-detail-image/{id}', 'Api\AdminController@productListDetailImage');
 
-// show user blacklisted
+                // show user blacklisted
 Route::get('user-blacklist', 'Api\AdminController@userBlacklist');
 
-// set user active or inactive
+                // set user active or inactive
 Route::post('set-user-active/{id}', 'Api\AdminController@setUserActive');
 Route::post('set-user-inactive/{id}', 'Api\AdminController@setUserInActive');
+
+                // count request
+Route::get('company-request', 'Api\AdminController@companyRequest');
+Route::get('product-request', 'Api\AdminController@productRequest');
+Route::get('blacklist-request', 'Api\AdminController@blacklistRequest');
 // ===========================END ADMIN AREA-=====================================
 
 
 
 // =============== MEMBER AREA==================================
 Route::post('add-product', 'Api\ProductController@addProduct');
-Route::post('update-product', 'Api\ProductController@updateProduct');
+Route::post('update-product/{id}', 'Api\ProductController@updateProduct');
 Route::post('update-company-info/{id}', 'Api\CompanyController@updateCompanyProfile');
 // ================END MEMBER ==================================
 
