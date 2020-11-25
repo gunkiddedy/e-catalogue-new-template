@@ -40,12 +40,16 @@
                     <img @click="toggleDropdownUser" src="/img/avatar2.png" alt="avatar" class="shadow hover:opacity-75 object-cover rounded-full w-8 h-8 mx-auto ml-2 cursor-pointer">
                 </div>
                 <div v-if="showUserDropdown" class="text-sm font-semibold z-20 shadow user-drop bg-white absolute py-2 px-4 rounded-lg right-0 w-48 flex flex-col">
-                    <span v-if="user_role === 'admin'" class="rounded px-2 py-2 hover:bg-gray-100 text-gray-500 hover:text-blue-400 cursor-pointer leading-tight">
-                        <router-link to="/company-list">Dashboard</router-link>
-                    </span>
-                    <span v-else class="rounded px-2 py-2 hover:bg-gray-100 text-gray-500 hover:text-blue-400 cursor-pointer leading-tight">
-                        <router-link :to="{ name: 'company-page', params: {id: user_id } }">My Products</router-link>
-                    </span>
+                    <router-link to="/company-list" v-if="user_role === 'admin'" class="rounded px-2 py-2 hover:bg-gray-100 text-gray-500 hover:text-blue-400 cursor-pointer leading-tight">
+                        <span>
+                            Dashboard
+                        </span>
+                    </router-link>
+                    <router-link :to="{ name: 'company-page', params: {id: user_id } }" v-else class="rounded px-2 py-2 hover:bg-gray-100 text-gray-500 hover:text-blue-400 cursor-pointer leading-tight">
+                        <span>
+                            My Products
+                        </span>
+                    </router-link>
                     <span class="rounded px-2 py-2 hover:bg-gray-100 text-gray-500 hover:text-blue-400 cursor-pointer leading-tight" @click="logoutUser">
                         Logout
                     </span>

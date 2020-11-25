@@ -457,8 +457,6 @@
 
 <script>
 import _ from 'lodash';
-// import { mapGetters } from 'vuex';
-
 export default {
     props: ['id'],
     data() {
@@ -529,11 +527,13 @@ export default {
         }
     },
 
-    computed: {
-        // ...mapGetters({
-        //     userId: 'currentUser/userId',
-        //     userRole: 'currentUser/userRole',
-        // })
+    // page change by props id (trigered by user click on dropdown profile)
+    watch: {
+        id: {
+            handler: function () {
+                this.loadCompanyDetail();
+            }
+        }
     },
 
     mounted() {
