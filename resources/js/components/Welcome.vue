@@ -671,25 +671,32 @@
             </p>
             <!--<input type="hidden" name="" :value="getKeyword">-->
             <span hidden>{{ getKeyword }}</span>
+            <span hidden>{{ getFilter }}</span>
             <div class="flex justify-between items-center xs:mt-4 lg:mt-0">
-              <p class="mr-2 text-sm">Urutkan :</p>
+              <p class="mr-2 text-sm">Urutkan : </p>
               <!--<button
                 type="button"
                 class="bg-white w-48 flex justify-between leading-tight text-sm py-2 px-4 border rounded border-gray-400 text-left"
               >-->
                 <div class="inline-block relative w-48">
-                    <select name="category_id" id="category_id" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none">
-                        <option class="text-gray-700" value="" selected="selected">
-                            -Select Category-
+                    <select v-model="sortby" name="category_id" id="category_id" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none">
+                        <!--<option class="text-gray-700" :value="sesuai" :selected="[]">
+                            Paling sesuai
                         </option>
-                        <option class="text-gray-700">
-                            terbaru
+                        <option class="text-gray-700" :value="newest">
+                            Paling terbaru
                         </option>
-                        <option class="text-gray-700">
+                        <option class="text-gray-700" :value="minprice">
                             Harga tertinggi
+                        </option>-->
+                        <option class="text-gray-700" :value="selectedSesuai">
+                            Paling sesuai
                         </option>
-                        <option class="text-gray-700">
-                            Harga terendah
+                        <option class="text-gray-700"
+                            v-for="(order, i) in orders" 
+                            :key="i" 
+                            :value="order.order">
+                            {{ order.text }}
                         </option>
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -931,13 +938,29 @@ export default {
       provinsiTerpilih: "",
       categoryTerpilih: "",
 
+      sortby: [],
+      selectedSesuai: [],    
+      orders: [
+          {id: 1, text: 'Terbaru', order: 'newest'},
+          {id: 2, text: 'Terlama', order: 'oldest'},
+          {id: 3, text: 'Harga terendah', order: 'minprice'},
+          {id: 4, text: 'Harga tertinggi', order: 'maxprice'},
+      ],
+
       selected: {
         keywords: "",
         selectedProvinsi: [],
         selectedKabupaten: [],
         selectedCategory: [],
         selectedSubCategory: [],
+        newest: '',
+        oldest: '',
+        minprice: '',
+        maxprice: '',
+        sesuai: '',
       },
+
+      
 
       pagination: {},
     };
@@ -953,11 +976,53 @@ export default {
   },
 
   computed: {
-      getKeyword: {
-          get: function(){
-              this.selected.keywords = this.$store.getters['searchProducts/get_keyword'];
-          }
-      }
+    getKeyword: {
+        get: function(){
+            this.selected.keywords = this.$store.getters['searchProducts/get_keyword'];
+        }
+    },
+    getFilter: {
+        get: function(){
+            if(this.sortby == 'newest'){
+                this.selected.newest = this.sortby;
+                 this.selected.oldest = '';
+                this.selected.minprice = '';
+                this.selected.maxprice = '';
+                this.selected.sesuai = '';
+            }
+            else if(this.sortby == 'oldest'){
+                this.selected.oldest = this.sortby;
+                 this.selected.newest = '';
+                this.selected.minprice = '';
+                this.selected.maxprice = '';
+                this.selected.sesuai = '';
+            }
+            else if(this.sortby == 'minprice'){
+                this.selected.minprice = this.sortby;
+                this.selected.newest = '';
+                this.selected.oldest = '';
+                this.selected.maxprice = '';
+                this.selected.sesuai = '';
+            }
+            else if(this.sortby == 'maxprice'){
+                this.selected.maxprice = this.sortby;
+                this.selected.minprice = '';
+                this.selected.newest = '';
+                this.selected.oldest = '';
+                this.selected.sesuai = '';
+            }
+            else if(this.sortby == ''){
+                this.selected.sesuai = 'sesuai';
+                this.selected.minprice = '';
+                this.selected.maxprice = '';
+                this.selected.newest = '';
+                this.selected.oldest = '';
+            }
+
+                
+            
+        }
+    }
   },
 
   watch: {

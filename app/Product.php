@@ -77,6 +77,21 @@ class Product extends Model
         })
         ->when(request()->input('keywords'), function ($query) {
             $query->where('name', 'like', '%'.request()->input('keywords').'%');
+        })
+        ->when(request()->input('sesuai'), function ($query) {
+            $query->orderBy('nilai_tkdn', 'desc', request()->input('sesuai'));
+        })
+        ->when(request()->input('newest'), function ($query) {
+            $query->orderBy('id', 'desc', request()->input('newest'));
+        })
+        ->when(request()->input('oldest'), function ($query) {
+            $query->orderBy('id', 'asc', request()->input('oldest'));
+        })
+        ->when(request()->input('minprice'), function ($query) {
+            $query->orderBy('price', 'asc', request()->input('minprice'));
+        })
+        ->when(request()->input('maxprice'), function ($query) {
+            $query->orderBy('price', 'desc', request()->input('maxprice'));
         });
     }
 }
