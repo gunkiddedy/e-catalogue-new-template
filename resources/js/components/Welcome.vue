@@ -660,9 +660,12 @@
         <!-- PRODUCT SHOW WHEN MODAL IS FALSE-->
         <div class="w-full" v-if="containerProduct">
           <!-- PRODUCT PAGE DESCRIPTIONS -->
-          <div class="flex lg:justify-between lg:items-center lg:flex-row xs:flex-col xs:items-start">
+          <div
+            class="flex lg:justify-between lg:items-center lg:flex-row xs:flex-col xs:items-start"
+          >
             <p class="leading-tight text-sm" v-if="selected.keywords">
-              Menampilkan {{ currentProducts }} produk dari kata kunci " {{ selected.keywords }} "
+              Menampilkan {{ currentProducts }} produk dari kata kunci "
+              {{ selected.keywords }} "
             </p>
             <p class="leading-tight text-sm" v-else>
               Menampilkan {{ currentProducts }} produk dari
@@ -673,14 +676,19 @@
             <span hidden>{{ getKeyword }}</span>
             <span hidden>{{ getFilter }}</span>
             <div class="flex justify-between items-center xs:mt-4 lg:mt-0">
-              <p class="mr-2 text-sm">Urutkan : </p>
+              <p class="mr-2 text-sm">Urutkan :</p>
               <!--<button
                 type="button"
                 class="bg-white w-48 flex justify-between leading-tight text-sm py-2 px-4 border rounded border-gray-400 text-left"
               >-->
-                <div class="inline-block relative w-48">
-                    <select v-model="sortby" name="category_id" id="category_id" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none">
-                        <!--<option class="text-gray-700" :value="sesuai" :selected="[]">
+              <div class="inline-block relative w-48">
+                <select
+                  v-model="sortby"
+                  name="category_id"
+                  id="category_id"
+                  class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none"
+                >
+                  <!--<option class="text-gray-700" :value="sesuai" :selected="[]">
                             Paling sesuai
                         </option>
                         <option class="text-gray-700" :value="newest">
@@ -689,23 +697,33 @@
                         <option class="text-gray-700" :value="minprice">
                             Harga tertinggi
                         </option>-->
-                        <option class="text-gray-700" :value="selectedSesuai">
-                            Paling sesuai
-                        </option>
-                        <option class="text-gray-700"
-                            v-for="(order, i) in orders" 
-                            :key="i" 
-                            :value="order.order">
-                            {{ order.text }}
-                        </option>
-                    </select>
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                    </div>
+                  <option class="text-gray-700" :value="selectedSesuai">
+                    Paling sesuai
+                  </option>
+                  <option
+                    class="text-gray-700"
+                    v-for="(order, i) in orders"
+                    :key="i"
+                    :value="order.order"
+                  >
+                    {{ order.text }}
+                  </option>
+                </select>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                >
+                  <svg
+                    class="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
+                  </svg>
                 </div>
-                <!--<p>Paling sesuai</p>
+              </div>
+              <!--<p>Paling sesuai</p>
                 <svg class="w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path
                     fill-rule="evenodd"
@@ -716,81 +734,6 @@
               </button>-->
             </div>
           </div>
-
-          <!-- PRODUCTS  -->
-          <div class="mt-8 grid grid gap-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5">
-            <div
-              class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative"
-              v-for="product in products.data"
-              :key="product.id"
-            >
-              <div>
-                <img
-                  :src="'/storage/' + product.image_path"
-                  alt=""
-                  class="hover:opacity-75 rounded-t-lg object-cover w-full h-41"
-                />
-              </div>
-              <div
-                class="w-full absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41"
-              >
-                <p class="normal-case mb-6 font-bold text-sm leading-tight h-2.25rem">
-                  {{ product.name }}
-                </p>
-                <p
-                  class="uppercase text-gray-500 font-semibold leading-tight text-xs h-2.25rem hover:text-blue-400"
-                >
-                  <router-link
-                    :to="{ name: 'company-page', params: { id: product.user_id } }"
-                  >
-                    {{ product.company_name }}
-                  </router-link>
-                </p>
-                <div>
-                  <p class="mt-2 mb-2 text-xs text-gray-500">Jakarta Barat</p>
-
-                  <div class="flex items-center justify-start mb-2">
-                    <div
-                      class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2"
-                    >
-                      <p class="text-gray-200 text-xs">SNI</p>
-                    </div>
-                    <span
-                      v-if="product.sni"
-                      class="text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
-                    >
-                      trusted suplier</span
-                    >
-                    <span
-                      v-else
-                      class="text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
-                    >
-                      not trusted suplier
-                    </span>
-                  </div>
-
-                  <p class="font-bold mb-2">
-                    <span class="text-red-500 font-bold">Rp{{ product.price }}</span>
-                    <span class="text-sm">/pc</span>
-                  </p>
-                  <p class="text-xs mb-4 text-gray-500">
-                    Visit in order to contact the seller
-                  </p>
-                  <router-link
-                    :to="{ name: 'product-detail', params: { id: product.id } }"
-                  >
-                    <button
-                      type="button"
-                      class="hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg"
-                    >
-                      <p class="text-white leading-none font-bold text-sm">See Product</p>
-                    </button>
-                  </router-link>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <!-- loader spin-->
           <div
             v-if="loading"
@@ -871,6 +814,82 @@
             </svg>
           </div>
 
+          <!-- PRODUCTS  -->
+          <div
+            class="mt-8 grid grid gap-4 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5"
+          >
+            <div
+              class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative"
+              v-for="product in products.data"
+              :key="product.id"
+            >
+              <div>
+                <img
+                  :src="'/storage/' + product.image_path"
+                  alt=""
+                  class="hover:opacity-75 rounded-t-lg object-cover w-full h-41"
+                />
+              </div>
+              <div
+                class="w-full absolute px-4 py-4 bg-white rounded-md leading-tight hover:transition duration-300 ease-in-out h-30 -mt-2 overflow-y-hidden hover:h-72 hover:-mt-41"
+              >
+                <p class="normal-case mb-6 font-bold text-sm leading-tight h-2.25rem">
+                  {{ product.name }}
+                </p>
+                <p
+                  class="uppercase text-gray-500 font-semibold leading-tight text-xs h-2.25rem hover:text-blue-400"
+                >
+                  <router-link
+                    :to="{ name: 'company-page', params: { id: product.user_id } }"
+                  >
+                    {{ product.company_name }}
+                  </router-link>
+                </p>
+                <div>
+                  <p class="mt-2 mb-2 text-xs text-gray-500">Jakarta Barat</p>
+
+                  <div class="flex items-center justify-start mb-2">
+                    <div
+                      class="rounded-full w-6 h-6 bg-gray-500 flex justify-around items-center px-2 py-2 mr-2"
+                    >
+                      <p class="text-gray-200 text-xs">SNI</p>
+                    </div>
+                    <span
+                      v-if="product.sni"
+                      class="text-white bg-green-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
+                    >
+                      trusted suplier</span
+                    >
+                    <span
+                      v-else
+                      class="text-white bg-red-400 rounded px-1 py-1 text-xs leading-none tracking-normal"
+                    >
+                      not trusted suplier
+                    </span>
+                  </div>
+
+                  <p class="font-bold mb-2">
+                    <span class="text-red-500 font-bold">Rp{{ product.price }}</span>
+                    <span class="text-sm">/pc</span>
+                  </p>
+                  <p class="text-xs mb-4 text-gray-500">
+                    Visit in order to contact the seller
+                  </p>
+                  <router-link
+                    :to="{ name: 'product-detail', params: { id: product.id } }"
+                  >
+                    <button
+                      type="button"
+                      class="hover:bg-blue-700 bg-blue-600 px-6 py-2 w-full rounded-lg"
+                    >
+                      <p class="text-white leading-none font-bold text-sm">See Product</p>
+                    </button>
+                  </router-link>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div v-if="product_not_found" class="my-4 flex justify-center text-gray-500">
             {{ product_not_found }}
           </div>
@@ -904,6 +923,7 @@ export default {
       showModalSubCat: false,
 
       loading: true,
+      loadingPage: false,
       products: {},
 
       product_not_found: "",
@@ -939,12 +959,12 @@ export default {
       categoryTerpilih: "",
 
       sortby: [],
-      selectedSesuai: [],    
+      selectedSesuai: [],
       orders: [
-          {id: 1, text: 'Terbaru', order: 'newest'},
-          {id: 2, text: 'Terlama', order: 'oldest'},
-          {id: 3, text: 'Harga terendah', order: 'minprice'},
-          {id: 4, text: 'Harga tertinggi', order: 'maxprice'},
+        { id: 1, text: "Terbaru", order: "newest" },
+        { id: 2, text: "Terlama", order: "oldest" },
+        { id: 3, text: "Harga terendah", order: "minprice" },
+        { id: 4, text: "Harga tertinggi", order: "maxprice" },
       ],
 
       selected: {
@@ -953,14 +973,12 @@ export default {
         selectedKabupaten: [],
         selectedCategory: [],
         selectedSubCategory: [],
-        newest: '',
-        oldest: '',
-        minprice: '',
-        maxprice: '',
-        sesuai: '',
+        newest: "",
+        oldest: "",
+        minprice: "",
+        maxprice: "",
+        sesuai: "",
       },
-
-      
 
       pagination: {},
     };
@@ -977,52 +995,45 @@ export default {
 
   computed: {
     getKeyword: {
-        get: function(){
-            this.selected.keywords = this.$store.getters['searchProducts/get_keyword'];
-        }
+      get: function () {
+        this.selected.keywords = this.$store.getters["searchProducts/get_keyword"];
+      },
     },
     getFilter: {
-        get: function(){
-            if(this.sortby == 'newest'){
-                this.selected.newest = this.sortby;
-                 this.selected.oldest = '';
-                this.selected.minprice = '';
-                this.selected.maxprice = '';
-                this.selected.sesuai = '';
-            }
-            else if(this.sortby == 'oldest'){
-                this.selected.oldest = this.sortby;
-                 this.selected.newest = '';
-                this.selected.minprice = '';
-                this.selected.maxprice = '';
-                this.selected.sesuai = '';
-            }
-            else if(this.sortby == 'minprice'){
-                this.selected.minprice = this.sortby;
-                this.selected.newest = '';
-                this.selected.oldest = '';
-                this.selected.maxprice = '';
-                this.selected.sesuai = '';
-            }
-            else if(this.sortby == 'maxprice'){
-                this.selected.maxprice = this.sortby;
-                this.selected.minprice = '';
-                this.selected.newest = '';
-                this.selected.oldest = '';
-                this.selected.sesuai = '';
-            }
-            else if(this.sortby == ''){
-                this.selected.sesuai = 'sesuai';
-                this.selected.minprice = '';
-                this.selected.maxprice = '';
-                this.selected.newest = '';
-                this.selected.oldest = '';
-            }
-
-                
-            
+      get: function () {
+        if (this.sortby == "newest") {
+          this.selected.newest = this.sortby;
+          this.selected.oldest = "";
+          this.selected.minprice = "";
+          this.selected.maxprice = "";
+          this.selected.sesuai = "";
+        } else if (this.sortby == "oldest") {
+          this.selected.oldest = this.sortby;
+          this.selected.newest = "";
+          this.selected.minprice = "";
+          this.selected.maxprice = "";
+          this.selected.sesuai = "";
+        } else if (this.sortby == "minprice") {
+          this.selected.minprice = this.sortby;
+          this.selected.newest = "";
+          this.selected.oldest = "";
+          this.selected.maxprice = "";
+          this.selected.sesuai = "";
+        } else if (this.sortby == "maxprice") {
+          this.selected.maxprice = this.sortby;
+          this.selected.minprice = "";
+          this.selected.newest = "";
+          this.selected.oldest = "";
+          this.selected.sesuai = "";
+        } else if (this.sortby == "") {
+          this.selected.sesuai = "sesuai";
+          this.selected.minprice = "";
+          this.selected.maxprice = "";
+          this.selected.newest = "";
+          this.selected.oldest = "";
         }
-    }
+      },
+    },
   },
 
   watch: {
@@ -1036,24 +1047,25 @@ export default {
 
   methods: {
     loadProducts: function () {
-        this.loading = true;
-        let current_page = this.pagination.current_page;
-        let pageNum = current_page ? current_page : 1;
-        axios.get(`/api/products?page=${pageNum}`, {
-                params: this.selected,
-            })
-            .then((response) => {
-                this.loading = false;
-                this.products = response.data;
-                this.pagination = response.data.meta;
-                // console.log(response.data);
-                this.currentProducts = response.data.data.length;
-                if (!response.data.data.length) this.product_not_found = "product not found";
-                else this.product_not_found = "";
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+      this.loading = true;
+      let current_page = this.pagination.current_page;
+      let pageNum = current_page ? current_page : 1;
+      axios
+        .get(`/api/products?page=${pageNum}`, {
+          params: this.selected,
+        })
+        .then((response) => {
+          this.loading = false;
+          this.products = response.data;
+          this.pagination = response.data.meta;
+          // console.log(response.data);
+          this.currentProducts = response.data.data.length;
+          if (!response.data.data.length) this.product_not_found = "product not found";
+          else this.product_not_found = "";
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
 
     getTotalProducts() {
