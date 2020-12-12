@@ -674,14 +674,31 @@ export default {
             formData.append('kecamatan_id', this.localStorage.kecamatan_id);
 
             this.imageList.forEach(file => {
-                if(file.type !=='image/jpg' || file.type !=='image/jpeg' || file.type !=='image/png'){
-                    // alert('only image jpg, jpeg or png are allowed!');
+                // if(file.type !=='image/jpeg' || file.type !=='image/png'){
+                //     // alert('only image jpg, jpeg or png are allowed!');
+                //     console.log('type file = ' ,file.type);
+                //     this.status = false
+                //     this.showNotification('Only Image JPG, JPEG or PNG Are Allowed!');
+                //     return false
+                // }
+                // else
+                //     formData.append('images[]', file, file.name);
+                var t = file.type.split('/').pop().toLowerCase();
+                if (t != "jpeg" && t != "jpg" && t != "png") {
+                    // alert('Please select a valid image file');
                     this.status = false
                     this.showNotification('Only Image JPG, JPEG or PNG Are Allowed!');
-                    return false
+                    return false;
                 }
-                else
+                if (file.size > 3000000) {
+                    // alert('Max Upload size is 3MB only');
+                    this.status = false
+                    this.showNotification('Max Upload size is 3MB only!');
+                    return false;
+                }
+                else{
                     formData.append('images[]', file, file.name);
+                }
             });
 
             axios.get('/sanctum/csrf-cookie')
@@ -712,7 +729,8 @@ export default {
                     this.showModal = false;
                     this.loadCompanyDetail();
                 }).catch((error) => {
-                    console.log(error)
+                    console.log(error);
+                    this.isSubmittingProduct = false;
                 });
             }).catch((err) => {
                 console.log(err)
