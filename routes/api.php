@@ -24,6 +24,7 @@ Route::get('product-list', 'Api\AdminController@productList');
 
                 // approv or reject user product
 Route::post('approving-product/{id}', 'Api\AdminController@approvingProduct');
+Route::post('delete-product/{id}', 'Api\AdminController@deleteProduct');
 
                 // show more/less image 
 Route::get('product-list-detail-image/{id}', 'Api\AdminController@productListDetailImage');
@@ -47,6 +48,8 @@ Route::get('blacklist-request', 'Api\AdminController@blacklistRequest');
 Route::post('add-product', 'Api\ProductController@addProduct');
 Route::post('update-product/{id}', 'Api\ProductController@updateProduct');
 Route::post('update-company-info/{id}', 'Api\CompanyController@updateCompanyProfile');
+Route::post('delete-image-product/{id}/{img_path}', 'Api\ProductController@deleteImageProduct');
+Route::post('delete-file-storage/{id}', 'Api\ProductController@deleteFileStorage');
 // ================END MEMBER ==================================
 
 

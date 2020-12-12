@@ -5,6 +5,47 @@ module.exports = {
   },
   purge: [],
   theme: {
+    screens: {
+      'xs': '320px',
+      // => @media (min-width: 375px) { ... }
+      
+      'sm': '481px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '641px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '961px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1025px',
+      // => @media (min-width: 1280px) { ... }
+
+      'xxl': '1281px',
+
+      // -----------------------------------
+      // '2xl': {'max': '1535px'},
+      // // => @media (max-width: 1535px) { ... }
+
+      // 'xl': {'max': '1279px'},
+      // // => @media (max-width: 1279px) { ... }
+
+      // 'lg': {'max': '1023px'},
+      // // => @media (max-width: 1023px) { ... }
+
+      // 'md': {'max': '767px'},
+      // // => @media (max-width: 767px) { ... }
+
+      // 'sm': {'max': '639px'},
+      // // => @media (max-width: 639px) { ... }
+
+      // -----------------------------------
+      // 'xs': {'min': '375px', 'max': '639px'},
+      // 'sm': {'min': '640px', 'max': '767px'},
+      // 'md': {'min': '768px', 'max': '1023px'},
+      // 'lg': {'min': '1024px', 'max': '1279px'},
+      // 'xl': {'min': '1280px'},
+    },
     extend: {
       margin: {
         '-41': '-10.6rem',
@@ -39,8 +80,11 @@ module.exports = {
     fontFamily: ['responsive', 'hover', 'focus'],
     animation: ['responsive', 'hover', 'focus'],
     rotate: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
-    padding: ['hover'],
-    fontSize: ['hover', 'focus']
+    padding: ['hover', 'focus', 'responsive'],
+    fontSize: ['hover', 'focus'],
+    extend: {
+      padding: ['hover', 'focus', 'responsive'],
+    }
   },
   plugins: [],
 }

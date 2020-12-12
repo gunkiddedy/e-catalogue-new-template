@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\ProductResource;
 use Illuminate\Support\Facades\Storage;
 
@@ -45,6 +46,23 @@ class ProductController extends Controller
             'category' => $category,
             'subcategory' => $subcategory,
         ]);
+    }
+
+    public function deleteImageProduct($product_id, $id)
+    {   
+        DB::table('product_images')->where([
+            ['product_id', '=', $product_id], ['id', '=', $id]
+            ])->delete();
+
+        return response()->json(['msg' => 'success deleted image in database']);
+    }
+
+    public function deleteFileStorage($id)
+    {
+        $image = ProductImage::find($id);
+        Storage::disk('public')->delete($image['image_path']);
+
+        return response()->json('file on storage successfuly deleted');
     }
 
     public function updateProduct(Request $request, $id)
@@ -174,12 +192,18 @@ class ProductController extends Controller
             $category_id = $request->category_id;
             $subcategory_id = $request->subcategory_id;
             $images = $request->images;
-            $user_id = Auth::id();
-            $provinsi_id = Auth::user()->provinsi_id;
-            $kabupaten_id = Auth::user()->kabupaten_id;
-            $kecamatan_id = Auth::user()->kecamatan_id;
-            $company_name = Auth::user()->name;
+            $user_id = $request->user_id;
+            $provinsi_id = $request->provinsi_id;
+            $kabupaten_id = $request->kabupaten_id;
+            $kecamatan_id = $request->kecamatan_id;
+            $company_name = $request->company_name;
+            // $provinsi_id = Auth::user()->provinsi_id;
+            // $kabupaten_id = Auth::user()->kabupaten_id;
+            // $kecamatan_id = Auth::user()->kecamatan_id;
+            // $company_name = Auth::user()->name;
 
+            $rand = rand(10000, 999999);
+            
             if($request->hasFile('images')) {
                 foreach($images as $image_product)
                 //get filename with extension
@@ -190,9 +214,9 @@ class ProductController extends Controller
         
                 //get file extension
                 $extension = $image_product->getClientOriginalExtension();
-        
                 //filename to store
-                $filenametostore = $filename.'_'.$user_id.'.'.$extension;
+                
+                $filenametostore = $filename.'_'.$user_id.'_'.$rand.'.'.$extension;
 
                 $product = Product::create([
                     'name' => $name,
@@ -227,7 +251,7 @@ class ProductController extends Controller
                     $extension = $image->getClientOriginalExtension();
             
                     //filename to store
-                    $filenametostore = $filename.'_'.$user_id.'.'.$extension;
+                    $filenametostore = $filename.'_'.$user_id.'_'.$rand.'.'.$extension;
             
                     //Upload File
                     $image->storeAs('public/images', $filenametostore);

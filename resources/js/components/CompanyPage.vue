@@ -98,16 +98,16 @@
                         <!-- END NAV TAB -->
 
                         <div>
-                            <div v-if="isloggedIn === 'true'">
+                            <div v-if="localStorage.isloggedIn === 'true'">
                                 <!-- BUTTON ADD PRODUCT & EDIT COMPANY PROFILE-->
-                                <button v-if="buttonAddProduct && user.id == userId" @click="toggleModal()" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
+                                <button v-if="buttonAddProduct && user.id == localStorage.user_id" @click="toggleModal()" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
                                     <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
                                     </svg>
                                     Add New Product
                                 </button>
 
-                                <button v-if="buttonEditCompany && user.id == userId" @click="modalEditInfo(user.id)" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
+                                <button v-if="buttonEditCompany && user.id == localStorage.user_id" @click="modalEditInfo(user.id)" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
                                     <svg class="w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                                     Edit Company Profile
                                 </button>
@@ -518,8 +518,14 @@ export default {
             kecamatan: {},
             products: [],
 
-            isloggedIn: 'false',
-            userId: '',
+            localStorage: {
+                isloggedIn: 'false',
+                user_id: '',
+                provinsi_id: '',
+                kabupaten_id: '',
+                kecamatan_id: '',
+                company_name: '',
+            },
 
             additional_info: '',
 
@@ -537,8 +543,12 @@ export default {
     },
 
     mounted() {
-        this.isloggedIn = localStorage.getItem('isloggedIn');
-        this.userId = localStorage.getItem('user_id');
+        this.localStorage.isloggedIn = localStorage.getItem('isloggedIn');
+        this.localStorage.user_id = localStorage.getItem('user_id');
+        this.localStorage.provinsi_id = localStorage.getItem('provinsi_id');
+        this.localStorage.kabupaten_id = localStorage.getItem('kabupaten_id');
+        this.localStorage.kecamatan_id = localStorage.getItem('kecamatan_id');
+        this.localStorage.company_name = localStorage.getItem('username');
     },
 
     created() {
@@ -657,12 +667,25 @@ export default {
             formData.append('price', this.price);
             formData.append('category_id', this.select_category);
             formData.append('subcategory_id', this.select_subcategory);
+            formData.append('user_id', this.localStorage.user_id);
+            formData.append('company_name', this.localStorage.company_name);
+            formData.append('provinsi_id', this.localStorage.provinsi_id);
+            formData.append('kabupaten_id', this.localStorage.kabupaten_id);
+            formData.append('kecamatan_id', this.localStorage.kecamatan_id);
 
             this.imageList.forEach(file => {
-                formData.append('images[]', file, file.name);
+                if(file.type !=='image/jpg' || file.type !=='image/jpeg' || file.type !=='image/png'){
+                    // alert('only image jpg, jpeg or png are allowed!');
+                    this.status = false
+                    this.showNotification('Only Image JPG, JPEG or PNG Are Allowed!');
+                    return false
+                }
+                else
+                    formData.append('images[]', file, file.name);
             });
 
-            axios.get('/sanctum/csrf-cookie').then((res1) => {
+            axios.get('/sanctum/csrf-cookie')
+            .then((res1) => {
                 console.log(res1)
                 axios.post('/api/add-product', formData, {
                     headers: {
@@ -686,6 +709,8 @@ export default {
                     this.showNotification('Product Successfully Added');
                     this.isSubmittingProduct = false;
                     this.imageList = [];
+                    this.showModal = false;
+                    this.loadCompanyDetail();
                 }).catch((error) => {
                     console.log(error)
                 });

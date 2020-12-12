@@ -36,6 +36,6 @@ Vue.component('admin-sidebar', require('./components/AdminSidebar.vue').default)
 
 const app = new Vue({
     el: '#app',
-    store:store,
+    store,
     router: router
 });

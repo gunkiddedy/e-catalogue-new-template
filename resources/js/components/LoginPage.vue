@@ -177,6 +177,9 @@ export default {
                             localStorage.setItem('username', response.data.user.name);
                             localStorage.setItem('user_id', response.data.user.id);
                             localStorage.setItem('user_role', response.data.user.role);
+                            localStorage.setItem('provinsi_id', response.data.user.provinsi_id);
+                            localStorage.setItem('kabupaten_id', response.data.user.kabupaten_id);
+                            localStorage.setItem('kecamatan_id', response.data.user.kecamatan_id);
                         })
                         .catch((error) => {
                             this.errors = error;

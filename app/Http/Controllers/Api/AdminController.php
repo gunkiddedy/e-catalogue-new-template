@@ -46,6 +46,16 @@ class AdminController extends Controller
         return response()->json('product successfuly updated');
     }
 
+    public function deleteProduct($id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+        $image = ProductImage::where('product_id', '=', $id);
+        $image->delete();
+        
+        return response()->json('product successfuly deleted');
+    }
+
     public function setUserActive($id)
     {
         $user = User::find($id);

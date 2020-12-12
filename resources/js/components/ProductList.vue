@@ -136,11 +136,11 @@
                                         
                                     </div>
                                     <div class="mr-4">
-                                        <button type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-red-500 px-4 py-1 text-red-500  hover:bg-red-500 hover:text-white">
-                                            <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <button @click="deleteProduct(product.id)" type="button" class="focus:outline-none flex items-center justify-between rounded-lg border border-red-500 px-4 py-1 text-red-500  hover:bg-red-500 hover:text-white">
+                                            <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                             </svg>
-                                            <span class="text-sm font-semibold">Remove</span>
+                                            <span class="text-sm font-semibold">{{ removing && removingId === product.id ? 'Removing...': 'Remove'}}</span>
                                         </button>
                                     </div>
                                     <div>
@@ -212,6 +212,8 @@ export default {
             isLoading: false,
             approving: false,
             approvingId: null,
+            removing: false,
+            removingId: null,
             product_not_found: '',
             pagination: {},
             keyword: '',
@@ -288,6 +290,25 @@ export default {
             axios.get('/sanctum/csrf-cookie')
                 .then((response) => {
                     axios.post('/api/approving-product/' + product_id)
+                        .then((response) => {
+                            this.$store.dispatch('messageForAdmin/handleProductRequest');
+                            this.loadProducts();
+                            console.log(response);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
+                }).catch(error => {
+                    console.log(error);
+                })
+        },
+
+        deleteProduct(product_id){
+            this.removing = true;
+            this.removingId = product_id;
+            axios.get('/sanctum/csrf-cookie')
+                .then((response) => {
+                    axios.post('/api/delete-product/' + product_id)
                         .then((response) => {
                             this.$store.dispatch('messageForAdmin/handleProductRequest');
                             this.loadProducts();

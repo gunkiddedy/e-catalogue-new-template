@@ -41,7 +41,7 @@
                 </div>
                 <!-- STATUS MESSAGE-->
                 <span 
-                    class="ml-4 font-sf-pro" 
+                    class="ml-4 font-sf-pro animate-pulse text-sm flex items-center" 
                     :class="{'text-green-400': status, 'text-red-400': !status }">
                     {{ status_msg }}
                 </span>
@@ -55,8 +55,11 @@
                     <!-- LEFT SIDE-->
                     <div class="product-image w-full mr-6">
                         <!-- IMG ZOOM-->
-                        <div class="img-zoom bg-white bg-cover rounded shadow px-4 py-4 h-106">
-                            <img :src="'/storage/'+images[indexImage].image_path" alt="img-zoom" class="rounded object-cover w-full h-full hover:opacity-75">
+                        <div v-if="images.length" class="img-zoom bg-white bg-cover rounded shadow px-4 py-4 h-106">
+                            <img :src="'/storage/'+images[indexImage].image_path" alt="img-zoom" class="rounded object-cover w-full opacity-75 h-full hover:opacity-100">
+                        </div>
+                        <div v-else class="img-zoom bg-white bg-cover rounded shadow px-4 py-4 h-106">
+                            <svg class="w-full h-full" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         </div>
                         <!-- THUMBNAIL-->
                         <div class="thumbnail flex items-center justify-between mt-4">
@@ -65,9 +68,14 @@
                                     <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                                 </svg>
                             </div>
-                            <div class="flex justify-start items-center">
+                            <div v-if="images.length" class="flex justify-start items-center">
                                 <div class="shadow rounded-lg bg-white w-20 h-auto px-1 py-1 mr-2" v-for="(image, i) in images" :key="i.id">
                                     <img @mouseover="switchImage(i)" :src="'/storage/'+image.image_path" alt="img-thumb" class="rounded object-cover w-full h-16 cursor-pointer hover:opacity-75">
+                                </div>
+                            </div>
+                            <div v-else class="flex justify-start items-center">
+                                <div class="shadow rounded-lg bg-white w-20 h-auto px-1 py-1 mr-2">
+                                    <img src="/img/img-empty.svg" alt="" class="w-full">
                                 </div>
                             </div>
                             <div>
@@ -266,9 +274,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex justify-start items-center">
-                                        <div class="shadow rounded-lg bg-white w-20 h-auto px-1 py-1 mr-2" v-for="(image, i) in images" :key="i.id">
-                                            <img @mouseover="switchImage(i)" :src="'/storage/'+image.image_path" alt="img-thumb" class="rounded object-cover w-full h-16 cursor-pointer hover:opacity-75">
+                                    <div v-if="images.length" class="flex justify-start items-center">
+                                        <div class="flex items-center justify-center shadow rounded-lg bg-white w-20 h-auto px-1 py-1 mr-2" v-for="(image, i) in images" :key="i.id">
+                                            <span @click="deleteImage(image.product_id, image.id)" class="shadow font-semibold rounded-full px-2 py-0 bg-gray-100 text-sm cursor-pointer text-red-500 absolute hover:bg-gray-200">
+                                                delete
+                                            </span>
+                                            <img :src="'/storage/'+image.image_path" alt="img-thumb" class="rounded object-cover w-full h-16">
                                         </div>
                                     </div>
                                 </div>
@@ -529,6 +540,29 @@ export default {
             setTimeout(() => {
                 this.status_msg = ''
             }, 5000)
+        },
+
+        deleteImage(product_id, image_id){
+            axios.get('/sanctum/csrf-cookie')
+            .then((response) => {
+                axios.post('/api/delete-file-storage/'+image_id)
+                .then(response => {
+                    axios.post('/api/delete-image-product/'+product_id+'/'+image_id)
+                    .then(res =>{
+                        console.log(res);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                    console.log(response);
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+            })
+            .catch(err => {
+
+            });
         },
 
         updateProduct(product_id) {
