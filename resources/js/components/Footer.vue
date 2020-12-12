@@ -1,7 +1,7 @@
 <template>
 <div>
     <footer>
-        <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 bg-gray-900 w-full mt-16 text-gray-300 gap-12 px-16 py-16  text-sm">
+        <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 bg-gray-900 w-full mt-16 text-gray-300 gap-12 px-20 py-16  text-sm">
             <div>
                 <div class="mb-2">
                     <p class="text-orange-400 font-bold">Kantor Pusat</p>
