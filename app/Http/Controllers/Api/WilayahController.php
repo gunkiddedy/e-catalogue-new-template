@@ -31,6 +31,13 @@ class WilayahController extends Controller
         return response()->json($kabupatens);
     }
 
+    public function getProvinsi()
+    {
+        $provinsis = Provinsi::get();
+
+        return response()->json($provinsis);
+    }
+
     public function getKabupaten(Request $request)
     {
         $kabupatens = Kabupaten::where('provinsi_id', $request->provinsi_id)->get();

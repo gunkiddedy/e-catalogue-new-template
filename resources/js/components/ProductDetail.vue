@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <!-- icon edit delete-->
-                            <div class="flex items-center justify-start" v-if="isloggedIn === 'true' && user_id == product.user_id">
+                            <div class="flex items-center justify-start" v-if="isloggedIn === 'true' && user_id == product.user_id && is_active === '1' && is_blacklist === '0'">
                                 <span class="text-blue-400 mr-2 cursor-pointer px-1 py-1 rounded-full hover:bg-gray-200" @click="modalEdit(product.id)">
                                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
@@ -467,6 +467,8 @@ export default {
 
             isloggedIn: 'false',
             user_id: '',
+            is_active: '',
+            is_blacklist: '',
         }
     },
 
@@ -479,6 +481,8 @@ export default {
     mounted() {
         this.isloggedIn = localStorage.getItem('isloggedIn');
         this.user_id = localStorage.getItem('user_id');
+        this.is_active = localStorage.getItem('is_active');
+        this.is_blacklist = localStorage.getItem('is_blacklist');
     },
 
     methods: {

@@ -69,6 +69,10 @@ Route::get('company-detail/{id}', 'Api\CompanyController@companyDetail');
 Route::get('getcategories', 'Api\CategoryController@getCategory');
 Route::get('get-subcategories-by-category-id', 'Api\CategoryController@getSubCategory');
 
+// get provinsi and kecamatan (dependent dropdown)
+Route::get('get-provinsis', 'Api\WilayahController@getProvinsi');
+Route::get('get-kabupatens-by-provinsi-id', 'Api\WilayahController@getKabupaten');
+
 // get all subcategories
 Route::get('get-subcategories', 'Api\CategoryController@getSubCategories');
 

@@ -98,7 +98,7 @@
                         <!-- END NAV TAB -->
 
                         <div>
-                            <div v-if="localStorage.isloggedIn === 'true'">
+                            <div v-if="localStorage.isloggedIn === 'true' && localStorage.is_active === '1' && localStorage.is_blacklist === '0'">
                                 <!-- BUTTON ADD PRODUCT & EDIT COMPANY PROFILE-->
                                 <button v-if="buttonAddProduct && user.id == localStorage.user_id" @click="toggleModal()" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
                                     <svg class="w-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -521,6 +521,8 @@ export default {
             localStorage: {
                 isloggedIn: 'false',
                 user_id: '',
+                is_active: '',
+                is_blacklist: '',
                 provinsi_id: '',
                 kabupaten_id: '',
                 kecamatan_id: '',
@@ -544,6 +546,8 @@ export default {
 
     mounted() {
         this.localStorage.isloggedIn = localStorage.getItem('isloggedIn');
+        this.localStorage.is_active = localStorage.getItem('is_active');
+        this.localStorage.is_blacklist = localStorage.getItem('is_blacklist');
         this.localStorage.user_id = localStorage.getItem('user_id');
         this.localStorage.provinsi_id = localStorage.getItem('provinsi_id');
         this.localStorage.kabupaten_id = localStorage.getItem('kabupaten_id');

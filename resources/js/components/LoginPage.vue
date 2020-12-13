@@ -2,13 +2,13 @@
 <div>
     <div class="flex" v-if="!isloading">
         <transition name="fade">
-            <div class="image-login w-3/5 h-screen">
+            <div class="image-login w-3/5 h-screen hidden lg:block">
                 <img src="/img/login-img.png" alt="" class="w-full h-full">
             </div>
         </transition>
 
         <transition name="fade">
-            <div class="login-form bg-gray-300 w-2/5 h-screen px-24 py-6">
+            <div class="login-form bg-gray-300 lg:w-2/5 md:w-full sm:w-full xs:w-full h-screen xl:px-24 lg:px-12 md:px-6 xs:px-3 sm:px-3 py-6 md:w-full">
 
                 <div class="w-full bg-gray-300 h-full ">
 
@@ -174,6 +174,8 @@ export default {
                             }
                             this.isLoging = false;
                             localStorage.setItem('isloggedIn', 'true');
+                            localStorage.setItem('is_active', response.data.user.is_active);
+                            localStorage.setItem('is_blacklist', response.data.user.is_blacklist);
                             localStorage.setItem('username', response.data.user.name);
                             localStorage.setItem('user_id', response.data.user.id);
                             localStorage.setItem('user_role', response.data.user.role);

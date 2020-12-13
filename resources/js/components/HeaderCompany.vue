@@ -146,6 +146,8 @@ export default {
               localStorage.setItem("isloggedIn", "false");
               localStorage.removeItem("username");
               localStorage.removeItem("user_id");
+              localStorage.removeItem("is_active");
+              localStorage.removeItem("is_blacklist");
               localStorage.removeItem("user_role");
               localStorage.removeItem("provinsi_id");
               localStorage.removeItem("kabupaten_id");
