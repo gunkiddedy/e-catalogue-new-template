@@ -251,7 +251,7 @@ export default {
     computed: {
         checkFullFillForm_1: {
             get: function(){
-                if(this.form.name !== '' && this.form.nib !== '' && this.form.phone !== '' && this.form.email !== '' && this.form.password !== '' && this.form.password.length >= 6){
+                if(this.form.name !== '' && this.form.nib !== '' && this.form.phone !== '' && this.form.phone.length >= 10 && this.form.email !== '' && this.form.password !== '' && this.form.password.length >= 6){
                     this.isFullFill_1 = true;
                 }else{
                     this.isFullFill_1 = false;
@@ -260,7 +260,7 @@ export default {
         },
         checkFullFillForm_2: {
             get: function(){
-                if(this.form.address !== '' && this.form.provinsi_id !== '' && this.form.kabupaten_id !== '' && this.form.zipcode !== '' && this.form.additional_info !== ''){
+                if(this.form.address !== '' && this.form.provinsi_id !== '' && this.form.kabupaten_id !== '' && this.form.zipcode !== '' && this.form.zipcode.length >= 3 && this.form.additional_info !== ''){
                     this.isFullFill_2 = true;
                 }else{
                     this.isFullFill_2 = false;
