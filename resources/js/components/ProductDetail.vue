@@ -742,7 +742,8 @@ export default {
                 this.isSuccess_nilai_tkdn = false;
             } else {
                 if(this.productForm.nilai_tkdn < 0 || this.productForm.nilai_tkdn > 100) {
-                    alert('nilai tkdn minimal 1, maksimal 100');
+                    // alert('nilai tkdn minimal 1, maksimal 100');
+                    this.$swal('Nilai TKDN Minimal 1, Maksimal 100');
                     this.productForm.nilai_tkdn = null;
                     this.isError_nilai_tkdn = true;
                     this.isSuccess_nilai_tkdn = false;

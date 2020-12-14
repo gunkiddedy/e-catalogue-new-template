@@ -711,6 +711,7 @@ export default {
             return moment(new Date(date)).format('DD/MM/YYYY');
         },
         loadCompanyDetail() {
+            this.loading = true;
             let current_page  = this.pagination.current_page;
             let pageNum = current_page ? current_page : 1;
             let company_id = this.id;

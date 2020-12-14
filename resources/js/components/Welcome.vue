@@ -989,16 +989,13 @@ export default {
       pagination: {},
     };
   },
-
   created() {
     this.loadProducts();
     this.getTotalProducts();
   },
-
   mounted() {
     // this.loadProducts();
   },
-
   computed: {
     getKeyword: {
       get: function () {
@@ -1041,7 +1038,6 @@ export default {
       },
     },
   },
-
   watch: {
     selected: {
       handler: function () {
@@ -1050,7 +1046,6 @@ export default {
       deep: true,
     },
   },
-
   methods: {
     loadProducts: function () {
       this.loading = true;

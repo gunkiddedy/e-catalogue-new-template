@@ -14,7 +14,7 @@
         <div class="w-full mx-16 relative hidden md:block">
           <div>
             <button
-            @click="searchProducts"
+              v-if="showSearchIcon"
               type="button"
               class="absolute right-0 mt-2 mr-2 text-gray-500"
             >
@@ -30,6 +30,20 @@
                 <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </button>
+            <button
+              v-if="showClearIcon"
+              @click="clearSearchProducts"
+              type="button"
+              class="absolute right-0 mt-2 mr-2 text-gray-500"
+            >              
+              <svg
+                  class="w-5" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
             <input
               v-model="keywords"
               @keypress.enter="searchProducts"
@@ -40,7 +54,7 @@
             />
           </div>
         </div>
-
+        <span hidden>{{ clearSearch }}</span>
         <div class="block lg:hidden">
             <button class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-800 hover:border-teal-500 appearance-none focus:outline-none">
                 <svg class="fill-current h-3 w-3 " viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -116,17 +130,34 @@ export default {
       showUserDropdown: false,
       user_id: "",
       keywords: "",
+      showClearIcon: false,
+      showSearchIcon: true,
     };
   },
-
+  computed: {
+    clearSearch: {
+      get: function(){
+        if(this.keywords.length > 0){
+          this.showClearIcon = true;
+          this.showSearchIcon = false;
+        }else{
+          this.showSearchIcon = true;
+          this.showClearIcon = false;
+        }
+      }
+    }
+  },
   mounted() {
     this.isloggedIn = localStorage.getItem("isloggedIn");
     this.companyName = localStorage.getItem("username");
     this.user_id = localStorage.getItem("user_id");
     this.user_role = localStorage.getItem("user_role");
   },
-
   methods: {
+    clearSearchProducts(){
+      this.keywords = '';
+      this.$store.dispatch("searchProducts/handleSearchProductsCompany", this.keywords);
+    },
     searchProducts() {
       this.$store.dispatch("searchProducts/handleSearchProductsCompany", this.keywords);
     },
