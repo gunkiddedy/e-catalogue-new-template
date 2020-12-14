@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="px-16 bg-gray-100">
-        <header-component></header-component>
+        <header-detail></header-detail>
         <!-- loader spin-->
         <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0">
             <svg class="w-12 h-12 mt-4 absolute" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
@@ -343,7 +343,7 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center justify-end">
-                                        <button :class="{'disabled': isUpdatingProduct}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateProduct(product.id)">
+                                        <button :class="{'disabled': isUpdatingProduct}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none hover:bg-blue-600" type="button" @click="updateProduct(product.id)">
                                             <svg v-if="isUpdatingProduct" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                             </svg>
                                             {{ isUpdatingProduct ? "Updating..." : "Update Product" }}
@@ -570,8 +570,9 @@ export default {
         },
 
         updateProduct(product_id) {
-            if(!this.validateForm())
+            if(!this.validateForm()){
                 return false
+            }
             this.isUpdatingProduct = true;
             axios.get('/sanctum/csrf-cookie')
             .then((response) => {
@@ -740,6 +741,12 @@ export default {
                 this.isError_nilai_tkdn = true;
                 this.isSuccess_nilai_tkdn = false;
             } else {
+                if(this.productForm.nilai_tkdn < 0 || this.productForm.nilai_tkdn > 100) {
+                    alert('nilai tkdn minimal 1, maksimal 100');
+                    this.productForm.nilai_tkdn = null;
+                    this.isError_nilai_tkdn = true;
+                    this.isSuccess_nilai_tkdn = false;
+                }
                 this.isSuccess_nilai_tkdn = true;
                 this.isError_nilai_tkdn = false;
             }

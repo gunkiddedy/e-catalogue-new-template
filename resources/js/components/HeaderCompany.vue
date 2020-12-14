@@ -10,7 +10,7 @@
           </span>
         </router-link>
 
-        <!-- SEARCH PRODUCTS-->
+        <!-- SEARCH PRODUCTS ON COMPANY PAGE-->
         <div class="w-full mx-16 relative hidden md:block">
           <div>
             <button
@@ -128,7 +128,7 @@ export default {
 
   methods: {
     searchProducts() {
-      this.$store.dispatch("searchProducts/handleSearchProducts", this.keywords);
+      this.$store.dispatch("searchProducts/handleSearchProductsCompany", this.keywords);
     },
     toggleDropdownUser() {
       this.showUserDropdown = !this.showUserDropdown;

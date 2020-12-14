@@ -2,6 +2,7 @@ import Welcome from './components/Welcome';
 import LoginPage from './components/LoginPage';
 import SignupPage from './components/SignupPage';
 import CompanyPage from './components/CompanyPage';
+import CompanyProfile from './components/CompanyProfile';
 import CompanyList from './components/CompanyList';
 import ProductList from './components/ProductList';
 import UserBlacklist from './components/UserBlacklist';
@@ -36,6 +37,12 @@ export default {
             path: '/company-page/:id',
             component: CompanyPage,
             name: 'company-page',
+            props: true
+        },
+        {
+            path: '/company-profile/:id',
+            component: CompanyProfile,
+            name: 'company-profile',
             props: true
         },
         {

@@ -47,7 +47,7 @@ Route::get('blacklist-request', 'Api\AdminController@blacklistRequest');
 // =============== MEMBER AREA==================================
 Route::post('add-product', 'Api\ProductController@addProduct');
 Route::post('update-product/{id}', 'Api\ProductController@updateProduct');
-Route::post('update-company-info/{id}', 'Api\CompanyController@updateCompanyProfile');
+Route::post('update-company-profile/{id}', 'Api\CompanyController@updateCompanyProfile');
 Route::post('delete-image-product/{id}/{img_path}', 'Api\ProductController@deleteImageProduct');
 Route::post('delete-file-storage/{id}', 'Api\ProductController@deleteFileStorage');
 // ================END MEMBER ==================================

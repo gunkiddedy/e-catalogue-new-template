@@ -40,9 +40,11 @@
             </button>
           </div>
 
+          <!-- disable before selected provinsi-->
           <div class="px-6 mb-3 mt-3">
             <p class="py-2 text-gray-800 font-semibold leading-tight">Kabupaten</p>
             <button
+              :disabled="disableKabupatenButton"
               @click="kabupatenModal()"
               type="button"
               class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left"
@@ -89,6 +91,7 @@
           <div class="px-6 mb-8 mt-3">
             <p class="py-2 text-gray-800 font-semibold leading-tight">Sub Category</p>
             <button
+              :disabled="disableSubCatButton"
               @click="subcategoryModal()"
               type="button"
               class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left"
@@ -955,6 +958,9 @@ export default {
       isSelectingCatId: false,
       isSelectingSubCatId: false,
 
+      disableKabupatenButton: true,
+      disableSubCatButton: true,
+
       provinsiTerpilih: "",
       categoryTerpilih: "",
 
@@ -1089,6 +1095,7 @@ export default {
         this.showModalSidebar = false;
         this.showModalBackground = false;
         this.isSelectingProvId = false;
+        this.disableKabupatenButton = true;
 
         this.selectingProvinsi = [];
         this.selected.selectedProvinsi = [];
@@ -1122,6 +1129,7 @@ export default {
         this.showModalSidebar = false;
         this.showModalBackground = false;
         this.isSelectingCatId = false;
+        this.disableSubCatButton = true;
 
         this.selectingCategory = [];
         this.selected.selectedCategory = [];
@@ -1160,6 +1168,7 @@ export default {
             this.showModalBackground = false;
             this.selected.selectedKabupaten = [];
             this.selectingKabupaten = [];
+            this.disableKabupatenButton = false;
           }, 1500);
           // console.log(this.selectedProvinsi);
         })
@@ -1200,6 +1209,7 @@ export default {
             this.containerProduct = true;
             this.showModalSidebar = false;
             this.showModalBackground = false;
+            this.disableSubCatButton = false;
             this.selected.selectedSubCategory = [];
             this.selectingSubCategory = [];
           }, 1500);

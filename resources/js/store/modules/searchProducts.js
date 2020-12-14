@@ -1,22 +1,32 @@
 const state = {
-    keyword: ''
+    keyword: '',
+    keywordCompany: '',
 };
 
 const getters = {
     get_keyword: (state) => {
         return state.keyword
+    },
+    get_keywordCompany: (state) => {
+        return state.keywordCompany
     }
 };
 
 const mutations = {
     SEARCH_PRODUCTS: (state, payload) => {
        state.keyword = payload;
+    },
+    SEARCH_PRODUCTS_COMPANY: (state, payload) => {
+        state.keywordCompany = payload;
     }
 };
 
 const actions = {
     handleSearchProducts: (context, payload) => {
         context.commit('SEARCH_PRODUCTS', payload);
+    },
+    handleSearchProductsCompany: (context, payload) => {
+        context.commit('SEARCH_PRODUCTS_COMPANY', payload);
     }
 };
 

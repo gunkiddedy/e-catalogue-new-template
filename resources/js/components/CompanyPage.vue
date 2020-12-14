@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="px-16 bg-gray-100">
-        <header-component></header-component>
+        <header-company></header-company>
         <div class="flex px-4 py-4 mt-4">
             <transition name="fade">
                 <div class="bg-white h-full w-64 rounded-lg mr-6 shadow">
@@ -79,7 +79,7 @@
 
             <transition name="fade">
                 <div class="w-full">
-
+                    {{ getKeyword }}
                     <div class="flex justify-between items-center border-b leading-loose">
 
                         <!-- NAV TAB -->
@@ -107,20 +107,20 @@
                                     Add New Product
                                 </button>
 
-                                <button v-if="buttonEditCompany && user.id == localStorage.user_id" @click="modalEditInfo(user.id)" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
+                                <button v-if="buttonEditCompany && user.id == localStorage.user_id" @click="modalEditProfile(user.id)" type="button" class="hover:bg-blue-600 bg-blue-500 text-gray-100 flex leading-tight text-sm py-2 px-4 border rounded border-gray-400">
                                     <svg class="w-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
                                     Edit Company Profile
                                 </button>
                             </div>
 
-                            <!-- MODAL EDIT INFO-->
-                            <div v-if="showModalInfo" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center items-center flex">
+                            <!-- MODAL EDIT PROFILE-->
+                            <div v-if="showModalProfile" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center items-center flex">
                                 <div class="relative max-w-4xl w-full">
                                     <div class="bg-white border-0 rounded-lg shadow-lg relative px-6 py-4">
                                         <div class="flex justify-end absolute right-0 top-0 -mt-5 -mr-5">
                                             <!-- CLOSE BUTTON CIRCLE-->
                                             <div class="flex items-center justify-center">
-                                                <button class="bg-red-500 relative w-12 h-12 rounded-full p-1 border-4 border-white text-white" @click="toggleModalInfo()">
+                                                <button class="bg-red-500 relative w-12 h-12 rounded-full p-1 border-4 border-white text-white" @click="toggleModalProfile()">
                                                     <svg class="w-6 mx-auto" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                                     </svg>
@@ -130,22 +130,70 @@
 
                                         <div class="flex items-center justify-start mb-2">
                                             <h3 class="text-lg leading-tight font-semibold text-gray-400">
-                                                Edit Company Profil <span class="ml-4 text-sm font-sf-pro" :class="{'text-green-400': status, 'text-red-400': !status }">{{ status_msg }}</span>
+                                                Edit Company Profile <span class="ml-4 text-sm font-sf-pro" :class="{'text-green-400': status, 'text-red-400': !status }">{{ status_msg }}</span>
                                             </h3>
                                         </div>
 
                                         <form>
                                         <div class="w-full py-2">
+                                            <div class="product-name mb-3 flex items-center justify-between">
+                                                <input id="additional_info" v-model="user.name" class="w-full rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mr-4">
+                                                <input v-model="user.zipcode" type="text" placeholder="Zip Code" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full">
+
+                                            </div>
+                                            <div class="product-name mb-3 flex items-center justify-between">
+                                                <input placeholder="NIB" id="additional_info" v-model="user.nib" class="w-full rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mr-4">
+                                                <input id="additional_info" v-model="user.phone" class="w-full rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                            </div>
+                                            <div class="product-name mb-3 flex items-center justify-between">
+                                                <input placeholder="Email" id="additional_info" v-model="user.email" class="w-full rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mr-4">
+                                                <input placeholder="Address" id="additional_info" v-model="user.address" class="w-full rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                            </div>
+                                            <div class="mb-3 flex items-center relative justify-between">
+                                                <select
+                                                v-model="user.provinsi_id"
+                                                @change="getKabupatens"
+                                                class="block appearance-none w-full border border-gray-300 px-4 py-3 rounded-lg text-gray-500 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mr-4"
+                                                >
+                                                    <option class="text-gray-700" :value="selectedValue">
+                                                        -Select Provinsi-
+                                                    </option>
+                                                    <option
+                                                        class="text-gray-700"
+                                                        v-for="(prop, i) in provinsis"
+                                                        :value="prop.id"
+                                                        :key="i"
+                                                    >
+                                                        {{ prop.name }}
+                                                    </option>
+                                                </select>
+                                                <select
+                                                v-model="user.kabupaten_id"
+                                                class="block appearance-none w-full border border-gray-300 px-4 py-3 rounded-lg text-gray-500 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                                >
+                                                    <option class="text-gray-700" :value="selectedValue">
+                                                        -Select Kabupaten-
+                                                    </option>
+                                                    <option
+                                                        class="text-gray-700"
+                                                        v-for="(kab, i) in kabupatens"
+                                                        :value="kab.id"
+                                                        :key="i"
+                                                    >
+                                                        {{ kab.name }}
+                                                    </option>
+                                                </select>
+                                            </div>
                                             <div class="product-name mb-3">
-                                                <textarea id="additional_info" v-model="additional_info" class="w-full h-56 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
+                                                <textarea id="additional_info" v-model="user.additional_info" class="w-full h-30 rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
                                             </div>
                                             <div class="flex items-center justify-end">
-                                                <button :class="{'disabled': isUpdatingInfo}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateCompanyInfo(user.id)">
-                                                    <svg v-if="isUpdatingInfo" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <button :class="{'disabled': isUpdatingProfile}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="updateCompanyProfile(user.id)">
+                                                    <svg v-if="isUpdatingProfile" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                                         <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                                     </svg>
-                                                    {{ isUpdatingInfo ? "Updating..." : "Update info" }}
+                                                    {{ isUpdatingProfile ? "Updating..." : "Update Profile" }}
                                                 </button>
                                             </div>
                                         </div>
@@ -334,7 +382,7 @@
                                                     </div>
 
                                                     <div class="flex items-center justify-end">
-                                                        <button :class="{'disabled': isSubmittingProduct}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none" type="button" @click="addProduct">
+                                                        <button :class="{'disabled': isSubmittingProduct}" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none hover:bg-blue-600" type="button" @click="addProduct">
                                                             <svg v-if="isSubmittingProduct" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -350,7 +398,7 @@
                             </div>
                             <!-- DIV AFTER MODAL SHOW UP -->
                             <div v-if="showModal" class="opacity-25 fixed inset-0 z-30 bg-black"></div>
-                            <div v-if="showModalInfo" class="opacity-25 fixed inset-0 z-30 bg-black"></div>
+                            <div v-if="showModalProfile" class="opacity-25 fixed inset-0 z-30 bg-black"></div>
                         </div>
                     </div>
 
@@ -466,17 +514,12 @@ export default {
 
             openTab: 2,
             showModal: false,
-            showModalInfo: false,
+            showModalProfile: false,
             buttonAddProduct: true,
             buttonEditCompany: false,
 
             disabled_input_SNI: true,
             disabled_input_TKDN: true,
-
-            // message_sni: '',
-            // message_nilai_tkdn: '',
-            // message_nomor_sertifikat_tkdn: '',
-            // message_nomor_laporan_tkdn: '',
 
             isSuccess_nomor_sni: false,
             isError_nomor_sni: true,
@@ -492,7 +535,7 @@ export default {
             dialogImageUrl: '',
             dialogVisible: false,
             isSubmittingProduct: false,
-            isUpdatingInfo: false,
+            isUpdatingProfile: false,
             status_msg: '',
             status: '',
 
@@ -528,22 +571,50 @@ export default {
                 kecamatan_id: '',
                 company_name: '',
             },
+            user: {
+                name: '',
+                nib: '',
+                phone: '',
+                email: '',
+                address: '',
+                provinsi_id: '',
+                kabupaten_id: '',
+                zipcode: '',
+                additional_info: '',
+                avatar: '',
+            },
+            provinsis: [],
+            kabupatens: [],
+            selectedValue: [],
 
-            additional_info: '',
 
             pagination: {},
+            selected: {
+                keywords: ''
+            }
         }
     },
-
     // page change by props id (trigered by user click on dropdown profile)
     watch: {
         id: {
             handler: function () {
                 this.loadCompanyDetail();
             }
-        }
+        },
+        selected: {
+            handler: function () {
+                this.loadCompanyDetail();
+            },
+            deep: true,
+        },
     },
-
+    computed: {
+        getKeyword: {
+          get: function () {
+            this.selected.keywords = this.$store.getters["searchProducts/get_keywordCompany"];
+          },
+        }, 
+    },
     mounted() {
         this.localStorage.isloggedIn = localStorage.getItem('isloggedIn');
         this.localStorage.is_active = localStorage.getItem('is_active');
@@ -554,44 +625,69 @@ export default {
         this.localStorage.kecamatan_id = localStorage.getItem('kecamatan_id');
         this.localStorage.company_name = localStorage.getItem('username');
     },
-
     created() {
         this.loadCategory();
         this.loadCompanyDetail();
+        this.getProvinsis();
+        this.getKabupatens();
     },
-
     methods: {
-
-        modalEditInfo(user_id) {
+        getProvinsis() {
+            axios.get("/api/get-provinsis")
+            .then((response) => {
+                this.provinsis = response.data;
+                this.selectedValue = [];
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+        getKabupatens() {
+            axios.get("/api/get-kabupatens-by-provinsi-id", {
+                params: {
+                    provinsi_id: this.user.provinsi_id,
+                },
+            }).then((response) => {
+                this.kabupatens = response.data;
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
+        modalEditProfile(user_id) {
             let url = '/api/company-detail/' + user_id;
             axios.get('/sanctum/csrf-cookie')
                 .then(response => {
                     axios.get(url)
                         .then((response) => {
-                            this.additional_info = response.data.user.additional_info;
+                            this.user.name = response.data.user.name;
+                            this.user.nib = response.data.user.nib;
+                            this.user.phone = response.data.user.phone;
+                            this.user.email = response.data.user.email;
+                            this.user.address = response.data.user.address;
+                            this.user.provinsi_id = response.data.user.provinsi_id;
+                            this.user.kabupaten_id = response.data.user.kabupaten_id;
+                            this.user.zipcode = response.data.user.zipcode;
+                            this.user.additional_info = response.data.user.additional_info;
                             console.log(response.data);
                         })
                         .catch(error => {
                             console.log(error);
                         });
-                    this.showModalInfo = !this.showModalInfo;
+                    this.showModalProfile = !this.showModalProfile;
                 })
                 .catch(error => {
                     console.log(error);
                 });
         },
-
-        updateCompanyInfo(user_id){
-            this.isUpdatingInfo = true;
+        updateCompanyProfile(user_id){
+            this.isUpdatingProfile = true;
             axios.get('/sanctum/csrf-cookie')
                 .then(response => {
-                    axios.post('/api/update-company-info/'+user_id, {
-                        additional_info: this.additional_info})
-                    .then((response) => {
-                        this.isUpdatingInfo = false;
-                        this.showModalInfo = !this.showModalInfo;
-                        this.user.additional_info = this.additional_info;
-                        console.log(response);
+                    axios.post('/api/update-company-profile/'+user_id, this.user)
+                    .then((response2) => {
+                        this.isUpdatingProfile = false;
+                        this.showModalProfile = !this.showModalProfile;
+                        console.log(response2);
                     })
                     .catch(error => {
                         console.log(error);
@@ -601,17 +697,15 @@ export default {
                     console.log(error);
                 });
         },
-
         dateFormat(date) {
             return moment(new Date(date)).format('DD/MM/YYYY');
         },
-
         loadCompanyDetail() {
             let current_page  = this.pagination.current_page;
             let pageNum = current_page ? current_page : 1;
             let company_id = this.id;
-            let url = '/api/company-detail/' + company_id + '?page=' + pageNum;
-            axios.get(url)
+            // let url = '/api/company-detail/' + company_id + '?page=' + pageNum;
+            axios.get(`/api/company-detail/${company_id}?page=${pageNum}`, {params: this.selected,})
                 .then((response) => {
                     this.loading = false;
                     this.user = response.data.user;
@@ -619,9 +713,7 @@ export default {
                     this.kabupaten = response.data.kabupaten;
                     this.kecamatan = response.data.kecamatan;
                     this.products = response.data.products.data;
-
                     this.pagination = response.data.products;
-
                     if(response.data.products.length == 0){
                         this.product_not_found = 'product not found';
                     }
@@ -631,25 +723,20 @@ export default {
                     console.log(error);
                 });
         },
-
         updateImageList(file) {
             this.imageList.push(file.raw);
             console.log(this.imageList);
         },
-
         handleRemove(file) {
             this.imageList.splice(file, 1);
         },
-
         handlePreview(file) {
             this.dialogImageUrl = file.url
             this.dialogVisible = true
         },
-
         handleExceed(files, imageList) {
             this.$message.warning(`The limit is 5, you have selected ${files.length} files`);
         },
-
         addProduct(e) {
             e.preventDefault()
             if (!this.validateForm()) {
@@ -740,7 +827,6 @@ export default {
                 console.log(err)
             });
         },
-
         validateForm() {
             if (this.imageList.length < 0) {
                 this.status = false
@@ -774,14 +860,12 @@ export default {
             }
             return true
         },
-
         showNotification(message) {
             this.status_msg = message
             setTimeout(() => {
                 this.status_msg = ''
             }, 2000)
         },
-
         toggleTabs(tabNumber) {
             this.openTab = tabNumber;
             if (this.openTab == 2) {
@@ -795,11 +879,9 @@ export default {
         toggleModal() {
             this.showModal = !this.showModal;
         },
-
-        toggleModalInfo(){
-            this.showModalInfo = !this.showModalInfo;
+        toggleModalProfile(){
+            this.showModalProfile = !this.showModalProfile;
         },
-
         loadCategory() {
             axios.get('/api/getcategories')
                 .then((response) => {
@@ -809,7 +891,6 @@ export default {
                     console.log(error);
                 });
         },
-
         loadSubCategory() {
             axios.get('/api/get-subcategories-by-category-id', {
                     params: {
@@ -823,7 +904,6 @@ export default {
                     console.log(error);
                 });
         },
-
         checkHsCode: _.debounce(function () {
             let regex = /^\d+$/;
             let value = regex.test(this.hs_code);
@@ -837,7 +917,6 @@ export default {
             }
             return
         }, 1000),
-
         checkNilaiTKDN: _.debounce(function () {
             let regex = /\d{2}(\.\d{2})?$/;
             let value = regex.test(this.nilai_tkdn);
@@ -846,12 +925,17 @@ export default {
                 this.isError_nilai_tkdn = true;
                 this.isSuccess_nilai_tkdn = false;
             } else {
+                if(this.nilai_tkdn < 0 || this.nilai_tkdn > 100) {
+                    alert('nilai tkdn minimal 1, maksimal 100');
+                    this.nilai_tkdn = null;
+                    this.isError_nilai_tkdn = true;
+                    this.isSuccess_nilai_tkdn = false;
+                }
                 this.isSuccess_nilai_tkdn = true;
                 this.isError_nilai_tkdn = false;
             }
             return
         }, 2000),
-
         checkSertiTKDN: _.debounce(function (check_value) {
             let searchRegExp = /[^\w\.\/\:\,\-]+/;
             let valid = check_value.replace(searchRegExp, '');
@@ -867,7 +951,6 @@ export default {
             }
             return
         }, 2000),
-
         checkLapTKDN: _.debounce(function (check_value) {
 
             let searchRegExp = /[^\w\.\/\:\,\-]+/;
@@ -885,7 +968,6 @@ export default {
 
             return
         }, 2000),
-
         checkSNI: _.debounce(function (check_value) {
             let searchRegExp = /[^\w\.\/\:\,\-]+/;
             let valid = check_value.replace(searchRegExp, '');
@@ -902,7 +984,6 @@ export default {
             }
             return
         }, 2000),
-
         toggleInputSNI() {
             this.disabled_input_SNI = !this.disabled_input_SNI;
             if (this.disabled_input_SNI === true) {
@@ -910,7 +991,6 @@ export default {
             }
             // return
         },
-
         toggleInputTKDN() {
             this.disabled_input_TKDN = !this.disabled_input_TKDN;
             if (this.disabled_input_TKDN === true) {

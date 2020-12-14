@@ -27,6 +27,7 @@
         "moment": "^2.29.1",
         "tailwindcss": "^1.9.4",
         "vue-router": "^3.4.7",
+        "vue-sweetalert2": "^4.1.1",
         "vuex": "^3.5.1"
     }
 }
