@@ -152,7 +152,7 @@
                                             <div class="mb-3 flex items-center relative justify-between">
                                                 <select
                                                 v-model="user.provinsi_id"
-                                                @change="getKabupatens"
+                                                @change="getKabupatenById"
                                                 class="block appearance-none w-full border border-gray-300 px-4 py-3 rounded-lg text-gray-500 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mr-4"
                                                 >
                                                     <option class="text-gray-700" :value="selectedValue">
@@ -169,6 +169,7 @@
                                                 </select>
                                                 <select
                                                 v-model="user.kabupaten_id"
+                                                @change="getKabupatens"
                                                 class="block appearance-none w-full border border-gray-300 px-4 py-3 rounded-lg text-gray-500 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                                 >
                                                     <option class="text-gray-700" :value="selectedValue">
@@ -178,6 +179,7 @@
                                                         class="text-gray-700"
                                                         v-for="(kab, i) in kabupatens"
                                                         :value="kab.id"
+                                                        :selected="user.kabupaten_id == kab.id"
                                                         :key="i"
                                                     >
                                                         {{ kab.name }}
@@ -642,12 +644,20 @@ export default {
                 console.log(error);
             });
         },
-        getKabupatens() {
+        getKabupatenById() {
             axios.get("/api/get-kabupatens-by-provinsi-id", {
                 params: {
                     provinsi_id: this.user.provinsi_id,
                 },
             }).then((response) => {
+                this.kabupatens = response.data;
+            }).catch((error) => {
+                console.log(error);
+            });
+        },
+        getKabupatens() {
+            axios.get("/api/get-kabupatens")
+            .then((response) => {
                 this.kabupatens = response.data;
             }).catch((error) => {
                 console.log(error);
