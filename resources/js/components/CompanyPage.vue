@@ -404,6 +404,24 @@
                         </div>
                     </div>
 
+                    <!-- loader spin-->
+                    <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0">
+                        <svg class="w-12 absolute" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                            <circle cx="15" cy="15" r="15">
+                                <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+                                <animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="105" cy="15" r="15">
+                                <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
+                                <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
+                            </circle>
+                        </svg>
+                    </div>
+
                     <!-- PRODUCT CARD -->
                     <div class="mt-8 grid grid-cols-5 gap-4" :class="{'hidden': openTab !== 2, 'block': openTab === 2}">
                         <div class="text-gray-700 rounded-lg bg-white shadow-md h-72 relative" v-for="product in products" :key="product.id">
@@ -472,24 +490,6 @@
                                 </p>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- loader spin-->
-                    <div v-if="loading" class="z-30 flex justify-around relative opacity-25 bg-black inset-0">
-                        <svg class="w-12 absolute" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                            <circle cx="15" cy="15" r="15">
-                                <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
-                                <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
-                            </circle>
-                            <circle cx="60" cy="15" r="9" fill-opacity="0.3">
-                                <animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite" />
-                                <animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite" />
-                            </circle>
-                            <circle cx="105" cy="15" r="15">
-                                <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite" />
-                                <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite" />
-                            </circle>
-                        </svg>
                     </div>
 
                     <div class="flex justify-around items-center mt-16" :class="{'hidden': openTab !== 2, 'block': openTab === 2}">
