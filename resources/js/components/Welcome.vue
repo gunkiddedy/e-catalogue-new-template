@@ -24,7 +24,8 @@
               id="btn-prop"
               class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left"
             >
-              <P class="text-sm text-gray-700">Show All</P>
+              <p class="text-xs text-gray-700" v-if="!provinsiTerpilih">Show All</p>
+              <p class="text-xs text-gray-700">{{ provinsiTerpilih }}</p>
               <svg
                 class="w-4"
                 fill="currentColor"
@@ -47,9 +48,11 @@
               :disabled="disableKabupatenButton"
               @click="kabupatenModal()"
               type="button"
+              :class="{'bg-gray-100' : disableKabupatenButton}"
               class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left"
             >
-              <P class="text-sm text-gray-700">Show All</P>
+              <p class="text-xs text-gray-700" v-if="!kabupatenTerpilih">Show All</p>
+              <p class="text-xs text-gray-700">{{ kabupatenTerpilih }}</p>
               <svg
                 class="w-4"
                 fill="currentColor"
@@ -72,7 +75,8 @@
               type="button"
               class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left"
             >
-              <P class="text-sm text-gray-700">Show All</P>
+              <p class="text-xs text-gray-700" v-if="!categoryTerpilih">Show All</p>
+              <p class="text-xs text-gray-700">{{ categoryTerpilih }}</p>
               <svg
                 class="w-4"
                 fill="currentColor"
@@ -94,9 +98,11 @@
               :disabled="disableSubCatButton"
               @click="subcategoryModal()"
               type="button"
+              :class="{'bg-gray-100' : disableSubCatButton}"
               class="w-full flex justify-between leading-tight py-2 px-4 border rounded shadow-xs border-gray-400 text-left"
             >
-              <P class="text-sm text-gray-700">Show All</P>
+              <p class="text-xs text-gray-700" v-if="!subCategoryTerpilih">Show All</p>
+              <p class="text-xs text-gray-700">{{ subCategoryTerpilih }}</p>
               <svg
                 class="w-4"
                 fill="currentColor"
@@ -293,7 +299,7 @@
               <!--<span>{{ selectingProvinsi }}</span>-->
               <div class="col-span-2">
                 <div class="flex justify-end items-center">
-                  <button
+                  <!--<button
                     @click="applyFilterProvinsi"
                     class="hover:bg-blue-600 flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none"
                     type="button"
@@ -320,6 +326,9 @@
                       ></path>
                     </svg>
                     {{ isFilteringProvinsi ? "Filtering..." : "Apply filter" }}
+                  </button>-->
+                  <button @click="closeProvModal" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:bg-blue-600 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none">
+                    Batal
                   </button>
                   <button
                     @click="resetFilterProvinsi"
@@ -383,7 +392,7 @@
                       v-for="(kab, i) in kabupatens"
                       :key="i"
                       class="text-xs text-gray-500 hover:text-gray-600 font-semibold hover:bg-gray-100 cursor-pointer mt-1"
-                      @click="handleSelectingKabupaten(kab.id)"
+                      @click="handleSelectingKabupaten(kab.id, kab.name)"
                     >
                       <span class="text-pink-400" v-if="isSelectingKabId === kab.id">
                         {{ kab.name }}
@@ -396,7 +405,7 @@
                 </div>
 
                 <div class="flex content-end my-4">
-                  <button
+                  <!--<button
                     @click="applyFilterKabupaten"
                     class="hover:bg-blue-600 flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none"
                     type="button"
@@ -423,6 +432,9 @@
                       ></path>
                     </svg>
                     {{ isFilteringKabupaten ? "Filtering..." : "Apply" }}
+                  </button>-->
+                  <button @click="closeKabModal" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:bg-blue-600 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none">
+                    Batal
                   </button>
                   <button
                     @click="resetFilterKabupaten"
@@ -494,7 +506,7 @@
                 </div>
 
                 <div class="flex content-end my-4">
-                  <button
+                  <!--<button
                     @click="applyFilterCategory"
                     class="hover:bg-blue-600 flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none"
                     type="button"
@@ -521,6 +533,9 @@
                       ></path>
                     </svg>
                     {{ isFilteringCategory ? "Filtering..." : "Apply" }}
+                  </button>-->
+                  <button @click="closeCatModal" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:bg-blue-600 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none">
+                    Batal
                   </button>
                   <button
                     @click="resetFilterCategory"
@@ -582,7 +597,7 @@
                       v-for="(subcat, i) in subcategories"
                       :key="i"
                       class="text-xs text-gray-500 hover:text-gray-600 font-semibold hover:bg-gray-100 cursor-pointer mt-1"
-                      @click="handleSelectingSubCategory(subcat.id)"
+                      @click="handleSelectingSubCategory(subcat.id, subcat.name)"
                     >
                       <span
                         class="text-pink-400"
@@ -598,7 +613,7 @@
                 </div>
 
                 <div class="flex content-end my-4">
-                  <button
+                  <!--<button
                     @click="applyFilterSubCategory"
                     class="hover:bg-blue-600 flex items-center text-white border border-blue-500 bg-blue-500 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none"
                     type="button"
@@ -625,6 +640,9 @@
                       ></path>
                     </svg>
                     {{ isFilteringSubCategory ? "Filtering..." : "Apply" }}
+                  </button>-->
+                  <button @click="closeSubModal" class="flex items-center text-white border border-blue-500 bg-blue-500 hover:bg-blue-600 hover:text-gray-100 font-bold text-sm px-6 py-1 rounded focus:outline-none">
+                    Batal
                   </button>
                   <button
                     @click="resetFilterSubCategory"
@@ -673,7 +691,9 @@
             <p class="leading-tight text-sm" v-else>
               Menampilkan {{ currentProducts }} produk dari
               {{ "+" + totalProducts }} produk yang ada di
-              <span class="font-bold">Katalogi {{ selected.keywords }}</span>
+              <span class="font-bold">Katalogi</span>
+              <!--<span>{{ selectingProvinsi }}</span>
+              <span>{{ selected.selectedProvinsi }}</span>-->
             </p>
             <!--<input type="hidden" name="" :value="getKeyword">-->
             <span hidden>{{ getKeyword }}</span>
@@ -691,15 +711,6 @@
                   id="category_id"
                   class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded leading-tight focus:outline-none"
                 >
-                  <!--<option class="text-gray-700" :value="sesuai" :selected="[]">
-                            Paling sesuai
-                        </option>
-                        <option class="text-gray-700" :value="newest">
-                            Paling terbaru
-                        </option>
-                        <option class="text-gray-700" :value="minprice">
-                            Harga tertinggi
-                        </option>-->
                   <option class="text-gray-700" :value="selectedSesuai">
                     Paling sesuai
                   </option>
@@ -726,15 +737,6 @@
                   </svg>
                 </div>
               </div>
-              <!--<p>Paling sesuai</p>
-                <svg class="w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    fill-rule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </button>-->
             </div>
           </div>
           <!-- loader spin-->
@@ -962,7 +964,9 @@ export default {
       disableSubCatButton: true,
 
       provinsiTerpilih: "",
+      kabupatenTerpilih: "",
       categoryTerpilih: "",
+      subCategoryTerpilih: "",
 
       sortby: [],
       selectedSesuai: [],
@@ -1047,6 +1051,30 @@ export default {
     },
   },
   methods: {
+    closeKabModal(){
+      this.showModalKab = !this.showModalKab;
+      this.containerProduct = true;
+      this.showModalSidebar = false;
+      this.showModalBackground = false;
+    },
+    closeProvModal(){
+      this.showModalProv = !this.showModalProv;
+      this.containerProduct = true;
+      this.showModalSidebar = false;
+      this.showModalBackground = false;
+    },
+    closeCatModal(){
+      this.showModalCat = !this.showModalCat;
+      this.containerProduct = true;
+      this.showModalSidebar = false;
+      this.showModalBackground = false;
+    },
+    closeSubModal(){
+      this.showModalSubCat = !this.showModalSubCat;
+      this.containerProduct = true;
+      this.showModalSidebar = false;
+      this.showModalBackground = false;
+    },
     loadProducts: function () {
       this.loading = true;
       let current_page = this.pagination.current_page;
@@ -1068,7 +1096,6 @@ export default {
           console.log(error);
         });
     },
-
     getTotalProducts() {
       axios
         .get("/api/total-products")
@@ -1080,7 +1107,6 @@ export default {
           console.log(err);
         });
     },
-
     resetFilterProvinsi() {
       this.isResetingProvinsi = true;
       setTimeout(() => {
@@ -1097,9 +1123,9 @@ export default {
         this.provinsiTerpilih = "";
         this.selectingKabupaten = [];
         this.selected.selectedKabupaten = [];
-      }, 1500);
+        this.kabupatenTerpilih = "";
+      }, 150);
     },
-
     resetFilterKabupaten() {
       this.isResetingKabupaten = true;
       setTimeout(() => {
@@ -1112,9 +1138,9 @@ export default {
 
         this.selectingKabupaten = [];
         this.selected.selectedKabupaten = [];
-      }, 1500);
+        this.kabupatenTerpilih = '';
+      }, 150);
     },
-
     resetFilterCategory() {
       this.isResetingCategory = true;
       setTimeout(() => {
@@ -1131,9 +1157,9 @@ export default {
         this.categoryTerpilih = "";
         this.selectingSubCategory = [];
         this.selected.selectedSubCategory = [];
-      }, 1500);
+        this.subCategoryTerpilih = "";
+      }, 150);
     },
-
     resetFilterSubCategory() {
       this.isResetingSubCategory = true;
       setTimeout(() => {
@@ -1146,136 +1172,163 @@ export default {
 
         this.selectingSubCategory = [];
         this.selected.selectedSubCategory = [];
-      }, 1500);
+        this.subCategoryTerpilih = "";
+      }, 150);
     },
-
-    applyFilterProvinsi() {
-      this.isFilteringProvinsi = true;
-      axios
-        .get("/sanctum/csrf-cookie")
-        .then((response) => {
-          this.selected.selectedProvinsi = this.selectingProvinsi;
-          setTimeout(() => {
-            this.isFilteringProvinsi = false;
-            this.showModalProv = false;
-            this.containerProduct = true;
-            this.showModalSidebar = false;
-            this.showModalBackground = false;
-            this.selected.selectedKabupaten = [];
-            this.selectingKabupaten = [];
-            this.disableKabupatenButton = false;
-          }, 1500);
-          // console.log(this.selectedProvinsi);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-
-    applyFilterKabupaten() {
-      this.isFilteringKabupaten = true;
-      axios
-        .get("/sanctum/csrf-cookie")
-        .then((response) => {
-          this.selected.selectedKabupaten = this.selectingKabupaten;
-          setTimeout(() => {
-            this.isFilteringKabupaten = false;
-            this.showModalKab = false;
-            this.containerProduct = true;
-            this.showModalSidebar = false;
-            this.showModalBackground = false;
-          }, 1500);
-          // console.log(this.selectedProvinsi);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-
-    applyFilterCategory() {
-      this.isFilteringCategory = true;
-      axios
-        .get("/sanctum/csrf-cookie")
-        .then((response) => {
-          this.selected.selectedCategory = this.selectingCategory;
-          setTimeout(() => {
-            this.isFilteringCategory = false;
-            this.showModalCat = false;
-            this.containerProduct = true;
-            this.showModalSidebar = false;
-            this.showModalBackground = false;
-            this.disableSubCatButton = false;
-            this.selected.selectedSubCategory = [];
-            this.selectingSubCategory = [];
-          }, 1500);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-
-    applyFilterSubCategory() {
-      this.isFilteringSubCategory = true;
-      axios
-        .get("/sanctum/csrf-cookie")
-        .then((response) => {
-          this.selected.selectedSubCategory = this.selectingSubCategory;
-          setTimeout(() => {
-            this.isFilteringSubCategory = false;
-            this.showModalSubCat = false;
-            this.containerProduct = true;
-            this.showModalSidebar = false;
-            this.showModalBackground = false;
-          }, 1500);
-          // console.log(this.selectedProvinsi);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
-
+    // applyFilterProvinsi() {
+    //   this.isFilteringProvinsi = true;
+    //   axios
+    //     .get("/sanctum/csrf-cookie")
+    //     .then((response) => {
+    //       this.selected.selectedProvinsi = this.selectingProvinsi;
+    //       setTimeout(() => {
+    //         this.isFilteringProvinsi = false;
+    //         this.showModalProv = false;
+    //         this.containerProduct = true;
+    //         this.showModalSidebar = false;
+    //         this.showModalBackground = false;
+    //         this.selected.selectedKabupaten = [];
+    //         this.selectingKabupaten = [];
+    //         this.disableKabupatenButton = false;
+    //       }, 1500);
+    //       // console.log(this.selectedProvinsi);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
+    // applyFilterKabupaten() {
+    //   this.isFilteringKabupaten = true;
+    //   axios
+    //     .get("/sanctum/csrf-cookie")
+    //     .then((response) => {
+    //       this.selected.selectedKabupaten = this.selectingKabupaten;
+    //       setTimeout(() => {
+    //         this.isFilteringKabupaten = false;
+    //         this.showModalKab = false;
+    //         this.containerProduct = true;
+    //         this.showModalSidebar = false;
+    //         this.showModalBackground = false;
+    //       }, 1500);
+    //       // console.log(this.selectedProvinsi);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
+    // applyFilterCategory() {
+    //   this.isFilteringCategory = true;
+    //   axios
+    //     .get("/sanctum/csrf-cookie")
+    //     .then((response) => {
+    //       this.selected.selectedCategory = this.selectingCategory;
+    //       setTimeout(() => {
+    //         this.isFilteringCategory = false;
+    //         this.showModalCat = false;
+    //         this.containerProduct = true;
+    //         this.showModalSidebar = false;
+    //         this.showModalBackground = false;
+    //         this.disableSubCatButton = false;
+    //         this.selected.selectedSubCategory = [];
+    //         this.selectingSubCategory = [];
+    //       }, 1500);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
+    // applyFilterSubCategory() {
+    //   this.isFilteringSubCategory = true;
+    //   axios
+    //     .get("/sanctum/csrf-cookie")
+    //     .then((response) => {
+    //       this.selected.selectedSubCategory = this.selectingSubCategory;
+    //       setTimeout(() => {
+    //         this.isFilteringSubCategory = false;
+    //         this.showModalSubCat = false;
+    //         this.containerProduct = true;
+    //         this.showModalSidebar = false;
+    //         this.showModalBackground = false;
+    //       }, 1500);
+    //       // console.log(this.selectedProvinsi);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // },
     handleSelectingProvinsi(param, param2) {
-      if (this.selectingProvinsi.includes(param) === false)
-        this.selectingProvinsi.push(param);
-      else alert("sudah dipilih");
+      // if (this.selectingProvinsi.includes(param) === false)
+      //   this.selectingProvinsi.push(param);
+      // else alert("sudah dipilih");
 
       //berapapun banyaknya element yg masuk, hapus semua lalu ambil elemen teakhir :-)
-      this.selectingProvinsi.splice(0, this.selectingProvinsi.length - 1);
+      this.selected.selectedProvinsi.push(param);
+      this.selected.selectedProvinsi.splice(0, this.selected.selectedProvinsi.length - 1);
+      this.provinsiTerpilih = param2;
       this.isSelectingProvId = param;
       this.provinsiTerpilih = param2;
-    },
+      this.selected.selectedKabupaten = [];
+      this.kabupatenTerpilih = '';
 
-    handleSelectingKabupaten(param) {
-      if (this.selectingKabupaten.includes(param) === false)
-        this.selectingKabupaten.push(param);
-      else alert("sudah dipilih");
+      this.disableKabupatenButton = false;
+      this.showModalProv = false;
+      this.containerProduct = true;
+      this.showModalSidebar = false;
+      this.showModalBackground = false;
+    },
+    handleSelectingKabupaten(param, param2) {
+      // if (this.selectingKabupaten.includes(param) === false)
+      //   this.selectingKabupaten.push(param);
+      // else alert("sudah dipilih");
 
       //berapapun banyaknya element yg masuk, hapus semua lalu ambil elemen teakhir :-)
-      this.selectingKabupaten.splice(0, this.selectingKabupaten.length - 1);
-      this.isSelectingKabId = param;
-    },
+      // this.selectingKabupaten.splice(0, this.selectingKabupaten.length - 1);
+      // this.isSelectingKabId = param;
+      this.selected.selectedKabupaten.push(param);
+      this.selected.selectedKabupaten.splice(0, this.selected.selectedKabupaten.length - 1);
+      this.kabupatenTerpilih = param2;
 
+      this.showModalKab = false;
+      this.containerProduct = true;
+      this.showModalSidebar = false;
+      this.showModalBackground = false;
+    },
     handleSelectingCategory(param, param2) {
-      if (this.selectingCategory.includes(param) === false)
-        this.selectingCategory.push(param);
-      else alert("sudah dipilih");
+      // if (this.selectingCategory.includes(param) === false)
+      //   this.selectingCategory.push(param);
+      // else alert("sudah dipilih");
 
       //berapapun banyaknya element yg masuk, hapus semua lalu ambil elemen teakhir :-)
-      this.selectingCategory.splice(0, this.selectingCategory.length - 1);
+      // this.selectingCategory.splice(0, this.selectingCategory.length - 1);
+      this.selected.selectedCategory.push(param);
+      this.selected.selectedCategory.splice(0, this.selected.selectedCategory.length - 1);
       this.isSelectingCatId = param;
       this.categoryTerpilih = param2;
-    },
+      this.selected.selectedSubCategory = [];
+      this.subCategoryTerpilih = '';
 
-    handleSelectingSubCategory(param) {
-      if (this.selectingSubCategory.includes(param) === false)
-        this.selectingSubCategory.push(param);
-      else alert("sudah dipilih");
+      this.disableSubCatButton = false;
+      this.showModalCat = false;
+      this.containerProduct = true;
+      this.showModalSidebar = false;
+      this.showModalBackground = false;
+    },
+    handleSelectingSubCategory(param, param2) {
+      // if (this.selectingSubCategory.includes(param) === false)
+      //   this.selectingSubCategory.push(param);
+      // else alert("sudah dipilih");
 
       //berapapun banyaknya element yg masuk, hapus semua lalu ambil elemen teakhir :-)
-      this.selectingSubCategory.splice(0, this.selectingSubCategory.length - 1);
-      this.isSelectingSubCatId = param;
+      // this.selectingSubCategory.splice(0, this.selectingSubCategory.length - 1);
+      // this.isSelectingSubCatId = param;
+      this.selected.selectedSubCategory.push(param);
+      this.selected.selectedSubCategory.splice(0, this.selected.selectedSubCategory.length - 1);
+      this.subCategoryTerpilih = param2;
+      this.showModalSubCat = false;
+      this.containerProduct = true;
+      this.showModalSidebar = false;
+      this.showModalBackground = false;
     },
-
     provinsiModal: function () {
       axios
         .get("/sanctum/csrf-cookie")
@@ -1309,7 +1362,6 @@ export default {
           console.log(error);
         });
     },
-
     kabupatenModal: function () {
       axios
         .get("/sanctum/csrf-cookie")
@@ -1346,7 +1398,6 @@ export default {
           console.log(error);
         });
     },
-
     categoryModal: function () {
       axios
         .get("/sanctum/csrf-cookie")
@@ -1378,7 +1429,6 @@ export default {
           console.log(error);
         });
     },
-
     subcategoryModal: function () {
       axios
         .get("/sanctum/csrf-cookie")

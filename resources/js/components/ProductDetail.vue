@@ -222,11 +222,11 @@
                                         <div class="flex mb-3 items-center justify-between">
                                             <div class="w-1/12">
                                                 <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-                                                    <input id="sni" v-model="productForm.sni" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
+                                                    <input @click="toggleInputSNI" id="sni" v-model="productForm.sni" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
                                                     <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /></svg>
                                                 </div>
                                             </div>
-                                            <label @click="toggleInputSNI" for="sni" class="text-gray-500 font-semibold w-1/6 mr-4">SNI</label>
+                                            <label for="sni" class="text-gray-500 font-semibold w-1/6 mr-4">SNI</label>
                                             <div class="w-full">
                                                 <input :disabled="disabled_input_SNI" id="nomor_sni" v-model="productForm.nomor_sni" @keyup="checkSNI(productForm.nomor_sni)" type="text" placeholder="SNI Number" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full" :class="{'text-green-400': isSuccess_nomor_sni, 'text-red-400': isError_nomor_sni}">
                                             </div>
@@ -234,11 +234,11 @@
                                         <div class="flex mb-3 items-center justify-between">
                                             <div class="w-1/12">
                                                 <div class="bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
-                                                    <input id="tkdn" v-model="productForm.tkdn" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
+                                                    <input @click="toggleInputTKDN" id="tkdn" v-model="productForm.tkdn" type="checkbox" true-value="1" false-value="0" class="opacity-0 absolute">
                                                     <svg class="fill-current hidden w-4 h-4 text-green-500 pointer-events-none" viewBox="0 0 20 20"><path d="M0 11l2-2 5 5L18 3l2 2L7 18z" /></svg>
                                                 </div>
                                             </div>
-                                            <label @click="toggleInputTKDN" for="tkdn" class="text-gray-500 font-semibold w-1/6 mr-4">TKDN</label>
+                                            <label for="tkdn" class="text-gray-500 font-semibold w-1/6 mr-4">TKDN</label>
                                             <div class="w-full">
                                                 <input :disabled="disabled_input_TKDN" id="nilai_tkdn" v-model="productForm.nilai_tkdn" @keyup="checkNilaiTKDN(productForm.nilai_tkdn)" type="text" placeholder="Nilai TKDN" class="rounded-lg py-3 px-4 text-gray-700 border border-gray-300 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-2/4" :class="{'text-green-400': isSuccess_nilai_tkdn, 'text-red-400': isError_nilai_tkdn}">
                                             </div>
